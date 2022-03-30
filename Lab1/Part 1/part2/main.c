@@ -231,6 +231,7 @@ BoardInit(void)
 //
 //****************************************************************************
 #define CHECK_BIT(var,pos) (((var)>>(pos)) & 1)
+//https://stackoverflow.com/questions/523724/c-c-check-if-one-bit-is-set-in-i-e-int-variable
 int main() {
   //
   // Initialize Board configurations

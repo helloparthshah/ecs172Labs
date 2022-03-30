@@ -255,6 +255,7 @@ int main() {
     if (sw3 == 1 && f1 == 0) {
       f2 = 0;
       f1 = 1;
+      GPIOPinWrite(GPIOA3_BASE, 0x10, 0);
       Report("SW3 pressed\n\r");
       // binary counter
       while (1) {
@@ -282,6 +283,7 @@ int main() {
     if (sw2 == 1 && f2 == 0) {
       f1 = 0;
       f2 = 1;
+      GPIOPinWrite(GPIOA3_BASE, 0x10, 1<<4);
       Report("SW2 pressed\n\r");
       // on off in unison
       while (1) {

@@ -2075,3 +2075,78 @@ java.nio.file.FileSystemException: C:\Users\hello\Work\School\Computers\EEC172\L
 
 !ENTRY org.eclipse.core.resources 2 566 2022-03-29 21:57:25.829
 !MESSAGE null parent found while collapsing trees
+
+!ENTRY org.eclipse.core.resources 2 566 2022-03-29 22:05:26.588
+!MESSAGE null parent found while collapsing trees
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-03-29 22:19:35.799
+!MESSAGE DS_ERROR: Cortex_M4_0: Error 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-03-29 22:19:35.849
+!MESSAGE DS_ERROR: Cortex_M4_0: Unable to determine target status after 20 attempts
+
+
+!ENTRY org.eclipse.ui.ide 4 4 2022-03-29 22:20:17.309
+!MESSAGE Problems saving workspace
+
+!ENTRY org.eclipse.ui.ide 4 1 2022-03-29 22:20:17.310
+!MESSAGE Problems occurred while trying to save the state of the workbench.
+!SUBENTRY 1 org.eclipse.core.resources 4 568 2022-03-29 22:20:17.310
+!MESSAGE Could not write workspace metadata 'C:/Users/hello/Work/School/Computers/EEC172/Labs/Lab1/Part 1/.metadata/.plugins/org.eclipse.core.resources/.root/4.tree'.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.core.internal.watson.ElementTreeWriter.sortTrees(ElementTreeWriter.java:125)
+	at org.eclipse.core.internal.watson.ElementTreeWriter.writeDeltaChain(ElementTreeWriter.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.writeTree(SaveManager.java:2011)
+	at org.eclipse.core.internal.resources.SaveManager.saveTree(SaveManager.java:1411)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1190)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2283)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$4.run(IDEWorkbenchAdvisor.java:456)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+
+!ENTRY org.eclipse.core.resources 2 566 2022-03-29 22:20:17.584
+!MESSAGE null parent found while collapsing trees
+
+!ENTRY org.eclipse.core.resources 2 10035 2022-03-29 22:20:17.586
+!MESSAGE The workspace will exit with unsaved changes in this session.
+!SESSION 2022-03-29 22:33:12.304 -----------------------------------------------
+eclipse.buildId=4.6.0.I20160606-1100
+java.version=1.8.0_112
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product com.ti.ccstudio.branding.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ti.ccstudio.branding.product
+
+!ENTRY org.eclipse.core.resources 2 10035 2022-03-29 22:33:16.212
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY com.ti.common.core 4 0 2022-03-29 22:33:16.258
+!MESSAGE path=ccs_base/DebugServer
+
+!ENTRY com.ti.common.core 4 0 2022-03-29 22:33:16.258
+!MESSAGE debugServerDir=C:/ti/ccsv7/ccs_base/DebugServer
+
+!ENTRY com.ti.ccstudio.errorparser 4 0 2022-03-29 22:34:59.306
+!MESSAGE An internal error was logged by 'com.ti.ccstudio.errorparser'.
+!STACK 0
+org.jsoup.HttpStatusException: HTTP error fetching URL. Status=410, URL=https://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:590)
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:587)
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:540)
+	at org.jsoup.helper.HttpConnection.execute(HttpConnection.java:227)
+	at org.jsoup.helper.HttpConnection.get(HttpConnection.java:216)
+	at com.ti.ccstudio.errorparser.parsers.PatternProvider$PatternData.fillup(PatternProvider.java:277)
+	at com.ti.ccstudio.errorparser.parsers.PatternProvider$PatternData.findMatch(PatternProvider.java:144)
+	at com.ti.ccstudio.errorparser.parsers.PatternProvider.getEmdUrl(PatternProvider.java:489)
+	at com.ti.ccstudio.errorparser.parsers.ErrorPattern.recordError(ErrorPattern.java:95)
+	at com.ti.ccstudio.errorparser.parsers.CoffErrorParser.processPendingMesg(CoffErrorParser.java:343)
+	at com.ti.ccstudio.errorparser.parsers.CoffErrorParser.processLine(CoffErrorParser.java:275)
+	at org.eclipse.cdt.core.ErrorParserManager.processLine(ErrorParserManager.java:354)
+	at org.eclipse.cdt.core.ErrorParserManager.checkLine(ErrorParserManager.java:688)
+	at org.eclipse.cdt.core.ErrorParserManager.write(ErrorParserManager.java:672)
+	at org.eclipse.cdt.internal.core.StreamProgressMonitor.write(StreamProgressMonitor.java:101)
+	at java.io.OutputStream.write(OutputStream.java:75)
+	at com.ti.ccstudio.project.core.internal.build.temp.ProcessClosure$SynchronizedOutputStream.flushBufferedErrors(ProcessClosure.java:230)
+	at com.ti.ccstudio.project.core.internal.build.temp.ProcessClosure$SynchronizedOutputStream.write(ProcessClosure.java:182)
+	at com.ti.ccstudio.project.core.internal.build.temp.ProcessClosure$ReaderThread.run(ProcessClosure.java:84)

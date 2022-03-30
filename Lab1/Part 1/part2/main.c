@@ -230,6 +230,7 @@ BoardInit(void)
 //! \return None.
 //
 //****************************************************************************
+#define CHECK_BIT(var,pos) (((var)>>(pos)) & 1)
 int main() {
   //
   // Initialize Board configurations
@@ -264,13 +265,13 @@ int main() {
           sw2 = GPIOPinRead(GPIOA2_BASE, 0x40) >> 6 & 0x1;
           if (sw2 == 1)
             break;
-          if ((i & 0x1) == 1) {
+          if (CHECK_BIT(i,0) == 1) {
             GPIO_IF_LedOn(MCU_RED_LED_GPIO);
           }
-          if ((i & 0x2) == 2) {
+          if (CHECK_BIT(i,1) == 1) {
             GPIO_IF_LedOn(MCU_ORANGE_LED_GPIO);
           }
-          if ((i & 0x4) == 4) {
+          if (CHECK_BIT(i,2) == 1) {
             GPIO_IF_LedOn(MCU_GREEN_LED_GPIO);
           }
           MAP_UtilsDelay(8000000);

@@ -1,0 +1,3 @@
+1648606171563	Rename resource 'blinky'
+1648607257492	Delete resource 'blinky/pinmux.c'
+1648607260662	Delete resource 'blinky/pinmux.h'

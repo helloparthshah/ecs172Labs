@@ -776,3 +776,9 @@ org.jsoup.HttpStatusException: HTTP error fetching URL. Status=410, URL=https://
 	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:140)
 	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:235)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY com.ti.ccstudio.system.setup.ui 1 0 2022-03-29 18:54:24.501
+!MESSAGE targetCfgPath1=C:/Users/hello/user/CCSTargetConfigurations
+
+!ENTRY com.ti.ccstudio.system.setup.ui 1 0 2022-03-29 18:54:24.502
+!MESSAGE targetCfgPath2=C:/Users/hello/ti/CCSTargetConfigurations

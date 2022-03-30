@@ -130,17 +130,17 @@ void LEDBlinkyRoutine()
         // Alternately toggle hi-low each of the GPIOs
         // to switch the corresponding LED on/off.
         //
-        MAP_UtilsDelay(8000000/5);
+        MAP_UtilsDelay(8000000);
         GPIO_IF_LedOn(MCU_RED_LED_GPIO);
-        MAP_UtilsDelay(8000000/5);
+        MAP_UtilsDelay(8000000);
         GPIO_IF_LedOff(MCU_RED_LED_GPIO);
-        MAP_UtilsDelay(8000000/5);
+        MAP_UtilsDelay(8000000);
         GPIO_IF_LedOn(MCU_ORANGE_LED_GPIO);
-        MAP_UtilsDelay(8000000/5);
+        MAP_UtilsDelay(8000000);
         GPIO_IF_LedOff(MCU_ORANGE_LED_GPIO);
-        MAP_UtilsDelay(8000000/5);
+        MAP_UtilsDelay(8000000);
         GPIO_IF_LedOn(MCU_GREEN_LED_GPIO);
-        MAP_UtilsDelay(8000000/5);
+        MAP_UtilsDelay(8000000);
         GPIO_IF_LedOff(MCU_GREEN_LED_GPIO);
     }
 

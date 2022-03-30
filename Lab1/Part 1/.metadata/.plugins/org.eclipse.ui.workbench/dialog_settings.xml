@@ -20,4 +20,6 @@
 		<item value="LM_ICDI" key="com.ti.ccstudio.system.setup.ui.editors.connectionType"/>
 		<item value="Stellaris In-Circuit Debug Interface" key="com.ti.ccstudio.system.setup.ui.editors.connectionName"/>
 	</section>
+	<section name="ImportExportAction">
+	</section>
 </section>

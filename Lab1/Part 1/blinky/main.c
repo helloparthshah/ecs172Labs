@@ -71,17 +71,25 @@
 #include "prcm.h"
 #include "gpio.h"
 #include "utils.h"
-#include "uart.h"
 // Common interface includes
 #include "gpio_if.h"
 
 //#include "pinmux.h"
 #include "pin_mux_config.h"
 
-// Common interface include
+// uart imports
 #include "uart_if.h"
+#include "uart.h"
 
-#define APPLICATION_VERSION     "1.1.1"
+//*****************************************************************************
+//                          MACROS
+//*****************************************************************************
+#define APPLICATION_VERSION  "1.1.1"
+#define APP_NAME             "UART Echo"
+#define CONSOLE              UARTA0_BASE
+#define UartGetChar()        MAP_UARTCharGet(CONSOLE)
+#define UartPutChar(c)       MAP_UARTCharPut(CONSOLE,c)
+#define MAX_STRING_LENGTH    80
 
 //*****************************************************************************
 //                 GLOBAL VARIABLES -- Start
@@ -103,6 +111,34 @@ extern uVectorEntry __vector_table;
 void LEDBlinkyRoutine();
 static void BoardInit(void);
 
+//*****************************************************************************
+//                      LOCAL DEFINITION
+//*****************************************************************************
+
+//*****************************************************************************
+//
+//! Application startup display on UART
+//!
+//! \param  none
+//!
+//! \return none
+//!
+//*****************************************************************************
+static void
+DisplayBanner()
+{
+
+    Report("\n\n\n\r");
+    Report("\t\t *************************************************\n\r");
+    Report("\t\t        CC3200 GPIO Application       \n\r");
+    Report("\t\t *************************************************\n\r");
+    Report("\n\n\n\r");
+    Report("\t\t *************************************************\n\r");
+    Report("\t\t        Push SW3 to start LED binary counting       \n\r");
+    Report("\t\t        Push SW2 to blink LEDs on and off       \n\r");
+    Report("\t\t *************************************************\n\r");
+    Report("\n\n\n\r");
+}
 //*****************************************************************************
 //                      LOCAL FUNCTION DEFINITIONS                         
 //*****************************************************************************
@@ -194,28 +230,75 @@ BoardInit(void)
 //! \return None.
 //
 //****************************************************************************
-int
-main()
-{
-    //
-    // Initialize Board configurations
-    //
-    BoardInit();
-    
-    //
-    // Power on the corresponding GPIO port B for 9,10,11.
-    // Set up the GPIO lines to mode 0 (GPIO)
-    //
-    PinMuxConfig();
-    GPIO_IF_LedConfigure(LED1|LED2|LED3);
+int main() {
+  //
+  // Initialize Board configurations
+  //
+  BoardInit();
+  //
+  // Power on the corresponding GPIO port B for 9,10,11.
+  // Set up the GPIO lines to mode 0 (GPIO)
+  //
+  PinMuxConfig();
 
-    GPIO_IF_LedOff(MCU_ALL_LED_IND);
-    
-    //
-    // Start the LEDBlinkyRoutine
-    //
-    LEDBlinkyRoutine();
-    return 0;
+  GPIO_IF_LedConfigure(LED1 | LED2 | LED3);
+
+  GPIO_IF_LedOff(MCU_ALL_LED_IND);
+
+  InitTerm();
+  ClearTerm();
+  DisplayBanner();
+  int f1 = 0, f2 = 0;
+  while (1) {
+    long sw3 = GPIOPinRead(GPIOA1_BASE, 0x20) >> 5 & 0x1;
+    long sw2 = GPIOPinRead(GPIOA2_BASE, 0x40) >> 6 & 0x1;
+    if (sw3 == 1 && f1 == 0) {
+      f2 = 0;
+      f1 = 1;
+      Report("SW3 pressed\n\r");
+      // binary counter
+      while (1) {
+        int i;
+        for (i = 0; i < 8; i++) {
+          sw2 = GPIOPinRead(GPIOA2_BASE, 0x40) >> 6 & 0x1;
+          if (sw2 == 1)
+            break;
+          if ((i & 0x1) == 1) {
+            GPIO_IF_LedOn(MCU_RED_LED_GPIO);
+          }
+          if ((i & 0x2) == 2) {
+            GPIO_IF_LedOn(MCU_ORANGE_LED_GPIO);
+          }
+          if ((i & 0x4) == 4) {
+            GPIO_IF_LedOn(MCU_GREEN_LED_GPIO);
+          }
+          MAP_UtilsDelay(8000000);
+          GPIO_IF_LedOff(MCU_ALL_LED_IND);
+        }
+        if (sw2 == 1)
+          break;
+      }
+    }
+    if (sw2 == 1 && f2 == 0) {
+      f1 = 0;
+      f2 = 1;
+      Report("SW2 pressed\n\r");
+      // on off in unison
+      while (1) {
+        sw3 = GPIOPinRead(GPIOA1_BASE, 0x20) >> 5 & 0x1;
+        if (sw3 == 1)
+          break;
+        GPIO_IF_LedOn(MCU_ALL_LED_IND);
+        MAP_UtilsDelay(8000000);
+        GPIO_IF_LedOff(MCU_ALL_LED_IND);
+        MAP_UtilsDelay(8000000);
+      }
+    }
+  }
+  //
+  // Start the LEDBlinkyRoutine
+  //
+  return 0;
 }
 
 //*****************************************************************************

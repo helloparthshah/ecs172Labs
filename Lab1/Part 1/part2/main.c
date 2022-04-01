@@ -139,52 +139,8 @@ DisplayBanner()
     Report("\t\t *************************************************\n\r");
     Report("\n\n\n\r");
 }
-//*****************************************************************************
-//                      LOCAL FUNCTION DEFINITIONS                         
-//*****************************************************************************
 
-//*****************************************************************************
-//
-//! Configures the pins as GPIOs and peroidically toggles the lines
-//!
-//! \param None
-//! 
-//! This function  
-//!    1. Configures 3 lines connected to LEDs as GPIO
-//!    2. Sets up the GPIO pins as output
-//!    3. Periodically toggles each LED one by one by toggling the GPIO line
-//!
-//! \return None
-//
-//*****************************************************************************
-void LEDBlinkyRoutine()
-{
-    //
-    // Toggle the lines initially to turn off the LEDs.
-    // The values driven are as required by the LEDs on the LP.
-    //
-    GPIO_IF_LedOff(MCU_ALL_LED_IND);
-    while(1)
-    {
-        //
-        // Alternately toggle hi-low each of the GPIOs
-        // to switch the corresponding LED on/off.
-        //
-        MAP_UtilsDelay(8000000);
-        GPIO_IF_LedOn(MCU_RED_LED_GPIO);
-        MAP_UtilsDelay(8000000);
-        GPIO_IF_LedOff(MCU_RED_LED_GPIO);
-        MAP_UtilsDelay(8000000);
-        GPIO_IF_LedOn(MCU_ORANGE_LED_GPIO);
-        MAP_UtilsDelay(8000000);
-        GPIO_IF_LedOff(MCU_ORANGE_LED_GPIO);
-        MAP_UtilsDelay(8000000);
-        GPIO_IF_LedOn(MCU_GREEN_LED_GPIO);
-        MAP_UtilsDelay(8000000);
-        GPIO_IF_LedOff(MCU_GREEN_LED_GPIO);
-    }
 
-}
 //*****************************************************************************
 //
 //! Board Initialization & Configuration
@@ -294,6 +250,9 @@ int main() {
           break;
         GPIO_IF_LedOn(MCU_ALL_LED_IND);
         MAP_UtilsDelay(8000000);
+        sw3 = GPIOPinRead(GPIOA1_BASE, 0x20) >> 5 & 0x1;
+        if (sw3 == 1)
+            break;
         GPIO_IF_LedOff(MCU_ALL_LED_IND);
         MAP_UtilsDelay(8000000);
       }

@@ -2,19 +2,13 @@
 **** Build of configuration Release for project part2 ****
 
 "C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
-'Building file: ../main.c'
-'Invoking: ARM Compiler'
-"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" -g --gcc --define=ccs --define=NON_NETWORK --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
-"../main.c", line 304: warning #112-D: statement is unreachable
-'Finished building: ../main.c'
-' '
-'Building target: part2.out'
-'Invoking: ARM Linker'
-"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff -g --gcc --define=ccs --define=NON_NETWORK --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number -z -m"part2.map" --heap_size=0x800 --stack_size=0x800 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="part2_linkInfo.xml" --rom_model -o "part2.out" "./gpio_if.obj" "./main.obj" "./pin_mux_config.obj" "./startup_ccs.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -ldriverlib.a 
-<Linking>
-'Finished building target: part2.out'
-' '
-"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "part2.out" "part2.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
-' '
+gmake: Nothing to be done for 'all'.
+
+**** Build Finished ****
+
+**** Build of configuration Release for project part2 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+gmake: Nothing to be done for 'all'.
 
 **** Build Finished ****

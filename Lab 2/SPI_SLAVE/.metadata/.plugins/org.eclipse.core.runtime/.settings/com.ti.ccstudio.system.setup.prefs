@@ -1,2 +1,2 @@
-DEFAULT_CCS_TARGET_CONFIGURATION=C\:\\Users\\hello\\Work\\School\\Computers\\EEC172\\Labs\\Lab 2\\SPI_SLAVE\\spi_demo\\NewTargetConfiguration.ccxml
+DEFAULT_CCS_TARGET_CONFIGURATION=C\:\\Users\\hello\\ti\\CCSTargetConfigurations\\cc3200.ccxml
 eclipse.preferences.version=1

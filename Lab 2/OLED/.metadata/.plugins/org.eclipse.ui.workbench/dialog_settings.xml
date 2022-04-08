@@ -12,4 +12,8 @@
 		<list key="textArray">
 		</list>
 	</section>
+	<section name="MemoryDumperFillAction">
+		<item value="LM_ICDI" key="com.ti.ccstudio.system.setup.ui.editors.connectionType"/>
+		<item value="Stellaris In-Circuit Debug Interface" key="com.ti.ccstudio.system.setup.ui.editors.connectionName"/>
+	</section>
 </section>

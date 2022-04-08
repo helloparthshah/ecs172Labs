@@ -30,6 +30,7 @@ void writeCommand(unsigned char c) {
 /* Write a function to send a command byte c to the OLED via
 *  SPI.
 */
+  unsigned long lTemp;
   MAP_SPICSEnable(GSPI_BASE);
   // Writing low to DC pin
   GPIOPinWrite(GPIOA3_BASE, 0x80,0x00);
@@ -37,8 +38,10 @@ void writeCommand(unsigned char c) {
   GPIOPinWrite(GPIOA3_BASE, 0x10,0x00);
   // Writing command byte to SPI
   MAP_SPIDataPut(GSPI_BASE,(unsigned long)c);
+  // Reading data from SPI
+  MAP_SPIDataGet(GSPI_BASE,&lTemp);
   // setting oc pin high
-  GPIOPinWrite(GPIOA3_BASE, 0x80,0x80);
+  GPIOPinWrite(GPIOA3_BASE, 0x10,0x10);
   MAP_SPICSDisable(GSPI_BASE);
 }
 //*****************************************************************************
@@ -49,6 +52,7 @@ void writeData(unsigned char c) {
 /* Write a function to send a data byte c to the OLED via
 *  SPI.
 */
+  unsigned long lTemp;
   MAP_SPICSEnable(GSPI_BASE);
   // Writing high to DC pin
   GPIOPinWrite(GPIOA3_BASE, 0x80,0x80);
@@ -56,8 +60,10 @@ void writeData(unsigned char c) {
   GPIOPinWrite(GPIOA3_BASE, 0x10,0x00);
   // Writing data byte to SPI
   MAP_SPIDataPut(GSPI_BASE,(unsigned long)c);
+  // 
+  MAP_SPIDataGet(GSPI_BASE,&lTemp);
   // setting oc pin high
-  GPIOPinWrite(GPIOA3_BASE, 0x80,0x80);
+  GPIOPinWrite(GPIOA3_BASE, 0x10,0x10);
   MAP_SPICSDisable(GSPI_BASE);
 }
 
@@ -79,7 +85,7 @@ void Adafruit_Init(void){
 
   for(delay=0; delay<100; delay=delay+1);// delay minimum 100 ns
 
-  GPIOPinWrite(GPIOA2_BASE, 0x2, 0x10);	// RESET = RESET_HIGH
+  GPIOPinWrite(GPIOA2_BASE, 0x2, 0x2);	// RESET = RESET_HIGH
 
 	// Initialization Sequence
   writeCommand(SSD1351_CMD_COMMANDLOCK);  // set command lock

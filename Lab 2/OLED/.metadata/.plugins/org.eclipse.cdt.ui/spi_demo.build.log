@@ -2,25 +2,6 @@
 **** Build of configuration Release for project spi_demo ****
 
 "C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
-'Building file: ../main.c'
-'Invoking: ARM Compiler'
-"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc/" -g --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
-"..\Adafruit_SSD1351.h", line 36: warning #303-D: typedef name has already been declared (with same type)
-"..\Adafruit_SSD1351.h", line 37: warning #303-D: typedef name has already been declared (with same type)
-"..\test.h", line 251: warning #1-D: last line of file ends without a newline
-"../main.c", line 101: warning #179-D: variable "g_ucTxBuff" was declared but never referenced
-"../main.c", line 102: warning #179-D: variable "g_ucRxBuff" was declared but never referenced
-"../main.c", line 103: warning #179-D: variable "ucTxBuffNdx" was declared but never referenced
-"../main.c", line 104: warning #179-D: variable "ucRxBuffNdx" was declared but never referenced
-'Finished building: ../main.c'
-' '
-'Building target: spi_demo.out'
-'Invoking: ARM Linker'
-"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -g --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number -z -m"spi_demo.map" --heap_size=0x800 --stack_size=0x800 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="spi_demo_linkInfo.xml" --rom_model -o "spi_demo.out" "./Adafruit_GFX.obj" "./Adafruit_OLED.obj" "./main.obj" "./pin_mux_config.obj" "./startup_ccs.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" 
-<Linking>
-'Finished building target: spi_demo.out'
-' '
-"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "spi_demo.out" "spi_demo.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
-' '
+gmake: Nothing to be done for 'all'.
 
 **** Build Finished ****

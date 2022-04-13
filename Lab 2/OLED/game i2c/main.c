@@ -166,7 +166,7 @@ int MovePaddle() {
   I2C_IF_Read(ucDevAddr, &aucRdDataBuf[0], ucRdLen);
   float x = (int)((signed char)aucRdDataBuf[1]);
   fillRect((int)paddle_x, (int)2, 20, 2, BLACK);
-  paddle_x -= x / 10;
+  paddle_x -= x / 8;
   // apply constraints
   if (paddle_x <= 0)
     paddle_x = 0;
@@ -177,26 +177,108 @@ int MovePaddle() {
   return 0;
 }
 
-float curr_x = 64, curr_y = 32;
-int xvelocity = 2, yvelocity = 2;
+float curr_x = 64, curr_y = 6;
+int xvelocity = 2, yvelocity = -2;
 
-int MoveBall() {
+void MoveBall() {
   fillCircle((int)curr_x, (int)curr_y, 2, BLACK);
   curr_x += xvelocity;
   curr_y += yvelocity;
   if (curr_x >= 125)
-    xvelocity *= -1;
+    xvelocity = -2;
   if (curr_x <= 2)
-    xvelocity *= -1;
+    xvelocity = 2;
   if (curr_y >= 125)
-    yvelocity *= -1;
+    yvelocity = -2;
   if (curr_y <= 6 && curr_x >= paddle_x && curr_x <= paddle_x + 20)
-    yvelocity *= -1;
+    yvelocity = 2;
   else if (curr_y <= 2) {
     curr_x = 64;
     curr_y = 32;
   }
   fillCircle((int)curr_x, (int)curr_y, 2, WHITE);
+}
+
+int boxes[3][4] = {{1, 1, 1, 1}, {1, 1, 1, 1}, {1, 1, 1, 1}};
+int w = 32;
+int h = 16;
+int nx = 3, ny = 4;
+int ischange = 1;
+void checkCollisions() {
+  int i, j;
+  // check for collisions with the boxes
+  for (i = 0; i < nx; i++) {
+    for (j = 0; j < ny; j++) {
+      if (boxes[i][j] == 1) {
+        // x and y are 127 - (w + w / 2 + i * (w + 2)), 127 - (h + j * (h + 2))
+        // change yvelocity if collision with bottom
+        if (curr_y + 2 >= 127 - (h + j * (h + 2)) &&
+            curr_y + 2 <= 127 - (h + j * (h + 2)) + h) {
+          if (curr_x + 2 >= 127 - (w + w / 2 + i * (w + 2)) &&
+              curr_x + 2 <= 127 - (w + w / 2 + i * (w + 2)) + w) {
+            yvelocity *= -1;
+            boxes[i][j] = 0;
+            ischange = 1;
+          }
+        }
+        // change xvelocity if collision with right
+        if (curr_x + 2 >= 127 - (w + w / 2 + i * (w + 2)) &&
+            curr_x + 2 <= 127 - (w + w / 2 + i * (w + 2)) + w &&
+            boxes[i][j] == 1) {
+          if (curr_y + 2 >= 127 - (h + j * (h + 2)) &&
+              curr_y + 2 <= 127 - (h + j * (h + 2)) + h) {
+            xvelocity *= -1;
+            boxes[i][j] = 0;
+            ischange = 1;
+          }
+        }
+        // change yvelocity if collision with top
+        if (curr_y - 2 <= 127 - (h + j * (h + 2)) + h &&
+            curr_y - 2 >= 127 - (h + j * (h + 2))) {
+          if (curr_x - 2 <= 127 - (w + w / 2 + i * (w + 2)) + w &&
+              curr_x - 2 >= 127 - (w + w / 2 + i * (w + 2)) &&
+              boxes[i][j] == 1) {
+            yvelocity *= -1;
+            boxes[i][j] = 0;
+            ischange = 1;
+          }
+        }
+        // change xvelocity if collision with left
+        if (curr_x - 2 <= 127 - (w + w / 2 + i * (w + 2)) + w &&
+            curr_x - 2 >= 127 - (w + w / 2 + i * (w + 2)) && boxes[i][j] == 1) {
+          if (curr_y - 2 <= 127 - (h + j * (h + 2)) + h &&
+              curr_y - 2 >= 127 - (h + j * (h + 2))) {
+            xvelocity = 2;
+            boxes[i][j] = 0;
+            ischange = 1;
+          }
+        }
+      }
+    }
+  }
+  if (ischange == 1) {
+    ischange = 0;
+    for (i = 0; i < nx; i++) {
+      for (j = 0; j < ny; j++) {
+        if (boxes[i][j] == 0) {
+          fillRect(127 - (w + w / 2 + i * (w + 2)), 127 - (h + j * (h + 2)), w,
+                   h, BLACK);
+        }
+      }
+    }
+  }
+}
+
+int checkWin() {
+  int i, j;
+  for (i = 0; i < nx; i++) {
+    for (j = 0; j < ny; j++) {
+      if (boxes[i][j] == 1) {
+        return 0;
+      }
+    }
+  }
+  return 1;
 }
 
 //*****************************************************************************
@@ -287,8 +369,19 @@ void main() {
 
   Adafruit_Init();
   fillScreen(BLACK);
+  int i, j;
+  for (i = 0; i < nx; i++) {
+    for (j = 0; j < ny; j++) {
+      fillRect(127 - (w + w / 2 + i * (w + 2)), 127 - (h + j * (h + 2)), w, h,
+               RED);
+    }
+  }
   while (FOREVER) {
+    if (checkWin() == 1) {
+      break;
+    }
     MovePaddle();
+    checkCollisions();
     MoveBall();
   }
 }

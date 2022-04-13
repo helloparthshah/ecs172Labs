@@ -2702,3 +2702,690 @@ Frequency is out of range.
 !ENTRY com.ti.ccstudio.debug 1 0 2022-04-08 22:12:20.502
 !MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
 
+!SESSION 2022-04-11 17:16:22.069 -----------------------------------------------
+eclipse.buildId=4.6.0.I20160606-1100
+java.version=1.8.0_112
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product com.ti.ccstudio.branding.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ti.ccstudio.branding.product
+
+!ENTRY com.ti.common.core 4 0 2022-04-11 17:16:44.469
+!MESSAGE path=ccs_base/DebugServer
+
+!ENTRY com.ti.common.core 4 0 2022-04-11 17:16:44.469
+!MESSAGE debugServerDir=C:/ti/ccsv7/ccs_base/DebugServer
+
+!ENTRY com.ti.ccstudio.system.setup.ui 1 0 2022-04-11 17:17:33.840
+!MESSAGE targetCfgPath1=C:/Users/hello/user/CCSTargetConfigurations
+
+!ENTRY com.ti.ccstudio.system.setup.ui 1 0 2022-04-11 17:17:33.840
+!MESSAGE targetCfgPath2=C:/Users/hello/ti/CCSTargetConfigurations
+
+!ENTRY com.ti.ccstudio.errorparser 4 0 2022-04-11 17:17:51.005
+!MESSAGE An internal error was logged by 'com.ti.ccstudio.errorparser'.
+!STACK 0
+org.jsoup.HttpStatusException: HTTP error fetching URL. Status=410, URL=https://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:590)
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:587)
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:540)
+	at org.jsoup.helper.HttpConnection.execute(HttpConnection.java:227)
+	at org.jsoup.helper.HttpConnection.get(HttpConnection.java:216)
+	at com.ti.ccstudio.errorparser.parsers.PatternProvider$PatternData.fillup(PatternProvider.java:277)
+	at com.ti.ccstudio.errorparser.parsers.PatternProvider$PatternData.findMatch(PatternProvider.java:144)
+	at com.ti.ccstudio.errorparser.parsers.PatternProvider.getEmdUrl(PatternProvider.java:489)
+	at com.ti.ccstudio.errorparser.parsers.ErrorPattern.recordError(ErrorPattern.java:95)
+	at com.ti.ccstudio.errorparser.parsers.CoffErrorParser.processPendingMesg(CoffErrorParser.java:343)
+	at com.ti.ccstudio.errorparser.parsers.CoffErrorParser.processLine(CoffErrorParser.java:275)
+	at org.eclipse.cdt.core.ErrorParserManager.processLine(ErrorParserManager.java:354)
+	at org.eclipse.cdt.core.ErrorParserManager.checkLine(ErrorParserManager.java:688)
+	at org.eclipse.cdt.core.ErrorParserManager.write(ErrorParserManager.java:672)
+	at org.eclipse.cdt.internal.core.StreamProgressMonitor.write(StreamProgressMonitor.java:101)
+	at java.io.OutputStream.write(OutputStream.java:75)
+	at com.ti.ccstudio.project.core.internal.build.temp.ProcessClosure$SynchronizedOutputStream.flushBufferedErrors(ProcessClosure.java:230)
+	at com.ti.ccstudio.project.core.internal.build.temp.ProcessClosure$SynchronizedOutputStream.write(ProcessClosure.java:182)
+	at com.ti.ccstudio.project.core.internal.build.temp.ProcessClosure$ReaderThread.run(ProcessClosure.java:84)
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-11 17:17:51.005
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-11 17:17:51.012
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-11 17:17:51.012
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-04-11 17:20:06.225
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+!SESSION 2022-04-12 17:28:33.000 -----------------------------------------------
+eclipse.buildId=4.6.0.I20160606-1100
+java.version=1.8.0_112
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product com.ti.ccstudio.branding.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ti.ccstudio.branding.product
+
+!ENTRY com.ti.common.core 4 0 2022-04-12 17:29:04.269
+!MESSAGE path=ccs_base/DebugServer
+
+!ENTRY com.ti.common.core 4 0 2022-04-12 17:29:04.274
+!MESSAGE debugServerDir=C:/ti/ccsv7/ccs_base/DebugServer
+
+!ENTRY com.ti.ccstudio.errorparser 4 0 2022-04-12 17:33:58.283
+!MESSAGE An internal error was logged by 'com.ti.ccstudio.errorparser'.
+!STACK 0
+org.jsoup.HttpStatusException: HTTP error fetching URL. Status=410, URL=https://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:590)
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:587)
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:540)
+	at org.jsoup.helper.HttpConnection.execute(HttpConnection.java:227)
+	at org.jsoup.helper.HttpConnection.get(HttpConnection.java:216)
+	at com.ti.ccstudio.errorparser.parsers.PatternProvider$PatternData.fillup(PatternProvider.java:277)
+	at com.ti.ccstudio.errorparser.parsers.PatternProvider$PatternData.findMatch(PatternProvider.java:144)
+	at com.ti.ccstudio.errorparser.parsers.PatternProvider.getEmdUrl(PatternProvider.java:489)
+	at com.ti.ccstudio.errorparser.parsers.ErrorPattern.recordError(ErrorPattern.java:95)
+	at com.ti.ccstudio.errorparser.parsers.CoffErrorParser.processPendingMesg(CoffErrorParser.java:343)
+	at com.ti.ccstudio.errorparser.parsers.CoffErrorParser.processLine(CoffErrorParser.java:267)
+	at org.eclipse.cdt.core.errorparsers.ErrorParserNamedWrapper.processLine(ErrorParserNamedWrapper.java:48)
+	at com.ti.ccstudio.project.core.internal.build.ProjectAdviceManager$AdviceContentHandler.endElement(ProjectAdviceManager.java:120)
+	at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.endElement(AbstractSAXParser.java:609)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanEndElement(XMLDocumentFragmentScannerImpl.java:1782)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2967)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:602)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:505)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:841)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:770)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+	at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1213)
+	at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(SAXParserImpl.java:643)
+	at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl.parse(SAXParserImpl.java:327)
+	at javax.xml.parsers.SAXParser.parse(SAXParser.java:328)
+	at com.ti.ccstudio.project.core.internal.build.ProjectAdviceManager.processAdvice(ProjectAdviceManager.java:477)
+	at com.ti.ccstudio.project.core.internal.build.ProjectAdviceManager.handleAdviceChangingEvent(ProjectAdviceManager.java:438)
+	at com.ti.ccstudio.project.core.internal.build.ProjectAdviceManager.handleAdviceChangingEvent(ProjectAdviceManager.java:426)
+	at com.ti.ccstudio.project.core.internal.build.ProjectAdviceManager.onProjectBuild_Post(ProjectAdviceManager.java:419)
+	at com.ti.common.project.core.internal.events.ProjectStateMonitor$ResourceChangeListener$7.visit(ProjectStateMonitor.java:393)
+	at com.ti.common.project.core.internal.events.ProjectStateMonitor.notifyListeners(ProjectStateMonitor.java:821)
+	at com.ti.common.project.core.internal.events.ProjectStateMonitor.access$2(ProjectStateMonitor.java:810)
+	at com.ti.common.project.core.internal.events.ProjectStateMonitor$ResourceChangeListener.resourceChanged(ProjectStateMonitor.java:391)
+	at org.eclipse.core.internal.events.NotificationManager$1.run(NotificationManager.java:299)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.NotificationManager.notify(NotificationManager.java:289)
+	at org.eclipse.core.internal.events.NotificationManager.broadcastChanges(NotificationManager.java:152)
+	at org.eclipse.core.internal.resources.Workspace.broadcastBuildEvent(Workspace.java:360)
+	at org.eclipse.core.internal.resources.Project$1.run(Project.java:560)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2240)
+	at org.eclipse.core.internal.resources.Project.internalBuild(Project.java:529)
+	at org.eclipse.core.internal.resources.Project.build(Project.java:112)
+	at org.eclipse.debug.core.model.LaunchConfigurationDelegate$1.run(LaunchConfigurationDelegate.java:430)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2240)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2262)
+	at org.eclipse.debug.core.model.LaunchConfigurationDelegate.buildProjects(LaunchConfigurationDelegate.java:437)
+	at org.eclipse.debug.core.model.LaunchConfigurationDelegate.buildForLaunch(LaunchConfigurationDelegate.java:130)
+	at com.ti.ccstudio.debug.launch.CCSLaunchDelegate.buildForLaunch(CCSLaunchDelegate.java:502)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:37:11.405
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:37:11.411
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:37:11.413
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:42:03.497
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:42:03.501
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:42:03.503
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:43:59.447
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:43:59.450
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:43:59.453
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:45:06.490
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:45:06.494
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:45:06.496
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:45:54.970
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:45:54.971
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:45:54.973
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:46:30.102
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:46:30.104
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:46:30.106
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:47:08.327
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:47:08.329
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:47:08.330
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:48:02.874
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:48:02.877
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:48:02.881
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:49:45.654
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:49:45.656
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:49:45.657
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:51:39.260
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:51:39.264
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:51:39.266
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:52:46.743
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:52:46.745
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:52:46.746
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:53:21.730
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:53:21.735
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:53:21.738
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:53:47.108
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:53:47.110
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:53:47.111
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:54:22.836
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:54:22.838
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:54:22.841
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:54:50.410
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:54:50.412
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:54:50.413
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:55:11.946
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:55:11.948
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:55:11.949
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:55:46.594
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:55:46.595
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:55:46.597
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:58:12.976
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:58:12.977
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:58:12.980
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:59:30.362
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:59:30.364
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 17:59:30.365
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:01:06.498
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:01:06.501
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:01:06.505
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:02:21.165
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:02:21.168
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:02:21.172
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:04:02.101
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:04:02.102
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:04:02.104
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:07:54.328
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:07:54.330
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:07:54.331
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:10:00.982
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:10:00.984
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:10:00.986
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:11:27.910
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:11:27.912
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:11:27.914
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:13:35.239
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:13:35.240
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:13:35.242
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:16:08.423
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:16:08.425
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:16:08.427
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:18:07.880
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:18:07.881
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:18:07.883
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:18:39.430
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:18:39.431
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:18:39.433
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:20:08.177
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:20:08.179
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:20:08.181
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:21:09.920
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:21:09.922
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:21:09.924
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:21:36.671
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:21:36.674
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:21:36.678
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:22:14.736
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:22:14.738
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:22:14.739
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:23:22.769
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:23:22.771
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:23:22.775
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:23:46.772
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:23:46.773
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:23:46.775
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:24:11.611
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:24:11.613
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:24:11.615
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:24:44.487
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:24:44.490
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:24:44.495
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:26:14.386
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:26:14.390
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:26:14.394
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:26:42.683
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:26:42.687
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:26:42.692
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:27:03.203
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:27:03.205
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:27:03.206
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:30:25.331
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:30:25.334
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:30:25.335
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:31:05.501
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:31:05.503
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:31:05.504
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:32:07.265
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:32:07.270
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:32:07.274
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:32:43.822
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:32:43.823
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:32:43.825
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:41:56.003
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:41:56.006
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 18:41:56.008
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY com.ti.ccstudio.system.setup.ui 1 0 2022-04-12 18:46:22.750
+!MESSAGE targetCfgPath1=C:/Users/hello/user/CCSTargetConfigurations
+
+!ENTRY com.ti.ccstudio.system.setup.ui 1 0 2022-04-12 18:46:22.752
+!MESSAGE targetCfgPath2=C:/Users/hello/ti/CCSTargetConfigurations
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-04-12 18:47:00.683
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-04-12 18:51:12.881
+!MESSAGE DS_ERROR: Cortex_M4_0: Error 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-04-12 18:51:12.927
+!MESSAGE DS_ERROR: Cortex_M4_0: Unable to determine target status after 20 attempts
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-04-12 18:51:46.310
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-04-12 18:54:26.625
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-04-12 18:57:16.954
+!MESSAGE DS_ERROR: Cortex_M4_0: Error 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-04-12 18:57:16.996
+!MESSAGE DS_ERROR: Cortex_M4_0: Unable to determine target status after 20 attempts
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-04-12 19:01:36.068
+!MESSAGE DS_ERROR: Cortex_M4_0: Error 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-04-12 19:01:36.101
+!MESSAGE DS_ERROR: Cortex_M4_0: Unable to determine target status after 20 attempts
+
+!SESSION 2022-04-12 19:16:55.446 -----------------------------------------------
+eclipse.buildId=4.6.0.I20160606-1100
+java.version=1.8.0_112
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product com.ti.ccstudio.branding.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ti.ccstudio.branding.product
+
+!ENTRY com.ti.common.core 4 0 2022-04-12 19:16:58.589
+!MESSAGE path=ccs_base/DebugServer
+
+!ENTRY com.ti.common.core 4 0 2022-04-12 19:16:58.589
+!MESSAGE debugServerDir=C:/ti/ccsv7/ccs_base/DebugServer
+
+!ENTRY com.ti.ccstudio.system.setup.ui 1 0 2022-04-12 19:17:24.712
+!MESSAGE targetCfgPath1=C:/Users/hello/user/CCSTargetConfigurations
+
+!ENTRY com.ti.ccstudio.system.setup.ui 1 0 2022-04-12 19:17:24.712
+!MESSAGE targetCfgPath2=C:/Users/hello/ti/CCSTargetConfigurations
+
+!ENTRY com.ti.ccstudio.errorparser 4 0 2022-04-12 19:17:32.320
+!MESSAGE An internal error was logged by 'com.ti.ccstudio.errorparser'.
+!STACK 0
+org.jsoup.HttpStatusException: HTTP error fetching URL. Status=410, URL=https://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:590)
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:587)
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:540)
+	at org.jsoup.helper.HttpConnection.execute(HttpConnection.java:227)
+	at org.jsoup.helper.HttpConnection.get(HttpConnection.java:216)
+	at com.ti.ccstudio.errorparser.parsers.PatternProvider$PatternData.fillup(PatternProvider.java:277)
+	at com.ti.ccstudio.errorparser.parsers.PatternProvider$PatternData.findMatch(PatternProvider.java:144)
+	at com.ti.ccstudio.errorparser.parsers.PatternProvider.getEmdUrl(PatternProvider.java:489)
+	at com.ti.ccstudio.errorparser.parsers.ErrorPattern.recordError(ErrorPattern.java:95)
+	at com.ti.ccstudio.errorparser.parsers.CoffErrorParser.processPendingMesg(CoffErrorParser.java:343)
+	at com.ti.ccstudio.errorparser.parsers.CoffErrorParser.processLine(CoffErrorParser.java:275)
+	at org.eclipse.cdt.core.ErrorParserManager.processLine(ErrorParserManager.java:354)
+	at org.eclipse.cdt.core.ErrorParserManager.checkLine(ErrorParserManager.java:688)
+	at org.eclipse.cdt.core.ErrorParserManager.write(ErrorParserManager.java:672)
+	at org.eclipse.cdt.internal.core.StreamProgressMonitor.write(StreamProgressMonitor.java:101)
+	at java.io.OutputStream.write(OutputStream.java:75)
+	at com.ti.ccstudio.project.core.internal.build.temp.ProcessClosure$SynchronizedOutputStream.flushBufferedErrors(ProcessClosure.java:230)
+	at com.ti.ccstudio.project.core.internal.build.temp.ProcessClosure$SynchronizedOutputStream.write(ProcessClosure.java:182)
+	at com.ti.ccstudio.project.core.internal.build.temp.ProcessClosure$ReaderThread.run(ProcessClosure.java:84)
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 19:17:32.320
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 19:17:32.320
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 19:17:32.320
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-04-12 19:17:52.031
+!MESSAGE DS_ERROR: Cortex_M4_0: Error 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-04-12 19:17:52.063
+!MESSAGE DS_ERROR: Cortex_M4_0: Unable to determine target status after 20 attempts
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-04-12 19:18:39.122
+!MESSAGE DS_ERROR: Cortex_M4_0: Error 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-04-12 19:18:39.153
+!MESSAGE DS_ERROR: Cortex_M4_0: Unable to determine target status after 20 attempts
+
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 19:19:59.528
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 19:19:59.528
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 19:19:59.528
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 19:21:07.865
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 19:21:07.865
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 19:21:07.865
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 19:22:30.769
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 19:22:30.769
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 19:22:30.769
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 19:25:41.436
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 19:25:41.436
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 19:25:41.436
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 19:26:28.658
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 19:26:28.660
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-04-12 19:26:28.662
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.

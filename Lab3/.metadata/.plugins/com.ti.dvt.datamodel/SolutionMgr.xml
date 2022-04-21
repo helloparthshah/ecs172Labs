@@ -5,7 +5,7 @@
    <string>defaultSolution</string>
    <void method="set">
     <object idref="SolutionManager$PersistState0"/>
-    <string>C:\Users\hello\Work\School\Computers\EEC172\Labs\Lab3\dvt\AnalysisSolutionsTemp\AnalysisSolution1649991302148\null</string>
+    <string>C:\Users\hello\Work\School\Computers\EEC172\Labs\Lab3\dvt\AnalysisSolutionsTemp\AnalysisSolution1650408823937\null</string>
    </void>
   </void>
  </object>
@@ -17,7 +17,7 @@
    <string>C:\ti\ccsv7\ccs_base\dvt_4.1.0.201612061750\CodeGen\solutions\CodeGenCoverage</string>
   </void>
   <void method="add">
-   <string>C:\Users\hello\Work\School\Computers\EEC172\Labs\Lab3\dvt\AnalysisSolutionsTemp\AnalysisSolution1649991302148\null</string>
+   <string>C:\Users\hello\Work\School\Computers\EEC172\Labs\Lab3\dvt\AnalysisSolutionsTemp\AnalysisSolution1650408823937\null</string>
   </void>
  </void>
 </void>

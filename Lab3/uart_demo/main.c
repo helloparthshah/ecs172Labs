@@ -168,21 +168,22 @@ static void BoardInit(void) {
   PRCMCC3200MCUInit();
 }
 
-#define ONE "11100000010111111011000000001110"
-#define TWO "11100000010111111010100000010110"
-#define THREE "11100000010111111011100000000110"
-#define FOUR "11100000010111111010010000011010"
-#define FIVE "11100000010111111011010000001010"
-#define SIX "11100000010111111010110000010010"
-#define SEVEN "11100000010111111011110000000010"
-#define EIGHT "11100000010111111010001000011100"
-#define NINE "11100000010111111011001000001100"
-#define ZERO "11100000010111111010000000011110"
+#define ONE "00000010111111011000000001111110"
+#define TWO "00000010111111010100000010111110"
+#define THREE "00000010111111011100000000111110"
+#define FOUR "00000010111111010010000011011110"
+#define FIVE "00000010111111011010000001011110"
+#define SIX "00000010111111010110000010011110"
+#define SEVEN "00000010111111011110000000011110"
+#define EIGHT "00000010111111010001000011101110"
+#define NINE "00000010111111011001000001101110"
+#define ZERO "00000010111111010000000011111110"
+#define LAST "00000010111111011110100000010110"
+#define MUTE "00000010111111010000100011110110"
 
 volatile unsigned long prev=0, curr=0;
-volatile float d=0;
 volatile int start=0;
-volatile float values[35]={0};
+volatile float values[35];
 volatile int curr_index=0;
 char* keyToBinary(){
   // takes values list of 32 floats and returns a binary number
@@ -191,52 +192,61 @@ char* keyToBinary(){
   char *str=malloc(33);
   int i;
   for(i=0;i<32;i++){
-    if(values[i]<2){
+    if(values[i+1]<2){
       str[i]='0';
     }
     else {
       str[i]='1';
     }
-    values[i]=0;
+    values[i+1]=0;
   }
   str[i]='\0';
   return str;
 }
 
 void printBinary(char *str){
+  // Report("%s\n\r",str);
   if(strcmp(ZERO, str)==0){
-    Report("0");
+    Report("0\n\r");
   }
   else if(strcmp(ONE, str)==0){
-    Report("1");
+    Report("1\n\r");
   }
   else if(strcmp(TWO, str)==0){
-    Report("2");
+    Report("2\n\r");
   }
   else if(strcmp(THREE, str)==0){
-    Report("3");
+    Report("3\n\r");
   }
   else if(strcmp(FOUR, str)==0){
-    Report("4");
+    Report("4\n\r");
   }
   else if(strcmp(FIVE, str)==0){
-    Report("5");
+    Report("5\n\r");
   }
   else if(strcmp(SIX, str)==0){
-    Report("6");
+    Report("6\n\r");
   }
   else if(strcmp(SEVEN, str)==0){
-    Report("7");
+    Report("7\n\r");
   }
   else if(strcmp(EIGHT, str)==0){
-    Report("8");
+    Report("8\n\r");
   }
   else if(strcmp(NINE, str)==0){
-    Report("9");
+    Report("9\n\r");
+  }
+  else if(strcmp(LAST, str)==0){
+    Report("LAST\n\r");
+  }
+  else if(strcmp(MUTE, str)==0){
+    Report("MUTE\n\r");
   }
   else {
-    Report("?");
+    Report("Invalid\n\r");
   }
+  // free str
+  free(str);
 }
 
 static void GPIOA2IntHandler(void) { // SW2 handler
@@ -244,34 +254,36 @@ static void GPIOA2IntHandler(void) { // SW2 handler
 
   ulStatus = MAP_GPIOIntStatus(pin8.port, true);
   MAP_GPIOIntClear(pin8.port, ulStatus); // clear interrupts on GPIOA2
-  
+
   // pin8_intflag = 1;
-  if(curr_index==0){
-    Timer_IF_Start(g_ulBase, TIMER_A, 500);
-    curr_index=1;
+  if (curr_index == 0) {
+    Timer_IF_Start(g_ulBase, TIMER_A, 1000);
+    curr_index = 1;
   }
   curr = Timer_IF_GetCount(g_ulBase, TIMER_A);
-  unsigned long diff = curr - prev;
-  // d=(unsigned long)(diff/80000);
-  d=(float)(diff)/80000;
-  if(d>=11 && d<12){
-      start=1;
-      curr_index=1;
-      // Timer_IF_Stop(g_ulRefBase, TIMER_A);
+  float d = (float)(curr - prev) / 80000;
+  if (d > 13 && d < 14) {
+    start = 1;
+    curr_index = 1;
+    Timer_IF_Stop(g_ulRefBase, TIMER_A);
   }
+
   prev = curr;
-  if(start){
+
+  if (start) {
     // Report("%f\n\r", d);
-      values[curr_index-1]=d;
-      curr_index++;
+    values[curr_index - 1] = d;
+    curr_index++;
   }
-  if(curr_index>=32){
-      start=0;
-      curr_index=0;
-      // Report("Ended\n\r");
-      // char* binary=keyToBinary();
-      // Report("Key: %s\n\r", keyToBinary());
-      printBinary(keyToBinary());
+
+  if (curr_index >= 33) {
+    // disable interrupt
+    MAP_GPIOIntDisable(pin8.port, pin8.pin);
+    start = 0;
+    curr_index = 0;
+    printBinary(keyToBinary());
+    // enable interrupt
+    MAP_GPIOIntEnable(pin8.port, pin8.pin);
   }
 }
 
@@ -322,23 +334,6 @@ void main() {
   Timer_IF_Init(PRCM_TIMERA1, g_ulRefBase, TIMER_CFG_PERIODIC, TIMER_A, 0);
   // detect changes in p8 from 1 to 0 to back to 1
   while (1) {
-     /* if(start){
-      // print d as float
-      Report("Started: %f\n\r", d);
-    }
-    if(curr_index>=31){
-      // MAP_GPIOIntDisable(pin8.port, pin8.pin); //disable interrupt
-      // Timer_IF_Stop(g_ulBase, TIMER_A);
-      // get binary number
-      // long binary=keyToBinary();
-      // print binary number in hex
-      Report("%lx\n\r", 10);
-      // ulStatus = MAP_GPIOIntStatus(pin8.port, false);
-        // MAP_GPIOIntClear(pin8.port, ulStatus); //clear interrupts
-        // MAP_GPIOIntEnable(pin8.port, pin8.pin); // enable interrupts
-        // Timer_IF_Start(g_ulRefBase, TIMER_A, 1000);
-    }
-  } */
   }
 }
 

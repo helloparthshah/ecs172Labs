@@ -36,7 +36,7 @@
 //
 //*****************************************************************************
 
-// This file was automatically generated on 4/14/2022 at 6:36:19 PM
+// This file was automatically generated on 4/21/2022 at 7:38:17 PM
 // by TI PinMux version 
 //
 //*****************************************************************************

@@ -4013,3 +4013,693 @@ gmake: Nothing to be done for 'all'.
 ' '
 
 **** Build Finished ****
+
+**** Build of configuration Release for project uart_demo ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"../main.c", line 194: warning #225-D: function "malloc" declared implicitly
+"../main.c", line 194: warning #145-D: a value of type "int" cannot be used to initialize an entity of type "char *"
+"../main.c", line 212: warning #225-D: function "strcmp" declared implicitly
+"../main.c", line 240: warning #112-D: statement is unreachable
+"../main.c", line 240: warning #225-D: function "free" declared implicitly
+"../main.c", line 286: warning #225-D: function "strlen" declared implicitly
+'Finished building: ../main.c'
+' '
+'Building target: uart_demo.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"uart_demo.map" --heap_size=0x800 --stack_size=0x100 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="uart_demo_linkInfo.xml" --rom_model -o "uart_demo.out" "./main.obj" "./pin_mux_config.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" 
+<Linking>
+'Finished building target: uart_demo.out'
+' '
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "uart_demo.out" "uart_demo.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project uart_demo ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"../main.c", line 194: warning #225-D: function "malloc" declared implicitly
+"../main.c", line 194: warning #145-D: a value of type "int" cannot be used to initialize an entity of type "char *"
+"../main.c", line 212: warning #225-D: function "strcmp" declared implicitly
+"../main.c", line 240: warning #112-D: statement is unreachable
+"../main.c", line 240: warning #225-D: function "free" declared implicitly
+"../main.c", line 286: warning #225-D: function "strlen" declared implicitly
+'Finished building: ../main.c'
+' '
+'Building target: uart_demo.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"uart_demo.map" --heap_size=0x800 --stack_size=0x100 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="uart_demo_linkInfo.xml" --rom_model -o "uart_demo.out" "./main.obj" "./pin_mux_config.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" 
+<Linking>
+'Finished building target: uart_demo.out'
+' '
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "uart_demo.out" "uart_demo.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project uart_demo ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"../main.c", line 195: warning #225-D: function "malloc" declared implicitly
+"../main.c", line 195: warning #145-D: a value of type "int" cannot be used to initialize an entity of type "char *"
+"../main.c", line 213: warning #225-D: function "strcmp" declared implicitly
+"../main.c", line 241: warning #112-D: statement is unreachable
+"../main.c", line 241: warning #225-D: function "free" declared implicitly
+"../main.c", line 287: warning #225-D: function "strlen" declared implicitly
+'Finished building: ../main.c'
+' '
+'Building target: uart_demo.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"uart_demo.map" --heap_size=0x800 --stack_size=0x100 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="uart_demo_linkInfo.xml" --rom_model -o "uart_demo.out" "./main.obj" "./pin_mux_config.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" 
+<Linking>
+'Finished building target: uart_demo.out'
+' '
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "uart_demo.out" "uart_demo.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project uart_demo ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"../main.c", line 195: warning #225-D: function "malloc" declared implicitly
+"../main.c", line 195: warning #145-D: a value of type "int" cannot be used to initialize an entity of type "char *"
+"../main.c", line 213: warning #225-D: function "strcmp" declared implicitly
+"../main.c", line 241: warning #112-D: statement is unreachable
+"../main.c", line 241: warning #225-D: function "free" declared implicitly
+"../main.c", line 287: warning #225-D: function "strlen" declared implicitly
+'Finished building: ../main.c'
+' '
+'Building target: uart_demo.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"uart_demo.map" --heap_size=0x800 --stack_size=0x100 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="uart_demo_linkInfo.xml" --rom_model -o "uart_demo.out" "./main.obj" "./pin_mux_config.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" 
+<Linking>
+'Finished building target: uart_demo.out'
+' '
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "uart_demo.out" "uart_demo.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project uart_demo ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"../main.c", line 195: warning #225-D: function "malloc" declared implicitly
+"../main.c", line 195: warning #145-D: a value of type "int" cannot be used to initialize an entity of type "char *"
+"../main.c", line 213: warning #225-D: function "strcmp" declared implicitly
+"../main.c", line 241: warning #112-D: statement is unreachable
+"../main.c", line 241: warning #225-D: function "free" declared implicitly
+"../main.c", line 287: warning #225-D: function "strlen" declared implicitly
+'Finished building: ../main.c'
+' '
+'Building target: uart_demo.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"uart_demo.map" --heap_size=0x800 --stack_size=0x100 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="uart_demo_linkInfo.xml" --rom_model -o "uart_demo.out" "./main.obj" "./pin_mux_config.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" 
+<Linking>
+'Finished building target: uart_demo.out'
+' '
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "uart_demo.out" "uart_demo.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project uart_demo ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+gmake: Nothing to be done for 'all'.
+
+**** Build Finished ****
+
+**** Build of configuration Release for project uart_demo ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"../main.c", line 195: warning #225-D: function "malloc" declared implicitly
+"../main.c", line 195: warning #145-D: a value of type "int" cannot be used to initialize an entity of type "char *"
+"../main.c", line 213: warning #225-D: function "strcmp" declared implicitly
+"../main.c", line 241: warning #112-D: statement is unreachable
+"../main.c", line 241: warning #225-D: function "free" declared implicitly
+"../main.c", line 282: warning #225-D: function "strlen" declared implicitly
+'Finished building: ../main.c'
+' '
+'Building target: uart_demo.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"uart_demo.map" --heap_size=0x800 --stack_size=0x100 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="uart_demo_linkInfo.xml" --rom_model -o "uart_demo.out" "./main.obj" "./pin_mux_config.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" 
+<Linking>
+'Finished building target: uart_demo.out'
+' '
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "uart_demo.out" "uart_demo.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project uart_demo ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"../main.c", line 195: warning #225-D: function "malloc" declared implicitly
+"../main.c", line 195: warning #145-D: a value of type "int" cannot be used to initialize an entity of type "char *"
+"../main.c", line 213: warning #225-D: function "strcmp" declared implicitly
+"../main.c", line 241: warning #112-D: statement is unreachable
+"../main.c", line 241: warning #225-D: function "free" declared implicitly
+"../main.c", line 282: warning #225-D: function "strlen" declared implicitly
+'Finished building: ../main.c'
+' '
+'Building target: uart_demo.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"uart_demo.map" --heap_size=0x800 --stack_size=0x100 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="uart_demo_linkInfo.xml" --rom_model -o "uart_demo.out" "./main.obj" "./pin_mux_config.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" 
+<Linking>
+'Finished building target: uart_demo.out'
+' '
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "uart_demo.out" "uart_demo.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project uart_demo ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"../main.c", line 195: warning #225-D: function "malloc" declared implicitly
+"../main.c", line 195: warning #145-D: a value of type "int" cannot be used to initialize an entity of type "char *"
+"../main.c", line 213: warning #225-D: function "strcmp" declared implicitly
+"../main.c", line 241: warning #112-D: statement is unreachable
+"../main.c", line 241: warning #225-D: function "free" declared implicitly
+"../main.c", line 282: warning #225-D: function "strlen" declared implicitly
+'Finished building: ../main.c'
+' '
+'Building target: uart_demo.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"uart_demo.map" --heap_size=0x800 --stack_size=0x100 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="uart_demo_linkInfo.xml" --rom_model -o "uart_demo.out" "./main.obj" "./pin_mux_config.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" 
+<Linking>
+'Finished building target: uart_demo.out'
+' '
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "uart_demo.out" "uart_demo.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project uart_demo ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"../main.c", line 195: warning #225-D: function "malloc" declared implicitly
+"../main.c", line 195: warning #145-D: a value of type "int" cannot be used to initialize an entity of type "char *"
+"../main.c", line 213: warning #225-D: function "strcmp" declared implicitly
+"../main.c", line 241: warning #112-D: statement is unreachable
+"../main.c", line 241: warning #225-D: function "free" declared implicitly
+"../main.c", line 285: warning #225-D: function "strlen" declared implicitly
+'Finished building: ../main.c'
+' '
+'Building target: uart_demo.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"uart_demo.map" --heap_size=0x800 --stack_size=0x100 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="uart_demo_linkInfo.xml" --rom_model -o "uart_demo.out" "./main.obj" "./pin_mux_config.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" 
+<Linking>
+'Finished building target: uart_demo.out'
+' '
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "uart_demo.out" "uart_demo.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project uart_demo ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"../main.c", line 195: warning #225-D: function "malloc" declared implicitly
+"../main.c", line 195: warning #145-D: a value of type "int" cannot be used to initialize an entity of type "char *"
+"../main.c", line 213: warning #225-D: function "strcmp" declared implicitly
+"../main.c", line 241: warning #112-D: statement is unreachable
+"../main.c", line 241: warning #225-D: function "free" declared implicitly
+"../main.c", line 289: warning #225-D: function "strlen" declared implicitly
+'Finished building: ../main.c'
+' '
+'Building target: uart_demo.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"uart_demo.map" --heap_size=0x800 --stack_size=0x100 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="uart_demo_linkInfo.xml" --rom_model -o "uart_demo.out" "./main.obj" "./pin_mux_config.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" 
+<Linking>
+'Finished building target: uart_demo.out'
+' '
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "uart_demo.out" "uart_demo.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project uart_demo ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"../main.c", line 195: warning #225-D: function "malloc" declared implicitly
+"../main.c", line 195: warning #145-D: a value of type "int" cannot be used to initialize an entity of type "char *"
+"../main.c", line 213: warning #225-D: function "strcmp" declared implicitly
+"../main.c", line 241: warning #112-D: statement is unreachable
+"../main.c", line 241: warning #225-D: function "free" declared implicitly
+"../main.c", line 289: warning #225-D: function "strlen" declared implicitly
+'Finished building: ../main.c'
+' '
+'Building target: uart_demo.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"uart_demo.map" --heap_size=0x800 --stack_size=0x100 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="uart_demo_linkInfo.xml" --rom_model -o "uart_demo.out" "./main.obj" "./pin_mux_config.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" 
+<Linking>
+'Finished building target: uart_demo.out'
+' '
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "uart_demo.out" "uart_demo.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project uart_demo ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"../main.c", line 195: warning #225-D: function "malloc" declared implicitly
+"../main.c", line 195: warning #145-D: a value of type "int" cannot be used to initialize an entity of type "char *"
+"../main.c", line 213: warning #225-D: function "strcmp" declared implicitly
+"../main.c", line 241: warning #112-D: statement is unreachable
+"../main.c", line 241: warning #225-D: function "free" declared implicitly
+"../main.c", line 289: warning #225-D: function "strlen" declared implicitly
+'Finished building: ../main.c'
+' '
+'Building target: uart_demo.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"uart_demo.map" --heap_size=0x800 --stack_size=0x100 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="uart_demo_linkInfo.xml" --rom_model -o "uart_demo.out" "./main.obj" "./pin_mux_config.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" 
+<Linking>
+'Finished building target: uart_demo.out'
+' '
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "uart_demo.out" "uart_demo.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project uart_demo ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+gmake: Nothing to be done for 'all'.
+
+**** Build Finished ****
+
+**** Build of configuration Release for project uart_demo ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"../main.c", line 195: warning #225-D: function "malloc" declared implicitly
+"../main.c", line 195: warning #145-D: a value of type "int" cannot be used to initialize an entity of type "char *"
+"../main.c", line 214: warning #225-D: function "strcmp" declared implicitly
+"../main.c", line 242: warning #225-D: function "free" declared implicitly
+"../main.c", line 291: warning #225-D: function "strlen" declared implicitly
+'Finished building: ../main.c'
+' '
+'Building target: uart_demo.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"uart_demo.map" --heap_size=0x800 --stack_size=0x100 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="uart_demo_linkInfo.xml" --rom_model -o "uart_demo.out" "./main.obj" "./pin_mux_config.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" 
+<Linking>
+'Finished building target: uart_demo.out'
+' '
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "uart_demo.out" "uart_demo.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project uart_demo ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"../main.c", line 195: warning #225-D: function "malloc" declared implicitly
+"../main.c", line 195: warning #145-D: a value of type "int" cannot be used to initialize an entity of type "char *"
+"../main.c", line 214: warning #225-D: function "strcmp" declared implicitly
+"../main.c", line 242: warning #225-D: function "free" declared implicitly
+"../main.c", line 296: warning #225-D: function "strlen" declared implicitly
+'Finished building: ../main.c'
+' '
+'Building target: uart_demo.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"uart_demo.map" --heap_size=0x800 --stack_size=0x100 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="uart_demo_linkInfo.xml" --rom_model -o "uart_demo.out" "./main.obj" "./pin_mux_config.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" 
+<Linking>
+'Finished building target: uart_demo.out'
+' '
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "uart_demo.out" "uart_demo.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project uart_demo ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"../main.c", line 195: warning #225-D: function "malloc" declared implicitly
+"../main.c", line 195: warning #145-D: a value of type "int" cannot be used to initialize an entity of type "char *"
+"../main.c", line 214: warning #225-D: function "strcmp" declared implicitly
+"../main.c", line 242: warning #225-D: function "free" declared implicitly
+"../main.c", line 296: warning #225-D: function "strlen" declared implicitly
+'Finished building: ../main.c'
+' '
+'Building target: uart_demo.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"uart_demo.map" --heap_size=0x800 --stack_size=0x100 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="uart_demo_linkInfo.xml" --rom_model -o "uart_demo.out" "./main.obj" "./pin_mux_config.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" 
+<Linking>
+'Finished building target: uart_demo.out'
+' '
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "uart_demo.out" "uart_demo.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project uart_demo ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"../main.c", line 195: warning #225-D: function "malloc" declared implicitly
+"../main.c", line 195: warning #145-D: a value of type "int" cannot be used to initialize an entity of type "char *"
+"../main.c", line 214: warning #225-D: function "strcmp" declared implicitly
+"../main.c", line 242: warning #225-D: function "free" declared implicitly
+"../main.c", line 294: warning #225-D: function "strlen" declared implicitly
+'Finished building: ../main.c'
+' '
+'Building target: uart_demo.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"uart_demo.map" --heap_size=0x800 --stack_size=0x100 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="uart_demo_linkInfo.xml" --rom_model -o "uart_demo.out" "./main.obj" "./pin_mux_config.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" 
+<Linking>
+'Finished building target: uart_demo.out'
+' '
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "uart_demo.out" "uart_demo.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project uart_demo ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"../main.c", line 195: warning #225-D: function "malloc" declared implicitly
+"../main.c", line 195: warning #145-D: a value of type "int" cannot be used to initialize an entity of type "char *"
+"../main.c", line 214: warning #225-D: function "strcmp" declared implicitly
+"../main.c", line 242: warning #225-D: function "free" declared implicitly
+"../main.c", line 294: warning #225-D: function "strlen" declared implicitly
+'Finished building: ../main.c'
+' '
+'Building target: uart_demo.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"uart_demo.map" --heap_size=0x800 --stack_size=0x100 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="uart_demo_linkInfo.xml" --rom_model -o "uart_demo.out" "./main.obj" "./pin_mux_config.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" 
+<Linking>
+'Finished building target: uart_demo.out'
+' '
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "uart_demo.out" "uart_demo.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project uart_demo ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+gmake: Nothing to be done for 'all'.
+
+**** Build Finished ****
+
+**** Build of configuration Release for project uart_demo ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"../main.c", line 195: warning #225-D: function "malloc" declared implicitly
+"../main.c", line 195: warning #145-D: a value of type "int" cannot be used to initialize an entity of type "char *"
+"../main.c", line 214: warning #225-D: function "strcmp" declared implicitly
+"../main.c", line 242: warning #225-D: function "free" declared implicitly
+"../main.c", line 247: warning #69-D: integer conversion resulted in a change of sign
+"../main.c", line 293: warning #225-D: function "strlen" declared implicitly
+"../main.c", line 313: warning #69-D: integer conversion resulted in a change of sign
+'Finished building: ../main.c'
+' '
+'Building target: uart_demo.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"uart_demo.map" --heap_size=0x800 --stack_size=0x100 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="uart_demo_linkInfo.xml" --rom_model -o "uart_demo.out" "./main.obj" "./pin_mux_config.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" 
+<Linking>
+'Finished building target: uart_demo.out'
+' '
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "uart_demo.out" "uart_demo.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project uart_demo ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"../main.c", line 195: warning #225-D: function "malloc" declared implicitly
+"../main.c", line 195: warning #145-D: a value of type "int" cannot be used to initialize an entity of type "char *"
+"../main.c", line 214: warning #225-D: function "strcmp" declared implicitly
+"../main.c", line 242: warning #225-D: function "free" declared implicitly
+"../main.c", line 247: warning #69-D: integer conversion resulted in a change of sign
+"../main.c", line 293: warning #225-D: function "strlen" declared implicitly
+"../main.c", line 313: warning #69-D: integer conversion resulted in a change of sign
+'Finished building: ../main.c'
+' '
+'Building target: uart_demo.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"uart_demo.map" --heap_size=0x800 --stack_size=0x100 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="uart_demo_linkInfo.xml" --rom_model -o "uart_demo.out" "./main.obj" "./pin_mux_config.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" 
+<Linking>
+'Finished building target: uart_demo.out'
+' '
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "uart_demo.out" "uart_demo.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project uart_demo ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"../main.c", line 195: warning #225-D: function "malloc" declared implicitly
+"../main.c", line 195: warning #145-D: a value of type "int" cannot be used to initialize an entity of type "char *"
+"../main.c", line 214: warning #225-D: function "strcmp" declared implicitly
+"../main.c", line 242: warning #225-D: function "free" declared implicitly
+"../main.c", line 247: warning #69-D: integer conversion resulted in a change of sign
+"../main.c", line 293: warning #225-D: function "strlen" declared implicitly
+"../main.c", line 314: warning #69-D: integer conversion resulted in a change of sign
+'Finished building: ../main.c'
+' '
+'Building target: uart_demo.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"uart_demo.map" --heap_size=0x800 --stack_size=0x100 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="uart_demo_linkInfo.xml" --rom_model -o "uart_demo.out" "./main.obj" "./pin_mux_config.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" 
+<Linking>
+'Finished building target: uart_demo.out'
+' '
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "uart_demo.out" "uart_demo.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project uart_demo ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"../main.c", line 195: warning #225-D: function "malloc" declared implicitly
+"../main.c", line 195: warning #145-D: a value of type "int" cannot be used to initialize an entity of type "char *"
+"../main.c", line 214: warning #225-D: function "strcmp" declared implicitly
+"../main.c", line 242: warning #225-D: function "free" declared implicitly
+"../main.c", line 247: warning #69-D: integer conversion resulted in a change of sign
+"../main.c", line 293: warning #225-D: function "strlen" declared implicitly
+"../main.c", line 314: warning #69-D: integer conversion resulted in a change of sign
+'Finished building: ../main.c'
+' '
+'Building target: uart_demo.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"uart_demo.map" --heap_size=0x800 --stack_size=0x100 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="uart_demo_linkInfo.xml" --rom_model -o "uart_demo.out" "./main.obj" "./pin_mux_config.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" 
+<Linking>
+'Finished building target: uart_demo.out'
+' '
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "uart_demo.out" "uart_demo.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project uart_demo ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"../main.c", line 195: warning #225-D: function "malloc" declared implicitly
+"../main.c", line 195: warning #145-D: a value of type "int" cannot be used to initialize an entity of type "char *"
+"../main.c", line 214: warning #225-D: function "strcmp" declared implicitly
+"../main.c", line 242: warning #225-D: function "free" declared implicitly
+"../main.c", line 247: warning #69-D: integer conversion resulted in a change of sign
+"../main.c", line 293: warning #225-D: function "strlen" declared implicitly
+"../main.c", line 313: warning #69-D: integer conversion resulted in a change of sign
+'Finished building: ../main.c'
+' '
+'Building target: uart_demo.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"uart_demo.map" --heap_size=0x800 --stack_size=0x100 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="uart_demo_linkInfo.xml" --rom_model -o "uart_demo.out" "./main.obj" "./pin_mux_config.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" 
+<Linking>
+'Finished building target: uart_demo.out'
+' '
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "uart_demo.out" "uart_demo.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project uart_demo ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+gmake: Nothing to be done for 'all'.
+
+**** Build Finished ****
+
+**** Build of configuration Release for project uart_demo ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"../main.c", line 195: warning #225-D: function "malloc" declared implicitly
+"../main.c", line 195: warning #145-D: a value of type "int" cannot be used to initialize an entity of type "char *"
+"../main.c", line 214: warning #225-D: function "strcmp" declared implicitly
+"../main.c", line 242: warning #225-D: function "free" declared implicitly
+"../main.c", line 247: warning #69-D: integer conversion resulted in a change of sign
+"../main.c", line 299: warning #225-D: function "strlen" declared implicitly
+"../main.c", line 322: warning #69-D: integer conversion resulted in a change of sign
+'Finished building: ../main.c'
+' '
+'Building target: uart_demo.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"uart_demo.map" --heap_size=0x800 --stack_size=0x100 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="uart_demo_linkInfo.xml" --rom_model -o "uart_demo.out" "./main.obj" "./pin_mux_config.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" 
+<Linking>
+'Finished building target: uart_demo.out'
+' '
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "uart_demo.out" "uart_demo.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project uart_demo ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+gmake: Nothing to be done for 'all'.
+
+**** Build Finished ****
+
+**** Build of configuration Release for project uart_demo ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"../main.c", line 195: warning #225-D: function "malloc" declared implicitly
+"../main.c", line 195: warning #145-D: a value of type "int" cannot be used to initialize an entity of type "char *"
+"../main.c", line 214: warning #225-D: function "strcmp" declared implicitly
+"../main.c", line 242: warning #225-D: function "free" declared implicitly
+"../main.c", line 247: warning #69-D: integer conversion resulted in a change of sign
+"../main.c", line 299: warning #225-D: function "strlen" declared implicitly
+"../main.c", line 306: warning #69-D: integer conversion resulted in a change of sign
+"../main.c", line 324: warning #69-D: integer conversion resulted in a change of sign
+'Finished building: ../main.c'
+' '
+'Building target: uart_demo.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"uart_demo.map" --heap_size=0x800 --stack_size=0x100 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="uart_demo_linkInfo.xml" --rom_model -o "uart_demo.out" "./main.obj" "./pin_mux_config.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" 
+<Linking>
+'Finished building target: uart_demo.out'
+' '
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "uart_demo.out" "uart_demo.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project uart_demo ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"../main.c", line 195: warning #225-D: function "malloc" declared implicitly
+"../main.c", line 195: warning #145-D: a value of type "int" cannot be used to initialize an entity of type "char *"
+"../main.c", line 214: warning #225-D: function "strcmp" declared implicitly
+"../main.c", line 242: warning #225-D: function "free" declared implicitly
+"../main.c", line 247: warning #69-D: integer conversion resulted in a change of sign
+"../main.c", line 299: warning #225-D: function "strlen" declared implicitly
+"../main.c", line 319: warning #69-D: integer conversion resulted in a change of sign
+'Finished building: ../main.c'
+' '
+'Building target: uart_demo.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"uart_demo.map" --heap_size=0x800 --stack_size=0x100 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="uart_demo_linkInfo.xml" --rom_model -o "uart_demo.out" "./main.obj" "./pin_mux_config.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" 
+<Linking>
+'Finished building target: uart_demo.out'
+' '
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "uart_demo.out" "uart_demo.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project uart_demo ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"../main.c", line 195: warning #225-D: function "malloc" declared implicitly
+"../main.c", line 195: warning #145-D: a value of type "int" cannot be used to initialize an entity of type "char *"
+"../main.c", line 214: warning #225-D: function "strcmp" declared implicitly
+"../main.c", line 242: warning #225-D: function "free" declared implicitly
+"../main.c", line 247: warning #69-D: integer conversion resulted in a change of sign
+"../main.c", line 299: warning #225-D: function "strlen" declared implicitly
+"../main.c", line 319: warning #69-D: integer conversion resulted in a change of sign
+'Finished building: ../main.c'
+' '
+'Building target: uart_demo.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"uart_demo.map" --heap_size=0x800 --stack_size=0x100 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="uart_demo_linkInfo.xml" --rom_model -o "uart_demo.out" "./main.obj" "./pin_mux_config.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" 
+<Linking>
+'Finished building target: uart_demo.out'
+' '
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "uart_demo.out" "uart_demo.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****

@@ -2301,3 +2301,15 @@ Caused by: java.lang.IllegalArgumentException:
 
 !ENTRY com.ti.ccstudio.system.setup.ui 1 0 2022-04-21 15:40:40.230
 !MESSAGE targetCfgPath2=C:/Users/hello/ti/CCSTargetConfigurations
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-04-21 16:43:30.050
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-04-21 18:07:57.757
+!MESSAGE DS_ERROR: Cortex_M4_0: Error connecting to the target 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-04-21 18:07:58.151
+!MESSAGE DS_ERROR: Error connecting to the target
+

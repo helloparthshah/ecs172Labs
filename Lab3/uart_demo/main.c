@@ -181,6 +181,9 @@ static void BoardInit(void) {
 #define LAST "00000010111111011110100000010110"
 #define MUTE "00000010111111010000100011110110"
 
+const char *digits[] = {" ",   "",    "ABC",  "DEF", "GHI",
+                  "JKL", "MNO", "PQRS", "TUV", "WXYZ"};
+
 volatile unsigned long prev=0, curr=0;
 volatile int start=0;
 volatile float values[35];
@@ -204,49 +207,49 @@ char* keyToBinary(){
   return str;
 }
 
-void printBinary(char *str){
-  // Report("%s\n\r",str);
-  if(strcmp(ZERO, str)==0){
-    Report("0\n\r");
-  }
-  else if(strcmp(ONE, str)==0){
-    Report("1\n\r");
-  }
-  else if(strcmp(TWO, str)==0){
-    Report("2\n\r");
-  }
-  else if(strcmp(THREE, str)==0){
-    Report("3\n\r");
-  }
-  else if(strcmp(FOUR, str)==0){
-    Report("4\n\r");
-  }
-  else if(strcmp(FIVE, str)==0){
-    Report("5\n\r");
-  }
-  else if(strcmp(SIX, str)==0){
-    Report("6\n\r");
-  }
-  else if(strcmp(SEVEN, str)==0){
-    Report("7\n\r");
-  }
-  else if(strcmp(EIGHT, str)==0){
-    Report("8\n\r");
-  }
-  else if(strcmp(NINE, str)==0){
-    Report("9\n\r");
-  }
-  else if(strcmp(LAST, str)==0){
-    Report("LAST\n\r");
-  }
-  else if(strcmp(MUTE, str)==0){
-    Report("MUTE\n\r");
-  }
-  else {
-    Report("Invalid\n\r");
+volatile int state = -1;
+
+int printBinary(char *str) {
+  int i = -1;
+  if (strcmp(ZERO, str) == 0) {
+    i = 0;
+  } else if (strcmp(ONE, str) == 0) {
+    i = 1;
+  } else if (strcmp(TWO, str) == 0) {
+    i = 2;
+  } else if (strcmp(THREE, str) == 0) {
+    i = 3;
+  } else if (strcmp(FOUR, str) == 0) {
+    i = 4;
+  } else if (strcmp(FIVE, str) == 0) {
+    i = 5;
+  } else if (strcmp(SIX, str) == 0) {
+    i = 6;
+  } else if (strcmp(SEVEN, str) == 0) {
+    i = 7;
+  } else if (strcmp(EIGHT, str) == 0) {
+    i = 8;
+  } else if (strcmp(NINE, str) == 0) {
+    i = 9;
+  } else if (strcmp(LAST, str) == 0) {
+    i = 10;
+  } else if (strcmp(MUTE, str) == 0) {
+    i = 11;
+  } else {
+    i = -1;
   }
   // free str
   free(str);
+  return i;
+}
+
+int c_letter = 0;
+volatile unsigned long key_time = -1;
+
+void PrintChar() {
+  Report("Display: %c\n\r", digits[state][c_letter]);
+  state = -1;
+  c_letter = 0;
 }
 
 static void GPIOA2IntHandler(void) { // SW2 handler
@@ -281,9 +284,40 @@ static void GPIOA2IntHandler(void) { // SW2 handler
     MAP_GPIOIntDisable(pin8.port, pin8.pin);
     start = 0;
     curr_index = 0;
-    printBinary(keyToBinary());
+    int s = printBinary(keyToBinary());
+    if (s == -1) {
+      Report("Invalid key\n\r");
+    } else if (s == 10) {
+      Report("Last\n\r");
+    } else if (s == 11) {
+      Report("Mute\n\r");
+    } else {
+      key_time = 2;
+      // cycle through the digits for the number
+      if (state == s) {
+        c_letter++;
+        if (c_letter >= strlen(digits[s])) {
+          c_letter = 0;
+        }
+      } else {
+        // key pressed for the first time
+        c_letter = 0;
+      }
+      Report("%c\n\r", digits[s][c_letter]);
+    }
+    state = s;
     // enable interrupt
     MAP_GPIOIntEnable(pin8.port, pin8.pin);
+  }
+}
+
+void TimerA0IntHandler(void) {
+  Timer_IF_InterruptClear(TIMERA0_BASE);
+  if (key_time > 0)
+    key_time--;
+  else if(key_time == 0) {
+    key_time = -1;
+    PrintChar();
   }
 }
 
@@ -319,7 +353,7 @@ void main() {
   ClearTerm();
   DisplayBanner(APP_NAME);
   MAP_GPIOIntRegister(pin8.port, GPIOA2IntHandler);
-//   MAP_GPIOIntTypeSet(pin8.port, pin8.pin, GPIO_RISING_EDGE); // SW2
+  //   MAP_GPIOIntTypeSet(pin8.port, pin8.pin, GPIO_RISING_EDGE); // SW2
   MAP_GPIOIntTypeSet(pin8.port, pin8.pin, 0x0); // SW2
   unsigned long ulStatus = MAP_GPIOIntStatus(pin8.port, false);
   MAP_GPIOIntClear(pin8.port, ulStatus);
@@ -327,13 +361,21 @@ void main() {
   pin8_intflag = 0;
   MAP_GPIOIntEnable(pin8.port, pin8.pin);
 
-
   g_ulBase = TIMERA0_BASE;
   g_ulRefBase = TIMERA1_BASE;
   Timer_IF_Init(PRCM_TIMERA0, g_ulBase, TIMER_CFG_PERIODIC, TIMER_A, 0);
   Timer_IF_Init(PRCM_TIMERA1, g_ulRefBase, TIMER_CFG_PERIODIC, TIMER_A, 0);
+  Timer_IF_IntSetup(TIMERA0_BASE, TIMER_A, TimerA0IntHandler);
+  Timer_IF_Stop(TIMERA0_BASE, TIMER_A);
+  MAP_TimerLoadSet(TIMERA0_BASE, TIMER_A, 40000);
   // detect changes in p8 from 1 to 0 to back to 1
   while (1) {
+    // read timer_b
+    /* unsigned long c = Timer_IF_GetCount(g_ulBase, TIMER_A);
+    float d = (float)(c - key_time) / 80000;
+    if (d>=500){
+      Report("Display: %c\n\r", digits[state][c_letter]);
+    } */
   }
 }
 

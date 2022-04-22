@@ -5,10 +5,13 @@
 'Building file: ../main.c'
 'Invoking: ARM Compiler'
 "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
-"../main.c", line 192: warning #225-D: function "malloc" declared implicitly
-"../main.c", line 192: warning #145-D: a value of type "int" cannot be used to initialize an entity of type "char *"
-"../main.c", line 209: warning #225-D: function "strcmp" declared implicitly
-"../main.c", line 249: warning #225-D: function "free" declared implicitly
+"../main.c", line 195: warning #225-D: function "malloc" declared implicitly
+"../main.c", line 195: warning #145-D: a value of type "int" cannot be used to initialize an entity of type "char *"
+"../main.c", line 214: warning #225-D: function "strcmp" declared implicitly
+"../main.c", line 242: warning #225-D: function "free" declared implicitly
+"../main.c", line 247: warning #69-D: integer conversion resulted in a change of sign
+"../main.c", line 299: warning #225-D: function "strlen" declared implicitly
+"../main.c", line 319: warning #69-D: integer conversion resulted in a change of sign
 'Finished building: ../main.c'
 ' '
 'Building target: uart_demo.out'

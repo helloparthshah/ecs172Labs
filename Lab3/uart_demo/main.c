@@ -76,9 +76,13 @@
 // Common interface includes
 #include "uart_if.h"
 #include "timer_if.h"
+#include "spi.h"
 
 #include "pin_mux_config.h"
-
+#include "Adafruit_GFX.h"
+#include "Adafruit_SSD1351.h"
+#include "glcdfont.h"
+#include "test.h"
 //*****************************************************************************
 //                          MACROS
 //*****************************************************************************
@@ -88,6 +92,7 @@
 #define UartGetChar() MAP_UARTCharGet(CONSOLE)
 #define UartPutChar(c) MAP_UARTCharPut(CONSOLE, c)
 #define MAX_STRING_LENGTH 80
+#define SPI_IF_BIT_RATE 100000
 
 //*****************************************************************************
 //                 GLOBAL VARIABLES -- Start
@@ -369,6 +374,28 @@ void main() {
   Timer_IF_IntSetup(TIMERA0_BASE, TIMER_A, TimerA0IntHandler);
   Timer_IF_Stop(TIMERA0_BASE, TIMER_A);
   MAP_TimerLoadSet(TIMERA0_BASE, TIMER_A, 40000);
+
+  MAP_PRCMPeripheralReset(PRCM_GSPI);
+  // Adafruit_Init();
+  // fillScreen(0xFFF);
+  MAP_SPIReset(GSPI_BASE);
+
+  //
+  // Configure SPI interface
+  //
+  MAP_SPIConfigSetExpClk(GSPI_BASE, MAP_PRCMPeripheralClockGet(PRCM_GSPI),
+                         SPI_IF_BIT_RATE, SPI_MODE_MASTER, SPI_SUB_MODE_0,
+                         (SPI_SW_CTRL_CS | SPI_4PIN_MODE | SPI_TURBO_OFF |
+                          SPI_CS_ACTIVEHIGH | SPI_WL_8));
+
+  //
+  // Enable SPI for communication
+  //
+  MAP_SPIEnable(GSPI_BASE);
+
+  Adafruit_Init();
+  fillScreen(BLACK);
+
   // detect changes in p8 from 1 to 0 to back to 1
   while (1) {
     // read timer_b

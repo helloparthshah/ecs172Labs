@@ -9,6 +9,8 @@ CMD_SRCS += \
 ../cc3200v1p32.cmd 
 
 C_SRCS += \
+../Adafruit_GFX.c \
+../Adafruit_OLED.c \
 ../main.c \
 ../pin_mux_config.c \
 C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common/startup_ccs.c \
@@ -16,6 +18,8 @@ C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common/timer_if.c \
 C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common/uart_if.c 
 
 C_DEPS += \
+./Adafruit_GFX.d \
+./Adafruit_OLED.d \
 ./main.d \
 ./pin_mux_config.d \
 ./startup_ccs.d \
@@ -23,6 +27,8 @@ C_DEPS += \
 ./uart_if.d 
 
 OBJS += \
+./Adafruit_GFX.obj \
+./Adafruit_OLED.obj \
 ./main.obj \
 ./pin_mux_config.obj \
 ./startup_ccs.obj \
@@ -30,6 +36,8 @@ OBJS += \
 ./uart_if.obj 
 
 OBJS__QUOTED += \
+"Adafruit_GFX.obj" \
+"Adafruit_OLED.obj" \
 "main.obj" \
 "pin_mux_config.obj" \
 "startup_ccs.obj" \
@@ -37,6 +45,8 @@ OBJS__QUOTED += \
 "uart_if.obj" 
 
 C_DEPS__QUOTED += \
+"Adafruit_GFX.d" \
+"Adafruit_OLED.d" \
 "main.d" \
 "pin_mux_config.d" \
 "startup_ccs.d" \
@@ -44,6 +54,8 @@ C_DEPS__QUOTED += \
 "uart_if.d" 
 
 C_SRCS__QUOTED += \
+"../Adafruit_GFX.c" \
+"../Adafruit_OLED.c" \
 "../main.c" \
 "../pin_mux_config.c" \
 "C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common/startup_ccs.c" \

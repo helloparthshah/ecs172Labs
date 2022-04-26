@@ -36,7 +36,7 @@
 //
 //*****************************************************************************
 
-// This file was automatically generated on 4/21/2022 at 7:38:17 PM
+// This file was automatically generated on 4/26/2022 at 2:58:24 PM
 // by TI PinMux version 
 //
 //*****************************************************************************
@@ -48,8 +48,6 @@
 #include "pin.h"
 #include "gpio.h"
 #include "prcm.h"
-#include "rom.h"
-#include "rom_map.h"
 
 //*****************************************************************************
 void PinMuxConfig(void)
@@ -59,16 +57,15 @@ void PinMuxConfig(void)
     //
     // Set unused pins to PIN_MODE_0 with the exception of JTAG pins 16,17,19,20
     //
+    PinModeSet(PIN_01, PIN_MODE_0);
+    PinModeSet(PIN_02, PIN_MODE_0);
     PinModeSet(PIN_03, PIN_MODE_0);
     PinModeSet(PIN_04, PIN_MODE_0);
     PinModeSet(PIN_06, PIN_MODE_0);
-    PinModeSet(PIN_15, PIN_MODE_0);
     PinModeSet(PIN_21, PIN_MODE_0);
     PinModeSet(PIN_50, PIN_MODE_0);
     PinModeSet(PIN_52, PIN_MODE_0);
     PinModeSet(PIN_53, PIN_MODE_0);
-    PinModeSet(PIN_55, PIN_MODE_0);
-    PinModeSet(PIN_57, PIN_MODE_0);
     PinModeSet(PIN_58, PIN_MODE_0);
     PinModeSet(PIN_59, PIN_MODE_0);
     PinModeSet(PIN_60, PIN_MODE_0);
@@ -81,14 +78,21 @@ void PinMuxConfig(void)
     // Enable Peripheral Clocks 
     //
     PRCMPeripheralClkEnable(PRCM_GPIOA2, PRCM_RUN_MODE_CLK);
-    PRCMPeripheralClkEnable(PRCM_UARTA0, PRCM_RUN_MODE_CLK);
     PRCMPeripheralClkEnable(PRCM_GPIOA3, PRCM_RUN_MODE_CLK);
     PRCMPeripheralClkEnable(PRCM_GSPI, PRCM_RUN_MODE_CLK);
+    PRCMPeripheralClkEnable(PRCM_UARTA0, PRCM_RUN_MODE_CLK);
+
     //
     // Configure PIN_08 for GPIO Input
     //
     PinTypeGPIO(PIN_08, PIN_MODE_0, false);
     GPIODirModeSet(GPIOA2_BASE, 0x2, GPIO_DIR_MODE_IN);
+
+    //
+    // Configure PIN_15 for GPIO Output
+    //
+    PinTypeGPIO(PIN_15, PIN_MODE_0, false);
+    GPIODirModeSet(GPIOA2_BASE, 0x40, GPIO_DIR_MODE_OUT);
 
     //
     // Configure PIN_18 for GPIO Output
@@ -115,10 +119,10 @@ void PinMuxConfig(void)
     //
     // Configure PIN_55 for UART0 UART0_TX
     //
-    MAP_PinTypeUART(PIN_55, PIN_MODE_3);
+    PinTypeUART(PIN_55, PIN_MODE_3);
 
     //
     // Configure PIN_57 for UART0 UART0_RX
     //
-    MAP_PinTypeUART(PIN_57, PIN_MODE_3);
+    PinTypeUART(PIN_57, PIN_MODE_3);
 }

@@ -81,11 +81,11 @@ void Adafruit_Init(void){
 
   volatile unsigned long delay;
 
-  GPIOPinWrite(GPIOA2_BASE, 0x2, 0);	// RESET = RESET_LOW
+  GPIOPinWrite(GPIOA2_BASE, 0x40, 0);	// RESET = RESET_LOW
 
   for(delay=0; delay<100; delay=delay+1);// delay minimum 100 ns
 
-  GPIOPinWrite(GPIOA2_BASE, 0x2, 0x2);	// RESET = RESET_HIGH
+  GPIOPinWrite(GPIOA2_BASE, 0x40, 0x40);	// RESET = RESET_HIGH
 
 	// Initialization Sequence
   writeCommand(SSD1351_CMD_COMMANDLOCK);  // set command lock

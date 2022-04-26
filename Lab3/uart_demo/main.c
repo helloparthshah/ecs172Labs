@@ -257,8 +257,14 @@ void PrintChar() {
   c_letter = 0;
 }
 
+volatile int cx = 0;
+volatile int cy = 0;
+
+int colors[]={WHITE, RED, GREEN, BLUE, YELLOW, CYAN, MAGENTA};
+volatile int curr_color=0;
+
 static void GPIOA2IntHandler(void) { // SW2 handler
-//  Report("Test\n\r");
+  // Report("Test\n\r");
   unsigned long ulStatus;
 
   ulStatus = MAP_GPIOIntStatus(ir_input.port, true);
@@ -292,7 +298,17 @@ static void GPIOA2IntHandler(void) { // SW2 handler
     curr_index = 0;
     int s = printBinary(keyToBinary());
     if (s == -1) {
+      state = -1;
       Report("Invalid key\n\r");
+    } else if (s == 1) {
+      curr_color++;
+      if (curr_color > 6) {
+        curr_color = 0;
+      }
+      if (state == -1)
+        drawChar(cx, cy, '_', colors[curr_color], BLACK, 1);
+      else
+        drawChar(cx, cy, digits[state][c_letter], colors[curr_color], BLACK, 1);
     } else if (s == 10) {
       Report("Last\n\r");
     } else if (s == 11) {
@@ -309,9 +325,10 @@ static void GPIOA2IntHandler(void) { // SW2 handler
         // key pressed for the first time
         c_letter = 0;
       }
+      drawChar(cx, cy, digits[s][c_letter], colors[curr_color], BLACK, 1);
       Report("%c\n\r", digits[s][c_letter]);
+      state = s;
     }
-    state = s;
     // enable interrupt
     MAP_GPIOIntEnable(ir_input.port, ir_input.pin);
   }
@@ -319,10 +336,25 @@ static void GPIOA2IntHandler(void) { // SW2 handler
 
 void TimerA0IntHandler(void) {
   Timer_IF_InterruptClear(TIMERA0_BASE);
-  if (key_time > 0)
+  if (key_time > 0) {
+    if (state != -1) {
+      if (key_time % 2 != 0) {
+        drawChar(cx, cy, digits[state][c_letter], colors[curr_color], BLACK, 1);
+      } else {
+        drawChar(cx, cy, '_', colors[curr_color], BLACK, 1);
+      }
+    }
     key_time--;
-  else if(key_time == 0) {
+  } else if (key_time == 0) {
     key_time = -1;
+    drawChar(cx, cy, digits[state][c_letter], colors[curr_color], BLACK, 1);
+    // increase the x position
+    cx+=6;
+    if (cx >= 128) {
+      cx = 0;
+      cy+=8;
+    }
+    drawChar(cx, cy, '_', colors[curr_color], BLACK, 1);
     PrintChar();
   }
 }
@@ -376,8 +408,6 @@ void main() {
   MAP_TimerLoadSet(TIMERA0_BASE, TIMER_A, 40000);
 
   MAP_PRCMPeripheralReset(PRCM_GSPI);
-  // Adafruit_Init();
-  // fillScreen(0xFFF);
   MAP_SPIReset(GSPI_BASE);
 
   //
@@ -395,15 +425,8 @@ void main() {
 
   Adafruit_Init();
   fillScreen(BLACK);
-
-  // detect changes in p8 from 1 to 0 to back to 1
+  drawChar(cx, cy, '_', colors[curr_color], BLACK, 1);
   while (1) {
-    // read timer_b
-    /* unsigned long c = Timer_IF_GetCount(g_ulBase, TIMER_A);
-    float d = (float)(c - key_time) / 80000;
-    if (d>=500){
-      Report("Display: %c\n\r", digits[state][c_letter]);
-    } */
   }
 }
 

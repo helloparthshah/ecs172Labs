@@ -280,28 +280,40 @@ void HandleCode(int s) {
   if (s == -1) {
     state = -1;
     key_time = -1;
-    Report("Invalid key\n\r");
   } else if (s == 1) {
     curr_color++;
     if (curr_color > 6) {
       curr_color = 0;
     }
-    // Report("State: %d, Letter: %d\n\r", state, c_letter);
     if (state == -1)
       drawChar(cx, cy, '_', colors[curr_color], BLACK, 1);
     else
       drawChar(cx, cy, digits[state][c_letter], colors[curr_color], BLACK, 1);
   } else if (s == 10) {
-    Report("Last\n\r");
     // Send the sendArray using MAP_UARTCharPut(UARTA1_BASE, c);
     int i;
     for (i = 0; i < nLetters; i++) {
       MAP_UARTCharPut(UARTA1_BASE, sendArray[i].letter);
       MAP_UARTCharPut(UARTA1_BASE, sendArray[i].color + '0');
+      Report("%c %d, ", sendArray[i].letter, sendArray[i].color);
     }
+    Report("\n\r");
+    cx = 0;
+    cy = 0;
+    // clear the top half of the OLED
+    for (i = 0; i <= nLetters; i++) {
+      drawChar(cx, cy, ' ', WHITE, BLACK, 1);
+      cx += 6;
+      if (cx > 127) {
+        cx = 0;
+        cy += 8;
+      }
+    }
+    cx=0;
+    cy=0;
     nLetters = 0;
+    drawChar(cx, cy, '_', WHITE, BLACK, 1);
   } else if (s == 11) {
-    Report("Mute\n\r");
     // Delete the last letter
     if (nLetters > 0) {
       nLetters--;
@@ -322,13 +334,11 @@ void HandleCode(int s) {
       c_letter = 0;
     }
     drawChar(cx, cy, digits[s][c_letter], colors[curr_color], BLACK, 1);
-    Report("%c\n\r", digits[s][c_letter]);
     state = s;
   }
 }
 
 static void GPIOA2IntHandler(void) { // SW2 handler
-  // Report("Test\n\r");
   unsigned long ulStatus;
 
   ulStatus = MAP_GPIOIntStatus(ir_input.port, true);
@@ -350,7 +360,6 @@ static void GPIOA2IntHandler(void) { // SW2 handler
   prev = curr;
 
   if (start) {
-    // Report("%f\n\r", d);
     values[curr_index - 1] = d;
     curr_index++;
   }
@@ -395,6 +404,8 @@ void TimerA0IntHandler(void) {
   }
 }
 
+volatile int rx = 0, ry = 65;
+
 void UARTIntHandler(void)
 {
     UARTIntClear(UARTA1_BASE, UART_INT_RX | UART_INT_RT | UART_INT_TX);
@@ -402,7 +413,14 @@ void UARTIntHandler(void)
     unsigned long intStatus = UARTIntStatus(UARTA1_BASE, true);
     while (UARTCharsAvail(UARTA1_BASE)) {
         unsigned char character = MAP_UARTCharGet(UARTA1_BASE);
-        printf("%c", character);
+        // print in the lower half of the OLED
+        drawChar(rx, ry, character, WHITE, BLACK, 1);
+        rx+=6;
+        if (rx >= 128) {
+          rx = 0;
+          ry+=8;
+        }
+        Report("%c", character);
     }
 }
 
@@ -501,7 +519,6 @@ void main() {
 
   DisplayBanner(APP_NAME);
 
-  sendUartString("Hello World!\n\r");
   while (1) {
   }
 }

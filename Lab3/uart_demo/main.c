@@ -57,6 +57,7 @@
 
 // Standard include
 #include <stdio.h>
+#include <stdlib.h>
 
 // Driverlib includes
 #include "hw_types.h"
@@ -72,6 +73,7 @@
 #include "gpio.h"
 #include "utils.h"
 #include "timer.h"
+#include "uart.h"
 
 // Common interface includes
 #include "uart_if.h"
@@ -83,6 +85,7 @@
 #include "Adafruit_SSD1351.h"
 #include "glcdfont.h"
 #include "test.h"
+
 //*****************************************************************************
 //                          MACROS
 //*****************************************************************************
@@ -133,6 +136,7 @@ extern uVectorEntry __vector_table;
 //! \return none
 //!
 //*****************************************************************************
+
 static void DisplayBanner(char *AppName) {
 
   Report("\n\n\n\r");
@@ -263,6 +267,66 @@ volatile int cy = 0;
 int colors[]={WHITE, RED, GREEN, BLUE, YELLOW, CYAN, MAGENTA};
 volatile int curr_color=0;
 
+typedef struct {
+    char letter;
+    int color;
+} Letter;
+
+// Storing the letters 
+volatile Letter sendArray[128];
+volatile int nLetters = 0;
+
+void HandleCode(int s) {
+  if (s == -1) {
+    state = -1;
+    key_time = -1;
+    Report("Invalid key\n\r");
+  } else if (s == 1) {
+    curr_color++;
+    if (curr_color > 6) {
+      curr_color = 0;
+    }
+    // Report("State: %d, Letter: %d\n\r", state, c_letter);
+    if (state == -1)
+      drawChar(cx, cy, '_', colors[curr_color], BLACK, 1);
+    else
+      drawChar(cx, cy, digits[state][c_letter], colors[curr_color], BLACK, 1);
+  } else if (s == 10) {
+    Report("Last\n\r");
+    // Send the sendArray using MAP_UARTCharPut(UARTA1_BASE, c);
+    int i;
+    for (i = 0; i < nLetters; i++) {
+      MAP_UARTCharPut(UARTA1_BASE, sendArray[i].letter);
+      MAP_UARTCharPut(UARTA1_BASE, sendArray[i].color + '0');
+    }
+    nLetters = 0;
+  } else if (s == 11) {
+    Report("Mute\n\r");
+    // Delete the last letter
+    if (nLetters > 0) {
+      nLetters--;
+      drawChar(cx, cy, ' ', colors[curr_color], BLACK, 1);
+      cx -= 6;
+      drawChar(cx, cy, '_', colors[curr_color], BLACK, 1);
+    }
+  } else {
+    key_time = 2;
+    // cycle through the digits for the number
+    if (state == s) {
+      c_letter++;
+      if (c_letter >= strlen(digits[s])) {
+        c_letter = 0;
+      }
+    } else {
+      // key pressed for the first time
+      c_letter = 0;
+    }
+    drawChar(cx, cy, digits[s][c_letter], colors[curr_color], BLACK, 1);
+    Report("%c\n\r", digits[s][c_letter]);
+    state = s;
+  }
+}
+
 static void GPIOA2IntHandler(void) { // SW2 handler
   // Report("Test\n\r");
   unsigned long ulStatus;
@@ -296,39 +360,7 @@ static void GPIOA2IntHandler(void) { // SW2 handler
     MAP_GPIOIntDisable(ir_input.port, ir_input.pin);
     start = 0;
     curr_index = 0;
-    int s = printBinary(keyToBinary());
-    if (s == -1) {
-      state = -1;
-      Report("Invalid key\n\r");
-    } else if (s == 1) {
-      curr_color++;
-      if (curr_color > 6) {
-        curr_color = 0;
-      }
-      if (state == -1)
-        drawChar(cx, cy, '_', colors[curr_color], BLACK, 1);
-      else
-        drawChar(cx, cy, digits[state][c_letter], colors[curr_color], BLACK, 1);
-    } else if (s == 10) {
-      Report("Last\n\r");
-    } else if (s == 11) {
-      Report("Mute\n\r");
-    } else {
-      key_time = 2;
-      // cycle through the digits for the number
-      if (state == s) {
-        c_letter++;
-        if (c_letter >= strlen(digits[s])) {
-          c_letter = 0;
-        }
-      } else {
-        // key pressed for the first time
-        c_letter = 0;
-      }
-      drawChar(cx, cy, digits[s][c_letter], colors[curr_color], BLACK, 1);
-      Report("%c\n\r", digits[s][c_letter]);
-      state = s;
-    }
+    HandleCode(printBinary(keyToBinary()));
     // enable interrupt
     MAP_GPIOIntEnable(ir_input.port, ir_input.pin);
   }
@@ -348,6 +380,10 @@ void TimerA0IntHandler(void) {
   } else if (key_time == 0) {
     key_time = -1;
     drawChar(cx, cy, digits[state][c_letter], colors[curr_color], BLACK, 1);
+    // add char to sendArray
+    sendArray[nLetters].letter = digits[state][c_letter];
+    sendArray[nLetters].color = curr_color;
+    nLetters++;
     // increase the x position
     cx+=6;
     if (cx >= 128) {
@@ -357,6 +393,74 @@ void TimerA0IntHandler(void) {
     drawChar(cx, cy, '_', colors[curr_color], BLACK, 1);
     PrintChar();
   }
+}
+
+void UARTIntHandler(void)
+{
+    UARTIntClear(UARTA1_BASE, UART_INT_RX | UART_INT_RT | UART_INT_TX);
+
+    unsigned long intStatus = UARTIntStatus(UARTA1_BASE, true);
+    while (UARTCharsAvail(UARTA1_BASE)) {
+        unsigned char character = MAP_UARTCharGet(UARTA1_BASE);
+        printf("%c", character);
+    }
+}
+
+void GPIOInit() {
+  MAP_GPIOIntRegister(ir_input.port, GPIOA2IntHandler);
+  //   MAP_GPIOIntTypeSet(pin8.port, pin8.pin, GPIO_RISING_EDGE); // SW2
+  MAP_GPIOIntTypeSet(ir_input.port, ir_input.pin, 0x0); // SW2
+  unsigned long ulStatus = MAP_GPIOIntStatus(ir_input.port, false);
+  MAP_GPIOIntClear(ir_input.port, ulStatus);
+  pin8_intcount = 0;
+  pin8_intflag = 0;
+  MAP_GPIOIntEnable(ir_input.port, ir_input.pin);
+}
+
+void TimerInit() {
+  g_ulBase = TIMERA0_BASE;
+  g_ulRefBase = TIMERA1_BASE;
+  Timer_IF_Init(PRCM_TIMERA0, g_ulBase, TIMER_CFG_PERIODIC, TIMER_A, 0);
+  Timer_IF_Init(PRCM_TIMERA1, g_ulRefBase, TIMER_CFG_PERIODIC, TIMER_A, 0);
+  Timer_IF_IntSetup(TIMERA0_BASE, TIMER_A, TimerA0IntHandler);
+  Timer_IF_Stop(TIMERA0_BASE, TIMER_A);
+  MAP_TimerLoadSet(TIMERA0_BASE, TIMER_A, 40000);
+}
+
+void UartInit() {
+  MAP_UARTConfigSetExpClk(
+      UARTA1_BASE, MAP_PRCMPeripheralClockGet(PRCM_UARTA1), UART_BAUD_RATE,
+      (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE | UART_CONFIG_PAR_NONE));
+
+  MAP_UARTIntRegister(UARTA1_BASE, UARTIntHandler);
+  MAP_UARTIntEnable(UARTA1_BASE,  UART_INT_RX | UART_INT_RT | UART_INT_TX);
+
+  unsigned long uartStatus = UARTIntStatus(UARTA1_BASE, false);
+  UARTIntClear(UARTA1_BASE, uartStatus);
+
+  MAP_UARTDMAEnable(UARTA1_BASE, UART_DMA_TX);
+}
+
+void SPIInit() {
+  MAP_PRCMPeripheralReset(PRCM_GSPI);
+  MAP_SPIReset(GSPI_BASE);
+
+  //
+  // Configure SPI interface
+  //
+  MAP_SPIConfigSetExpClk(GSPI_BASE, MAP_PRCMPeripheralClockGet(PRCM_GSPI),
+                         SPI_IF_BIT_RATE, SPI_MODE_MASTER, SPI_SUB_MODE_0,
+                         (SPI_SW_CTRL_CS | SPI_4PIN_MODE | SPI_TURBO_OFF |
+                          SPI_CS_ACTIVEHIGH | SPI_WL_8));
+
+  //
+  // Enable SPI for communication
+  //
+  MAP_SPIEnable(GSPI_BASE);
+
+  Adafruit_Init();
+  fillScreen(BLACK);
+  drawChar(cx, cy, '_', colors[curr_color], BLACK, 1);
 }
 
 //*****************************************************************************
@@ -381,6 +485,7 @@ void main() {
   // Muxing for Enabling UART_TX and UART_RX.
   //
   PinMuxConfig();
+  MAP_PRCMPeripheralClkEnable(PRCM_GSPI, PRCM_RUN_MODE_CLK);
   //
   // Initialising the Terminal.
   //
@@ -389,43 +494,14 @@ void main() {
   // Clearing the Terminal.
   //
   ClearTerm();
+  UartInit();
+  SPIInit();
+  GPIOInit();
+  TimerInit();
+
   DisplayBanner(APP_NAME);
-  MAP_GPIOIntRegister(ir_input.port, GPIOA2IntHandler);
-  //   MAP_GPIOIntTypeSet(pin8.port, pin8.pin, GPIO_RISING_EDGE); // SW2
-  MAP_GPIOIntTypeSet(ir_input.port, ir_input.pin, 0x0); // SW2
-  unsigned long ulStatus = MAP_GPIOIntStatus(ir_input.port, false);
-  MAP_GPIOIntClear(ir_input.port, ulStatus);
-  pin8_intcount = 0;
-  pin8_intflag = 0;
-  MAP_GPIOIntEnable(ir_input.port, ir_input.pin);
 
-  g_ulBase = TIMERA0_BASE;
-  g_ulRefBase = TIMERA1_BASE;
-  Timer_IF_Init(PRCM_TIMERA0, g_ulBase, TIMER_CFG_PERIODIC, TIMER_A, 0);
-  Timer_IF_Init(PRCM_TIMERA1, g_ulRefBase, TIMER_CFG_PERIODIC, TIMER_A, 0);
-  Timer_IF_IntSetup(TIMERA0_BASE, TIMER_A, TimerA0IntHandler);
-  Timer_IF_Stop(TIMERA0_BASE, TIMER_A);
-  MAP_TimerLoadSet(TIMERA0_BASE, TIMER_A, 40000);
-
-  MAP_PRCMPeripheralReset(PRCM_GSPI);
-  MAP_SPIReset(GSPI_BASE);
-
-  //
-  // Configure SPI interface
-  //
-  MAP_SPIConfigSetExpClk(GSPI_BASE, MAP_PRCMPeripheralClockGet(PRCM_GSPI),
-                         SPI_IF_BIT_RATE, SPI_MODE_MASTER, SPI_SUB_MODE_0,
-                         (SPI_SW_CTRL_CS | SPI_4PIN_MODE | SPI_TURBO_OFF |
-                          SPI_CS_ACTIVEHIGH | SPI_WL_8));
-
-  //
-  // Enable SPI for communication
-  //
-  MAP_SPIEnable(GSPI_BASE);
-
-  Adafruit_Init();
-  fillScreen(BLACK);
-  drawChar(cx, cy, '_', colors[curr_color], BLACK, 1);
+  sendUartString("Hello World!\n\r");
   while (1) {
   }
 }

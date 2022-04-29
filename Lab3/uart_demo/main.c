@@ -405,7 +405,7 @@ void TimerA0IntHandler(void) {
 }
 
 volatile int rx = 0, ry = 65;
-
+volatile char rx_prev = ' ';
 void UARTIntHandler(void)
 {
     UARTIntClear(UARTA1_BASE, UART_INT_RX | UART_INT_RT | UART_INT_TX);
@@ -414,12 +414,16 @@ void UARTIntHandler(void)
     while (UARTCharsAvail(UARTA1_BASE)) {
         unsigned char character = MAP_UARTCharGet(UARTA1_BASE);
         // print in the lower half of the OLED
-        drawChar(rx, ry, character, WHITE, BLACK, 1);
-        rx+=6;
-        if (rx >= 128) {
-          rx = 0;
-          ry+=8;
+        // the characters will come like A1B0.... where A is the letter and 1 is the color
+        if (character >= '0' && character <= '9') {
+          drawChar(rx, ry, rx_prev, colors[character - '0'], BLACK, 1);
+          rx += 6;
+          if (rx >= 128) {
+            rx = 0;
+            ry += 8;
+          }
         }
+        rx_prev = character;
         Report("%c", character);
     }
 }

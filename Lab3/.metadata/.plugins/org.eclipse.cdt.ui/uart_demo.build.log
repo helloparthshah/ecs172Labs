@@ -2,16 +2,6 @@
 **** Build of configuration Release for project uart_demo ****
 
 "C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
-'Building file: ../main.c'
-'Invoking: ARM Compiler'
-"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
-"../main.c", line 195: warning #225-D: function "malloc" declared implicitly
-"../main.c", line 195: warning #145-D: a value of type "int" cannot be used to initialize an entity of type "char *"
-"../main.c", line 214: warning #225-D: function "strcmp" declared implicitly
-"../main.c", line 242: warning #225-D: function "free" declared implicitly
-"../main.c", line 300: warning #225-D: function "strlen" declared implicitly
-'Finished building: ../main.c'
-' '
 'Building file: ../pin_mux_config.c'
 'Invoking: ARM Compiler'
 "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="pin_mux_config.d"  "../pin_mux_config.c"
@@ -19,7 +9,7 @@
 ' '
 'Building target: uart_demo.out'
 'Invoking: ARM Linker'
-"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"uart_demo.map" --heap_size=0x800 --stack_size=0x100 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="uart_demo_linkInfo.xml" --rom_model -o "uart_demo.out" "./main.obj" "./pin_mux_config.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" 
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=fpalib --abi=eabi -me -Ooff -g --gcc --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"uart_demo.map" --heap_size=0x800 --stack_size=0x100 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="uart_demo_linkInfo.xml" --rom_model -o "uart_demo.out" "./Adafruit_GFX.obj" "./Adafruit_OLED.obj" "./main.obj" "./pin_mux_config.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" 
 <Linking>
 'Finished building target: uart_demo.out'
 ' '

@@ -414,6 +414,8 @@ void UARTIntHandler(void)
     rx=0;
     ry=65;
     rx_prev = ' ';
+    // clear the lower half
+    drawRect(0, 64, 128, 64, BLACK);
     while (UARTCharsAvail(UARTA1_BASE)) {
         unsigned char character = MAP_UARTCharGet(UARTA1_BASE);
         // print in the lower half of the OLED

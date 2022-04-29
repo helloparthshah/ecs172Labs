@@ -66,8 +66,6 @@ void PinMuxConfig(void)
     PinModeSet(PIN_50, PIN_MODE_0);
     PinModeSet(PIN_52, PIN_MODE_0);
     PinModeSet(PIN_53, PIN_MODE_0);
-    PinModeSet(PIN_58, PIN_MODE_0);
-    PinModeSet(PIN_59, PIN_MODE_0);
     PinModeSet(PIN_60, PIN_MODE_0);
     PinModeSet(PIN_61, PIN_MODE_0);
     PinModeSet(PIN_62, PIN_MODE_0);
@@ -118,12 +116,22 @@ void PinMuxConfig(void)
     PinTypeSPI(PIN_07, PIN_MODE_7);
 
     //
-    // Configure PIN_55 for UART1 UART1_TX
+    // Configure PIN_55 for UART0 UART1_TX
     //
-    PinTypeUART(PIN_55, PIN_MODE_6);
+    PinTypeUART(PIN_55, PIN_MODE_3);
 
     //
-    // Configure PIN_57 for UART1 UART1_RX
+    // Configure PIN_57 for UART0 UART1_RX
     //
-    PinTypeUART(PIN_57, PIN_MODE_6);
+    PinTypeUART(PIN_57, PIN_MODE_3);
+
+    //
+    // Configure PIN_58 for UART1 UART1_TX
+    //
+    PinTypeUART(PIN_58, PIN_MODE_6);
+
+    //
+    // Configure PIN_59 for UART1 UART1_RX
+    //
+    PinTypeUART(PIN_59, PIN_MODE_6);
 }

@@ -411,6 +411,9 @@ void UARTIntHandler(void)
     UARTIntClear(UARTA1_BASE, UART_INT_RX | UART_INT_RT | UART_INT_TX);
 
     unsigned long intStatus = UARTIntStatus(UARTA1_BASE, true);
+    rx=0;
+    ry=65;
+    rx_prev = ' ';
     while (UARTCharsAvail(UARTA1_BASE)) {
         unsigned char character = MAP_UARTCharGet(UARTA1_BASE);
         // print in the lower half of the OLED

@@ -95,7 +95,7 @@
 #define UartGetChar() MAP_UARTCharGet(CONSOLE)
 #define UartPutChar(c) MAP_UARTCharPut(CONSOLE, c)
 #define MAX_STRING_LENGTH 80
-#define SPI_IF_BIT_RATE 400000
+#define SPI_IF_BIT_RATE 200000
 
 //*****************************************************************************
 //                 GLOBAL VARIABLES -- Start
@@ -240,7 +240,8 @@ void post_test(void)
 //---------------------------------------------------------------//
 {
   // initialize variables to be used in the function
-  int i, row, col, max_power;
+  int i, row, col;
+  long max_power;
 
   char row_col[4][4] = // array with the order of the digits in the DTMF system
       {{'1', '2', '3', 'A'},
@@ -250,11 +251,11 @@ void post_test(void)
 
   // find the maximum power in the row frequencies and the row number
 
-  max_power = 0; // initialize max_power=0
+  max_power = power_all[0]; // initialize max_power=0
 
   for (i = 0; i < 4; i++) // loop 4 times from 0>3 (the indecies of the rows)
   {
-    if (power_all[i] >
+    if (power_all[i] >=
         max_power) // if power of the current row frequency > max_power
     {
       max_power = power_all[i]; // set max_power as the current row frequency
@@ -264,11 +265,11 @@ void post_test(void)
 
   // find the maximum power in the column frequencies and the column number
 
-  max_power = 0; // initialize max_power=0
+  max_power = power_all[4]; // initialize max_power=0
 
   for (i = 4; i < 8; i++) // loop 4 times from 4>7 (the indecies of the columns)
   {
-    if (power_all[i] >
+    if (power_all[i] >=
         max_power) // if power of the current column frequency > max_power
     {
       max_power = power_all[i]; // set max_power as the current column frequency
@@ -276,15 +277,14 @@ void post_test(void)
     }
   }
 
-  Report("%d %d\n\r", row, col-4);
-  if (row >= 4 || col >= 4)
-    return;
-  if (power_all[col] == 0 &&
-      power_all[row] == 0) // if the maximum powers equal zero > this means no
+  // Report("%d %d\n\r", row, col-4);
+
+  if (power_all[col] <= 1000000 &&
+      power_all[row] <= 1000000) // if the maximum powers equal zero > this means no
                            // signal or inter-digit pause
     new_dig = 1; // set new_dig to 1 to display the next decoded digit
 
-  if ((power_all[col] > 1000 && power_all[row] > 1000) &&
+  if ((power_all[col] >= 6000000 && power_all[row] >= 6000000) &&
       (new_dig == 1)) // check if maximum powers of row & column exceed certain
                       // threshold AND new_dig flag is set to 1
   {
@@ -308,9 +308,8 @@ int readMicrophone() {
   MAP_SPICSDisable(GSPI_BASE);
   // convert from big endian to int
   // return (g_ucRxBuff[0] << 8) | g_ucRxBuff[1];
-  return (g_ucRxBuff[0]<<5) | (g_ucRxBuff[1]>>3);
+  return ((g_ucRxBuff[0] << 5) | (g_ucRxBuff[1] >> 3)) - 660;
   // return (g_ucRxBuff[0] << 8) | g_ucRxBuff[1];
-  // return (g_ucRxBuff[0] << 5) | ((0xf8 & g_ucRxBuff[1]) >> 3);
 }
 
 char* keyToBinary(){
@@ -462,6 +461,8 @@ void TimerA1IntHandler(void) {
   ulStatus = MAP_TimerIntStatus(TIMERA1_BASE, true);
   Timer_IF_InterruptClear(TIMERA1_BASE);
   // read microphone
+  // print readMicrophone();
+  // Report("%d\n\r", readMicrophone());
   samples[samples_index++] = readMicrophone();
   if (samples_index > 410) {
     samples_index = 0;
@@ -470,8 +471,9 @@ void TimerA1IntHandler(void) {
     int i = 0;
     for (i = 0; i < 8; i++) {
       power_all[i] = goertzel(coeff[i]);
-      Report("%d\r\n", power_all[i]);
+      // Report("%d\r\n", power_all[i]);
     }
+    // Report("--------------\r\n");
 
     post_test();
     // enable timer interrupt

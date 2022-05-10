@@ -35,13 +35,13 @@ void writeCommand(unsigned char c) {
   // Writing low to DC pin
   GPIOPinWrite(GPIOA3_BASE, 0x80,0x00);
   // Writing low to CS pin
-  GPIOPinWrite(GPIOA3_BASE, 0x10,0x00);
+  GPIOPinWrite(GPIOA2_BASE, 0x2,0x00);
   // Writing command byte to SPI
   MAP_SPIDataPut(GSPI_BASE,(unsigned long)c);
   // Reading data from SPI
   MAP_SPIDataGet(GSPI_BASE,&lTemp);
   // setting oc pin high
-  GPIOPinWrite(GPIOA3_BASE, 0x10,0x10);
+  GPIOPinWrite(GPIOA2_BASE, 0x2,0x2);
   MAP_SPICSDisable(GSPI_BASE);
 }
 //*****************************************************************************
@@ -57,13 +57,13 @@ void writeData(unsigned char c) {
   // Writing high to DC pin
   GPIOPinWrite(GPIOA3_BASE, 0x80,0x80);
   // Writing low to CS pin
-  GPIOPinWrite(GPIOA3_BASE, 0x10,0x00);
+  GPIOPinWrite(GPIOA2_BASE, 0x2,0x00);
   // Writing data byte to SPI
   MAP_SPIDataPut(GSPI_BASE,(unsigned long)c);
   // 
   MAP_SPIDataGet(GSPI_BASE,&lTemp);
   // setting oc pin high
-  GPIOPinWrite(GPIOA3_BASE, 0x10,0x10);
+  GPIOPinWrite(GPIOA2_BASE, 0x2,0x10);
   MAP_SPICSDisable(GSPI_BASE);
 }
 

@@ -548,9 +548,9 @@ void SPIInit() {
   // Enable SPI for communication
   //
   MAP_SPIEnable(GSPI_BASE);
-  // Adafruit_Init();
-  // fillScreen(BLACK);
-  // drawChar(cx, cy, '_', colors[curr_color], BLACK, 1);
+  Adafruit_Init();
+  fillScreen(BLACK);
+  drawChar(cx, cy, '_', colors[curr_color], BLACK, 1);
 }
 
 //*****************************************************************************

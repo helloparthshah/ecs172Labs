@@ -82,10 +82,10 @@ void PinMuxConfig(void)
     PRCMPeripheralClkEnable(PRCM_UARTA1, PRCM_RUN_MODE_CLK);
 
     //
-    // Configure PIN_08 for GPIO Input
+    // Configure PIN_08 for GPIO Output
     //
     PinTypeGPIO(PIN_08, PIN_MODE_0, false);
-    GPIODirModeSet(GPIOA2_BASE, 0x2, GPIO_DIR_MODE_IN);
+    GPIODirModeSet(GPIOA2_BASE, 0x2, GPIO_DIR_MODE_OUT);
 
     //
     // Configure PIN_15 for GPIO Output

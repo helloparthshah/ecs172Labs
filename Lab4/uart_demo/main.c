@@ -95,7 +95,7 @@
 #define UartGetChar() MAP_UARTCharGet(CONSOLE)
 #define UartPutChar(c) MAP_UARTCharPut(CONSOLE, c)
 #define MAX_STRING_LENGTH 80
-#define SPI_IF_BIT_RATE 200000
+#define SPI_IF_BIT_RATE 400000
 
 //*****************************************************************************
 //                 GLOBAL VARIABLES -- Start
@@ -200,21 +200,33 @@ volatile int curr_index = 0;
 
 #define NUM_SAMPLES 410 
 
-long coeff[8] = {31548, 31281, 30951, 30556, 29144, 28360, 27409, 26258};
+long int coeff[8] = {31548, 31281, 30951, 30556, 29144, 28361, 27409, 26258};
 
-volatile long power_all[8];
-volatile int new_dig;
+long int power_all[8];
+volatile int new_dig = 0;
 
-volatile int samples[410];
-volatile int samples_index;
+volatile long int samples[410];
+volatile int samples_index = 0;
+
+#define LOW_THRESHOLD 10000000
+#define HIGH_THRESHOLD 130000000
+// #define HIGH_THRESHOLD 7000000
+// #define LOW_THRESHOLD 20000
+// #define HIGH_THRESHOLD 40000
+
+char prevChar = ' ';
+
+int debug = 0;
+
+int nCurrent = 0;
 
 //-------Goertzel function---------------------------------------//
-long goertzel(long coeff)
+long int goertzel(long int coeff)
 //---------------------------------------------------------------//
 {
   // initialize variables to be used in the function
-  int Q, Q_prev = 0, Q_prev2 = 0, i;
-  long prod1, prod2, prod3, power=0;
+  long long Q, Q_prev = 0, Q_prev2 = 0, i;
+  long long prod1, prod2, prod3, power = 0;
 
   // loop N times and calculate Q, Q_prev, Q_prev2 at each iteration
   for (i = 0; i < NUM_SAMPLES; i++) {
@@ -224,24 +236,23 @@ long goertzel(long coeff)
   }
 
   // calculate the three products used to calculate power
-  prod1 = ((long)Q_prev * Q_prev);
-  prod2 = ((long)Q_prev2 * Q_prev2);
-  prod3 = ((long)Q_prev * coeff) >> 14;
+  prod1 = ((long long)Q_prev * Q_prev);
+  prod2 = ((long long)Q_prev2 * Q_prev2);
+  prod3 = ((long long)Q_prev * coeff) >> 14;
   prod3 = (prod3 * Q_prev2);
 
   // calculate power using the three products and scale the result down
   power = ((prod1 + prod2 - prod3)) >> 8;
 
-  return power;
+  return (long)power;
 }
 
 //-------Post-test function---------------------------------------//
-void post_test(void)
+int post_test(void)
 //---------------------------------------------------------------//
 {
   // initialize variables to be used in the function
-  int i, row, col;
-  long max_power;
+  int i, row = 0, col = 0, max_power;
 
   char row_col[4][4] = // array with the order of the digits in the DTMF system
       {{'1', '2', '3', 'A'},
@@ -251,13 +262,12 @@ void post_test(void)
 
   // find the maximum power in the row frequencies and the row number
 
-  max_power = power_all[0]; // initialize max_power=0
+  max_power = 0; // initialize max_power=0
 
   for (i = 0; i < 4; i++) // loop 4 times from 0>3 (the indecies of the rows)
   {
-    if (power_all[i] >=
-        max_power) // if power of the current row frequency > max_power
-    {
+    // if power of the current row frequency > max_power
+    if (power_all[i] > max_power) {
       max_power = power_all[i]; // set max_power as the current row frequency
       row = i;                  // update row number
     }
@@ -265,7 +275,7 @@ void post_test(void)
 
   // find the maximum power in the column frequencies and the column number
 
-  max_power = power_all[4]; // initialize max_power=0
+  max_power = 0; // initialize max_power=0
 
   for (i = 4; i < 8; i++) // loop 4 times from 4>7 (the indecies of the columns)
   {
@@ -276,64 +286,45 @@ void post_test(void)
       col = i;                  // update column number
     }
   }
-
+  if (debug == 1)
+    Report("%ld %ld %c\n\r", power_all[col], power_all[row],
+           row_col[row][col - 4]);
   // Report("%d %d\n\r", row, col-4);
 
-  if (power_all[col] <= 1000000 &&
-      power_all[row] <= 1000000) // if the maximum powers equal zero > this means no
-                           // signal or inter-digit pause
-    new_dig = 1; // set new_dig to 1 to display the next decoded digit
-
-  if ((power_all[col] >= 6000000 && power_all[row] >= 6000000) &&
-      (new_dig == 1)) // check if maximum powers of row & column exceed certain
-                      // threshold AND new_dig flag is set to 1
-  {
-    Report("Digit: %c\r\n", row_col[row][col - 4]); // display the decoded digit
-    // write_lcd(1, row_col[row][col - 4]); // display the digit on the LCD
-    // dis_7seg(8, row_col[row][col - 4]);  // display the digit on 7-seg
-    new_dig = 0; // set new_dig to 0 to avoid displaying the same digit again.
+  if (power_all[col] >= HIGH_THRESHOLD &&
+      power_all[row] >= HIGH_THRESHOLD / 2 && new_dig == 1) {
+    Report("%ld %ld %c\n\r", power_all[row], power_all[col],
+           row_col[row][col - 4]);
+    new_dig = 0;
+    int code = row_col[row][col - 4] - '0';
+    if(code>=0)
+      return code;
+  } else if (power_all[col] < LOW_THRESHOLD) {
+    new_dig = 1;
   }
+
+  return -1;
 }
 
-int readMicrophone() {
+unsigned short readMicrophone() {
   unsigned char g_ucRxBuff[2];
   unsigned char g_ucTxBuff[2];
-  MAP_SPICSEnable(GSPI_BASE);
+  // MAP_SPICSEnable(GSPI_BASE);
   // Setting CS low
   GPIOPinWrite(GPIOA3_BASE, 0x10, 0x00);
   MAP_SPITransfer(GSPI_BASE, g_ucTxBuff, g_ucRxBuff, 2,
                   SPI_CS_ENABLE | SPI_CS_DISABLE);
   // Setting CS high
   GPIOPinWrite(GPIOA3_BASE, 0x10, 0x10);
-  MAP_SPICSDisable(GSPI_BASE);
+  // MAP_SPICSDisable(GSPI_BASE);
   // convert from big endian to int
-  // return (g_ucRxBuff[0] << 8) | g_ucRxBuff[1];
-  return ((g_ucRxBuff[0] << 5) | (g_ucRxBuff[1] >> 3)) - 660;
-  // return (g_ucRxBuff[0] << 8) | g_ucRxBuff[1];
-}
-
-char* keyToBinary(){
-  // takes values list of 32 floats and returns a binary number
-  // if float is from 1 to 2 then it is a 0 and if it is from 2 to 3 then a 1 at the index
-
-  char *str=malloc(33);
-  int i;
-  for(i=0;i<32;i++){
-    if(values[i+1]<2){
-      str[i]='0';
-    }
-    else {
-      str[i]='1';
-    }
-    values[i+1]=0;
-  }
-  str[i]='\0';
-  return str;
+  // Report("%d\n\r", ((g_ucRxBuff[0] << 5) | (g_ucRxBuff[1] >> 3)));
+  return (g_ucRxBuff[0] << 5) | ((0xf8 & g_ucRxBuff[1]) >> 3);
 }
 
 volatile int state = -1;
 
-int c_letter = 0;
+volatile int c_letter = 0;
 volatile int key_time = -1;
 
 void PrintChar() {
@@ -345,20 +336,21 @@ void PrintChar() {
 volatile int cx = 0;
 volatile int cy = 0;
 
-int colors[]={WHITE, RED, GREEN, BLUE, YELLOW, CYAN, MAGENTA};
-volatile int curr_color=0;
+int colors[] = {WHITE, RED, GREEN, BLUE, YELLOW, CYAN, MAGENTA};
+volatile int curr_color = 0;
 
 typedef struct {
-    char letter;
-    int color;
+  char letter;
+  int color;
 } Letter;
 
-// Storing the letters 
+// Storing the letters
 volatile Letter sendArray[128];
 volatile int nLetters = 0;
 
 void HandleCode(int s) {
   if (s == -1) {
+    return;
     state = -1;
     key_time = -1;
   } else if (s == 1) {
@@ -370,7 +362,7 @@ void HandleCode(int s) {
       drawChar(cx, cy, '_', colors[curr_color], BLACK, 1);
     else
       drawChar(cx, cy, digits[state][c_letter], colors[curr_color], BLACK, 1);
-  } else if (s == 10) {
+  } else if (s == 17) {
     // Send the sendArray using MAP_UARTCharPut(UARTA1_BASE, c);
     int i;
     for (i = 0; i < nLetters; i++) {
@@ -390,11 +382,11 @@ void HandleCode(int s) {
         cy += 8;
       }
     }
-    cx=0;
-    cy=0;
+    cx = 0;
+    cy = 0;
     nLetters = 0;
     drawChar(cx, cy, '_', WHITE, BLACK, 1);
-  } else if (s == 11) {
+  } else if (s == 18) {
     // Delete the last letter
     if (nLetters > 0) {
       nLetters--;
@@ -402,6 +394,8 @@ void HandleCode(int s) {
       cx -= 6;
       drawChar(cx, cy, '_', colors[curr_color], BLACK, 1);
     }
+  } else if (s == 19) {
+  } else if (s == 20) {
   } else {
     key_time = 2;
     // cycle through the digits for the number
@@ -414,45 +408,9 @@ void HandleCode(int s) {
       // key pressed for the first time
       c_letter = 0;
     }
+    Report("%c\n\r", digits[s][c_letter]);
     drawChar(cx, cy, digits[s][c_letter], colors[curr_color], BLACK, 1);
     state = s;
-  }
-}
-
-static void GPIOA2IntHandler(void) { // SW2 handler
-  unsigned long ulStatus;
-
-  ulStatus = MAP_GPIOIntStatus(ir_input.port, true);
-  MAP_GPIOIntClear(ir_input.port, ulStatus); // clear interrupts on GPIOA2
-
-  // pin8_intflag = 1;
-  if (curr_index == 0) {
-    Timer_IF_Start(g_ulBase, TIMER_A, 1000);
-    curr_index = 1;
-  }
-  curr = Timer_IF_GetCount(g_ulBase, TIMER_A);
-  float d = (float)(curr - prev) / 80000;
-  if (d > 13 && d < 14) {
-    start = 1;
-    curr_index = 1;
-    Timer_IF_Stop(g_ulRefBase, TIMER_A);
-  }
-
-  prev = curr;
-
-  if (start) {
-    values[curr_index - 1] = d;
-    curr_index++;
-  }
-
-  if (curr_index >= 33) {
-    // disable interrupt
-    MAP_GPIOIntDisable(ir_input.port, ir_input.pin);
-    start = 0;
-    curr_index = 0;
-    // HandleCode(printBinary(keyToBinary()));
-    // enable interrupt
-    MAP_GPIOIntEnable(ir_input.port, ir_input.pin);
   }
 }
 
@@ -463,7 +421,8 @@ void TimerA1IntHandler(void) {
   // read microphone
   // print readMicrophone();
   // Report("%d\n\r", readMicrophone());
-  samples[samples_index++] = readMicrophone();
+  long tmp = ((signed long) readMicrophone()) - 372;
+  samples[samples_index++] = tmp;
   if (samples_index > 410) {
     samples_index = 0;
     // disable timer interrupt
@@ -475,7 +434,7 @@ void TimerA1IntHandler(void) {
     }
     // Report("--------------\r\n");
 
-    post_test();
+    HandleCode(post_test());
     // enable timer interrupt
     MAP_TimerEnable(TIMERA1_BASE, TIMER_A);
   } 
@@ -541,24 +500,15 @@ void UARTIntHandler(void)
     }
 }
 
-void GPIOInit() {
-  MAP_GPIOIntRegister(ir_input.port, GPIOA2IntHandler);
-  //   MAP_GPIOIntTypeSet(pin8.port, pin8.pin, GPIO_RISING_EDGE); // SW2
-  MAP_GPIOIntTypeSet(ir_input.port, ir_input.pin, 0x0); // SW2
-  unsigned long ulStatus = MAP_GPIOIntStatus(ir_input.port, false);
-  MAP_GPIOIntClear(ir_input.port, ulStatus);
-  pin8_intcount = 0;
-  pin8_intflag = 0;
-  MAP_GPIOIntEnable(ir_input.port, ir_input.pin);
-}
-
 void TimerInit() {
   g_ulBase = TIMERA0_BASE;
   g_ulRefBase = TIMERA1_BASE;
   Timer_IF_Init(PRCM_TIMERA0, g_ulBase, TIMER_CFG_PERIODIC, TIMER_A, 0);
   Timer_IF_IntSetup(TIMERA0_BASE, TIMER_A, TimerA0IntHandler);
   Timer_IF_Stop(TIMERA0_BASE, TIMER_A);
-  MAP_TimerLoadSet(TIMERA0_BASE, TIMER_A, 40000);
+  MAP_TimerLoadSet(TIMERA0_BASE, TIMER_A, 80000000);
+  MAP_TimerIntEnable(TIMERA0_BASE, TIMER_TIMA_TIMEOUT);
+  MAP_TimerEnable(TIMERA0_BASE, TIMER_A);
 
   Timer_IF_Init(PRCM_TIMERA1, g_ulRefBase, TIMER_CFG_PERIODIC, TIMER_A, 0);
   Timer_IF_IntSetup(g_ulRefBase, TIMER_A, TimerA1IntHandler);
@@ -598,7 +548,6 @@ void SPIInit() {
   // Enable SPI for communication
   //
   MAP_SPIEnable(GSPI_BASE);
-
   // Adafruit_Init();
   // fillScreen(BLACK);
   // drawChar(cx, cy, '_', colors[curr_color], BLACK, 1);

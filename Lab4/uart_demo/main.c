@@ -208,11 +208,12 @@ volatile int new_dig = 0;
 volatile long int samples[410];
 volatile int samples_index = 0;
 
+// #define LOW_THRESHOLD 10000000
+// #define HIGH_THRESHOLD 130000000
 #define LOW_THRESHOLD 10000000
-#define HIGH_THRESHOLD 130000000
-// #define HIGH_THRESHOLD 7000000
-// #define LOW_THRESHOLD 20000
-// #define HIGH_THRESHOLD 40000
+#define HIGH_THRESHOLD 300000000
+#define DC_BIAS 372
+// #define DC_BIAS 240
 
 char prevChar = ' ';
 
@@ -318,7 +319,8 @@ unsigned short readMicrophone() {
   GPIOPinWrite(GPIOA3_BASE, 0x10, 0x10);
   // MAP_SPICSDisable(GSPI_BASE);
   // convert from big endian to int
-  // Report("%d\n\r", ((g_ucRxBuff[0] << 5) | (g_ucRxBuff[1] >> 3)));
+  if (debug == 2)
+    Report("%d\n\r", (g_ucRxBuff[0] << 5) | ((0xf8 & g_ucRxBuff[1]) >> 3));
   return (g_ucRxBuff[0] << 5) | ((0xf8 & g_ucRxBuff[1]) >> 3);
 }
 
@@ -421,7 +423,7 @@ void TimerA1IntHandler(void) {
   // read microphone
   // print readMicrophone();
   // Report("%d\n\r", readMicrophone());
-  long tmp = ((signed long) readMicrophone()) - 372;
+  long tmp = ((signed long) readMicrophone()) - DC_BIAS;
   samples[samples_index++] = tmp;
   if (samples_index > 410) {
     samples_index = 0;

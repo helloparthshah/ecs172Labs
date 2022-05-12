@@ -208,10 +208,9 @@ volatile int new_dig = 0;
 volatile long int samples[410];
 volatile int samples_index = 0;
 
-// #define LOW_THRESHOLD 10000000
-// #define HIGH_THRESHOLD 130000000
 #define LOW_THRESHOLD 10000000
-#define HIGH_THRESHOLD 300000000
+#define HIGH_THRESHOLD 130000000
+// #define HIGH_THRESHOLD 300000000
 #define DC_BIAS 372
 // #define DC_BIAS 240
 
@@ -503,6 +502,7 @@ void UARTIntHandler(void)
 }
 
 void TimerInit() {
+  MAP_UARTCharPut(UARTA1_BASE, "A");
   g_ulBase = TIMERA0_BASE;
   g_ulRefBase = TIMERA1_BASE;
   Timer_IF_Init(PRCM_TIMERA0, g_ulBase, TIMER_CFG_PERIODIC, TIMER_A, 0);
@@ -587,7 +587,7 @@ void main() {
   //
   ClearTerm();
   DisplayBanner(APP_NAME);
-  // UartInit();
+  UartInit();
   SPIInit();
   // GPIOInit();
   TimerInit();

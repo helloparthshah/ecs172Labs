@@ -1,0 +1,37 @@
+
+**** Build of configuration Debug for project ssl_aws ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 16 all -O 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv4 --code_state=32 --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+
+>> Compilation failure
+subdir_rules.mk:9: recipe for target 'main.obj' failed
+"../main.c", line 63: fatal error #1965: cannot open source file "simplelink.h"
+1 catastrophic error detected in the compilation of "../main.c".
+Compilation terminated.
+gmake: *** [main.obj] Error 1
+'Building file: ../uart_if.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv4 --code_state=32 --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="uart_if.d"  "../uart_if.c"
+
+>> Compilation failure
+subdir_rules.mk:23: recipe for target 'uart_if.obj' failed
+"../uart_if.c", line 46: fatal error #1965: cannot open source file "hw_types.h"
+1 catastrophic error detected in the compilation of "../uart_if.c".
+Compilation terminated.
+gmake: *** [uart_if.obj] Error 1
+'Building file: ../pinmux.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv4 --code_state=32 --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="pinmux.d"  "../pinmux.c"
+
+>> Compilation failure
+subdir_rules.mk:16: recipe for target 'pinmux.obj' failed
+"../pinmux.c", line 45: fatal error #1965: cannot open source file "hw_types.h"
+1 catastrophic error detected in the compilation of "../pinmux.c".
+Compilation terminated.
+gmake: *** [pinmux.obj] Error 1
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****

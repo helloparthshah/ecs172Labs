@@ -58,18 +58,23 @@
 //*****************************************************************************
 
 #include <stdio.h>
-
+#include <stdlib.h>
 // Simplelink includes
 #include "simplelink.h"
 
 //Driverlib includes
 #include "hw_types.h"
 #include "hw_ints.h"
+#include "hw_memmap.h"
+#include "hw_common_reg.h"
+#include "interrupt.h"
+#include "hw_apps_rcm.h"
+#include "prcm.h"
 #include "rom.h"
 #include "rom_map.h"
-#include "interrupt.h"
-#include "prcm.h"
+#include "gpio.h"
 #include "utils.h"
+#include "timer.h"
 #include "uart.h"
 
 //Common interface includes
@@ -80,7 +85,9 @@
 
 #define MAX_URI_SIZE 128
 #define URI_SIZE MAX_URI_SIZE + 1
-
+#define CONSOLE UARTA0_BASE
+#define UartGetChar() MAP_UARTCharGet(CONSOLE)
+#define UartPutChar(c) MAP_UARTCharPut(CONSOLE, c)
 
 #define APPLICATION_NAME        "SSL"
 #define APPLICATION_VERSION     "1.1.1.EEC.Spring2022"
@@ -209,7 +216,7 @@ void SimpleLinkWlanEventHandler(SlWlanEvent_t *pWlanEvent) {
                    pWlanEvent->EventData.STAandP2PModeWlanConnected.bssid,
                    SL_BSSID_LENGTH);
 
-            UART_PRINT("[WLAN EVENT] STA Connected to the AP: %s , "
+            Report("[WLAN EVENT] STA Connected to the AP: %s , "
                        "BSSID: %x:%x:%x:%x:%x:%x\n\r",
                        g_ucConnectionSSID,g_ucConnectionBSSID[0],
                        g_ucConnectionBSSID[1],g_ucConnectionBSSID[2],
@@ -229,7 +236,7 @@ void SimpleLinkWlanEventHandler(SlWlanEvent_t *pWlanEvent) {
             // If the user has initiated 'Disconnect' request,
             //'reason_code' is SL_USER_INITIATED_DISCONNECTION
             if(SL_USER_INITIATED_DISCONNECTION == pEventData->reason_code) {
-                UART_PRINT("[WLAN EVENT]Device disconnected from the AP: %s,"
+                Report("[WLAN EVENT]Device disconnected from the AP: %s,"
                     "BSSID: %x:%x:%x:%x:%x:%x on application's request \n\r",
                            g_ucConnectionSSID,g_ucConnectionBSSID[0],
                            g_ucConnectionBSSID[1],g_ucConnectionBSSID[2],
@@ -237,7 +244,7 @@ void SimpleLinkWlanEventHandler(SlWlanEvent_t *pWlanEvent) {
                            g_ucConnectionBSSID[5]);
             }
             else {
-                UART_PRINT("[WLAN ERROR]Device disconnected from the AP AP: %s, "
+                Report("[WLAN ERROR]Device disconnected from the AP AP: %s, "
                            "BSSID: %x:%x:%x:%x:%x:%x on an ERROR..!! \n\r",
                            g_ucConnectionSSID,g_ucConnectionBSSID[0],
                            g_ucConnectionBSSID[1],g_ucConnectionBSSID[2],
@@ -250,7 +257,7 @@ void SimpleLinkWlanEventHandler(SlWlanEvent_t *pWlanEvent) {
         break;
 
         default: {
-            UART_PRINT("[WLAN EVENT] Unexpected event [0x%x]\n\r",
+            Report("[WLAN EVENT] Unexpected event [0x%x]\n\r",
                        pWlanEvent->Event);
         }
         break;
@@ -284,7 +291,7 @@ void SimpleLinkNetAppEventHandler(SlNetAppEvent_t *pNetAppEvent) {
             //Gateway IP address
             g_ulGatewayIP = pEventData->gateway;
 
-            UART_PRINT("[NETAPP EVENT] IP Acquired: IP=%d.%d.%d.%d , "
+            Report("[NETAPP EVENT] IP Acquired: IP=%d.%d.%d.%d , "
                        "Gateway=%d.%d.%d.%d\n\r",
             SL_IPV4_BYTE(pNetAppEvent->EventData.ipAcquiredV4.ip,3),
             SL_IPV4_BYTE(pNetAppEvent->EventData.ipAcquiredV4.ip,2),
@@ -298,7 +305,7 @@ void SimpleLinkNetAppEventHandler(SlNetAppEvent_t *pNetAppEvent) {
         break;
 
         default: {
-            UART_PRINT("[NETAPP EVENT] Unexpected event [0x%x] \n\r",
+            Report("[NETAPP EVENT] Unexpected event [0x%x] \n\r",
                        pNetAppEvent->Event);
         }
         break;
@@ -339,7 +346,7 @@ void SimpleLinkGeneralEventHandler(SlDeviceEvent_t *pDevEvent) {
     // Most of the general errors are not FATAL are are to be handled
     // appropriately by the application
     //
-    UART_PRINT("[GENERAL EVENT] - ID=[%d] Sender=[%d]\n\n",
+    Report("[GENERAL EVENT] - ID=[%d] Sender=[%d]\n\n",
                pDevEvent->EventData.deviceEvent.status,
                pDevEvent->EventData.deviceEvent.sender);
 }
@@ -363,12 +370,12 @@ void SimpleLinkSockEventHandler(SlSockEvent_t *pSock) {
         case SL_SOCKET_TX_FAILED_EVENT:
             switch( pSock->socketAsyncEvent.SockTxFailData.status) {
                 case SL_ECLOSE: 
-                    UART_PRINT("[SOCK ERROR] - close socket (%d) operation "
+                    Report("[SOCK ERROR] - close socket (%d) operation "
                                 "failed to transmit all queued packets\n\n", 
                                     pSock->socketAsyncEvent.SockTxFailData.sd);
                     break;
                 default: 
-                    UART_PRINT("[SOCK ERROR] - TX FAILED  :  socket %d , reason "
+                    Report("[SOCK ERROR] - TX FAILED  :  socket %d , reason "
                                 "(%d) \n\n",
                                 pSock->socketAsyncEvent.SockTxFailData.sd, pSock->socketAsyncEvent.SockTxFailData.status);
                   break;
@@ -376,7 +383,7 @@ void SimpleLinkSockEventHandler(SlSockEvent_t *pSock) {
             break;
 
         default:
-            UART_PRINT("[SOCK EVENT] - Unexpected Event [%x0x]\n\n",pSock->Event);
+            Report("[SOCK EVENT] - Unexpected Event [%x0x]\n\n",pSock->Event);
           break;
     }
 }
@@ -472,8 +479,8 @@ static long ConfigureSimpleLinkToDefaultState() {
                                 &ucConfigLen, (unsigned char *)(&ver));
     ASSERT_ON_ERROR(lRetVal);
     
-    UART_PRINT("Host Driver Version: %s\n\r",SL_DRIVER_VERSION);
-    UART_PRINT("Build Version %d.%d.%d.%d.31.%d.%d.%d.%d.%d.%d.%d.%d\n\r",
+    Report("Host Driver Version: %s\n\r",SL_DRIVER_VERSION);
+    Report("Build Version %d.%d.%d.%d.31.%d.%d.%d.%d.%d.%d.%d.%d\n\r",
     ver.NwpVersion[0],ver.NwpVersion[1],ver.NwpVersion[2],ver.NwpVersion[3],
     ver.ChipFwAndPhyVersion.FwVersion[0],ver.ChipFwAndPhyVersion.FwVersion[1],
     ver.ChipFwAndPhyVersion.FwVersion[2],ver.ChipFwAndPhyVersion.FwVersion[3],
@@ -602,13 +609,13 @@ static long WlanConnect() {
     secParams.KeyLen = strlen(SECURITY_KEY);
     secParams.Type = SECURITY_TYPE;
 
-    UART_PRINT("Attempting connection to access point: ");
-    UART_PRINT(SSID_NAME);
-    UART_PRINT("... ...");
+    Report("Attempting connection to access point: ");
+    Report(SSID_NAME);
+    Report("... ...");
     lRetVal = sl_WlanConnect(SSID_NAME, strlen(SSID_NAME), 0, &secParams, 0);
     ASSERT_ON_ERROR(lRetVal);
 
-    UART_PRINT(" Connected!!!\n\r");
+    Report(" Connected!!!\n\r");
 
 
     // Wait for WLAN Event
@@ -630,7 +637,7 @@ static long WlanConnect() {
 
 
 long printErrConvenience(char * msg, long retVal) {
-    UART_PRINT(msg);
+    Report(msg);
     GPIO_IF_LedOn(MCU_RED_LED_GPIO);
     return retVal;
 }
@@ -783,19 +790,19 @@ static int tls_connect() {
     lRetVal = sl_Connect(iSockID, ( SlSockAddr_t *)&Addr, iAddrSize);
 
     if(lRetVal >= 0) {
-        UART_PRINT("Device has connected to the website:");
-        UART_PRINT(SERVER_NAME);
-        UART_PRINT("\n\r");
+        Report("Device has connected to the website:");
+        Report(SERVER_NAME);
+        Report("\n\r");
     }
     else if(lRetVal == SL_ESECSNOVERIFY) {
-        UART_PRINT("Device has connected to the website (UNVERIFIED):");
-        UART_PRINT(SERVER_NAME);
-        UART_PRINT("\n\r");
+        Report("Device has connected to the website (UNVERIFIED):");
+        Report(SERVER_NAME);
+        Report("\n\r");
     }
     else if(lRetVal < 0) {
-        UART_PRINT("Device couldn't connect to server:");
-        UART_PRINT(SERVER_NAME);
-        UART_PRINT("\n\r");
+        Report("Device couldn't connect to server:");
+        Report(SERVER_NAME);
+        Report("\n\r");
         return printErrConvenience("Device couldn't connect to server \n\r", lRetVal);
     }
 
@@ -830,12 +837,12 @@ int connectToAccessPoint() {
     lRetVal = ConfigureSimpleLinkToDefaultState();
     if(lRetVal < 0) {
       if (DEVICE_NOT_IN_STATION_MODE == lRetVal)
-          UART_PRINT("Failed to configure the device in its default state \n\r");
+          Report("Failed to configure the device in its default state \n\r");
 
       return lRetVal;
     }
 
-    UART_PRINT("Device is configured in default state \n\r");
+    Report("Device is configured in default state \n\r");
 
     CLR_STATUS_BIT_ALL(g_ulStatus);
 
@@ -843,26 +850,26 @@ int connectToAccessPoint() {
     // Assumption is that the device is configured in station mode already
     // and it is in its default state
     //
-    UART_PRINT("Opening sl_start\n\r");
+    Report("Opening sl_start\n\r");
     lRetVal = sl_Start(0, 0, 0);
     if (lRetVal < 0 || ROLE_STA != lRetVal) {
-        UART_PRINT("Failed to start the device \n\r");
+        Report("Failed to start the device \n\r");
         return lRetVal;
     }
 
-    UART_PRINT("Device started as STATION \n\r");
+    Report("Device started as STATION \n\r");
 
     //
     //Connecting to WLAN AP
     //
     lRetVal = WlanConnect();
     if(lRetVal < 0) {
-        UART_PRINT("Failed to establish connection w/ an AP \n\r");
+        Report("Failed to establish connection w/ an AP \n\r");
         GPIO_IF_LedOn(MCU_RED_LED_GPIO);
         return lRetVal;
     }
 
-    UART_PRINT("Connection established w/ AP and IP is aquired \n\r");
+    Report("Connection established w/ AP and IP is aquired \n\r");
     return 0;
 }
 
@@ -883,19 +890,23 @@ void main() {
     BoardInit();
 
     PinMuxConfig();
+    MAP_PRCMPeripheralClkEnable(PRCM_GSPI, PRCM_RUN_MODE_CLK);
 
     InitTerm();
     ClearTerm();
-    UART_PRINT("My terminal works!\n\r");
+    Report("SimpleLink CC3200 - SSL Client\n\r");
+    Report("My terminal works!\n\r");
+    printf("Hello\n\r");
 
     //Connect the CC3200 to the local access point
     lRetVal = connectToAccessPoint();
     //Set time so that encryption can be used
     lRetVal = set_time();
     if(lRetVal < 0) {
-        UART_PRINT("Unable to set time in the device");
+        Report("Unable to set time in the device");
         LOOP_FOREVER();
     }
+    Report("Time set in the device\n\r");
     //Connect to the website with TLS encryption
     lRetVal = tls_connect();
     if(lRetVal < 0) {
@@ -948,7 +959,7 @@ static int http_post(int iTLSSockID){
 
     int testDataLength = strlen(pcBufHeaders);
 
-    UART_PRINT(acSendBuff);
+    Report(acSendBuff);
 
 
     //
@@ -956,22 +967,22 @@ static int http_post(int iTLSSockID){
     //
     lRetVal = sl_Send(iTLSSockID, acSendBuff, strlen(acSendBuff), 0);
     if(lRetVal < 0) {
-        UART_PRINT("POST failed. Error Number: %i\n\r",lRetVal);
+        Report("POST failed. Error Number: %i\n\r",lRetVal);
         sl_Close(iTLSSockID);
         GPIO_IF_LedOn(MCU_RED_LED_GPIO);
         return lRetVal;
     }
     lRetVal = sl_Recv(iTLSSockID, &acRecvbuff[0], sizeof(acRecvbuff), 0);
     if(lRetVal < 0) {
-        UART_PRINT("Received failed. Error Number: %i\n\r",lRetVal);
+        Report("Received failed. Error Number: %i\n\r",lRetVal);
         //sl_Close(iSSLSockID);
         GPIO_IF_LedOn(MCU_RED_LED_GPIO);
            return lRetVal;
     }
     else {
         acRecvbuff[lRetVal+1] = '\0';
-        UART_PRINT(acRecvbuff);
-        UART_PRINT("\n\r\n\r");
+        Report(acRecvbuff);
+        Report("\n\r\n\r");
     }
 
     return 0;

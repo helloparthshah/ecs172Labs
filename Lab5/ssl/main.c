@@ -76,18 +76,26 @@
 #include "utils.h"
 #include "timer.h"
 #include "uart.h"
+#include "spi.h"
 
 //Common interface includes
 #include "pinmux.h"
 #include "gpio_if.h"
 #include "common.h"
 #include "uart_if.h"
+#include "timer_if.h"
+
+#include "Adafruit_GFX.h"
+#include "Adafruit_SSD1351.h"
+#include "glcdfont.h"
+#include "test.h"
 
 #define MAX_URI_SIZE 128
 #define URI_SIZE MAX_URI_SIZE + 1
 #define CONSOLE UARTA0_BASE
 #define UartGetChar() MAP_UARTCharGet(CONSOLE)
 #define UartPutChar(c) MAP_UARTCharPut(CONSOLE, c)
+#define SPI_IF_BIT_RATE 100000
 
 #define APPLICATION_NAME        "SSL"
 #define APPLICATION_VERSION     "1.1.1.EEC.Spring2022"
@@ -98,6 +106,7 @@
 #define SL_SSL_PRIVATE "/cert/private.der"
 #define SL_SSL_CLIENT  "/cert/client.der"
 
+volatile int TLS_SOCKET_ID = -1;
 
 //NEED TO UPDATE THIS FOR IT TO WORK!
 #define DATE                12    /* Current Date */
@@ -114,9 +123,16 @@
 #define CLHEADER1 "Content-Length: "
 #define CLHEADER2 "\r\n\r\n"
 
-#define DATA1                                                                  \
-  "{\"state\": {\r\n\"desired\" : {\r\n\"var\" : \"Hello phone, message from " \
-  "CC3200 via AWS IoT!\"\r\n}}}\r\n\r\n"
+char *generateBody(char *message) {
+  char a[] = "{\"state\": {\r\n\"desired\" : {\r\n\"var\" : \"";
+  char b[] = "\"\r\n}}}\r\n\r\n";
+  char *c =
+      malloc(sizeof(char) * (strlen(a) + strlen(b) + strlen(message) + 1));
+  strcpy(c, a);
+  strcat(c, message);
+  strcat(c, b);
+  return c;
+}
 
 // Application specific status/error codes
 typedef enum{
@@ -174,7 +190,7 @@ static void BoardInit(void);
 static long InitializeAppVariables();
 static int tls_connect();
 static int connectToAccessPoint();
-static int http_post(int);
+static int http_post(int, char *);
 
 //*****************************************************************************
 // SimpleLink Asynchronous Event Handlers -- Start
@@ -628,6 +644,7 @@ static long WlanConnect() {
         GPIO_IF_LedOn(MCU_IP_ALLOC_IND);
         MAP_UtilsDelay(800000);
     }
+    Report("WLAN event received.\n\r");
 
     return SUCCESS;
 
@@ -789,6 +806,8 @@ static int tls_connect() {
     /* connect to the peer device - Google server */
     lRetVal = sl_Connect(iSockID, ( SlSockAddr_t *)&Addr, iAddrSize);
 
+    Report("Device is connecting to secure server %d\n\r", lRetVal);
+
     if(lRetVal >= 0) {
         Report("Device has connected to the website:");
         Report(SERVER_NAME);
@@ -873,6 +892,303 @@ int connectToAccessPoint() {
     return 0;
 }
 
+static volatile unsigned long g_ulBase;
+static volatile unsigned long g_ulRefBase;
+
+extern void (*const g_pfnVectors[])(void);
+volatile unsigned long pin8_intcount;
+volatile unsigned char pin8_intflag;
+
+typedef struct PinSetting {
+  unsigned long port;
+  unsigned int pin;
+} PinSetting;
+
+static PinSetting ir_input = {.port = GPIOA2_BASE, .pin = 0x2};
+
+#define ONE "00000010111111011000000001111110"
+#define TWO "00000010111111010100000010111110"
+#define THREE "00000010111111011100000000111110"
+#define FOUR "00000010111111010010000011011110"
+#define FIVE "00000010111111011010000001011110"
+#define SIX "00000010111111010110000010011110"
+#define SEVEN "00000010111111011110000000011110"
+#define EIGHT "00000010111111010001000011101110"
+#define NINE "00000010111111011001000001101110"
+#define ZERO "00000010111111010000000011111110"
+#define LAST "00000010111111011110100000010110"
+#define MUTE "00000010111111010000100011110110"
+
+const char *digits[] = {" ",   "",    "ABC",  "DEF", "GHI",
+                  "JKL", "MNO", "PQRS", "TUV", "WXYZ"};
+
+volatile unsigned long prev=0, curr=0;
+volatile int start=0;
+volatile float values[35];
+volatile int curr_index=0;
+char* keyToBinary(){
+  // takes values list of 32 floats and returns a binary number
+  // if float is from 1 to 2 then it is a 0 and if it is from 2 to 3 then a 1 at the index
+
+  char *str=malloc(33);
+  int i;
+  for(i=0;i<32;i++){
+    if(values[i+1]<2){
+      str[i]='0';
+    }
+    else {
+      str[i]='1';
+    }
+    values[i+1]=0;
+  }
+  str[i]='\0';
+  return str;
+}
+
+volatile int state = -1;
+
+int printBinary(char *str) {
+  int i = -1;
+  if (strcmp(ZERO, str) == 0) {
+    i = 0;
+  } else if (strcmp(ONE, str) == 0) {
+    i = 1;
+  } else if (strcmp(TWO, str) == 0) {
+    i = 2;
+  } else if (strcmp(THREE, str) == 0) {
+    i = 3;
+  } else if (strcmp(FOUR, str) == 0) {
+    i = 4;
+  } else if (strcmp(FIVE, str) == 0) {
+    i = 5;
+  } else if (strcmp(SIX, str) == 0) {
+    i = 6;
+  } else if (strcmp(SEVEN, str) == 0) {
+    i = 7;
+  } else if (strcmp(EIGHT, str) == 0) {
+    i = 8;
+  } else if (strcmp(NINE, str) == 0) {
+    i = 9;
+  } else if (strcmp(LAST, str) == 0) {
+    i = 10;
+  } else if (strcmp(MUTE, str) == 0) {
+    i = 11;
+  } else {
+    i = -1;
+  }
+  // free str
+  free(str);
+  return i;
+}
+
+int c_letter = 0;
+volatile int key_time = -1;
+
+void PrintChar() {
+  Report("Display: %c\n\r", digits[state][c_letter]);
+  state = -1;
+  c_letter = 0;
+}
+
+volatile int cx = 0;
+volatile int cy = 0;
+
+int colors[]={WHITE, RED, GREEN, BLUE, YELLOW, CYAN, MAGENTA};
+volatile int curr_color=0;
+
+typedef struct {
+    char letter;
+    int color;
+} Letter;
+
+// Storing the letters 
+volatile Letter sendArray[128];
+volatile int nLetters = 0;
+
+void HandleCode(int s) {
+  if (s == -1) {
+    state = -1;
+    key_time = -1;
+  } else if (s == 1) {
+    curr_color++;
+    if (curr_color > 6) {
+      curr_color = 0;
+    }
+    if (state == -1)
+      drawChar(cx, cy, '_', colors[curr_color], BLACK, 1);
+    else
+      drawChar(cx, cy, digits[state][c_letter], colors[curr_color], BLACK, 1);
+  } else if (s == 10) {
+    // Send the sendArray using MAP_UARTCharPut(UARTA1_BASE, c);
+    char *str = malloc(nLetters + 1);
+    int i;
+    for (i = 0; i < nLetters; i++) {
+      str[i] = sendArray[i].letter;
+      Report("%c %d, ", sendArray[i].letter, sendArray[i].color);
+    }
+    Report("\n\r");
+    str[i] = '\0';
+    
+    cx = 0;
+    cy = 0;
+    // clear the top half of the OLED
+    for (i = 0; i <= nLetters; i++) {
+      drawChar(cx, cy, ' ', WHITE, BLACK, 1);
+      cx += 6;
+      if (cx > 127) {
+        cx = 0;
+        cy += 8;
+      }
+    }
+    cx=0;
+    cy=0;
+    nLetters = 0;
+    drawChar(cx, cy, '_', WHITE, BLACK, 1);
+    http_post(TLS_SOCKET_ID, str);
+    free(str);
+    sl_Stop(SL_STOP_TIMEOUT);
+  } else if (s == 11) {
+    // Delete the last letter
+    if (nLetters > 0) {
+      nLetters--;
+      drawChar(cx, cy, ' ', colors[curr_color], BLACK, 1);
+      cx -= 6;
+      drawChar(cx, cy, '_', colors[curr_color], BLACK, 1);
+    }
+  } else {
+    key_time = 2;
+    // cycle through the digits for the number
+    if (state == s) {
+      c_letter++;
+      if (c_letter >= strlen(digits[s])) {
+        c_letter = 0;
+      }
+    } else {
+      // key pressed for the first time
+      c_letter = 0;
+    }
+    drawChar(cx, cy, digits[s][c_letter], colors[curr_color], BLACK, 1);
+    state = s;
+  }
+}
+
+volatile unsigned long ticks = 0;
+
+static void GPIOA2IntHandler(void) { // SW2 handler
+  unsigned long ulStatus;
+
+  ulStatus = MAP_GPIOIntStatus(ir_input.port, true);
+  MAP_GPIOIntClear(ir_input.port, ulStatus); // clear interrupts on GPIOA2
+
+  float d = ((float)(ticks - prev)) / 10;
+  if (d > 13 && d < 14) {
+    start = 1;
+    curr_index = 1;
+  }
+  prev = ticks;
+  if (start) {
+    values[curr_index - 1] = d;
+    curr_index++;
+  }
+
+  if (curr_index >= 33) {
+    ticks = 0;
+    prev = 0;
+    // disable interrupt
+    MAP_GPIOIntDisable(ir_input.port, ir_input.pin);
+    start = 0;
+    curr_index = 0;
+    HandleCode(printBinary(keyToBinary()));
+    // enable interrupt
+    MAP_GPIOIntEnable(ir_input.port, ir_input.pin);
+  }
+}
+
+void TimerA0IntHandler(void) {
+  Timer_IF_InterruptClear(TIMERA0_BASE);
+  if (key_time > 0) {
+    if (state != -1) {
+      if (key_time % 2 != 0) {
+        drawChar(cx, cy, digits[state][c_letter], colors[curr_color], BLACK, 1);
+      } else {
+        drawChar(cx, cy, '_', colors[curr_color], BLACK, 1);
+      }
+    }
+    key_time--;
+  } else if (key_time == 0) {
+    key_time = -1;
+    drawChar(cx, cy, digits[state][c_letter], colors[curr_color], BLACK, 1);
+    // add char to sendArray
+    sendArray[nLetters].letter = digits[state][c_letter];
+    sendArray[nLetters].color = curr_color;
+    nLetters++;
+    // increase the x position
+    cx+=6;
+    if (cx >= 128) {
+      cx = 0;
+      cy+=8;
+    }
+    drawChar(cx, cy, '_', colors[curr_color], BLACK, 1);
+    PrintChar();
+  }
+}
+
+void TimerA1IntHandler(void) {
+  Timer_IF_InterruptClear(TIMERA1_BASE);
+  ticks++;
+}
+
+void GPIOInit() {
+  MAP_GPIOIntRegister(ir_input.port, GPIOA2IntHandler);
+  //   MAP_GPIOIntTypeSet(pin8.port, pin8.pin, GPIO_RISING_EDGE); // SW2
+  MAP_GPIOIntTypeSet(ir_input.port, ir_input.pin, 0x0); // SW2
+  unsigned long ulStatus = MAP_GPIOIntStatus(ir_input.port, false);
+  MAP_GPIOIntClear(ir_input.port, ulStatus);
+  pin8_intcount = 0;
+  pin8_intflag = 0;
+  MAP_GPIOIntEnable(ir_input.port, ir_input.pin);
+}
+
+void TimerInit() {
+  g_ulBase = TIMERA0_BASE;
+  g_ulRefBase = TIMERA1_BASE;
+  Timer_IF_Init(PRCM_TIMERA0, g_ulBase, TIMER_CFG_PERIODIC, TIMER_A, 0);
+  Timer_IF_IntSetup(TIMERA0_BASE, TIMER_A, TimerA0IntHandler);
+  Timer_IF_Stop(TIMERA0_BASE, TIMER_A);
+  MAP_TimerLoadSet(TIMERA0_BASE, TIMER_A, 80000000);
+  MAP_TimerIntEnable(TIMERA0_BASE, TIMER_TIMA_TIMEOUT);
+  MAP_TimerEnable(TIMERA0_BASE, TIMER_A);
+
+  Timer_IF_Init(PRCM_TIMERA1, g_ulRefBase, TIMER_CFG_PERIODIC, TIMER_A, 0);
+  Timer_IF_IntSetup(TIMERA1_BASE, TIMER_A, TimerA1IntHandler);
+  Timer_IF_Stop(TIMERA1_BASE, TIMER_A);
+  MAP_TimerLoadSet(TIMERA1_BASE, TIMER_A, 8000);
+  MAP_TimerIntEnable(TIMERA1_BASE, TIMER_TIMA_TIMEOUT);
+  MAP_TimerEnable(TIMERA1_BASE, TIMER_A);
+}
+
+void SPIInit() {
+  MAP_PRCMPeripheralReset(PRCM_GSPI);
+  MAP_SPIReset(GSPI_BASE);
+
+  //
+  // Configure SPI interface
+  //
+  MAP_SPIConfigSetExpClk(GSPI_BASE, MAP_PRCMPeripheralClockGet(PRCM_GSPI),
+                         SPI_IF_BIT_RATE, SPI_MODE_MASTER, SPI_SUB_MODE_0,
+                         (SPI_SW_CTRL_CS | SPI_4PIN_MODE | SPI_TURBO_OFF |
+                          SPI_CS_ACTIVEHIGH | SPI_WL_8));
+
+  //
+  // Enable SPI for communication
+  //
+  MAP_SPIEnable(GSPI_BASE);
+
+  Adafruit_Init();
+  fillScreen(BLACK);
+  drawChar(cx, cy, '_', colors[curr_color], BLACK, 1);
+}
+
 //*****************************************************************************
 //
 //! Main 
@@ -883,39 +1199,43 @@ int connectToAccessPoint() {
 //!
 //*****************************************************************************
 void main() {
-    long lRetVal = -1;
-    //
-    // Initialize board configuration
-    //
-    BoardInit();
+  long lRetVal = -1;
+  //
+  // Initialize board configuration
+  //
+  BoardInit();
 
-    PinMuxConfig();
-    MAP_PRCMPeripheralClkEnable(PRCM_GSPI, PRCM_RUN_MODE_CLK);
+  PinMuxConfig();
+  MAP_PRCMPeripheralClkEnable(PRCM_GSPI, PRCM_RUN_MODE_CLK);
 
-    InitTerm();
-    ClearTerm();
-    Report("SimpleLink CC3200 - SSL Client\n\r");
-    Report("My terminal works!\n\r");
-    printf("Hello\n\r");
+  InitTerm();
+  ClearTerm();
+  Report("My terminal works!\n\r");
 
-    //Connect the CC3200 to the local access point
-    lRetVal = connectToAccessPoint();
-    //Set time so that encryption can be used
-    lRetVal = set_time();
-    if(lRetVal < 0) {
-        Report("Unable to set time in the device");
-        LOOP_FOREVER();
-    }
-    Report("Time set in the device\n\r");
-    //Connect to the website with TLS encryption
-    lRetVal = tls_connect();
-    if(lRetVal < 0) {
-        ERR_PRINT(lRetVal);
-    }
-    http_post(lRetVal);
-
-    sl_Stop(SL_STOP_TIMEOUT);
+  SPIInit();
+  GPIOInit();
+  TimerInit();
+  
+  // Connect the CC3200 to the local access point
+  lRetVal = connectToAccessPoint();
+  // Set time so that encryption can be used
+  Report("Setting time\n\r");
+  lRetVal = set_time();
+  if (lRetVal < 0) {
+    Report("Unable to set time in the device");
     LOOP_FOREVER();
+  }
+  Report("Time set in the device\n\r");
+  // Connect to the website with TLS encryption
+  lRetVal = tls_connect();
+  if (lRetVal < 0) {
+    ERR_PRINT(lRetVal);
+  }
+  TLS_SOCKET_ID = lRetVal;
+  // http_post(lRetVal, "Hello from the CC3200!");
+  // sl_Stop(SL_STOP_TIMEOUT);
+
+  LOOP_FOREVER();
 }
 //*****************************************************************************
 //
@@ -924,66 +1244,65 @@ void main() {
 //
 //*****************************************************************************
 
-static int http_post(int iTLSSockID){
-    char acSendBuff[512];
-    char acRecvbuff[1460];
-    char cCLLength[200];
-    char* pcBufHeaders;
-    int lRetVal = 0;
+static int http_post(int iTLSSockID, char *message) {
+  char *body = generateBody(message);
+  char acSendBuff[512];
+  char acRecvbuff[1460];
+  char cCLLength[200];
+  char *pcBufHeaders;
+  int lRetVal = 0;
 
-    pcBufHeaders = acSendBuff;
-    strcpy(pcBufHeaders, POSTHEADER);
-    pcBufHeaders += strlen(POSTHEADER);
-    strcpy(pcBufHeaders, HOSTHEADER);
-    pcBufHeaders += strlen(HOSTHEADER);
-    strcpy(pcBufHeaders, CHEADER);
-    pcBufHeaders += strlen(CHEADER);
-    strcpy(pcBufHeaders, "\r\n\r\n");
+  pcBufHeaders = acSendBuff;
+  strcpy(pcBufHeaders, POSTHEADER);
+  pcBufHeaders += strlen(POSTHEADER);
+  strcpy(pcBufHeaders, HOSTHEADER);
+  pcBufHeaders += strlen(HOSTHEADER);
+  strcpy(pcBufHeaders, CHEADER);
+  pcBufHeaders += strlen(CHEADER);
+  strcpy(pcBufHeaders, "\r\n\r\n");
 
-    int dataLength = strlen(DATA1);
+  int dataLength = strlen(body);
 
-    strcpy(pcBufHeaders, CTHEADER);
-    pcBufHeaders += strlen(CTHEADER);
-    strcpy(pcBufHeaders, CLHEADER1);
+  strcpy(pcBufHeaders, CTHEADER);
+  pcBufHeaders += strlen(CTHEADER);
+  strcpy(pcBufHeaders, CLHEADER1);
 
-    pcBufHeaders += strlen(CLHEADER1);
-    sprintf(cCLLength, "%d", dataLength);
+  pcBufHeaders += strlen(CLHEADER1);
+  sprintf(cCLLength, "%d", dataLength);
 
-    strcpy(pcBufHeaders, cCLLength);
-    pcBufHeaders += strlen(cCLLength);
-    strcpy(pcBufHeaders, CLHEADER2);
-    pcBufHeaders += strlen(CLHEADER2);
+  strcpy(pcBufHeaders, cCLLength);
+  pcBufHeaders += strlen(cCLLength);
+  strcpy(pcBufHeaders, CLHEADER2);
+  pcBufHeaders += strlen(CLHEADER2);
 
-    strcpy(pcBufHeaders, DATA1);
-    pcBufHeaders += strlen(DATA1);
+  strcpy(pcBufHeaders, body);
+  pcBufHeaders += strlen(body);
 
-    int testDataLength = strlen(pcBufHeaders);
+  int testDataLength = strlen(pcBufHeaders);
 
-    Report(acSendBuff);
+  Report(acSendBuff);
 
+  //
+  // Send the packet to the server */
+  //
+  lRetVal = sl_Send(iTLSSockID, acSendBuff, strlen(acSendBuff), 0);
+  if (lRetVal < 0) {
+    Report("POST failed. Error Number: %i\n\r", lRetVal);
+    sl_Close(iTLSSockID);
+    GPIO_IF_LedOn(MCU_RED_LED_GPIO);
+    return lRetVal;
+  }
+  lRetVal = sl_Recv(iTLSSockID, &acRecvbuff[0], sizeof(acRecvbuff), 0);
+  if (lRetVal < 0) {
+    Report("Received failed. Error Number: %i\n\r", lRetVal);
+    // sl_Close(iSSLSockID);
+    GPIO_IF_LedOn(MCU_RED_LED_GPIO);
+    return lRetVal;
+  } else {
+    acRecvbuff[lRetVal + 1] = '\0';
+    Report(acRecvbuff);
+    Report("\n\r\n\r");
+  }
 
-    //
-    // Send the packet to the server */
-    //
-    lRetVal = sl_Send(iTLSSockID, acSendBuff, strlen(acSendBuff), 0);
-    if(lRetVal < 0) {
-        Report("POST failed. Error Number: %i\n\r",lRetVal);
-        sl_Close(iTLSSockID);
-        GPIO_IF_LedOn(MCU_RED_LED_GPIO);
-        return lRetVal;
-    }
-    lRetVal = sl_Recv(iTLSSockID, &acRecvbuff[0], sizeof(acRecvbuff), 0);
-    if(lRetVal < 0) {
-        Report("Received failed. Error Number: %i\n\r",lRetVal);
-        //sl_Close(iSSLSockID);
-        GPIO_IF_LedOn(MCU_RED_LED_GPIO);
-           return lRetVal;
-    }
-    else {
-        acRecvbuff[lRetVal+1] = '\0';
-        Report(acRecvbuff);
-        Report("\n\r\n\r");
-    }
-
-    return 0;
+  return 0;
 }

@@ -60,7 +60,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 // Simplelink includes
-#include "simplelink.h"
+#include "simplelink.h" 
 
 //Driverlib includes
 #include "hw_types.h"
@@ -1215,9 +1215,10 @@ void main() {
   SPIInit();
   GPIOInit();
   TimerInit();
-  
+
   // Connect the CC3200 to the local access point
   lRetVal = connectToAccessPoint();
+
   // Set time so that encryption can be used
   Report("Setting time\n\r");
   lRetVal = set_time();
@@ -1235,7 +1236,7 @@ void main() {
   // http_post(lRetVal, "Hello from the CC3200!");
   // sl_Stop(SL_STOP_TIMEOUT);
 
-  LOOP_FOREVER();
+  // LOOP_FOREVER();
 }
 //*****************************************************************************
 //

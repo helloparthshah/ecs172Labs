@@ -1,33 +1,33 @@
 ******************************************************************************
                   TI ARM Linker PC v16.9.0                     
 ******************************************************************************
->> Linked Thu May 12 23:08:18 2022
+>> Linked Sun May 15 03:06:14 2022
 
 OUTPUT FILE NAME:   <ssl.out>
-ENTRY POINT SYMBOL: "_c_int00"  address: 2000e3f5
+ENTRY POINT SYMBOL: "_c_int00"  address: 2000f659
 
 
 MEMORY CONFIGURATION
 
          name            origin    length      used     unused   attr    fill
 ----------------------  --------  ---------  --------  --------  ----  --------
-  SRAM_CODE             20004000   00013000  0000bb98  00007468  RW X
-  SRAM_DATA             20017000   00019000  000097ff  0000f801  RW X
+  SRAM_CODE             20004000   00013000  0000cea4  0000615c  RW X
+  SRAM_DATA             20017000   00019000  00009bb7  0000f449  RW X
 
 
 SEGMENT ALLOCATION MAP
 
 run origin  load origin   length   init length attrs members
 ----------  ----------- ---------- ----------- ----- -------
-20004000    20004000    0000bb98   0000bb98    r-x
+20004000    20004000    0000cea8   0000cea8    r-x
   20004000    20004000    00000400   00000400    r-- .intvecs
-  20004400    20004400    0000ab54   0000ab54    r-x .text
-  2000ef54    2000ef54    00000b8c   00000b8c    r-- .const
-  2000fae0    2000fae0    000000b8   000000b8    r-- .cinit
-20017000    20017000    00008800   00000000    rw-
+  20004400    20004400    0000be10   0000be10    r-x .text
+  20010210    20010210    00000b8c   00000b8c    r-- .const
+  20010da0    20010da0    00000108   00000108    r-- .cinit
+20017000    20017000    00008bb8   00000000    rw-
   20017000    20017000    00008000   00000000    rw- .sysmem
-  2001f000    2001f000    000006b3   00000000    rw- .bss
-  2001f6b4    2001f6b4    0000014c   00000000    rw- .data
+  2001f000    2001f000    00000897   00000000    rw- .bss
+  2001f898    2001f898    00000320   00000000    rw- .data
 2002f000    2002f000    00001000   00000000    rw-
   2002f000    2002f000    00001000   00000000    rw- .stack
 
@@ -43,322 +43,347 @@ section   page    origin      length       input sections
 .init_array 
 *          0    20004000    00000000     UNINITIALIZED
 
-.text      0    20004400    0000ab54     
-                  20004400    000022c4     main.obj (.text)
-                  200066c4    0000111e     rtsv7M4_T_le_eabi.lib : _printfi.obj (.text)
-                  200077e2    00000002     driverlib.a : interrupt.obj (.text:IntDefaultHandler)
-                  200077e4    00000a80     Adafruit_GFX.obj (.text)
-                  20008264    00000590     simplelink.a : driver.obj (.text:_SlDrvMsgRead)
-                  200087f4    000004a2     Adafruit_OLED.obj (.text)
-                  20008c96    00000002     rtsv7M4_T_le_eabi.lib : mpu_init.obj (.text)
-                  20008c98    000003d0                           : memory.obj (.text)
-                  20009068    00000398     gpio_if.obj (.text)
-                  20009400    00000280     uart_if.obj (.text)
-                  20009680    00000260     simplelink.a : wlan.obj (.text:sl_WlanConnect)
-                  200098e0    000001fc                  : driver.obj (.text:_SlDrvRxHdrRead)
-                  20009adc    000001f4     rtsv7M4_T_le_eabi.lib : ull_div_t2.obj (.text)
-                  20009cd0    000001e4     simplelink.a : driver.obj (.text:_SlDrvDataReadOp)
-                  20009eb4    000001d0                  : driver.obj (.text:_SlDrvReleasePoolObj)
-                  2000a084    000001b6     rtsv7M4_T_le_eabi.lib : fd_add_t2.obj (.text)
-                  2000a23a    00000002                           : startup.obj (.text)
-                  2000a23c    000001b4     simplelink.a : driver.obj (.text:_SlDrvDriverCBInit)
-                  2000a3f0    0000019c                  : driver.obj (.text:_SlDrvMsgWrite)
-                  2000a58c    00000190                  : driver.obj (.text:_SlDrvWaitForPoolObj)
-                  2000a71c    00000178     driverlib.a : prcm.obj (.text:PRCMCC3200MCUInit)
-                  2000a894    00000170     simplelink.a : driver.obj (.text:_SlFindAndSetActiveObj)
-                  2000aa04    0000016c                  : socket.obj (.text:sl_Connect)
-                  2000ab70    00000150                  : driver.obj (.text:_SlDrvDataWriteOp)
-                  2000acc0    00000148                  : cc_pal.obj (.text:spi_Open)
-                  2000ae08    00000136     rtsv7M4_T_le_eabi.lib : fd_div_t2.obj (.text)
-                  2000af3e    00000002     --HOLE-- [fill = 0]
-                  2000af40    0000012c     simplelink.a : netapp.obj (.text:sl_NetAppDnsGetHostByName)
-                  2000b06c    00000128                  : driver.obj (.text:_SlDrvMsgReadCmdCtx)
-                  2000b194    00000124                  : driver.obj (.text:_SlDrvDriverCBDeinit)
-                  2000b2b8    00000118                  : socket.obj (.text:sl_Send)
-                  2000b3d0    00000104                  : netapp.obj (.text:_SlDrvNetAppEventHandler)
-                  2000b4d4    000000fc     rtsv7M4_T_le_eabi.lib : fd_mul_t2.obj (.text)
-                  2000b5d0    000000fa     timer_if.obj (.text)
-                  2000b6ca    00000002     --HOLE-- [fill = 0]
-                  2000b6cc    000000f0     simplelink.a : cc_pal.obj (.text:spi_Read)
-                  2000b7bc    000000f0     driverlib.a : udma.obj (.text:uDMAChannelTransferSet)
-                  2000b8ac    000000e8     simplelink.a : driver.obj (.text:_SlAsyncEventGenericHandler)
-                  2000b994    000000e4                  : device.obj (.text:sl_Stop)
-                  2000ba78    000000e0                  : device.obj (.text:sl_Start)
-                  2000bb58    000000dc                  : driver.obj (.text:_SlDrvClassifyRxMsg)
-                  2000bc34    000000d4                  : driver.obj (.text:_SlDrvMsgReadSpawnCtx)
-                  2000bd08    000000d0     rtsv7M4_T_le_eabi.lib : s_scalbn.obj (.text)
-                  2000bdd8    000000cc     simplelink.a : netapp.obj (.text:_sl_HandleAsync_DnsGetHostByService)
-                  2000bea4    000000c8                  : netapp.obj (.text:sl_NetAppMDNSRegisterUnregisterService)
-                  2000bf6c    000000c4                  : driver.obj (.text:_SlRemoveFromList)
-                  2000c030    000000c0                  : driver.obj (.text:_SlDrvCmdOp)
-                  2000c0f0    000000b4                  : device.obj (.text:sl_DevGet)
-                  2000c1a4    000000ac     pinmux.obj (.text)
-                  2000c250    000000a8     driverlib.a : interrupt.obj (.text:IntDisable)
-                  2000c2f8    000000a8                 : interrupt.obj (.text:IntEnable)
-                  2000c3a0    000000a4     simplelink.a : driver.obj (.text:_SlDriverHandleError)
-                  2000c444    000000a0     driverlib.a : spi.obj (.text:SPIConfigSetExpClk)
-                  2000c4e4    0000009c     rtsv7M4_T_le_eabi.lib : memcpy_t2.obj (.text)
-                  2000c580    0000009a     simplelink.a : device.obj (.text:_SlDrvDeviceEventHandler)
-                  2000c61a    00000002     --HOLE-- [fill = 0]
-                  2000c61c    00000098                  : cc_pal.obj (.text:spi_Write)
-                  2000c6b4    00000094     driverlib.a : prcm.obj (.text:PRCMPeripheralClockGet)
-                  2000c748    00000092     rtsv7M4_T_le_eabi.lib : fs_div_t2.obj (.text)
-                  2000c7da    00000002     --HOLE-- [fill = 0]
-                  2000c7dc    00000090     simplelink.a : netapp.obj (.text:_sl_HandleAsync_DnsGetHostByName)
-                  2000c86c    00000090                  : netapp.obj (.text:_sl_HandleAsync_PingResponse)
-                  2000c8fc    0000008c                  : cc_pal.obj (.text:SetupDMAReceive)
-                  2000c988    0000008c                  : cc_pal.obj (.text:SetupDMASend)
-                  2000ca14    00000088     driverlib.a : pin.obj (.text:PinConfigSet)
-                  2000ca9c    00000088     rtsv7M4_T_le_eabi.lib : vsnprintf.obj (.text)
-                  2000cb24    00000088     simplelink.a : socket.obj (.text:sl_Recv)
-                  2000cbac    00000086     rtsv7M4_T_le_eabi.lib : fd_cmp_t2.obj (.text:__aeabi_cdcmple)
-                  2000cc32    00000086                           : fd_cmp_t2.obj (.text:__aeabi_cdrcmple)
-                  2000ccb8    00000082     driverlib.a : gpio.obj (.text:GPIOIntTypeSet)
-                  2000cd3a    00000002     --HOLE-- [fill = 0]
-                  2000cd3c    00000080     simplelink.a : socket.obj (.text:_sl_HandleAsync_Connect)
-                  2000cdbc    00000080                  : device.obj (.text:_sl_HandleAsync_InitComplete)
-                  2000ce3c    00000080                  : cc_pal.obj (.text:spi_Read_CPU)
-                  2000cebc    00000080                  : cc_pal.obj (.text:spi_Write_CPU)
-                  2000cf3c    0000007c                  : device.obj (.text:sl_DevSet)
-                  2000cfb8    0000007c                  : netcfg.obj (.text:sl_NetCfgSet)
-                  2000d034    0000007c                  : socket.obj (.text:sl_SetSockOpt)
-                  2000d0b0    0000007c                  : wlan.obj (.text:sl_WlanSet)
-                  2000d12c    0000007a     rtsv7M4_T_le_eabi.lib : memset_t2.obj (.text)
-                  2000d1a6    00000002     --HOLE-- [fill = 0]
-                  2000d1a8    00000078     simplelink.a : nonos.obj (.text:_SlNonOsSemGet)
-                  2000d220    00000078                  : wlan.obj (.text:sl_WlanPolicySet)
-                  2000d298    00000078                  : cc_pal.obj (.text:spi_Close)
-                  2000d310    00000076     driverlib.a : uart.obj (.text:UARTConfigSetExpClk)
-                  2000d386    00000002     --HOLE-- [fill = 0]
-                  2000d388    00000074     simplelink.a : nonos.obj (.text:_SlNonOsMainLoopTask)
-                  2000d3fc    00000070     driverlib.a : timer.obj (.text:TimerIntRegister)
-                  2000d46c    00000070     rtsv7M4_T_le_eabi.lib : autoinit.obj (.text)
-                  2000d4dc    00000070     simplelink.a : socket.obj (.text:sl_Socket)
-                  2000d54c    0000006c                  : driver.obj (.text:_SlDrvCmdSend)
-                  2000d5b8    0000006c                  : netapp.obj (.text:_sl_NetAppSendTokenValue)
-                  2000d624    0000006c                  : wlan.obj (.text:sl_WlanRxFilterSet)
-                  2000d690    00000068     driverlib.a : timer.obj (.text:TimerIntUnregister)
-                  2000d6f8    00000068     rtsv7M4_T_le_eabi.lib : copy_decompress_lzss.obj (.text:decompress:lzss)
-                  2000d760    00000064     simplelink.a : nonos.obj (.text:_SlNonOsSpawn)
-                  2000d7c4    00000064                  : socket.obj (.text:_sl_HandleAsync_Accept)
-                  2000d828    00000064     driverlib.a : udma.obj (.text:uDMAChannelAttributeDisable)
-                  2000d88c    00000064                 : udma.obj (.text:uDMAChannelAttributeEnable)
-                  2000d8f0    00000060     rtsv7M4_T_le_eabi.lib : fs_cmp_t2.obj (.text:__aeabi_cfcmple)
-                  2000d950    00000060                           : fs_cmp_t2.obj (.text:__aeabi_cfrcmple)
-                  2000d9b0    00000060                           : sprintf.obj (.text)
-                  2000da10    0000005c                           : s_frexp.obj (.text)
-                  2000da6c    00000058     driverlib.a : interrupt.obj (.text:IntPendClear)
-                  2000dac4    00000058                 : prcm.obj (.text:PRCMPeripheralReset)
-                  2000db1c    00000056     rtsv7M4_T_le_eabi.lib : ltoa.obj (.text)
-                  2000db72    00000002     --HOLE-- [fill = 0]
-                  2000db74    00000054     driverlib.a : interrupt.obj (.text:IntPrioritySet)
-                  2000dbc8    00000054     simplelink.a : driver.obj (.text:_SlDrvRxIrqHandler)
-                  2000dc1c    00000054                  : socket.obj (.text:_sl_HandleAsync_Select)
-                  2000dc70    00000054     rtsv7M4_T_le_eabi.lib : exit.obj (.text)
-                  2000dcc4    00000050     simplelink.a : device.obj (.text:_sl_HandleAsync_Stop)
-                  2000dd14    0000004c     driverlib.a : spi.obj (.text:SPIIntEnable)
-                  2000dd60    0000004c                 : spi.obj (.text:SPIIntNumberGet)
-                  2000ddac    0000004c     simplelink.a : driver.obj (.text:_SlDrvProtectAsyncRespSetting)
-                  2000ddf8    0000004c                  : socket.obj (.text:_sl_BuildAddress)
-                  2000de44    0000004c     rtsv7M4_T_le_eabi.lib : atoi.obj (.text)
-                  2000de90    0000004c                           : cpy_tbl.obj (.text)
-                  2000dedc    0000004c     driverlib.a : udma.obj (.text:uDMAChannelAssign)
-                  2000df28    00000048                 : gpio.obj (.text:GPIOGetIntNumber)
-                  2000df70    00000048                 : spi.obj (.text:SPIIntClear)
-                  2000dfb8    00000048     simplelink.a : driver.obj (.text:_SlDrvBasicCmd)
-                  2000e000    00000048     rtsv7M4_T_le_eabi.lib : fd_toi_t2.obj (.text)
-                  2000e048    00000048     simplelink.a : netapp.obj (.text:sl_NetAppMDNSUnRegisterService)
-                  2000e090    00000044     driverlib.a : spi.obj (.text:SPIDmaMaskGet)
-                  2000e0d4    00000044                 : timer.obj (.text:TimerConfigure)
-                  2000e118    00000044     simplelink.a : driver.obj (.text:_SlDrvHandleHttpServerEvents)
-                  2000e15c    00000044                  : driver.obj (.text:_SlDrvSyncObjWaitTimeout)
-                  2000e1a0    00000044                  : cc_pal.obj (.text:cc_SetupTransfer)
-                  2000e1e4    00000044                  : socket.obj (.text:sl_Close)
-                  2000e228    00000044                  : wlan.obj (.text:sl_WlanProfileDel)
-                  2000e26c    00000044                  : wlan.obj (.text:sl_WlanSetMode)
-                  2000e2b0    00000042                  : socket.obj (.text:sl_Htonl)
-                  2000e2f2    00000002     --HOLE-- [fill = 0]
-                  2000e2f4    00000040     driverlib.a : pin.obj (.text:PinModeSet)
-                  2000e334    00000040     simplelink.a : driver.obj (.text:_SlDrvHandleNetAppEvents)
-                  2000e374    00000040                  : driver.obj (.text:_SlDrvHandleWlanEvents)
-                  2000e3b4    00000040                  : socket.obj (.text:_sl_TruncatePayloadByProtocol)
-                  2000e3f4    00000040     rtsv7M4_T_le_eabi.lib : boot.obj (.text)
-                  2000e434    0000003e     simplelink.a : cc_pal.obj (.text:NwpRegisterInterruptHandler)
-                  2000e472    0000003c                  : netapp.obj (.text:CopyPingResultsToReport)
-                  2000e4ae    00000002     --HOLE-- [fill = 0]
-                  2000e4b0    0000003c     driverlib.a : prcm.obj (.text:PRCMPeripheralClkEnable)
-                  2000e4ec    0000003c     simplelink.a : socket.obj (.text:sl_Htons)
-                  2000e528    0000003c     driverlib.a : udma.obj (.text:uDMAChannelControlSet)
-                  2000e564    00000038     simplelink.a : cc_pal.obj (.text:NwpPowerOff)
-                  2000e59c    00000036     driverlib.a : gpio.obj (.text:GPIODirModeSet)
-                  2000e5d2    00000002     --HOLE-- [fill = 0]
-                  2000e5d4    00000034                 : prcm.obj (.text:PRCMPeripheralStatusGet)
-                  2000e608    00000034                 : spi.obj (.text:SPIFIFOLevelSet)
-                  2000e63c    00000030                 : pin.obj (.text:PinTypeGPIO)
-                  2000e66c    00000030                 : uart.obj (.text:UARTDisable)
-                  2000e69c    0000002e     rtsv7M4_T_le_eabi.lib : i_tofd_t2.obj (.text)
-                  2000e6ca    00000002     --HOLE-- [fill = 0]
-                  2000e6cc    0000002c     driverlib.a : prcm.obj (.text:PRCMSysResetCauseGet)
-                  2000e6f8    0000002c     simplelink.a : driver.obj (.text:_SlDrvObjGlobalLockWaitForever)
-                  2000e724    0000002c                  : driver.obj (.text:_SlDrvProtectionObjLockWaitForever)
-                  2000e750    0000002a     driverlib.a : timer.obj (.text:TimerLoadSet)
-                  2000e77a    0000002a                 : timer.obj (.text:TimerPrescaleSet)
-                  2000e7a4    00000028                 : prcm.obj (.text:PRCMPeripheralClkDisable)
-                  2000e7cc    00000028     simplelink.a : driver.obj (.text:_SlDrvGlobalObjUnLock)
-                  2000e7f4    00000028                  : driver.obj (.text:_SlDrvProtectionObjUnLock)
-                  2000e81c    00000028                  : driver.obj (.text:_SlDrvSyncObjWaitForever)
-                  2000e844    00000026     network_common.obj (.text)
-                  2000e86a    00000002     --HOLE-- [fill = 0]
-                  2000e86c    00000024     simplelink.a : cc_pal.obj (.text:DmaSpiSwIntHandler)
-                  2000e890    00000024     driverlib.a : interrupt.obj (.text:IntUnregister)
-                  2000e8b4    00000024                 : uart.obj (.text:UARTEnable)
-                  2000e8d8    00000024     simplelink.a : driver.obj (.text:_SlDrvObjLockWaitForever)
-                  2000e8fc    00000024     rtsv7M4_T_le_eabi.lib : memmov.obj (.text)
-                  2000e920    00000024                           : u_tofs_t2.obj (.text)
-                  2000e944    00000022     driverlib.a : gpio.obj (.text:GPIOIntStatus)
-                  2000e966    00000022                 : spi.obj (.text:SPIReset)
-                  2000e988    00000022                 : spi.obj (.text:SPIWordCountSet)
-                  2000e9aa    00000020                 : gpio.obj (.text:GPIOPinWrite)
-                  2000e9ca    00000002     --HOLE-- [fill = 0]
-                  2000e9cc    00000020                 : interrupt.obj (.text:IntRegister)
-                  2000e9ec    00000020     simplelink.a : cc_pal.obj (.text:NwpPowerOn)
-                  2000ea0c    00000020     driverlib.a : spi.obj (.text:SPIDataGet)
-                  2000ea2c    00000020     simplelink.a : driver.obj (.text:_SlDrvObjUnLock)
-                  2000ea4c    00000020                  : driver.obj (.text:_SlDrvSyncObjSignal)
-                  2000ea6c    00000020                  : wlan.obj (.text:sl_WlanDisconnect)
-                  2000ea8c    0000001e     driverlib.a : gpio.obj (.text:GPIOIntRegister)
-                  2000eaaa    0000001e                 : spi.obj (.text:SPIDataPut)
-                  2000eac8    0000001e                 : timer.obj (.text:TimerDisable)
-                  2000eae6    0000001e                 : timer.obj (.text:TimerEnable)
-                  2000eb04    0000001e                 : timer.obj (.text:TimerIntStatus)
-                  2000eb22    0000001e                 : uart.obj (.text:UARTCharPut)
-                  2000eb40    0000001e     simplelink.a : cc_pal.obj (.text:cc_UDMAChannelSelect)
-                  2000eb5e    0000001e     rtsv7M4_T_le_eabi.lib : strcat.obj (.text)
-                  2000eb7c    0000001c     driverlib.a : timer.obj (.text:TimerValueGet)
-                  2000eb98    0000001c                 : uart.obj (.text:UARTCharGetNonBlocking)
-                  2000ebb4    0000001c     rtsv7M4_T_le_eabi.lib : memccpy.obj (.text)
-                  2000ebd0    0000001c     driverlib.a : udma.obj (.text:uDMAChannelEnable)
-                  2000ebec    0000001a                 : gpio.obj (.text:GPIOIntDisable)
-                  2000ec06    0000001a                 : gpio.obj (.text:GPIOIntEnable)
-                  2000ec20    0000001a                 : pin.obj (.text:PinTypeSPI)
-                  2000ec3a    0000001a                 : pin.obj (.text:PinTypeUART)
-                  2000ec54    0000001a                 : spi.obj (.text:SPIDmaDisable)
-                  2000ec6e    0000001a                 : spi.obj (.text:SPIDmaEnable)
-                  2000ec88    0000001a                 : spi.obj (.text:SPIFIFODisable)
-                  2000eca2    0000001a                 : spi.obj (.text:SPIFIFOEnable)
-                  2000ecbc    0000001a                 : spi.obj (.text:SPIIntUnregister)
-                  2000ecd6    00000018                 : gpio.obj (.text:GPIOPinRead)
-                  2000ecee    00000018                 : spi.obj (.text:SPICSDisable)
-                  2000ed06    00000018                 : spi.obj (.text:SPICSEnable)
-                  2000ed1e    00000018                 : spi.obj (.text:SPIDisable)
-                  2000ed36    00000018                 : spi.obj (.text:SPIEnable)
-                  2000ed4e    00000018                 : timer.obj (.text:TimerIntDisable)
-                  2000ed66    00000018                 : timer.obj (.text:TimerIntEnable)
-                  2000ed7e    00000018                 : uart.obj (.text:UARTCharsAvail)
-                  2000ed96    00000018     simplelink.a : nonos.obj (.text:_SlNonOsSemSet)
-                  2000edae    00000002     --HOLE-- [fill = 0]
-                  2000edb0    00000018                  : device.obj (.text:_sl_GetStartResponseConvert)
-                  2000edc8    00000018     rtsv7M4_T_le_eabi.lib : args_main.obj (.text)
-                  2000ede0    00000018                           : strcmp.obj (.text)
-                  2000edf8    00000016     driverlib.a : prcm.obj (.text:PRCMHIBRegRead)
-                  2000ee0e    00000016                 : prcm.obj (.text:PRCMHIBRegWrite)
-                  2000ee24    00000016     simplelink.a : driver.obj (.text:_SlDrvMemZero)
-                  2000ee3a    00000016     rtsv7M4_T_le_eabi.lib : strchr.obj (.text)
-                  2000ee50    00000014     driverlib.a : cpu.obj (.text:CPUcpsie)
-                  2000ee64    00000014                 : gpio.obj (.text:GPIOIntClear)
-                  2000ee78    00000014                 : interrupt.obj (.text:IntVTableBaseSet)
-                  2000ee8c    00000014     rtsv7M4_T_le_eabi.lib : _lock.obj (.text)
-                  2000eea0    00000014                           : strcpy.obj (.text)
-                  2000eeb4    00000014                           : strlen.obj (.text)
-                  2000eec8    00000012     driverlib.a : timer.obj (.text:TimerIntClear)
-                  2000eeda    00000010     simplelink.a : driver.obj (.text:_SlDrvDispatchHttpServerEvents)
-                  2000eeea    0000000e                  : driver.obj (.text:_SlDrvResetCmdExt)
-                  2000eef8    0000000e     rtsv7M4_T_le_eabi.lib : copy_decompress_none.obj (.text:decompress:none)
-                  2000ef06    0000000e     startup_ccs.obj (.text)
-                  2000ef14    0000000c     simplelink.a : cc_pal.obj (.text:NwpMaskInterrupt)
-                  2000ef20    0000000c                  : cc_pal.obj (.text:NwpUnMaskInterrupt)
-                  2000ef2c    0000000c     rtsv7M4_T_le_eabi.lib : copy_zero_init.obj (.text:decompress:ZI)
-                  2000ef38    0000000a     driverlib.a : interrupt.obj (.text:IntMasterEnable)
-                  2000ef42    00000008     rtsv7M4_T_le_eabi.lib : s_copysign.obj (.text)
-                  2000ef4a    00000006     driverlib.a : utils.obj (.text:UtilsDelay)
-                  2000ef50    00000004     rtsv7M4_T_le_eabi.lib : pre_init.obj (.text)
+.text      0    20004400    0000be10     
+                  20004400    000023b4     main.obj (.text)
+                  200067b4    0000111e     rtsv7M4_T_le_eabi.lib : _printfi.obj (.text)
+                  200078d2    00000002     driverlib.a : interrupt.obj (.text:IntDefaultHandler)
+                  200078d4    00000a80     Adafruit_GFX.obj (.text)
+                  20008354    00000590     simplelink.a : driver.obj (.text:_SlDrvMsgRead)
+                  200088e4    000004a2     Adafruit_OLED.obj (.text)
+                  20008d86    00000002     rtsv7M4_T_le_eabi.lib : mpu_init.obj (.text)
+                  20008d88    000003d0                           : memory.obj (.text)
+                  20009158    00000398     gpio_if.obj (.text)
+                  200094f0    00000324     rtsv7M4_T_le_eabi.lib : trgdrv.obj (.text)
+                  20009814    0000030c                           : lowlev.obj (.text)
+                  20009b20    00000298                           : vla_alloc.obj (.text)
+                  20009db8    00000280     uart_if.obj (.text)
+                  2000a038    00000260     simplelink.a : wlan.obj (.text:sl_WlanConnect)
+                  2000a298    000001fc                  : driver.obj (.text:_SlDrvRxHdrRead)
+                  2000a494    000001f4     rtsv7M4_T_le_eabi.lib : ull_div_t2.obj (.text)
+                  2000a688    000001e4     simplelink.a : driver.obj (.text:_SlDrvDataReadOp)
+                  2000a86c    000001d0                  : driver.obj (.text:_SlDrvReleasePoolObj)
+                  2000aa3c    000001c4     rtsv7M4_T_le_eabi.lib : fopen.obj (.text)
+                  2000ac00    000001b6                           : fd_add_t2.obj (.text)
+                  2000adb6    00000002                           : startup.obj (.text)
+                  2000adb8    000001b4     simplelink.a : driver.obj (.text:_SlDrvDriverCBInit)
+                  2000af6c    0000019c                  : driver.obj (.text:_SlDrvMsgWrite)
+                  2000b108    00000190                  : driver.obj (.text:_SlDrvWaitForPoolObj)
+                  2000b298    00000178     driverlib.a : prcm.obj (.text:PRCMCC3200MCUInit)
+                  2000b410    00000170     simplelink.a : driver.obj (.text:_SlFindAndSetActiveObj)
+                  2000b580    0000016c                  : socket.obj (.text:sl_Connect)
+                  2000b6ec    00000150                  : driver.obj (.text:_SlDrvDataWriteOp)
+                  2000b83c    00000148                  : cc_pal.obj (.text:spi_Open)
+                  2000b984    00000136     rtsv7M4_T_le_eabi.lib : fd_div_t2.obj (.text)
+                  2000baba    00000002     --HOLE-- [fill = 0]
+                  2000babc    00000134                           : fputs.obj (.text)
+                  2000bbf0    0000012c     simplelink.a : netapp.obj (.text:sl_NetAppDnsGetHostByName)
+                  2000bd1c    00000128                  : driver.obj (.text:_SlDrvMsgReadCmdCtx)
+                  2000be44    00000124                  : driver.obj (.text:_SlDrvDriverCBDeinit)
+                  2000bf68    00000118                  : socket.obj (.text:sl_Send)
+                  2000c080    00000104                  : netapp.obj (.text:_SlDrvNetAppEventHandler)
+                  2000c184    000000fc     rtsv7M4_T_le_eabi.lib : fd_mul_t2.obj (.text)
+                  2000c280    000000fa     timer_if.obj (.text)
+                  2000c37a    00000002     --HOLE-- [fill = 0]
+                  2000c37c    000000f0     simplelink.a : cc_pal.obj (.text:spi_Read)
+                  2000c46c    000000f0     driverlib.a : udma.obj (.text:uDMAChannelTransferSet)
+                  2000c55c    000000e8     simplelink.a : driver.obj (.text:_SlAsyncEventGenericHandler)
+                  2000c644    000000e4                  : device.obj (.text:sl_Stop)
+                  2000c728    000000e0                  : device.obj (.text:sl_Start)
+                  2000c808    000000dc                  : driver.obj (.text:_SlDrvClassifyRxMsg)
+                  2000c8e4    000000dc     rtsv7M4_T_le_eabi.lib : setvbuf.obj (.text)
+                  2000c9c0    000000d4     simplelink.a : driver.obj (.text:_SlDrvMsgReadSpawnCtx)
+                  2000ca94    000000d0     rtsv7M4_T_le_eabi.lib : s_scalbn.obj (.text)
+                  2000cb64    000000cc     simplelink.a : netapp.obj (.text:_sl_HandleAsync_DnsGetHostByService)
+                  2000cc30    000000c8     rtsv7M4_T_le_eabi.lib : fflush.obj (.text)
+                  2000ccf8    000000c8     simplelink.a : netapp.obj (.text:sl_NetAppMDNSRegisterUnregisterService)
+                  2000cdc0    000000c4                  : driver.obj (.text:_SlRemoveFromList)
+                  2000ce84    000000c0                  : driver.obj (.text:_SlDrvCmdOp)
+                  2000cf44    000000b4                  : device.obj (.text:sl_DevGet)
+                  2000cff8    000000ac     pinmux.obj (.text)
+                  2000d0a4    000000ac     rtsv7M4_T_le_eabi.lib : _io_perm.obj (.text)
+                  2000d150    000000a8     driverlib.a : interrupt.obj (.text:IntDisable)
+                  2000d1f8    000000a8                 : interrupt.obj (.text:IntEnable)
+                  2000d2a0    000000a4     simplelink.a : driver.obj (.text:_SlDriverHandleError)
+                  2000d344    000000a0     driverlib.a : spi.obj (.text:SPIConfigSetExpClk)
+                  2000d3e4    0000009c     rtsv7M4_T_le_eabi.lib : memcpy_t2.obj (.text)
+                  2000d480    0000009a     simplelink.a : device.obj (.text:_SlDrvDeviceEventHandler)
+                  2000d51a    00000002     --HOLE-- [fill = 0]
+                  2000d51c    00000098     rtsv7M4_T_le_eabi.lib : fclose.obj (.text)
+                  2000d5b4    00000098                           : fputc.obj (.text)
+                  2000d64c    00000098     simplelink.a : cc_pal.obj (.text:spi_Write)
+                  2000d6e4    00000094     driverlib.a : prcm.obj (.text:PRCMPeripheralClockGet)
+                  2000d778    00000092     rtsv7M4_T_le_eabi.lib : fs_div_t2.obj (.text)
+                  2000d80a    00000002     --HOLE-- [fill = 0]
+                  2000d80c    00000090     simplelink.a : netapp.obj (.text:_sl_HandleAsync_DnsGetHostByName)
+                  2000d89c    00000090                  : netapp.obj (.text:_sl_HandleAsync_PingResponse)
+                  2000d92c    0000008c                  : cc_pal.obj (.text:SetupDMAReceive)
+                  2000d9b8    0000008c                  : cc_pal.obj (.text:SetupDMASend)
+                  2000da44    0000008c                  : wlan.obj (.text:sl_WlanGetNetworkList)
+                  2000dad0    00000088     driverlib.a : pin.obj (.text:PinConfigSet)
+                  2000db58    00000088     rtsv7M4_T_le_eabi.lib : vsnprintf.obj (.text)
+                  2000dbe0    00000088     simplelink.a : socket.obj (.text:sl_Recv)
+                  2000dc68    00000086     rtsv7M4_T_le_eabi.lib : fd_cmp_t2.obj (.text:__aeabi_cdcmple)
+                  2000dcee    00000086                           : fd_cmp_t2.obj (.text:__aeabi_cdrcmple)
+                  2000dd74    00000082     driverlib.a : gpio.obj (.text:GPIOIntTypeSet)
+                  2000ddf6    00000002     --HOLE-- [fill = 0]
+                  2000ddf8    00000080     simplelink.a : socket.obj (.text:_sl_HandleAsync_Connect)
+                  2000de78    00000080                  : device.obj (.text:_sl_HandleAsync_InitComplete)
+                  2000def8    00000080                  : cc_pal.obj (.text:spi_Read_CPU)
+                  2000df78    00000080                  : cc_pal.obj (.text:spi_Write_CPU)
+                  2000dff8    0000007c                  : device.obj (.text:sl_DevSet)
+                  2000e074    0000007c                  : netcfg.obj (.text:sl_NetCfgSet)
+                  2000e0f0    0000007c                  : socket.obj (.text:sl_SetSockOpt)
+                  2000e16c    0000007c                  : wlan.obj (.text:sl_WlanSet)
+                  2000e1e8    0000007a     rtsv7M4_T_le_eabi.lib : memset_t2.obj (.text)
+                  2000e262    00000002     --HOLE-- [fill = 0]
+                  2000e264    00000078     simplelink.a : nonos.obj (.text:_SlNonOsSemGet)
+                  2000e2dc    00000078                  : wlan.obj (.text:sl_WlanPolicySet)
+                  2000e354    00000078                  : cc_pal.obj (.text:spi_Close)
+                  2000e3cc    00000076     driverlib.a : uart.obj (.text:UARTConfigSetExpClk)
+                  2000e442    00000002     --HOLE-- [fill = 0]
+                  2000e444    00000074     simplelink.a : nonos.obj (.text:_SlNonOsMainLoopTask)
+                  2000e4b8    00000070     driverlib.a : timer.obj (.text:TimerIntRegister)
+                  2000e528    00000070     rtsv7M4_T_le_eabi.lib : autoinit.obj (.text)
+                  2000e598    00000070                           : printf.obj (.text)
+                  2000e608    00000070     simplelink.a : socket.obj (.text:sl_Socket)
+                  2000e678    0000006c                  : driver.obj (.text:_SlDrvCmdSend)
+                  2000e6e4    0000006c                  : netapp.obj (.text:_sl_NetAppSendTokenValue)
+                  2000e750    0000006c     rtsv7M4_T_le_eabi.lib : fprintf.obj (.text)
+                  2000e7bc    0000006c     simplelink.a : wlan.obj (.text:sl_WlanRxFilterSet)
+                  2000e828    00000068     driverlib.a : timer.obj (.text:TimerIntUnregister)
+                  2000e890    00000068     rtsv7M4_T_le_eabi.lib : copy_decompress_lzss.obj (.text:decompress:lzss)
+                  2000e8f8    00000068                           : trgmsg.obj (.text)
+                  2000e960    00000064     simplelink.a : nonos.obj (.text:_SlNonOsSpawn)
+                  2000e9c4    00000064                  : socket.obj (.text:_sl_HandleAsync_Accept)
+                  2000ea28    00000064     rtsv7M4_T_le_eabi.lib : fseek.obj (.text)
+                  2000ea8c    00000064     driverlib.a : udma.obj (.text:uDMAChannelAttributeDisable)
+                  2000eaf0    00000064                 : udma.obj (.text:uDMAChannelAttributeEnable)
+                  2000eb54    00000060     rtsv7M4_T_le_eabi.lib : fs_cmp_t2.obj (.text:__aeabi_cfcmple)
+                  2000ebb4    00000060                           : fs_cmp_t2.obj (.text:__aeabi_cfrcmple)
+                  2000ec14    00000060                           : sprintf.obj (.text)
+                  2000ec74    0000005c                           : s_frexp.obj (.text)
+                  2000ecd0    00000058     driverlib.a : interrupt.obj (.text:IntPendClear)
+                  2000ed28    00000058                 : prcm.obj (.text:PRCMPeripheralReset)
+                  2000ed80    00000056     rtsv7M4_T_le_eabi.lib : ltoa.obj (.text)
+                  2000edd6    00000002     --HOLE-- [fill = 0]
+                  2000edd8    00000054     driverlib.a : interrupt.obj (.text:IntPrioritySet)
+                  2000ee2c    00000054     simplelink.a : driver.obj (.text:_SlDrvRxIrqHandler)
+                  2000ee80    00000054                  : socket.obj (.text:_sl_HandleAsync_Select)
+                  2000eed4    00000054     rtsv7M4_T_le_eabi.lib : exit.obj (.text)
+                  2000ef28    00000050     simplelink.a : device.obj (.text:_sl_HandleAsync_Stop)
+                  2000ef78    0000004c     driverlib.a : spi.obj (.text:SPIIntEnable)
+                  2000efc4    0000004c                 : spi.obj (.text:SPIIntNumberGet)
+                  2000f010    0000004c     simplelink.a : driver.obj (.text:_SlDrvProtectAsyncRespSetting)
+                  2000f05c    0000004c                  : socket.obj (.text:_sl_BuildAddress)
+                  2000f0a8    0000004c     rtsv7M4_T_le_eabi.lib : atoi.obj (.text)
+                  2000f0f4    0000004c                           : cpy_tbl.obj (.text)
+                  2000f140    0000004c     driverlib.a : udma.obj (.text:uDMAChannelAssign)
+                  2000f18c    00000048                 : gpio.obj (.text:GPIOGetIntNumber)
+                  2000f1d4    00000048                 : spi.obj (.text:SPIIntClear)
+                  2000f21c    00000048     simplelink.a : driver.obj (.text:_SlDrvBasicCmd)
+                  2000f264    00000048     rtsv7M4_T_le_eabi.lib : fd_toi_t2.obj (.text)
+                  2000f2ac    00000048     simplelink.a : netapp.obj (.text:sl_NetAppMDNSUnRegisterService)
+                  2000f2f4    00000044     driverlib.a : spi.obj (.text:SPIDmaMaskGet)
+                  2000f338    00000044                 : timer.obj (.text:TimerConfigure)
+                  2000f37c    00000044     simplelink.a : driver.obj (.text:_SlDrvHandleHttpServerEvents)
+                  2000f3c0    00000044                  : driver.obj (.text:_SlDrvSyncObjWaitTimeout)
+                  2000f404    00000044                  : cc_pal.obj (.text:cc_SetupTransfer)
+                  2000f448    00000044                  : socket.obj (.text:sl_Close)
+                  2000f48c    00000044                  : wlan.obj (.text:sl_WlanProfileDel)
+                  2000f4d0    00000044                  : wlan.obj (.text:sl_WlanSetMode)
+                  2000f514    00000042                  : socket.obj (.text:sl_Htonl)
+                  2000f556    00000002     --HOLE-- [fill = 0]
+                  2000f558    00000040     driverlib.a : pin.obj (.text:PinModeSet)
+                  2000f598    00000040     simplelink.a : driver.obj (.text:_SlDrvHandleNetAppEvents)
+                  2000f5d8    00000040                  : driver.obj (.text:_SlDrvHandleWlanEvents)
+                  2000f618    00000040                  : socket.obj (.text:_sl_TruncatePayloadByProtocol)
+                  2000f658    00000040     rtsv7M4_T_le_eabi.lib : boot.obj (.text)
+                  2000f698    0000003e     simplelink.a : cc_pal.obj (.text:NwpRegisterInterruptHandler)
+                  2000f6d6    0000003c                  : netapp.obj (.text:CopyPingResultsToReport)
+                  2000f712    00000002     --HOLE-- [fill = 0]
+                  2000f714    0000003c     driverlib.a : prcm.obj (.text:PRCMPeripheralClkEnable)
+                  2000f750    0000003c     simplelink.a : socket.obj (.text:sl_Htons)
+                  2000f78c    0000003c     driverlib.a : udma.obj (.text:uDMAChannelControlSet)
+                  2000f7c8    00000038     simplelink.a : cc_pal.obj (.text:NwpPowerOff)
+                  2000f800    00000036     driverlib.a : gpio.obj (.text:GPIODirModeSet)
+                  2000f836    00000036     rtsv7M4_T_le_eabi.lib : strncpy.obj (.text)
+                  2000f86c    00000034     driverlib.a : prcm.obj (.text:PRCMPeripheralStatusGet)
+                  2000f8a0    00000034                 : spi.obj (.text:SPIFIFOLevelSet)
+                  2000f8d4    00000030                 : pin.obj (.text:PinTypeGPIO)
+                  2000f904    00000030                 : uart.obj (.text:UARTDisable)
+                  2000f934    0000002e     rtsv7M4_T_le_eabi.lib : i_tofd_t2.obj (.text)
+                  2000f962    00000002     --HOLE-- [fill = 0]
+                  2000f964    0000002c     driverlib.a : prcm.obj (.text:PRCMSysResetCauseGet)
+                  2000f990    0000002c     simplelink.a : driver.obj (.text:_SlDrvObjGlobalLockWaitForever)
+                  2000f9bc    0000002c                  : driver.obj (.text:_SlDrvProtectionObjLockWaitForever)
+                  2000f9e8    0000002a     driverlib.a : timer.obj (.text:TimerLoadSet)
+                  2000fa12    0000002a                 : timer.obj (.text:TimerPrescaleSet)
+                  2000fa3c    00000028                 : prcm.obj (.text:PRCMPeripheralClkDisable)
+                  2000fa64    00000028     simplelink.a : driver.obj (.text:_SlDrvGlobalObjUnLock)
+                  2000fa8c    00000028                  : driver.obj (.text:_SlDrvProtectionObjUnLock)
+                  2000fab4    00000028                  : driver.obj (.text:_SlDrvSyncObjWaitForever)
+                  2000fadc    00000026     network_common.obj (.text)
+                  2000fb02    00000002     --HOLE-- [fill = 0]
+                  2000fb04    00000024     simplelink.a : cc_pal.obj (.text:DmaSpiSwIntHandler)
+                  2000fb28    00000024     driverlib.a : interrupt.obj (.text:IntUnregister)
+                  2000fb4c    00000024                 : uart.obj (.text:UARTEnable)
+                  2000fb70    00000024     simplelink.a : driver.obj (.text:_SlDrvObjLockWaitForever)
+                  2000fb94    00000024     rtsv7M4_T_le_eabi.lib : memmov.obj (.text)
+                  2000fbb8    00000024                           : u_tofs_t2.obj (.text)
+                  2000fbdc    00000022     driverlib.a : gpio.obj (.text:GPIOIntStatus)
+                  2000fbfe    00000022                 : spi.obj (.text:SPIReset)
+                  2000fc20    00000022                 : spi.obj (.text:SPIWordCountSet)
+                  2000fc42    00000020                 : gpio.obj (.text:GPIOPinWrite)
+                  2000fc62    00000002     --HOLE-- [fill = 0]
+                  2000fc64    00000020                 : interrupt.obj (.text:IntRegister)
+                  2000fc84    00000020     simplelink.a : cc_pal.obj (.text:NwpPowerOn)
+                  2000fca4    00000020     driverlib.a : spi.obj (.text:SPIDataGet)
+                  2000fcc4    00000020     simplelink.a : driver.obj (.text:_SlDrvObjUnLock)
+                  2000fce4    00000020                  : driver.obj (.text:_SlDrvSyncObjSignal)
+                  2000fd04    00000020     rtsv7M4_T_le_eabi.lib : memchr.obj (.text)
+                  2000fd24    00000020     simplelink.a : wlan.obj (.text:sl_WlanDisconnect)
+                  2000fd44    0000001e     driverlib.a : gpio.obj (.text:GPIOIntRegister)
+                  2000fd62    0000001e                 : spi.obj (.text:SPIDataPut)
+                  2000fd80    0000001e                 : timer.obj (.text:TimerDisable)
+                  2000fd9e    0000001e                 : timer.obj (.text:TimerEnable)
+                  2000fdbc    0000001e                 : timer.obj (.text:TimerIntStatus)
+                  2000fdda    0000001e                 : uart.obj (.text:UARTCharPut)
+                  2000fdf8    0000001e     simplelink.a : cc_pal.obj (.text:cc_UDMAChannelSelect)
+                  2000fe16    0000001e     rtsv7M4_T_le_eabi.lib : strcat.obj (.text)
+                  2000fe34    0000001c     driverlib.a : timer.obj (.text:TimerValueGet)
+                  2000fe50    0000001c                 : uart.obj (.text:UARTCharGetNonBlocking)
+                  2000fe6c    0000001c     rtsv7M4_T_le_eabi.lib : memccpy.obj (.text)
+                  2000fe88    0000001c     driverlib.a : udma.obj (.text:uDMAChannelEnable)
+                  2000fea4    0000001a                 : gpio.obj (.text:GPIOIntDisable)
+                  2000febe    0000001a                 : gpio.obj (.text:GPIOIntEnable)
+                  2000fed8    0000001a                 : pin.obj (.text:PinTypeSPI)
+                  2000fef2    0000001a                 : pin.obj (.text:PinTypeUART)
+                  2000ff0c    0000001a                 : spi.obj (.text:SPIDmaDisable)
+                  2000ff26    0000001a                 : spi.obj (.text:SPIDmaEnable)
+                  2000ff40    0000001a                 : spi.obj (.text:SPIFIFODisable)
+                  2000ff5a    0000001a                 : spi.obj (.text:SPIFIFOEnable)
+                  2000ff74    0000001a                 : spi.obj (.text:SPIIntUnregister)
+                  2000ff8e    00000018                 : gpio.obj (.text:GPIOPinRead)
+                  2000ffa6    00000018                 : spi.obj (.text:SPICSDisable)
+                  2000ffbe    00000018                 : spi.obj (.text:SPICSEnable)
+                  2000ffd6    00000018                 : spi.obj (.text:SPIDisable)
+                  2000ffee    00000018                 : spi.obj (.text:SPIEnable)
+                  20010006    00000018                 : timer.obj (.text:TimerIntDisable)
+                  2001001e    00000018                 : timer.obj (.text:TimerIntEnable)
+                  20010036    00000018                 : uart.obj (.text:UARTCharsAvail)
+                  2001004e    00000018     simplelink.a : nonos.obj (.text:_SlNonOsSemSet)
+                  20010066    00000002     --HOLE-- [fill = 0]
+                  20010068    00000018                  : device.obj (.text:_sl_GetStartResponseConvert)
+                  20010080    00000018     rtsv7M4_T_le_eabi.lib : args_main.obj (.text)
+                  20010098    00000018                           : strcmp.obj (.text)
+                  200100b0    00000016     driverlib.a : prcm.obj (.text:PRCMHIBRegRead)
+                  200100c6    00000016                 : prcm.obj (.text:PRCMHIBRegWrite)
+                  200100dc    00000016     simplelink.a : driver.obj (.text:_SlDrvMemZero)
+                  200100f2    00000016     rtsv7M4_T_le_eabi.lib : strchr.obj (.text)
+                  20010108    00000014     driverlib.a : cpu.obj (.text:CPUcpsie)
+                  2001011c    00000014                 : gpio.obj (.text:GPIOIntClear)
+                  20010130    00000014                 : interrupt.obj (.text:IntVTableBaseSet)
+                  20010144    00000014     rtsv7M4_T_le_eabi.lib : _lock.obj (.text)
+                  20010158    00000014                           : strcpy.obj (.text)
+                  2001016c    00000014                           : strlen.obj (.text)
+                  20010180    00000012     driverlib.a : timer.obj (.text:TimerIntClear)
+                  20010192    00000010     simplelink.a : driver.obj (.text:_SlDrvDispatchHttpServerEvents)
+                  200101a2    0000000e                  : driver.obj (.text:_SlDrvResetCmdExt)
+                  200101b0    0000000e     rtsv7M4_T_le_eabi.lib : copy_decompress_none.obj (.text:decompress:none)
+                  200101be    0000000e     startup_ccs.obj (.text)
+                  200101cc    0000000c     simplelink.a : cc_pal.obj (.text:NwpMaskInterrupt)
+                  200101d8    0000000c                  : cc_pal.obj (.text:NwpUnMaskInterrupt)
+                  200101e4    0000000c     rtsv7M4_T_le_eabi.lib : copy_zero_init.obj (.text:decompress:ZI)
+                  200101f0    0000000a     driverlib.a : interrupt.obj (.text:IntMasterEnable)
+                  200101fa    00000008     rtsv7M4_T_le_eabi.lib : s_copysign.obj (.text)
+                  20010202    00000006     driverlib.a : utils.obj (.text:UtilsDelay)
+                  20010208    00000004     rtsv7M4_T_le_eabi.lib : error.obj (.text)
+                  2001020c    00000004                           : pre_init.obj (.text)
 
-.const     0    2000ef54    00000b8c     
-                  2000ef54    000004fb     Adafruit_GFX.obj (.const:.string:font)
-                  2000f44f    00000101     rtsv7M4_T_le_eabi.lib : ctype.obj (.const:.string:_ctypes_)
-                  2000f550    00000100     driverlib.a : pin.obj (.const:g_ulPinToPadMap)
-                  2000f650    000000d4                 : interrupt.obj (.const:g_pulRegs)
-                  2000f724    000000a8                 : prcm.obj (.const:PRCM_PeriphRegsList)
-                  2000f7cc    00000080                 : interrupt.obj (.const)
-                  2000f84c    0000005e     main.obj (.const:.string)
-                  2000f8aa    0000003c     simplelink.a : driver.obj (.const:OpcodeTranslateTable)
-                  2000f8e6    0000003c                  : wlan.obj (.const)
-                  2000f922    00000002     --HOLE-- [fill = 0]
-                  2000f924    00000038                  : driver.obj (.const:_SlActionLookupTable)
-                  2000f95c    00000038                  : driver.obj (.const)
-                  2000f994    00000034                  : socket.obj (.const)
-                  2000f9c8    0000002c     main.obj (.const:$P$T2$3)
-                  2000f9f4    00000028     simplelink.a : netapp.obj (.const)
-                  2000fa1c    00000026     main.obj (.const:.string:$P$T0$1)
-                  2000fa42    00000002     --HOLE-- [fill = 0]
-                  2000fa44    00000024     driverlib.a : spi.obj (.const:g_ppulSPIIntMap)
-                  2000fa68    0000001c     simplelink.a : device.obj (.const)
-                  2000fa84    00000018     driverlib.a : spi.obj (.const)
-                  2000fa9c    00000014     main.obj (.const:$P$T3$4)
-                  2000fab0    00000010     simplelink.a : socket.obj (.const:.string)
-                  2000fac0    0000000c     main.obj (.const:$P$T4$5)
-                  2000facc    0000000b     main.obj (.const:.string:$P$T1$2)
-                  2000fad7    00000001     --HOLE-- [fill = 0]
-                  2000fad8    00000008     simplelink.a : netcfg.obj (.const)
+.const     0    20010210    00000b8c     
+                  20010210    000004fb     Adafruit_GFX.obj (.const:.string:font)
+                  2001070b    00000101     rtsv7M4_T_le_eabi.lib : ctype.obj (.const:.string:_ctypes_)
+                  2001080c    00000100     driverlib.a : pin.obj (.const:g_ulPinToPadMap)
+                  2001090c    000000d4                 : interrupt.obj (.const:g_pulRegs)
+                  200109e0    000000a8                 : prcm.obj (.const:PRCM_PeriphRegsList)
+                  20010a88    00000080                 : interrupt.obj (.const)
+                  20010b08    0000005e     main.obj (.const:.string)
+                  20010b66    0000003c     simplelink.a : driver.obj (.const:OpcodeTranslateTable)
+                  20010ba2    0000003c                  : wlan.obj (.const)
+                  20010bde    00000002     --HOLE-- [fill = 0]
+                  20010be0    00000038                  : driver.obj (.const:_SlActionLookupTable)
+                  20010c18    00000038                  : driver.obj (.const)
+                  20010c50    00000034                  : socket.obj (.const)
+                  20010c84    0000002c     main.obj (.const:$P$T2$3)
+                  20010cb0    00000028     simplelink.a : netapp.obj (.const)
+                  20010cd8    00000026     main.obj (.const:.string:$P$T0$1)
+                  20010cfe    00000002     --HOLE-- [fill = 0]
+                  20010d00    00000024     driverlib.a : spi.obj (.const:g_ppulSPIIntMap)
+                  20010d24    0000001c     simplelink.a : device.obj (.const)
+                  20010d40    00000018     driverlib.a : spi.obj (.const)
+                  20010d58    00000014     main.obj (.const:$P$T3$4)
+                  20010d6c    00000010     simplelink.a : socket.obj (.const:.string)
+                  20010d7c    0000000c     main.obj (.const:$P$T4$5)
+                  20010d88    0000000b     main.obj (.const:.string:$P$T1$2)
+                  20010d93    00000001     --HOLE-- [fill = 0]
+                  20010d94    00000008     simplelink.a : netcfg.obj (.const)
 
-.cinit     0    2000fae0    000000b8     
-                  2000fae0    00000094     (.cinit..data.load) [load image, compression = lzss]
-                  2000fb74    0000000c     (__TI_handler_table)
-                  2000fb80    00000008     (.cinit..bss.load) [load image, compression = zero_init]
-                  2000fb88    00000010     (__TI_cinit_table)
+.cinit     0    20010da0    00000108     
+                  20010da0    000000e4     (.cinit..data.load) [load image, compression = lzss]
+                  20010e84    0000000c     (__TI_handler_table)
+                  20010e90    00000008     (.cinit..bss.load) [load image, compression = zero_init]
+                  20010e98    00000010     (__TI_cinit_table)
 
 .sysmem    0    20017000    00008000     UNINITIALIZED
                   20017000    00000008     rtsv7M4_T_le_eabi.lib : memory.obj (.sysmem)
                   20017008    00007ff8     --HOLE--
 
-.bss       0    2001f000    000006b3     UNINITIALIZED
+.bss       0    2001f000    00000897     UNINITIALIZED
                   2001f000    00000400     (.common:sendArray)
                   2001f400    00000168     simplelink.a : driver.obj (.bss:g_StatMem)
-                  2001f568    0000008c     (.common:values)
-                  2001f5f4    00000050                  : cc_pal.obj (.bss:g_ucDinDout)
-                  2001f644    0000002c     (.common:g_time)
-                  2001f670    00000024     (.common:g_ucConnectionSSID)
-                  2001f694    00000008     main.obj (.bss)
-                  2001f69c    00000008     (.common:g_ucConnectionBSSID)
-                  2001f6a4    00000004     uart_if.obj (.bss)
-                  2001f6a8    00000004     (.common:pin8_intcount)
-                  2001f6ac    00000001     (.common:RxIrqCnt)
-                  2001f6ad    00000001     (.common:g_bDeviceRestartIsRequired)
-                  2001f6ae    00000001     (.common:g_cDummy)
-                  2001f6af    00000001     (.common:g_ucLED1Pin)
-                  2001f6b0    00000001     (.common:g_ucLED2Pin)
-                  2001f6b1    00000001     (.common:g_ucLED3Pin)
-                  2001f6b2    00000001     (.common:pin8_intflag)
+                  2001f568    00000120     rtsv7M4_T_le_eabi.lib : trgmsg.obj (.bss:_CIOBUF_)
+                  2001f688    000000a0     (.common:__TI_tmpnams)
+                  2001f728    0000008c     (.common:values)
+                  2001f7b4    00000050     simplelink.a : cc_pal.obj (.bss:g_ucDinDout)
+                  2001f804    0000002c     (.common:g_time)
+                  2001f830    00000024     (.common:g_ucConnectionSSID)
+                  2001f854    0000001c     rtsv7M4_T_le_eabi.lib : vla_alloc.obj (.bss:$O1$$)
+                  2001f870    00000008     main.obj (.bss)
+                  2001f878    00000008     rtsv7M4_T_le_eabi.lib : trgdrv.obj (.bss:parmbuf)
+                  2001f880    00000008     (.common:g_ucConnectionBSSID)
+                  2001f888    00000004     uart_if.obj (.bss)
+                  2001f88c    00000004     (.common:pin8_intcount)
+                  2001f890    00000001     (.common:RxIrqCnt)
+                  2001f891    00000001     (.common:g_bDeviceRestartIsRequired)
+                  2001f892    00000001     (.common:g_cDummy)
+                  2001f893    00000001     (.common:g_ucLED1Pin)
+                  2001f894    00000001     (.common:g_ucLED2Pin)
+                  2001f895    00000001     (.common:g_ucLED3Pin)
+                  2001f896    00000001     (.common:pin8_intflag)
 
-.data      0    2001f6b4    0000014c     UNINITIALIZED
-                  2001f6b4    00000048     main.obj (.data)
-                  2001f6fc    0000003c     simplelink.a : nonos.obj (.data:g__SlNonOsCB)
-                  2001f738    00000028     main.obj (.data:digits)
-                  2001f760    0000001c     main.obj (.data:colors)
-                  2001f77c    00000015     Adafruit_GFX.obj (.data)
-                  2001f791    00000003     --HOLE--
-                  2001f794    00000014     gpio_if.obj (.data:ulReg)
-                  2001f7a8    0000000d     simplelink.a : driver.obj (.data)
-                  2001f7b5    00000003     --HOLE--
-                  2001f7b8    0000000c     rtsv7M4_T_le_eabi.lib : exit.obj (.data:$O1$$)
-                  2001f7c4    0000000c                           : memory.obj (.data:$O1$$)
-                  2001f7d0    0000000c     gpio_if.obj (.data)
-                  2001f7dc    00000009     simplelink.a : cc_pal.obj (.data)
-                  2001f7e5    00000003     --HOLE--
-                  2001f7e8    00000008     rtsv7M4_T_le_eabi.lib : _lock.obj (.data:$O1$$)
-                  2001f7f0    00000008     main.obj (.data:ir_input)
-                  2001f7f8    00000004     rtsv7M4_T_le_eabi.lib : errno.obj (.data)
-                  2001f7fc    00000004                           : stkdepth_vars.obj (.data)
+.data      0    2001f898    00000320     UNINITIALIZED
+                  2001f898    000000f0     rtsv7M4_T_le_eabi.lib : defs.obj (.data:_ftable)
+                  2001f988    000000d0                           : lowlev.obj (.data:$O1$$)
+                  2001fa58    00000048     main.obj (.data)
+                  2001faa0    0000003c     simplelink.a : nonos.obj (.data:g__SlNonOsCB)
+                  2001fadc    00000028     main.obj (.data:digits)
+                  2001fb04    0000001c     main.obj (.data:colors)
+                  2001fb20    00000015     Adafruit_GFX.obj (.data)
+                  2001fb35    00000003     --HOLE--
+                  2001fb38    00000014     gpio_if.obj (.data:ulReg)
+                  2001fb4c    00000010     rtsv7M4_T_le_eabi.lib : defs.obj (.data)
+                  2001fb5c    0000000d     simplelink.a : driver.obj (.data)
+                  2001fb69    00000003     --HOLE--
+                  2001fb6c    0000000c     rtsv7M4_T_le_eabi.lib : exit.obj (.data:$O1$$)
+                  2001fb78    0000000c                           : memory.obj (.data:$O1$$)
+                  2001fb84    0000000c     gpio_if.obj (.data)
+                  2001fb90    00000009     simplelink.a : cc_pal.obj (.data)
+                  2001fb99    00000003     --HOLE--
+                  2001fb9c    00000008     rtsv7M4_T_le_eabi.lib : _lock.obj (.data:$O1$$)
+                  2001fba4    00000008     main.obj (.data:ir_input)
+                  2001fbac    00000004     rtsv7M4_T_le_eabi.lib : errno.obj (.data)
+                  2001fbb0    00000004                           : fopen.obj (.data)
+                  2001fbb4    00000004                           : stkdepth_vars.obj (.data)
 
 .stack     0    2002f000    00001000     UNINITIALIZED
                   2002f000    00001000     --HOLE--
@@ -368,7 +393,7 @@ MODULE SUMMARY
        Module                     code    ro data   rw data
        ------                     ----    -------   -------
     .\
-       main.obj                   8900    219       1413   
+       main.obj                   9140    219       1413   
        Adafruit_GFX.obj           2688    1275      21     
        Adafruit_OLED.obj          1186    0         0      
        startup_ccs.obj            14      1024      0      
@@ -378,7 +403,7 @@ MODULE SUMMARY
        pinmux.obj                 172     0         0      
        network_common.obj         38      0         0      
     +--+--------------------------+-------+---------+---------+
-       Total:                     14808   2518      1473   
+       Total:                     15048   2518      1473   
                                                            
     C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a
        prcm.obj                   852     168       0      
@@ -399,30 +424,45 @@ MODULE SUMMARY
        cc_pal.obj                 1684    0         90     
        socket.obj                 1662    68        0      
        netapp.obj                 1492    40        0      
-       wlan.obj                   1128    60        0      
+       wlan.obj                   1268    60        0      
        device.obj                 1142    28        0      
        nonos.obj                  360     0         60     
        netcfg.obj                 124     8         0      
     +--+--------------------------+-------+---------+---------+
-       Total:                     15192   376       525    
+       Total:                     15332   376       525    
                                                            
     C:\ti\ccsv7\tools\compiler\ti-cgt-arm_16.9.0.LTS\lib\rtsv7M4_T_le_eabi.lib
        _printfi.obj               4382    0         0      
+       lowlev.obj                 780     0         208    
        memory.obj                 976     0         12     
+       trgdrv.obj                 804     0         8      
+       vla_alloc.obj              664     0         28     
        ull_div_t2.obj             500     0         0      
+       fopen.obj                  452     0         4      
        fd_add_t2.obj              438     0         0      
+       defs.obj                   0       0         416    
+       trgmsg.obj                 104     0         288    
        fd_div_t2.obj              310     0         0      
+       fputs.obj                  308     0         0      
        fd_cmp_t2.obj              268     0         0      
        ctype.obj                  0       257       0      
        fd_mul_t2.obj              252     0         0      
+       setvbuf.obj                220     0         0      
        s_scalbn.obj               208     0         0      
+       fflush.obj                 200     0         0      
        fs_cmp_t2.obj              192     0         0      
+       _io_perm.obj               172     0         0      
        memcpy_t2.obj              156     0         0      
+       fclose.obj                 152     0         0      
+       fputc.obj                  152     0         0      
        fs_div_t2.obj              146     0         0      
        vsnprintf.obj              136     0         0      
        memset_t2.obj              122     0         0      
        autoinit.obj               112     0         0      
+       printf.obj                 112     0         0      
+       fprintf.obj                108     0         0      
        copy_decompress_lzss.obj   104     0         0      
+       fseek.obj                  100     0         0      
        exit.obj                   84      0         12     
        sprintf.obj                96      0         0      
        s_frexp.obj                92      0         0      
@@ -431,9 +471,11 @@ MODULE SUMMARY
        cpy_tbl.obj                76      0         0      
        fd_toi_t2.obj              72      0         0      
        boot.obj                   64      0         0      
+       strncpy.obj                54      0         0      
        i_tofd_t2.obj              46      0         0      
        memmov.obj                 36      0         0      
        u_tofs_t2.obj              36      0         0      
+       memchr.obj                 32      0         0      
        strcat.obj                 30      0         0      
        _lock.obj                  20      0         8      
        memccpy.obj                28      0         0      
@@ -446,30 +488,31 @@ MODULE SUMMARY
        copy_zero_init.obj         12      0         0      
        s_copysign.obj             8       0         0      
        errno.obj                  0       0         4      
+       error.obj                  4       0         0      
        pre_init.obj               4       0         0      
        stkdepth_vars.obj          0       0         4      
        mpu_init.obj               2       0         0      
        startup.obj                2       0         0      
     +--+--------------------------+-------+---------+---------+
-       Total:                     9296    257       40     
+       Total:                     13714   257       992    
                                                            
        Heap:                      0       0         32768  
        Stack:                     0       0         4096   
-       Linker Generated:          0       184       0      
+       Linker Generated:          0       264       0      
     +--+--------------------------+-------+---------+---------+
-       Grand Total:               43830   4159      38902  
+       Grand Total:               48628   4239      39854  
 
 
 LINKER GENERATED COPY TABLES
 
-__TI_cinit_table @ 2000fb88 records: 2, size/record: 8, table size: 16
-	.data: load addr=2000fae0, load size=00000094 bytes, run addr=2001f6b4, run size=0000014c bytes, compression=lzss
-	.bss: load addr=2000fb80, load size=00000008 bytes, run addr=2001f000, run size=000006b3 bytes, compression=zero_init
+__TI_cinit_table @ 20010e98 records: 2, size/record: 8, table size: 16
+	.data: load addr=20010da0, load size=000000e4 bytes, run addr=2001f898, run size=00000320 bytes, compression=lzss
+	.bss: load addr=20010e90, load size=00000008 bytes, run addr=2001f000, run size=00000897 bytes, compression=zero_init
 
 
 LINKER GENERATED HANDLER TABLE
 
-__TI_handler_table @ 2000fb74 records: 3, size/record: 4, table size: 12
+__TI_handler_table @ 20010e84 records: 3, size/record: 4, table size: 12
 	index: 0, handler: __TI_decompress_lzss
 	index: 1, handler: __TI_decompress_none
 	index: 2, handler: __TI_zero_init
@@ -479,364 +522,419 @@ GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name
 
 address   name                                  
 -------   ----                                  
-2000887d  Adafruit_Init                         
-2000dc71  C$$EXIT                               
-2000ee51  CPUcpsie                              
-20009441  ClearTerm                             
-200089f3  Color565                              
-2000e86d  DmaSpiSwIntHandler                    
-2000944b  Error                                 
-2000e59d  GPIODirModeSet                        
-200061c5  GPIOInit                              
-2000ee65  GPIOIntClear                          
-2000ebed  GPIOIntDisable                        
-2000ec07  GPIOIntEnable                         
-2000ea8d  GPIOIntRegister                       
-2000e945  GPIOIntStatus                         
-2000ccb9  GPIOIntTypeSet                        
-2000ecd7  GPIOPinRead                           
-2000e9ab  GPIOPinWrite                          
-20009329  GPIO_IF_ConfigureNIntEnable           
-200093b5  GPIO_IF_Get                           
-200092e3  GPIO_IF_GetPortNPin                   
-200090a5  GPIO_IF_LedConfigure                  
-20009197  GPIO_IF_LedOff                        
-200090e3  GPIO_IF_LedOn                         
-2000924b  GPIO_IF_LedStatus                     
-200092b5  GPIO_IF_LedToggle                     
-20009371  GPIO_IF_Set                           
-20009483  GetCmd                                
-20005d17  HandleCode                            
-20009401  InitTerm                              
-2000c251  IntDisable                            
-2000c2f9  IntEnable                             
-2000ef39  IntMasterEnable                       
-2000da6d  IntPendClear                          
-2000db75  IntPrioritySet                        
-2000e9cd  IntRegister                           
-2000e891  IntUnregister                         
-2000ee79  IntVTableBaseSet                      
-2000941f  Message                               
-2000ef15  NwpMaskInterrupt                      
-2000e565  NwpPowerOff                           
-2000e9ed  NwpPowerOn                            
-2000e435  NwpRegisterInterruptHandler           
-2000ef21  NwpUnMaskInterrupt                    
-2000f8aa  OpcodeTranslateTable                  
-2000818f  Outstr                                
-2000a71d  PRCMCC3200MCUInit                     
-2000edf9  PRCMHIBRegRead                        
-2000ee0f  PRCMHIBRegWrite                       
-2000e7a5  PRCMPeripheralClkDisable              
-2000e4b1  PRCMPeripheralClkEnable               
-2000c6b5  PRCMPeripheralClockGet                
-2000dac5  PRCMPeripheralReset                   
-2000e5d5  PRCMPeripheralStatusGet               
-2000e6cd  PRCMSysResetCauseGet                  
-2000ca15  PinConfigSet                          
-2000e2f5  PinModeSet                            
-2000c1a5  PinMuxConfig                          
-2000e63d  PinTypeGPIO                           
-2000ec21  PinTypeSPI                            
-2000ec3b  PinTypeUART                           
-20005b2f  PrintChar                             
-200095c1  Report                                
-2000ef07  ResetISR                              
-2001f6ac  RxIrqCnt                              
+2000896d  Adafruit_Init                         
+2000eed5  C$$EXIT                               
+2000e927  C$$IO$$                               
+20010109  CPUcpsie                              
+20009df9  ClearTerm                             
+20008ae3  Color565                              
+2000fb05  DmaSpiSwIntHandler                    
+20009e03  Error                                 
+2000f801  GPIODirModeSet                        
+20006331  GPIOInit                              
+2001011d  GPIOIntClear                          
+2000fea5  GPIOIntDisable                        
+2000febf  GPIOIntEnable                         
+2000fd45  GPIOIntRegister                       
+2000fbdd  GPIOIntStatus                         
+2000dd75  GPIOIntTypeSet                        
+2000ff8f  GPIOPinRead                           
+2000fc43  GPIOPinWrite                          
+20009419  GPIO_IF_ConfigureNIntEnable           
+200094a5  GPIO_IF_Get                           
+200093d3  GPIO_IF_GetPortNPin                   
+20009195  GPIO_IF_LedConfigure                  
+20009287  GPIO_IF_LedOff                        
+200091d3  GPIO_IF_LedOn                         
+2000933b  GPIO_IF_LedStatus                     
+200093a5  GPIO_IF_LedToggle                     
+20009461  GPIO_IF_Set                           
+20009e3b  GetCmd                                
+200059e9  GetWifiNetworks                       
+200097cb  HOSTclock                             
+20009793  HOSTclose                             
+20009755  HOSTgetenv                            
+200096f9  HOSTlseek                             
+200096a7  HOSTopen                              
+2000965b  HOSTread                              
+200095fd  HOSTrename                            
+200095c3  HOSTtime                              
+20009575  HOSTtime64                            
+2000953d  HOSTunlink                            
+200094f1  HOSTwrite                             
+20005e79  HandleCode                            
+20009db9  InitTerm                              
+2000d151  IntDisable                            
+2000d1f9  IntEnable                             
+200101f1  IntMasterEnable                       
+2000ecd1  IntPendClear                          
+2000edd9  IntPrioritySet                        
+2000fc65  IntRegister                           
+2000fb29  IntUnregister                         
+20010131  IntVTableBaseSet                      
+20009dd7  Message                               
+200101cd  NwpMaskInterrupt                      
+2000f7c9  NwpPowerOff                           
+2000fc85  NwpPowerOn                            
+2000f699  NwpRegisterInterruptHandler           
+200101d9  NwpUnMaskInterrupt                    
+20010b66  OpcodeTranslateTable                  
+2000827f  Outstr                                
+2000b299  PRCMCC3200MCUInit                     
+200100b1  PRCMHIBRegRead                        
+200100c7  PRCMHIBRegWrite                       
+2000fa3d  PRCMPeripheralClkDisable              
+2000f715  PRCMPeripheralClkEnable               
+2000d6e5  PRCMPeripheralClockGet                
+2000ed29  PRCMPeripheralReset                   
+2000f86d  PRCMPeripheralStatusGet               
+2000f965  PRCMSysResetCauseGet                  
+2000dad1  PinConfigSet                          
+2000f559  PinModeSet                            
+2000cff9  PinMuxConfig                          
+2000f8d5  PinTypeGPIO                           
+2000fed9  PinTypeSPI                            
+2000fef3  PinTypeUART                           
+20005c61  PrintChar                             
+20009f79  Report                                
+200101bf  ResetISR                              
+2001f890  RxIrqCnt                              
 UNDEFED   SHT$$INIT_ARRAY$$Base                 
 UNDEFED   SHT$$INIT_ARRAY$$Limit                
-2000ecef  SPICSDisable                          
-2000ed07  SPICSEnable                           
-2000c445  SPIConfigSetExpClk                    
-2000ea0d  SPIDataGet                            
-2000eaab  SPIDataPut                            
-2000ed1f  SPIDisable                            
-2000ec55  SPIDmaDisable                         
-2000ec6f  SPIDmaEnable                          
-2000ed37  SPIEnable                             
-2000ec89  SPIFIFODisable                        
-2000eca3  SPIFIFOEnable                         
-2000e609  SPIFIFOLevelSet                       
-200062cd  SPIInit                               
-2000df71  SPIIntClear                           
-2000dd15  SPIIntEnable                          
-2000ecbd  SPIIntUnregister                      
-2000e967  SPIReset                              
-2000e989  SPIWordCountSet                       
+2000ffa7  SPICSDisable                          
+2000ffbf  SPICSEnable                           
+2000d345  SPIConfigSetExpClk                    
+2000fca5  SPIDataGet                            
+2000fd63  SPIDataPut                            
+2000ffd7  SPIDisable                            
+2000ff0d  SPIDmaDisable                         
+2000ff27  SPIDmaEnable                          
+2000ffef  SPIEnable                             
+2000ff41  SPIFIFODisable                        
+2000ff5b  SPIFIFOEnable                         
+2000f8a1  SPIFIFOLevelSet                       
+20006439  SPIInit                               
+2000f1d5  SPIIntClear                           
+2000ef79  SPIIntEnable                          
+2000ff75  SPIIntUnregister                      
+2000fbff  SPIReset                              
+2000fc21  SPIWordCountSet                       
 20004d49  SimpleLinkGeneralEventHandler         
 20004d29  SimpleLinkHttpServerCallback          
 20004c85  SimpleLinkNetAppEventHandler          
 20004d69  SimpleLinkSockEventHandler            
 20004b6f  SimpleLinkWlanEventHandler            
-2001f6b8  TLS_SOCKET_ID                         
-20006079  TimerA0IntHandler                     
-200061af  TimerA1IntHandler                     
-2000e0d5  TimerConfigure                        
-2000eac9  TimerDisable                          
-2000eae7  TimerEnable                           
-2000621d  TimerInit                             
-2000eec9  TimerIntClear                         
-2000ed4f  TimerIntDisable                       
-2000ed67  TimerIntEnable                        
-2000d3fd  TimerIntRegister                      
-2000eb05  TimerIntStatus                        
-2000d691  TimerIntUnregister                    
-2000e751  TimerLoadSet                          
-2000e77b  TimerPrescaleSet                      
-2000eb7d  TimerValueGet                         
-2000b685  Timer_IF_DeInit                       
-2000b6b3  Timer_IF_GetCount                     
-2000b5d1  Timer_IF_Init                         
-2000b603  Timer_IF_IntSetup                     
-2000b641  Timer_IF_InterruptClear               
-2000b69f  Timer_IF_ReLoad                       
-2000b659  Timer_IF_Start                        
-2000b675  Timer_IF_Stop                         
-20009529  TrimSpace                             
-2000eb99  UARTCharGetNonBlocking                
-2000eb23  UARTCharPut                           
-2000ed7f  UARTCharsAvail                        
-2000d311  UARTConfigSetExpClk                   
-2000e66d  UARTDisable                           
-2000e8b5  UARTEnable                            
-2000ef4b  UtilsDelay                            
-2000f924  _SlActionLookupTable                  
-2000c3a1  _SlDriverHandleError                  
-2000dfb9  _SlDrvBasicCmd                        
-2000c031  _SlDrvCmdOp                           
-2000d54d  _SlDrvCmdSend                         
-20009cd1  _SlDrvDataReadOp                      
-2000ab71  _SlDrvDataWriteOp                     
-2000c581  _SlDrvDeviceEventHandler              
-2000eedb  _SlDrvDispatchHttpServerEvents        
-2000b195  _SlDrvDriverCBDeinit                  
-2000a23d  _SlDrvDriverCBInit                    
-2000e7cd  _SlDrvGlobalObjUnLock                 
-2000e119  _SlDrvHandleHttpServerEvents          
-2000e335  _SlDrvHandleNetAppEvents              
-2000e375  _SlDrvHandleWlanEvents                
-2000ee25  _SlDrvMemZero                         
-2000bc35  _SlDrvMsgReadSpawnCtx                 
-2000b3d1  _SlDrvNetAppEventHandler              
-2000e8d9  _SlDrvObjLockWaitForever              
-2000ea2d  _SlDrvObjUnLock                       
-2000ddad  _SlDrvProtectAsyncRespSetting         
-2000e725  _SlDrvProtectionObjLockWaitForever    
-2000e7f5  _SlDrvProtectionObjUnLock             
-20009eb5  _SlDrvReleasePoolObj                  
-2000eeeb  _SlDrvResetCmdExt                     
-2000dbc9  _SlDrvRxIrqHandler                    
-2000ea4d  _SlDrvSyncObjSignal                   
-2000e81d  _SlDrvSyncObjWaitForever              
-2000e15d  _SlDrvSyncObjWaitTimeout              
-2000a58d  _SlDrvWaitForPoolObj                  
-2000fa10  _SlNetAppSendTokenValueCmdCtrl        
-2000d389  _SlNonOsMainLoopTask                  
-2000d1a9  _SlNonOsSemGet                        
-2000ed97  _SlNonOsSemSet                        
-2000d761  _SlNonOsSpawn                         
+2001fa5c  TLS_SOCKET_ID                         
+200061e5  TimerA0IntHandler                     
+2000631b  TimerA1IntHandler                     
+2000f339  TimerConfigure                        
+2000fd81  TimerDisable                          
+2000fd9f  TimerEnable                           
+20006389  TimerInit                             
+20010181  TimerIntClear                         
+20010007  TimerIntDisable                       
+2001001f  TimerIntEnable                        
+2000e4b9  TimerIntRegister                      
+2000fdbd  TimerIntStatus                        
+2000e829  TimerIntUnregister                    
+2000f9e9  TimerLoadSet                          
+2000fa13  TimerPrescaleSet                      
+2000fe35  TimerValueGet                         
+2000c335  Timer_IF_DeInit                       
+2000c363  Timer_IF_GetCount                     
+2000c281  Timer_IF_Init                         
+2000c2b3  Timer_IF_IntSetup                     
+2000c2f1  Timer_IF_InterruptClear               
+2000c34f  Timer_IF_ReLoad                       
+2000c309  Timer_IF_Start                        
+2000c325  Timer_IF_Stop                         
+20009ee1  TrimSpace                             
+2000fe51  UARTCharGetNonBlocking                
+2000fddb  UARTCharPut                           
+20010037  UARTCharsAvail                        
+2000e3cd  UARTConfigSetExpClk                   
+2000f905  UARTDisable                           
+2000fb4d  UARTEnable                            
+20010203  UtilsDelay                            
+20010be0  _SlActionLookupTable                  
+2000d2a1  _SlDriverHandleError                  
+2000f21d  _SlDrvBasicCmd                        
+2000ce85  _SlDrvCmdOp                           
+2000e679  _SlDrvCmdSend                         
+2000a689  _SlDrvDataReadOp                      
+2000b6ed  _SlDrvDataWriteOp                     
+2000d481  _SlDrvDeviceEventHandler              
+20010193  _SlDrvDispatchHttpServerEvents        
+2000be45  _SlDrvDriverCBDeinit                  
+2000adb9  _SlDrvDriverCBInit                    
+2000fa65  _SlDrvGlobalObjUnLock                 
+2000f37d  _SlDrvHandleHttpServerEvents          
+2000f599  _SlDrvHandleNetAppEvents              
+2000f5d9  _SlDrvHandleWlanEvents                
+200100dd  _SlDrvMemZero                         
+2000c9c1  _SlDrvMsgReadSpawnCtx                 
+2000c081  _SlDrvNetAppEventHandler              
+2000fb71  _SlDrvObjLockWaitForever              
+2000fcc5  _SlDrvObjUnLock                       
+2000f011  _SlDrvProtectAsyncRespSetting         
+2000f9bd  _SlDrvProtectionObjLockWaitForever    
+2000fa8d  _SlDrvProtectionObjUnLock             
+2000a86d  _SlDrvReleasePoolObj                  
+200101a3  _SlDrvResetCmdExt                     
+2000ee2d  _SlDrvRxIrqHandler                    
+2000fce5  _SlDrvSyncObjSignal                   
+2000fab5  _SlDrvSyncObjWaitForever              
+2000f3c1  _SlDrvSyncObjWaitTimeout              
+2000b109  _SlDrvWaitForPoolObj                  
+20010ccc  _SlNetAppSendTokenValueCmdCtrl        
+2000e445  _SlNonOsMainLoopTask                  
+2000e265  _SlNonOsSemGet                        
+2001004f  _SlNonOsSemSet                        
+2000e961  _SlNonOsSpawn                         
+2001f568  __CIOBUF_                             
 20030000  __STACK_END                           
 00001000  __STACK_SIZE                          
 00008000  __SYSMEM_SIZE                         
-2000fb88  __TI_CINIT_Base                       
-2000fb98  __TI_CINIT_Limit                      
-2000fb74  __TI_Handler_Table_Base               
-2000fb80  __TI_Handler_Table_Limit              
-2000d46d  __TI_auto_init                        
-2001f7b8  __TI_cleanup_ptr                      
-2000d6f9  __TI_decompress_lzss                  
-2000eef9  __TI_decompress_none                  
-2001f7bc  __TI_dtors_ptr                        
-2001f7c0  __TI_enable_exit_profile_output       
+20010e98  __TI_CINIT_Base                       
+20010ea8  __TI_CINIT_Limit                      
+20010e84  __TI_Handler_Table_Base               
+20010e90  __TI_Handler_Table_Limit              
+2000e529  __TI_auto_init                        
+2000ab05  __TI_cleanup                          
+2001fb6c  __TI_cleanup_ptr                      
+2000d51d  __TI_closefile                        
+2000e891  __TI_decompress_lzss                  
+200101b1  __TI_decompress_none                  
+2000cc31  __TI_doflush                          
+2001fb70  __TI_dtors_ptr                        
+2001fb74  __TI_enable_exit_profile_output       
+2001fb4c  __TI_ft_end                           
 ffffffff  __TI_pprof_out_hndl                   
-20006ef9  __TI_printfi                          
+20006fe9  __TI_printfi                          
 ffffffff  __TI_prof_data_size                   
 ffffffff  __TI_prof_data_start                  
-2000fae0  __TI_static_base__                    
-2000ef2d  __TI_zero_init                        
-2000cbad  __aeabi_cdcmpeq                       
-2000cbad  __aeabi_cdcmple                       
-2000cc33  __aeabi_cdrcmple                      
-2000d8f1  __aeabi_cfcmpeq                       
-2000d8f1  __aeabi_cfcmple                       
-2000d951  __aeabi_cfrcmple                      
-2000e001  __aeabi_d2iz                          
-2000a08f  __aeabi_dadd                          
-2000ae09  __aeabi_ddiv                          
-2000b4d5  __aeabi_dmul                          
-2000a085  __aeabi_dsub                          
-2000c749  __aeabi_fdiv                          
-2000e69d  __aeabi_i2d                           
-2000d12d  __aeabi_memclr                        
-2000d12d  __aeabi_memclr4                       
-2000d12d  __aeabi_memclr8                       
-2000c4e5  __aeabi_memcpy                        
-2000c4e5  __aeabi_memcpy4                       
-2000c4e5  __aeabi_memcpy8                       
-2000d12f  __aeabi_memset                        
-2000d12f  __aeabi_memset4                       
-2000d12f  __aeabi_memset8                       
-2000e921  __aeabi_ui2f                          
-20009add  __aeabi_uldivmod                      
+2000d107  __TI_rd_ok                            
+2000e92b  __TI_readmsg                          
+20010da0  __TI_static_base__                    
+2001f688  __TI_tmpnams                          
+2000e8f9  __TI_writemsg                         
+2000d0a5  __TI_wrt_ok                           
+200101e5  __TI_zero_init                        
+20010209  __abort_execution                     
+2000dc69  __aeabi_cdcmpeq                       
+2000dc69  __aeabi_cdcmple                       
+2000dcef  __aeabi_cdrcmple                      
+2000eb55  __aeabi_cfcmpeq                       
+2000eb55  __aeabi_cfcmple                       
+2000ebb5  __aeabi_cfrcmple                      
+2000f265  __aeabi_d2iz                          
+2000ac0b  __aeabi_dadd                          
+2000b985  __aeabi_ddiv                          
+2000c185  __aeabi_dmul                          
+2000ac01  __aeabi_dsub                          
+2000d779  __aeabi_fdiv                          
+2000f935  __aeabi_i2d                           
+2000e1e9  __aeabi_memclr                        
+2000e1e9  __aeabi_memclr4                       
+2000e1e9  __aeabi_memclr8                       
+2000d3e5  __aeabi_memcpy                        
+2000d3e5  __aeabi_memcpy4                       
+2000d3e5  __aeabi_memcpy8                       
+2000e1eb  __aeabi_memset                        
+2000e1eb  __aeabi_memset4                       
+2000e1eb  __aeabi_memset8                       
+2001fb58  __aeabi_stderr                        
+2001fb50  __aeabi_stdin                         
+2001fb54  __aeabi_stdout                        
+2000fbb9  __aeabi_ui2f                          
+2000a495  __aeabi_uldivmod                      
 ffffffff  __binit__                             
 ffffffff  __c_args__                            
-20008c97  __mpu_init                            
+20008d87  __mpu_init                            
 2002f000  __stack                               
-2000edc9  _args_main                            
-2000e3f5  _c_int00                              
-2000f44f  _ctypes_                              
-2001f7e8  _lock                                 
-2000ee9b  _nop                                  
-2000ee93  _register_lock                        
-2000ee8d  _register_unlock                      
-2000d7c5  _sl_HandleAsync_Accept                
-2000cd3d  _sl_HandleAsync_Connect               
-2000c7dd  _sl_HandleAsync_DnsGetHostByName      
-2000bdd9  _sl_HandleAsync_DnsGetHostByService   
-2000cdbd  _sl_HandleAsync_InitComplete          
-2000c86d  _sl_HandleAsync_PingResponse          
-2000dc1d  _sl_HandleAsync_Select                
-2000dcc5  _sl_HandleAsync_Stop                  
-2000d5b9  _sl_NetAppSendTokenValue              
+20009c29  __vla_alloc                           
+20009b21  __vla_dealloc                         
+20009ba9  __vla_dealloc_eh                      
+20010081  _args_main                            
+2000f659  _c_int00                              
+2001070b  _ctypes_                              
+2001f898  _ftable                               
+2001fb9c  _lock                                 
+20010153  _nop                                  
+2001014b  _register_lock                        
+20010145  _register_unlock                      
+2000e9c5  _sl_HandleAsync_Accept                
+2000ddf9  _sl_HandleAsync_Connect               
+2000d80d  _sl_HandleAsync_DnsGetHostByName      
+2000cb65  _sl_HandleAsync_DnsGetHostByService   
+2000de79  _sl_HandleAsync_InitComplete          
+2000d89d  _sl_HandleAsync_PingResponse          
+2000ee81  _sl_HandleAsync_Select                
+2000ef29  _sl_HandleAsync_Stop                  
+2000e6e5  _sl_NetAppSendTokenValue              
 20017000  _sys_memory                           
-2000a23b  _system_post_cinit                    
-2000ef51  _system_pre_init                      
-2001f7ec  _unlock                               
-2000dc75  abort                                 
-2000de45  atoi                                  
+2000adb7  _system_post_cinit                    
+2001020d  _system_pre_init                      
+2001fba0  _unlock                               
+2000eed9  abort                                 
+20009a75  add_device                            
+2000f0a9  atoi                                  
 ffffffff  binit                                 
-2001f6e0  c_letter                              
-20009039  calloc                                
-2001f760  colors                                
-2000de91  copy_in                               
-2000ef43  copysign                              
-2000ef43  copysignl                             
-2001f6d0  curr                                  
-2001f6f0  curr_color                            
-2001f6d8  curr_index                            
-2001f77c  cursor_x                              
-2001f780  cursor_y                              
-2001f6e8  cx                                    
-2001f6ec  cy                                    
+2001fa84  c_letter                              
+20009129  calloc                                
+20009a25  close                                 
+2001fb04  colors                                
+2000f0f5  copy_in                               
+200101fb  copysign                              
+200101fb  copysignl                             
+2001fa74  curr                                  
+2001fa94  curr_color                            
+2001fa7c  curr_index                            
+2001fb20  cursor_x                              
+2001fb24  cursor_y                              
+2001fa8c  cx                                    
+2001fa90  cy                                    
 20004401  delay                                 
-2001f738  digits                                
-20008043  drawChar                              
-200077e5  drawCircle                            
-20007919  drawCircleHelper                      
-20008ba1  drawFastHLine                         
-20008b01  drawFastVLine                         
-20007b5f  drawLine                              
-20008c3d  drawPixel                             
-20007c4b  drawRect                              
-20007c99  drawRoundRect                         
-20007e01  drawTriangle                          
-2001f7f8  errno                                 
-2000dc7d  exit                                  
-20007a37  fillCircle                            
-20007a71  fillCircleHelper                      
-20008a4b  fillRect                              
-20007d87  fillRoundRect                         
-20008a35  fillScreen                            
-20007e43  fillTriangle                          
-20008d83  free                                  
-2000da11  frexp                                 
-2000da11  frexpl                                
-2001f6c8  g_Host                                
-2001f7dc  g_SpiFd                               
-2001f6fc  g__SlNonOsCB                          
-2001f6ad  g_bDeviceRestartIsRequired            
-2001f6ae  g_cDummy                              
-2001f7ac  g_pCB                                 
-2001f7e0  g_pHostIntHdl                         
+2001fadc  digits                                
+20008133  drawChar                              
+200078d5  drawCircle                            
+20007a09  drawCircleHelper                      
+20008c91  drawFastHLine                         
+20008bf1  drawFastVLine                         
+20007c4f  drawLine                              
+20008d2d  drawPixel                             
+20007d3b  drawRect                              
+20007d89  drawRoundRect                         
+20007ef1  drawTriangle                          
+2001fbac  errno                                 
+2000eee1  exit                                  
+2000d583  fclose                                
+2000cc7d  fflush                                
+20007b27  fillCircle                            
+20007b61  fillCircleHelper                      
+20008b3b  fillRect                              
+20007e77  fillRoundRect                         
+20008b25  fillScreen                            
+20007f33  fillTriangle                          
+2000ab5b  fopen                                 
+2000e759  fprintf                               
+2000d5b5  fputc                                 
+2000babd  fputs                                 
+20008e73  free                                  
+2000ab31  freopen                               
+2000ec75  frexp                                 
+2000ec75  frexpl                                
+2000ea29  fseek                                 
+2001fa6c  g_Host                                
+2001fb90  g_SpiFd                               
+2001faa0  g__SlNonOsCB                          
+2001f891  g_bDeviceRestartIsRequired            
+2001f892  g_cDummy                              
+2001fb60  g_pCB                                 
+2001fb94  g_pHostIntHdl                         
 20004000  g_pfnVectors                          
-2001f644  g_time                                
-2001f69c  g_ucConnectionBSSID                   
-2001f670  g_ucConnectionSSID                    
-2001f7e4  g_ucDMAEnabled                        
-2001f5f4  g_ucDinDout                           
-2001f6af  g_ucLED1Pin                           
-2001f6b0  g_ucLED2Pin                           
-2001f6b1  g_ucLED3Pin                           
-2001f7d0  g_uiLED1Port                          
-2001f7d4  g_uiLED2Port                          
-2001f7d8  g_uiLED3Port                          
-2001f6c4  g_ulGatewayIP                         
-2001f6c0  g_ulPingPacketsRecv                   
-2001f6bc  g_ulStatus                            
+2001f804  g_time                                
+2001f880  g_ucConnectionBSSID                   
+2001f830  g_ucConnectionSSID                    
+2001fb98  g_ucDMAEnabled                        
+2001f7b4  g_ucDinDout                           
+2001f893  g_ucLED1Pin                           
+2001f894  g_ucLED2Pin                           
+2001f895  g_ucLED3Pin                           
+2001fb84  g_uiLED1Port                          
+2001fb88  g_uiLED2Port                          
+2001fb8c  g_uiLED3Port                          
+2001fa68  g_ulGatewayIP                         
+2001fa64  g_ulPingPacketsRecv                   
+2001fa60  g_ulStatus                            
 20004b13  generateBody                          
-200089af  goTo                                  
-20008243  height                                
-20008c7b  invert                                
-20005733  keyToBinary                           
-2001f6e4  key_time                              
+20008a9f  goTo                                  
+20008333  height                                
+20008d6b  invert                                
+20005b19  keyToBinary                           
+2001fa88  key_time                              
 20004973  lcdTestPattern                        
 20004a43  lcdTestPattern2                       
-2000bd09  ldexp                                 
-2000bd09  ldexpl                                
-2000db1d  ltoa                                  
-20006345  main                                  
-2001f7fc  main_func_sp                          
-20008d19  malloc                                
-20008f4d  memalign                              
-2000ebb5  memccpy                               
-2000c4e5  memcpy                                
-2000e8fd  memmove                               
-2000d135  memset                                
-20008c99  minit                                 
-2001f6f4  nLetters                              
-2001f6b4  p                                     
-2001f7b0  pPingCallBackFunc                     
-2001f6a8  pin8_intcount                         
-2001f6b2  pin8_intflag                          
-2001f6cc  prev                                  
-20005a55  printBinary                           
+2000ca95  ldexp                                 
+2000ca95  ldexpl                                
+20009a01  lseek                                 
+2000ed81  ltoa                                  
+20006499  main                                  
+2001fbb4  main_func_sp                          
+20008e09  malloc                                
+2000903d  memalign                              
+2000fe6d  memccpy                               
+2000fd05  memchr                                
+2000d3e5  memcpy                                
+2000fb95  memmove                               
+2000e1f1  memset                                
+20008d89  minit                                 
+2001fa98  nLetters                              
+20009953  open                                  
+2001fa58  p                                     
+2001fb64  pPingCallBackFunc                     
+2001f88c  pin8_intcount                         
+2001f896  pin8_intflag                          
+2001fa70  prev                                  
+20005b7d  printBinary                           
 2000538d  printErrConvenience                   
-20008e45  realloc                               
-2000bd09  scalbn                                
-2000bd09  scalbnl                               
+2000e5a1  printf                                
+2000d5b5  putc                                  
+2000d639  putchar                               
+2000bbc9  puts                                  
+2000992f  read                                  
+20008f35  realloc                               
+200098a5  remove                                
+20009907  remove_device                         
+200098c9  rename                                
+2000ca95  scalbn                                
+2000ca95  scalbnl                               
 2001f000  sendArray                             
-200081db  setCursor                             
-20008213  setTextColor                          
-200081f3  setTextSize                           
-2000822b  setTextWrap                           
-2000e1e5  sl_Close                              
-2000aa05  sl_Connect                            
-2000c0f1  sl_DevGet                             
-2000cf3d  sl_DevSet                             
-2000e2b1  sl_Htonl                              
-2000e4ed  sl_Htons                              
-2000af41  sl_NetAppDnsGetHostByName             
-2000bea5  sl_NetAppMDNSRegisterUnregisterService
-2000e049  sl_NetAppMDNSUnRegisterService        
-2000cfb9  sl_NetCfgSet                          
-2000e845  sl_Provisioning_HttpServerEventHdl    
-2000e853  sl_Provisioning_NetAppEventHdl        
-2000e85f  sl_Provisioning_WlanEventHdl          
-2000cb25  sl_Recv                               
-2000b2b9  sl_Send                               
-2000d035  sl_SetSockOpt                         
-2000d4dd  sl_Socket                             
-2000ba79  sl_Start                              
-2000b995  sl_Stop                               
-20009681  sl_WlanConnect                        
-2000ea6d  sl_WlanDisconnect                     
-2000d221  sl_WlanPolicySet                      
-2000e229  sl_WlanProfileDel                     
-2000d625  sl_WlanRxFilterSet                    
-2000d0b1  sl_WlanSet                            
-2000e26d  sl_WlanSetMode                        
-2000d299  spi_Close                             
-2000acc1  spi_Open                              
-2000b6cd  spi_Read                              
-2000c61d  spi_Write                             
-2000d9b1  sprintf                               
-2001f6d4  start                                 
-2001f6dc  state                                 
-2000eb5f  strcat                                
-2000ee3b  strchr                                
-2000ede1  strcmp                                
-2000eea1  strcpy                                
-2000eeb5  strlen                                
+200082cb  setCursor                             
+20008303  setTextColor                          
+200082e3  setTextSize                           
+2000831b  setTextWrap                           
+2000c8e5  setvbuf                               
+2000f449  sl_Close                              
+2000b581  sl_Connect                            
+2000cf45  sl_DevGet                             
+2000dff9  sl_DevSet                             
+2000f515  sl_Htonl                              
+2000f751  sl_Htons                              
+2000bbf1  sl_NetAppDnsGetHostByName             
+2000ccf9  sl_NetAppMDNSRegisterUnregisterService
+2000f2ad  sl_NetAppMDNSUnRegisterService        
+2000e075  sl_NetCfgSet                          
+2000fadd  sl_Provisioning_HttpServerEventHdl    
+2000faeb  sl_Provisioning_NetAppEventHdl        
+2000faf7  sl_Provisioning_WlanEventHdl          
+2000dbe1  sl_Recv                               
+2000bf69  sl_Send                               
+2000e0f1  sl_SetSockOpt                         
+2000e609  sl_Socket                             
+2000c729  sl_Start                              
+2000c645  sl_Stop                               
+2000a039  sl_WlanConnect                        
+2000fd25  sl_WlanDisconnect                     
+2000da45  sl_WlanGetNetworkList                 
+2000e2dd  sl_WlanPolicySet                      
+2000f48d  sl_WlanProfileDel                     
+2000e7bd  sl_WlanRxFilterSet                    
+2000e16d  sl_WlanSet                            
+2000f4d1  sl_WlanSetMode                        
+2000e355  spi_Close                             
+2000b83d  spi_Open                              
+2000c37d  spi_Read                              
+2000d64d  spi_Write                             
+2000ec15  sprintf                               
+2001fa78  start                                 
+2001fa80  state                                 
+2000fe17  strcat                                
+200100f3  strchr                                
+20010099  strcmp                                
+20010159  strcpy                                
+2001016d  strlen                                
+2000f837  strncpy                               
 20004637  testdrawcircles                       
 200044a7  testdrawrects                         
 20004435  testfastlines                         
@@ -845,22 +943,24 @@ ffffffff  binit
 200047a5  testlines                             
 20004733  testroundrects                        
 200046b1  testtriangles                         
-2001f78c  textbgcolor                           
-2001f788  textcolor                             
-2001f784  textsize                              
-2001f6f8  ticks                                 
-2000dedd  uDMAChannelAssign                     
-2000d829  uDMAChannelAttributeDisable           
-2000d88d  uDMAChannelAttributeEnable            
-2000e529  uDMAChannelControlSet                 
-2000ebd1  uDMAChannelEnable                     
-2000b7bd  uDMAChannelTransferSet                
-2001f568  values                                
-2000ca9d  vsnprintf                             
-2000823f  width                                 
-2001f790  wrap                                  
-200087f5  writeCommand                          
-20008839  writeData                             
+2001fb30  textbgcolor                           
+2001fb2c  textcolor                             
+2001fb28  textsize                              
+2001fa9c  ticks                                 
+2000f141  uDMAChannelAssign                     
+2000ea8d  uDMAChannelAttributeDisable           
+2000eaf1  uDMAChannelAttributeEnable            
+2000f78d  uDMAChannelControlSet                 
+2000fe89  uDMAChannelEnable                     
+2000c46d  uDMAChannelTransferSet                
+200098a5  unlink                                
+2001f728  values                                
+2000db59  vsnprintf                             
+2000832f  width                                 
+2001fb34  wrap                                  
+20009815  write                                 
+200088e5  writeCommand                          
+20008929  writeData                             
 
 
 GLOBAL SYMBOLS: SORTED BY Symbol Address 
@@ -888,357 +988,414 @@ address   name
 20004d49  SimpleLinkGeneralEventHandler         
 20004d69  SimpleLinkSockEventHandler            
 2000538d  printErrConvenience                   
-20005733  keyToBinary                           
-20005a55  printBinary                           
-20005b2f  PrintChar                             
-20005d17  HandleCode                            
-20006079  TimerA0IntHandler                     
-200061af  TimerA1IntHandler                     
-200061c5  GPIOInit                              
-2000621d  TimerInit                             
-200062cd  SPIInit                               
-20006345  main                                  
-20006ef9  __TI_printfi                          
-200077e5  drawCircle                            
-20007919  drawCircleHelper                      
-20007a37  fillCircle                            
-20007a71  fillCircleHelper                      
-20007b5f  drawLine                              
-20007c4b  drawRect                              
-20007c99  drawRoundRect                         
-20007d87  fillRoundRect                         
-20007e01  drawTriangle                          
-20007e43  fillTriangle                          
-20008043  drawChar                              
-2000818f  Outstr                                
-200081db  setCursor                             
-200081f3  setTextSize                           
-20008213  setTextColor                          
-2000822b  setTextWrap                           
-2000823f  width                                 
-20008243  height                                
-200087f5  writeCommand                          
-20008839  writeData                             
-2000887d  Adafruit_Init                         
-200089af  goTo                                  
-200089f3  Color565                              
-20008a35  fillScreen                            
-20008a4b  fillRect                              
-20008b01  drawFastVLine                         
-20008ba1  drawFastHLine                         
-20008c3d  drawPixel                             
-20008c7b  invert                                
-20008c97  __mpu_init                            
-20008c99  minit                                 
-20008d19  malloc                                
-20008d83  free                                  
-20008e45  realloc                               
-20008f4d  memalign                              
-20009039  calloc                                
-200090a5  GPIO_IF_LedConfigure                  
-200090e3  GPIO_IF_LedOn                         
-20009197  GPIO_IF_LedOff                        
-2000924b  GPIO_IF_LedStatus                     
-200092b5  GPIO_IF_LedToggle                     
-200092e3  GPIO_IF_GetPortNPin                   
-20009329  GPIO_IF_ConfigureNIntEnable           
-20009371  GPIO_IF_Set                           
-200093b5  GPIO_IF_Get                           
-20009401  InitTerm                              
-2000941f  Message                               
-20009441  ClearTerm                             
-2000944b  Error                                 
-20009483  GetCmd                                
-20009529  TrimSpace                             
-200095c1  Report                                
-20009681  sl_WlanConnect                        
-20009add  __aeabi_uldivmod                      
-20009cd1  _SlDrvDataReadOp                      
-20009eb5  _SlDrvReleasePoolObj                  
-2000a085  __aeabi_dsub                          
-2000a08f  __aeabi_dadd                          
-2000a23b  _system_post_cinit                    
-2000a23d  _SlDrvDriverCBInit                    
-2000a58d  _SlDrvWaitForPoolObj                  
-2000a71d  PRCMCC3200MCUInit                     
-2000aa05  sl_Connect                            
-2000ab71  _SlDrvDataWriteOp                     
-2000acc1  spi_Open                              
-2000ae09  __aeabi_ddiv                          
-2000af41  sl_NetAppDnsGetHostByName             
-2000b195  _SlDrvDriverCBDeinit                  
-2000b2b9  sl_Send                               
-2000b3d1  _SlDrvNetAppEventHandler              
-2000b4d5  __aeabi_dmul                          
-2000b5d1  Timer_IF_Init                         
-2000b603  Timer_IF_IntSetup                     
-2000b641  Timer_IF_InterruptClear               
-2000b659  Timer_IF_Start                        
-2000b675  Timer_IF_Stop                         
-2000b685  Timer_IF_DeInit                       
-2000b69f  Timer_IF_ReLoad                       
-2000b6b3  Timer_IF_GetCount                     
-2000b6cd  spi_Read                              
-2000b7bd  uDMAChannelTransferSet                
-2000b995  sl_Stop                               
-2000ba79  sl_Start                              
-2000bc35  _SlDrvMsgReadSpawnCtx                 
-2000bd09  ldexp                                 
-2000bd09  ldexpl                                
-2000bd09  scalbn                                
-2000bd09  scalbnl                               
-2000bdd9  _sl_HandleAsync_DnsGetHostByService   
-2000bea5  sl_NetAppMDNSRegisterUnregisterService
-2000c031  _SlDrvCmdOp                           
-2000c0f1  sl_DevGet                             
-2000c1a5  PinMuxConfig                          
-2000c251  IntDisable                            
-2000c2f9  IntEnable                             
-2000c3a1  _SlDriverHandleError                  
-2000c445  SPIConfigSetExpClk                    
-2000c4e5  __aeabi_memcpy                        
-2000c4e5  __aeabi_memcpy4                       
-2000c4e5  __aeabi_memcpy8                       
-2000c4e5  memcpy                                
-2000c581  _SlDrvDeviceEventHandler              
-2000c61d  spi_Write                             
-2000c6b5  PRCMPeripheralClockGet                
-2000c749  __aeabi_fdiv                          
-2000c7dd  _sl_HandleAsync_DnsGetHostByName      
-2000c86d  _sl_HandleAsync_PingResponse          
-2000ca15  PinConfigSet                          
-2000ca9d  vsnprintf                             
-2000cb25  sl_Recv                               
-2000cbad  __aeabi_cdcmpeq                       
-2000cbad  __aeabi_cdcmple                       
-2000cc33  __aeabi_cdrcmple                      
-2000ccb9  GPIOIntTypeSet                        
-2000cd3d  _sl_HandleAsync_Connect               
-2000cdbd  _sl_HandleAsync_InitComplete          
-2000cf3d  sl_DevSet                             
-2000cfb9  sl_NetCfgSet                          
-2000d035  sl_SetSockOpt                         
-2000d0b1  sl_WlanSet                            
-2000d12d  __aeabi_memclr                        
-2000d12d  __aeabi_memclr4                       
-2000d12d  __aeabi_memclr8                       
-2000d12f  __aeabi_memset                        
-2000d12f  __aeabi_memset4                       
-2000d12f  __aeabi_memset8                       
-2000d135  memset                                
-2000d1a9  _SlNonOsSemGet                        
-2000d221  sl_WlanPolicySet                      
-2000d299  spi_Close                             
-2000d311  UARTConfigSetExpClk                   
-2000d389  _SlNonOsMainLoopTask                  
-2000d3fd  TimerIntRegister                      
-2000d46d  __TI_auto_init                        
-2000d4dd  sl_Socket                             
-2000d54d  _SlDrvCmdSend                         
-2000d5b9  _sl_NetAppSendTokenValue              
-2000d625  sl_WlanRxFilterSet                    
-2000d691  TimerIntUnregister                    
-2000d6f9  __TI_decompress_lzss                  
-2000d761  _SlNonOsSpawn                         
-2000d7c5  _sl_HandleAsync_Accept                
-2000d829  uDMAChannelAttributeDisable           
-2000d88d  uDMAChannelAttributeEnable            
-2000d8f1  __aeabi_cfcmpeq                       
-2000d8f1  __aeabi_cfcmple                       
-2000d951  __aeabi_cfrcmple                      
-2000d9b1  sprintf                               
-2000da11  frexp                                 
-2000da11  frexpl                                
-2000da6d  IntPendClear                          
-2000dac5  PRCMPeripheralReset                   
-2000db1d  ltoa                                  
-2000db75  IntPrioritySet                        
-2000dbc9  _SlDrvRxIrqHandler                    
-2000dc1d  _sl_HandleAsync_Select                
-2000dc71  C$$EXIT                               
-2000dc75  abort                                 
-2000dc7d  exit                                  
-2000dcc5  _sl_HandleAsync_Stop                  
-2000dd15  SPIIntEnable                          
-2000ddad  _SlDrvProtectAsyncRespSetting         
-2000de45  atoi                                  
-2000de91  copy_in                               
-2000dedd  uDMAChannelAssign                     
-2000df71  SPIIntClear                           
-2000dfb9  _SlDrvBasicCmd                        
-2000e001  __aeabi_d2iz                          
-2000e049  sl_NetAppMDNSUnRegisterService        
-2000e0d5  TimerConfigure                        
-2000e119  _SlDrvHandleHttpServerEvents          
-2000e15d  _SlDrvSyncObjWaitTimeout              
-2000e1e5  sl_Close                              
-2000e229  sl_WlanProfileDel                     
-2000e26d  sl_WlanSetMode                        
-2000e2b1  sl_Htonl                              
-2000e2f5  PinModeSet                            
-2000e335  _SlDrvHandleNetAppEvents              
-2000e375  _SlDrvHandleWlanEvents                
-2000e3f5  _c_int00                              
-2000e435  NwpRegisterInterruptHandler           
-2000e4b1  PRCMPeripheralClkEnable               
-2000e4ed  sl_Htons                              
-2000e529  uDMAChannelControlSet                 
-2000e565  NwpPowerOff                           
-2000e59d  GPIODirModeSet                        
-2000e5d5  PRCMPeripheralStatusGet               
-2000e609  SPIFIFOLevelSet                       
-2000e63d  PinTypeGPIO                           
-2000e66d  UARTDisable                           
-2000e69d  __aeabi_i2d                           
-2000e6cd  PRCMSysResetCauseGet                  
-2000e725  _SlDrvProtectionObjLockWaitForever    
-2000e751  TimerLoadSet                          
-2000e77b  TimerPrescaleSet                      
-2000e7a5  PRCMPeripheralClkDisable              
-2000e7cd  _SlDrvGlobalObjUnLock                 
-2000e7f5  _SlDrvProtectionObjUnLock             
-2000e81d  _SlDrvSyncObjWaitForever              
-2000e845  sl_Provisioning_HttpServerEventHdl    
-2000e853  sl_Provisioning_NetAppEventHdl        
-2000e85f  sl_Provisioning_WlanEventHdl          
-2000e86d  DmaSpiSwIntHandler                    
-2000e891  IntUnregister                         
-2000e8b5  UARTEnable                            
-2000e8d9  _SlDrvObjLockWaitForever              
-2000e8fd  memmove                               
-2000e921  __aeabi_ui2f                          
-2000e945  GPIOIntStatus                         
-2000e967  SPIReset                              
-2000e989  SPIWordCountSet                       
-2000e9ab  GPIOPinWrite                          
-2000e9cd  IntRegister                           
-2000e9ed  NwpPowerOn                            
-2000ea0d  SPIDataGet                            
-2000ea2d  _SlDrvObjUnLock                       
-2000ea4d  _SlDrvSyncObjSignal                   
-2000ea6d  sl_WlanDisconnect                     
-2000ea8d  GPIOIntRegister                       
-2000eaab  SPIDataPut                            
-2000eac9  TimerDisable                          
-2000eae7  TimerEnable                           
-2000eb05  TimerIntStatus                        
-2000eb23  UARTCharPut                           
-2000eb5f  strcat                                
-2000eb7d  TimerValueGet                         
-2000eb99  UARTCharGetNonBlocking                
-2000ebb5  memccpy                               
-2000ebd1  uDMAChannelEnable                     
-2000ebed  GPIOIntDisable                        
-2000ec07  GPIOIntEnable                         
-2000ec21  PinTypeSPI                            
-2000ec3b  PinTypeUART                           
-2000ec55  SPIDmaDisable                         
-2000ec6f  SPIDmaEnable                          
-2000ec89  SPIFIFODisable                        
-2000eca3  SPIFIFOEnable                         
-2000ecbd  SPIIntUnregister                      
-2000ecd7  GPIOPinRead                           
-2000ecef  SPICSDisable                          
-2000ed07  SPICSEnable                           
-2000ed1f  SPIDisable                            
-2000ed37  SPIEnable                             
-2000ed4f  TimerIntDisable                       
-2000ed67  TimerIntEnable                        
-2000ed7f  UARTCharsAvail                        
-2000ed97  _SlNonOsSemSet                        
-2000edc9  _args_main                            
-2000ede1  strcmp                                
-2000edf9  PRCMHIBRegRead                        
-2000ee0f  PRCMHIBRegWrite                       
-2000ee25  _SlDrvMemZero                         
-2000ee3b  strchr                                
-2000ee51  CPUcpsie                              
-2000ee65  GPIOIntClear                          
-2000ee79  IntVTableBaseSet                      
-2000ee8d  _register_unlock                      
-2000ee93  _register_lock                        
-2000ee9b  _nop                                  
-2000eea1  strcpy                                
-2000eeb5  strlen                                
-2000eec9  TimerIntClear                         
-2000eedb  _SlDrvDispatchHttpServerEvents        
-2000eeeb  _SlDrvResetCmdExt                     
-2000eef9  __TI_decompress_none                  
-2000ef07  ResetISR                              
-2000ef15  NwpMaskInterrupt                      
-2000ef21  NwpUnMaskInterrupt                    
-2000ef2d  __TI_zero_init                        
-2000ef39  IntMasterEnable                       
-2000ef43  copysign                              
-2000ef43  copysignl                             
-2000ef4b  UtilsDelay                            
-2000ef51  _system_pre_init                      
-2000f44f  _ctypes_                              
-2000f8aa  OpcodeTranslateTable                  
-2000f924  _SlActionLookupTable                  
-2000fa10  _SlNetAppSendTokenValueCmdCtrl        
-2000fae0  __TI_static_base__                    
-2000fb74  __TI_Handler_Table_Base               
-2000fb80  __TI_Handler_Table_Limit              
-2000fb88  __TI_CINIT_Base                       
-2000fb98  __TI_CINIT_Limit                      
+200059e9  GetWifiNetworks                       
+20005b19  keyToBinary                           
+20005b7d  printBinary                           
+20005c61  PrintChar                             
+20005e79  HandleCode                            
+200061e5  TimerA0IntHandler                     
+2000631b  TimerA1IntHandler                     
+20006331  GPIOInit                              
+20006389  TimerInit                             
+20006439  SPIInit                               
+20006499  main                                  
+20006fe9  __TI_printfi                          
+200078d5  drawCircle                            
+20007a09  drawCircleHelper                      
+20007b27  fillCircle                            
+20007b61  fillCircleHelper                      
+20007c4f  drawLine                              
+20007d3b  drawRect                              
+20007d89  drawRoundRect                         
+20007e77  fillRoundRect                         
+20007ef1  drawTriangle                          
+20007f33  fillTriangle                          
+20008133  drawChar                              
+2000827f  Outstr                                
+200082cb  setCursor                             
+200082e3  setTextSize                           
+20008303  setTextColor                          
+2000831b  setTextWrap                           
+2000832f  width                                 
+20008333  height                                
+200088e5  writeCommand                          
+20008929  writeData                             
+2000896d  Adafruit_Init                         
+20008a9f  goTo                                  
+20008ae3  Color565                              
+20008b25  fillScreen                            
+20008b3b  fillRect                              
+20008bf1  drawFastVLine                         
+20008c91  drawFastHLine                         
+20008d2d  drawPixel                             
+20008d6b  invert                                
+20008d87  __mpu_init                            
+20008d89  minit                                 
+20008e09  malloc                                
+20008e73  free                                  
+20008f35  realloc                               
+2000903d  memalign                              
+20009129  calloc                                
+20009195  GPIO_IF_LedConfigure                  
+200091d3  GPIO_IF_LedOn                         
+20009287  GPIO_IF_LedOff                        
+2000933b  GPIO_IF_LedStatus                     
+200093a5  GPIO_IF_LedToggle                     
+200093d3  GPIO_IF_GetPortNPin                   
+20009419  GPIO_IF_ConfigureNIntEnable           
+20009461  GPIO_IF_Set                           
+200094a5  GPIO_IF_Get                           
+200094f1  HOSTwrite                             
+2000953d  HOSTunlink                            
+20009575  HOSTtime64                            
+200095c3  HOSTtime                              
+200095fd  HOSTrename                            
+2000965b  HOSTread                              
+200096a7  HOSTopen                              
+200096f9  HOSTlseek                             
+20009755  HOSTgetenv                            
+20009793  HOSTclose                             
+200097cb  HOSTclock                             
+20009815  write                                 
+200098a5  remove                                
+200098a5  unlink                                
+200098c9  rename                                
+20009907  remove_device                         
+2000992f  read                                  
+20009953  open                                  
+20009a01  lseek                                 
+20009a25  close                                 
+20009a75  add_device                            
+20009b21  __vla_dealloc                         
+20009ba9  __vla_dealloc_eh                      
+20009c29  __vla_alloc                           
+20009db9  InitTerm                              
+20009dd7  Message                               
+20009df9  ClearTerm                             
+20009e03  Error                                 
+20009e3b  GetCmd                                
+20009ee1  TrimSpace                             
+20009f79  Report                                
+2000a039  sl_WlanConnect                        
+2000a495  __aeabi_uldivmod                      
+2000a689  _SlDrvDataReadOp                      
+2000a86d  _SlDrvReleasePoolObj                  
+2000ab05  __TI_cleanup                          
+2000ab31  freopen                               
+2000ab5b  fopen                                 
+2000ac01  __aeabi_dsub                          
+2000ac0b  __aeabi_dadd                          
+2000adb7  _system_post_cinit                    
+2000adb9  _SlDrvDriverCBInit                    
+2000b109  _SlDrvWaitForPoolObj                  
+2000b299  PRCMCC3200MCUInit                     
+2000b581  sl_Connect                            
+2000b6ed  _SlDrvDataWriteOp                     
+2000b83d  spi_Open                              
+2000b985  __aeabi_ddiv                          
+2000babd  fputs                                 
+2000bbc9  puts                                  
+2000bbf1  sl_NetAppDnsGetHostByName             
+2000be45  _SlDrvDriverCBDeinit                  
+2000bf69  sl_Send                               
+2000c081  _SlDrvNetAppEventHandler              
+2000c185  __aeabi_dmul                          
+2000c281  Timer_IF_Init                         
+2000c2b3  Timer_IF_IntSetup                     
+2000c2f1  Timer_IF_InterruptClear               
+2000c309  Timer_IF_Start                        
+2000c325  Timer_IF_Stop                         
+2000c335  Timer_IF_DeInit                       
+2000c34f  Timer_IF_ReLoad                       
+2000c363  Timer_IF_GetCount                     
+2000c37d  spi_Read                              
+2000c46d  uDMAChannelTransferSet                
+2000c645  sl_Stop                               
+2000c729  sl_Start                              
+2000c8e5  setvbuf                               
+2000c9c1  _SlDrvMsgReadSpawnCtx                 
+2000ca95  ldexp                                 
+2000ca95  ldexpl                                
+2000ca95  scalbn                                
+2000ca95  scalbnl                               
+2000cb65  _sl_HandleAsync_DnsGetHostByService   
+2000cc31  __TI_doflush                          
+2000cc7d  fflush                                
+2000ccf9  sl_NetAppMDNSRegisterUnregisterService
+2000ce85  _SlDrvCmdOp                           
+2000cf45  sl_DevGet                             
+2000cff9  PinMuxConfig                          
+2000d0a5  __TI_wrt_ok                           
+2000d107  __TI_rd_ok                            
+2000d151  IntDisable                            
+2000d1f9  IntEnable                             
+2000d2a1  _SlDriverHandleError                  
+2000d345  SPIConfigSetExpClk                    
+2000d3e5  __aeabi_memcpy                        
+2000d3e5  __aeabi_memcpy4                       
+2000d3e5  __aeabi_memcpy8                       
+2000d3e5  memcpy                                
+2000d481  _SlDrvDeviceEventHandler              
+2000d51d  __TI_closefile                        
+2000d583  fclose                                
+2000d5b5  fputc                                 
+2000d5b5  putc                                  
+2000d639  putchar                               
+2000d64d  spi_Write                             
+2000d6e5  PRCMPeripheralClockGet                
+2000d779  __aeabi_fdiv                          
+2000d80d  _sl_HandleAsync_DnsGetHostByName      
+2000d89d  _sl_HandleAsync_PingResponse          
+2000da45  sl_WlanGetNetworkList                 
+2000dad1  PinConfigSet                          
+2000db59  vsnprintf                             
+2000dbe1  sl_Recv                               
+2000dc69  __aeabi_cdcmpeq                       
+2000dc69  __aeabi_cdcmple                       
+2000dcef  __aeabi_cdrcmple                      
+2000dd75  GPIOIntTypeSet                        
+2000ddf9  _sl_HandleAsync_Connect               
+2000de79  _sl_HandleAsync_InitComplete          
+2000dff9  sl_DevSet                             
+2000e075  sl_NetCfgSet                          
+2000e0f1  sl_SetSockOpt                         
+2000e16d  sl_WlanSet                            
+2000e1e9  __aeabi_memclr                        
+2000e1e9  __aeabi_memclr4                       
+2000e1e9  __aeabi_memclr8                       
+2000e1eb  __aeabi_memset                        
+2000e1eb  __aeabi_memset4                       
+2000e1eb  __aeabi_memset8                       
+2000e1f1  memset                                
+2000e265  _SlNonOsSemGet                        
+2000e2dd  sl_WlanPolicySet                      
+2000e355  spi_Close                             
+2000e3cd  UARTConfigSetExpClk                   
+2000e445  _SlNonOsMainLoopTask                  
+2000e4b9  TimerIntRegister                      
+2000e529  __TI_auto_init                        
+2000e5a1  printf                                
+2000e609  sl_Socket                             
+2000e679  _SlDrvCmdSend                         
+2000e6e5  _sl_NetAppSendTokenValue              
+2000e759  fprintf                               
+2000e7bd  sl_WlanRxFilterSet                    
+2000e829  TimerIntUnregister                    
+2000e891  __TI_decompress_lzss                  
+2000e8f9  __TI_writemsg                         
+2000e927  C$$IO$$                               
+2000e92b  __TI_readmsg                          
+2000e961  _SlNonOsSpawn                         
+2000e9c5  _sl_HandleAsync_Accept                
+2000ea29  fseek                                 
+2000ea8d  uDMAChannelAttributeDisable           
+2000eaf1  uDMAChannelAttributeEnable            
+2000eb55  __aeabi_cfcmpeq                       
+2000eb55  __aeabi_cfcmple                       
+2000ebb5  __aeabi_cfrcmple                      
+2000ec15  sprintf                               
+2000ec75  frexp                                 
+2000ec75  frexpl                                
+2000ecd1  IntPendClear                          
+2000ed29  PRCMPeripheralReset                   
+2000ed81  ltoa                                  
+2000edd9  IntPrioritySet                        
+2000ee2d  _SlDrvRxIrqHandler                    
+2000ee81  _sl_HandleAsync_Select                
+2000eed5  C$$EXIT                               
+2000eed9  abort                                 
+2000eee1  exit                                  
+2000ef29  _sl_HandleAsync_Stop                  
+2000ef79  SPIIntEnable                          
+2000f011  _SlDrvProtectAsyncRespSetting         
+2000f0a9  atoi                                  
+2000f0f5  copy_in                               
+2000f141  uDMAChannelAssign                     
+2000f1d5  SPIIntClear                           
+2000f21d  _SlDrvBasicCmd                        
+2000f265  __aeabi_d2iz                          
+2000f2ad  sl_NetAppMDNSUnRegisterService        
+2000f339  TimerConfigure                        
+2000f37d  _SlDrvHandleHttpServerEvents          
+2000f3c1  _SlDrvSyncObjWaitTimeout              
+2000f449  sl_Close                              
+2000f48d  sl_WlanProfileDel                     
+2000f4d1  sl_WlanSetMode                        
+2000f515  sl_Htonl                              
+2000f559  PinModeSet                            
+2000f599  _SlDrvHandleNetAppEvents              
+2000f5d9  _SlDrvHandleWlanEvents                
+2000f659  _c_int00                              
+2000f699  NwpRegisterInterruptHandler           
+2000f715  PRCMPeripheralClkEnable               
+2000f751  sl_Htons                              
+2000f78d  uDMAChannelControlSet                 
+2000f7c9  NwpPowerOff                           
+2000f801  GPIODirModeSet                        
+2000f837  strncpy                               
+2000f86d  PRCMPeripheralStatusGet               
+2000f8a1  SPIFIFOLevelSet                       
+2000f8d5  PinTypeGPIO                           
+2000f905  UARTDisable                           
+2000f935  __aeabi_i2d                           
+2000f965  PRCMSysResetCauseGet                  
+2000f9bd  _SlDrvProtectionObjLockWaitForever    
+2000f9e9  TimerLoadSet                          
+2000fa13  TimerPrescaleSet                      
+2000fa3d  PRCMPeripheralClkDisable              
+2000fa65  _SlDrvGlobalObjUnLock                 
+2000fa8d  _SlDrvProtectionObjUnLock             
+2000fab5  _SlDrvSyncObjWaitForever              
+2000fadd  sl_Provisioning_HttpServerEventHdl    
+2000faeb  sl_Provisioning_NetAppEventHdl        
+2000faf7  sl_Provisioning_WlanEventHdl          
+2000fb05  DmaSpiSwIntHandler                    
+2000fb29  IntUnregister                         
+2000fb4d  UARTEnable                            
+2000fb71  _SlDrvObjLockWaitForever              
+2000fb95  memmove                               
+2000fbb9  __aeabi_ui2f                          
+2000fbdd  GPIOIntStatus                         
+2000fbff  SPIReset                              
+2000fc21  SPIWordCountSet                       
+2000fc43  GPIOPinWrite                          
+2000fc65  IntRegister                           
+2000fc85  NwpPowerOn                            
+2000fca5  SPIDataGet                            
+2000fcc5  _SlDrvObjUnLock                       
+2000fce5  _SlDrvSyncObjSignal                   
+2000fd05  memchr                                
+2000fd25  sl_WlanDisconnect                     
+2000fd45  GPIOIntRegister                       
+2000fd63  SPIDataPut                            
+2000fd81  TimerDisable                          
+2000fd9f  TimerEnable                           
+2000fdbd  TimerIntStatus                        
+2000fddb  UARTCharPut                           
+2000fe17  strcat                                
+2000fe35  TimerValueGet                         
+2000fe51  UARTCharGetNonBlocking                
+2000fe6d  memccpy                               
+2000fe89  uDMAChannelEnable                     
+2000fea5  GPIOIntDisable                        
+2000febf  GPIOIntEnable                         
+2000fed9  PinTypeSPI                            
+2000fef3  PinTypeUART                           
+2000ff0d  SPIDmaDisable                         
+2000ff27  SPIDmaEnable                          
+2000ff41  SPIFIFODisable                        
+2000ff5b  SPIFIFOEnable                         
+2000ff75  SPIIntUnregister                      
+2000ff8f  GPIOPinRead                           
+2000ffa7  SPICSDisable                          
+2000ffbf  SPICSEnable                           
+2000ffd7  SPIDisable                            
+2000ffef  SPIEnable                             
+20010007  TimerIntDisable                       
+2001001f  TimerIntEnable                        
+20010037  UARTCharsAvail                        
+2001004f  _SlNonOsSemSet                        
+20010081  _args_main                            
+20010099  strcmp                                
+200100b1  PRCMHIBRegRead                        
+200100c7  PRCMHIBRegWrite                       
+200100dd  _SlDrvMemZero                         
+200100f3  strchr                                
+20010109  CPUcpsie                              
+2001011d  GPIOIntClear                          
+20010131  IntVTableBaseSet                      
+20010145  _register_unlock                      
+2001014b  _register_lock                        
+20010153  _nop                                  
+20010159  strcpy                                
+2001016d  strlen                                
+20010181  TimerIntClear                         
+20010193  _SlDrvDispatchHttpServerEvents        
+200101a3  _SlDrvResetCmdExt                     
+200101b1  __TI_decompress_none                  
+200101bf  ResetISR                              
+200101cd  NwpMaskInterrupt                      
+200101d9  NwpUnMaskInterrupt                    
+200101e5  __TI_zero_init                        
+200101f1  IntMasterEnable                       
+200101fb  copysign                              
+200101fb  copysignl                             
+20010203  UtilsDelay                            
+20010209  __abort_execution                     
+2001020d  _system_pre_init                      
+2001070b  _ctypes_                              
+20010b66  OpcodeTranslateTable                  
+20010be0  _SlActionLookupTable                  
+20010ccc  _SlNetAppSendTokenValueCmdCtrl        
+20010da0  __TI_static_base__                    
+20010e84  __TI_Handler_Table_Base               
+20010e90  __TI_Handler_Table_Limit              
+20010e98  __TI_CINIT_Base                       
+20010ea8  __TI_CINIT_Limit                      
 20017000  _sys_memory                           
 2001f000  sendArray                             
-2001f568  values                                
-2001f5f4  g_ucDinDout                           
-2001f644  g_time                                
-2001f670  g_ucConnectionSSID                    
-2001f69c  g_ucConnectionBSSID                   
-2001f6a8  pin8_intcount                         
-2001f6ac  RxIrqCnt                              
-2001f6ad  g_bDeviceRestartIsRequired            
-2001f6ae  g_cDummy                              
-2001f6af  g_ucLED1Pin                           
-2001f6b0  g_ucLED2Pin                           
-2001f6b1  g_ucLED3Pin                           
-2001f6b2  pin8_intflag                          
-2001f6b4  p                                     
-2001f6b8  TLS_SOCKET_ID                         
-2001f6bc  g_ulStatus                            
-2001f6c0  g_ulPingPacketsRecv                   
-2001f6c4  g_ulGatewayIP                         
-2001f6c8  g_Host                                
-2001f6cc  prev                                  
-2001f6d0  curr                                  
-2001f6d4  start                                 
-2001f6d8  curr_index                            
-2001f6dc  state                                 
-2001f6e0  c_letter                              
-2001f6e4  key_time                              
-2001f6e8  cx                                    
-2001f6ec  cy                                    
-2001f6f0  curr_color                            
-2001f6f4  nLetters                              
-2001f6f8  ticks                                 
-2001f6fc  g__SlNonOsCB                          
-2001f738  digits                                
-2001f760  colors                                
-2001f77c  cursor_x                              
-2001f780  cursor_y                              
-2001f784  textsize                              
-2001f788  textcolor                             
-2001f78c  textbgcolor                           
-2001f790  wrap                                  
-2001f7ac  g_pCB                                 
-2001f7b0  pPingCallBackFunc                     
-2001f7b8  __TI_cleanup_ptr                      
-2001f7bc  __TI_dtors_ptr                        
-2001f7c0  __TI_enable_exit_profile_output       
-2001f7d0  g_uiLED1Port                          
-2001f7d4  g_uiLED2Port                          
-2001f7d8  g_uiLED3Port                          
-2001f7dc  g_SpiFd                               
-2001f7e0  g_pHostIntHdl                         
-2001f7e4  g_ucDMAEnabled                        
-2001f7e8  _lock                                 
-2001f7ec  _unlock                               
-2001f7f8  errno                                 
-2001f7fc  main_func_sp                          
+2001f568  __CIOBUF_                             
+2001f688  __TI_tmpnams                          
+2001f728  values                                
+2001f7b4  g_ucDinDout                           
+2001f804  g_time                                
+2001f830  g_ucConnectionSSID                    
+2001f880  g_ucConnectionBSSID                   
+2001f88c  pin8_intcount                         
+2001f890  RxIrqCnt                              
+2001f891  g_bDeviceRestartIsRequired            
+2001f892  g_cDummy                              
+2001f893  g_ucLED1Pin                           
+2001f894  g_ucLED2Pin                           
+2001f895  g_ucLED3Pin                           
+2001f896  pin8_intflag                          
+2001f898  _ftable                               
+2001fa58  p                                     
+2001fa5c  TLS_SOCKET_ID                         
+2001fa60  g_ulStatus                            
+2001fa64  g_ulPingPacketsRecv                   
+2001fa68  g_ulGatewayIP                         
+2001fa6c  g_Host                                
+2001fa70  prev                                  
+2001fa74  curr                                  
+2001fa78  start                                 
+2001fa7c  curr_index                            
+2001fa80  state                                 
+2001fa84  c_letter                              
+2001fa88  key_time                              
+2001fa8c  cx                                    
+2001fa90  cy                                    
+2001fa94  curr_color                            
+2001fa98  nLetters                              
+2001fa9c  ticks                                 
+2001faa0  g__SlNonOsCB                          
+2001fadc  digits                                
+2001fb04  colors                                
+2001fb20  cursor_x                              
+2001fb24  cursor_y                              
+2001fb28  textsize                              
+2001fb2c  textcolor                             
+2001fb30  textbgcolor                           
+2001fb34  wrap                                  
+2001fb4c  __TI_ft_end                           
+2001fb50  __aeabi_stdin                         
+2001fb54  __aeabi_stdout                        
+2001fb58  __aeabi_stderr                        
+2001fb60  g_pCB                                 
+2001fb64  pPingCallBackFunc                     
+2001fb6c  __TI_cleanup_ptr                      
+2001fb70  __TI_dtors_ptr                        
+2001fb74  __TI_enable_exit_profile_output       
+2001fb84  g_uiLED1Port                          
+2001fb88  g_uiLED2Port                          
+2001fb8c  g_uiLED3Port                          
+2001fb90  g_SpiFd                               
+2001fb94  g_pHostIntHdl                         
+2001fb98  g_ucDMAEnabled                        
+2001fb9c  _lock                                 
+2001fba0  _unlock                               
+2001fbac  errno                                 
+2001fbb4  main_func_sp                          
 2002f000  __stack                               
 20030000  __STACK_END                           
 ffffffff  __TI_pprof_out_hndl                   
@@ -1250,4 +1407,4 @@ ffffffff  binit
 UNDEFED   SHT$$INIT_ARRAY$$Base                 
 UNDEFED   SHT$$INIT_ARRAY$$Limit                
 
-[382 symbols]
+[439 symbols]

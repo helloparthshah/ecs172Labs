@@ -429,3 +429,706 @@ org.jsoup.HttpStatusException: HTTP error fetching URL. Status=410, URL=https://
 
 !ENTRY org.eclipse.cdt.core 1 0 2022-05-11 20:57:14.001
 !MESSAGE Indexed 'ssl' (6 sources, 35 headers) in 0.416 sec: 1,912 declarations; 3,183 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
+!SESSION 2022-05-12 17:35:52.911 -----------------------------------------------
+eclipse.buildId=4.6.0.I20160606-1100
+java.version=1.8.0_112
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product com.ti.ccstudio.branding.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ti.ccstudio.branding.product
+
+!ENTRY com.ti.common.core 4 0 2022-05-12 17:35:58.462
+!MESSAGE path=ccs_base/DebugServer
+
+!ENTRY com.ti.common.core 4 0 2022-05-12 17:35:58.462
+!MESSAGE debugServerDir=C:/ti/ccsv7/ccs_base/DebugServer
+
+!ENTRY com.ti.ccstudio.errorparser 4 0 2022-05-12 17:38:07.317
+!MESSAGE An internal error was logged by 'com.ti.ccstudio.errorparser'.
+!STACK 0
+org.jsoup.HttpStatusException: HTTP error fetching URL. Status=410, URL=https://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:590)
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:587)
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:540)
+	at org.jsoup.helper.HttpConnection.execute(HttpConnection.java:227)
+	at org.jsoup.helper.HttpConnection.get(HttpConnection.java:216)
+	at com.ti.ccstudio.errorparser.parsers.PatternProvider$PatternData.fillup(PatternProvider.java:277)
+	at com.ti.ccstudio.errorparser.parsers.PatternProvider$PatternData.findMatch(PatternProvider.java:144)
+	at com.ti.ccstudio.errorparser.parsers.PatternProvider.getEmdUrl(PatternProvider.java:489)
+	at com.ti.ccstudio.errorparser.parsers.ErrorPattern.recordError(ErrorPattern.java:95)
+	at com.ti.ccstudio.errorparser.parsers.CoffErrorParser.processPendingMesg(CoffErrorParser.java:343)
+	at com.ti.ccstudio.errorparser.parsers.CoffErrorParser.processLine(CoffErrorParser.java:267)
+	at org.eclipse.cdt.core.errorparsers.ErrorParserNamedWrapper.processLine(ErrorParserNamedWrapper.java:48)
+	at com.ti.ccstudio.project.core.internal.build.ProjectAdviceManager$AdviceContentHandler.endElement(ProjectAdviceManager.java:120)
+	at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.endElement(AbstractSAXParser.java:609)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanEndElement(XMLDocumentFragmentScannerImpl.java:1782)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2967)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:602)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:505)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:841)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:770)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+	at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1213)
+	at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(SAXParserImpl.java:643)
+	at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl.parse(SAXParserImpl.java:327)
+	at javax.xml.parsers.SAXParser.parse(SAXParser.java:328)
+	at com.ti.ccstudio.project.core.internal.build.ProjectAdviceManager.processAdvice(ProjectAdviceManager.java:477)
+	at com.ti.ccstudio.project.core.internal.build.ProjectAdviceManager.handleAdviceChangingEvent(ProjectAdviceManager.java:438)
+	at com.ti.ccstudio.project.core.internal.build.ProjectAdviceManager.handleAdviceChangingEvent(ProjectAdviceManager.java:426)
+	at com.ti.ccstudio.project.core.internal.build.ProjectAdviceManager.onProjectBuild_Post(ProjectAdviceManager.java:419)
+	at com.ti.common.project.core.internal.events.ProjectStateMonitor$ResourceChangeListener$7.visit(ProjectStateMonitor.java:393)
+	at com.ti.common.project.core.internal.events.ProjectStateMonitor.notifyListeners(ProjectStateMonitor.java:821)
+	at com.ti.common.project.core.internal.events.ProjectStateMonitor.access$2(ProjectStateMonitor.java:810)
+	at com.ti.common.project.core.internal.events.ProjectStateMonitor$ResourceChangeListener.resourceChanged(ProjectStateMonitor.java:391)
+	at org.eclipse.core.internal.events.NotificationManager$1.run(NotificationManager.java:299)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.NotificationManager.notify(NotificationManager.java:289)
+	at org.eclipse.core.internal.events.NotificationManager.broadcastChanges(NotificationManager.java:152)
+	at org.eclipse.core.internal.resources.Workspace.broadcastBuildEvent(Workspace.java:360)
+	at org.eclipse.core.internal.resources.Project$1.run(Project.java:560)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2240)
+	at org.eclipse.core.internal.resources.Project.internalBuild(Project.java:529)
+	at org.eclipse.core.internal.resources.Project.build(Project.java:112)
+	at org.eclipse.debug.core.model.LaunchConfigurationDelegate$1.run(LaunchConfigurationDelegate.java:430)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2240)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2262)
+	at org.eclipse.debug.core.model.LaunchConfigurationDelegate.buildProjects(LaunchConfigurationDelegate.java:437)
+	at org.eclipse.debug.core.model.LaunchConfigurationDelegate.buildForLaunch(LaunchConfigurationDelegate.java:130)
+	at com.ti.ccstudio.debug.launch.CCSLaunchDelegate.buildForLaunch(CCSLaunchDelegate.java:502)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 17:42:45.065
+!MESSAGE DS_ERROR: Cortex_M4_0: Error 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 17:42:45.094
+!MESSAGE DS_ERROR: Cortex_M4_0: Unable to determine target status after 20 attempts
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 17:47:53.998
+!MESSAGE DS_ERROR: Cortex_M4_0: Error connecting to the target 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 17:47:54.272
+!MESSAGE DS_ERROR: Error connecting to the target
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 17:53:05.074
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 17:58:12.302
+!MESSAGE DS_ERROR: Cortex_M4_0: Error 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 17:58:12.361
+!MESSAGE DS_ERROR: Cortex_M4_0: Unable to determine target status after 20 attempts
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 18:08:15.559
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+
+!ENTRY com.ti.ccstudio.system.setup.ui 1 0 2022-05-12 18:11:58.201
+!MESSAGE targetCfgPath1=C:/Users/hello/user/CCSTargetConfigurations
+
+!ENTRY com.ti.ccstudio.system.setup.ui 1 0 2022-05-12 18:11:58.201
+!MESSAGE targetCfgPath2=C:/Users/hello/ti/CCSTargetConfigurations
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 18:19:07.038
+!MESSAGE DS_ERROR: Cortex_M4_0: Error 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 18:19:07.071
+!MESSAGE DS_ERROR: Cortex_M4_0: Unable to determine target status after 20 attempts
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 18:19:13.309
+!MESSAGE DS_ERROR: Cortex_M4_0: Error connecting to the target 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 18:19:13.727
+!MESSAGE DS_ERROR: Error connecting to the target
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 18:21:19.632
+!MESSAGE DS_ERROR: Cortex_M4_0: Error 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 18:21:19.678
+!MESSAGE DS_ERROR: Cortex_M4_0: Unable to determine target status after 20 attempts
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 18:27:40.656
+!MESSAGE DS_ERROR: Cortex_M4_0: Error 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 18:27:40.700
+!MESSAGE DS_ERROR: Cortex_M4_0: Unable to determine target status after 20 attempts
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 18:29:14.456
+!MESSAGE DS_ERROR: Cortex_M4_0: Error 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 18:29:14.485
+!MESSAGE DS_ERROR: Cortex_M4_0: Unable to determine target status after 20 attempts
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 18:31:51.801
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 18:34:04.356
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 18:42:54.754
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 19:14:36.931
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 20:55:19.075
+!MESSAGE DS_ERROR: Cortex_M4_0: Error 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 20:55:19.104
+!MESSAGE DS_ERROR: Cortex_M4_0: Unable to determine target status after 20 attempts
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 20:58:21.064
+!MESSAGE DS_ERROR: Cortex_M4_0: Error 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 20:58:21.095
+!MESSAGE DS_ERROR: Cortex_M4_0: Unable to determine target status after 20 attempts
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 20:58:30.442
+!MESSAGE DS_ERROR: Cortex_M4_0: Error connecting to the target 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 20:58:30.575
+!MESSAGE DS_ERROR: Error connecting to the target
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 20:59:35.382
+!MESSAGE DS_ERROR: Cortex_M4_0: Error 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 20:59:35.410
+!MESSAGE DS_ERROR: Cortex_M4_0: Unable to determine target status after 20 attempts
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 21:27:10.228
+!MESSAGE DS_ERROR: Cortex_M4_0: Error 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 21:27:10.263
+!MESSAGE DS_ERROR: Cortex_M4_0: Unable to determine target status after 20 attempts
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 21:30:02.949
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 21:32:09.406
+!MESSAGE DS_ERROR: Cortex_M4_0: Error 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 21:32:09.435
+!MESSAGE DS_ERROR: Cortex_M4_0: Unable to determine target status after 20 attempts
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 21:35:25.984
+!MESSAGE DS_ERROR: Cortex_M4_0: Error 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 21:35:26.014
+!MESSAGE DS_ERROR: Cortex_M4_0: Unable to determine target status after 20 attempts
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 21:39:14.175
+!MESSAGE DS_ERROR: Cortex_M4_0: Error 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 21:39:14.206
+!MESSAGE DS_ERROR: Cortex_M4_0: Unable to determine target status after 20 attempts
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 22:12:59.451
+!MESSAGE DS_ERROR: Cortex_M4_0: Error 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 22:12:59.483
+!MESSAGE DS_ERROR: Cortex_M4_0: Unable to determine target status after 20 attempts
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 22:14:55.376
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 22:22:06.274
+!MESSAGE DS_ERROR: Cortex_M4_0: Error connecting to the target 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 22:22:06.418
+!MESSAGE DS_ERROR: Error connecting to the target
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 22:28:55.527
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 22:30:02.407
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 22:31:52.256
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 22:33:19.200
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 22:34:16.404
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 23:01:51.809
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 23:05:15.449
+!MESSAGE DS_ERROR: Cortex_M4_0: Trouble Writing Memory Block at 0x2000bff0 on Page 0 of Length 0x3bb0 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 23:05:15.450
+!MESSAGE DS_ERROR: Cortex_M4_0: File Loader: Verification failed: Target failed to write 0x2000BFF0
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 23:05:15.451
+!MESSAGE DS_ERROR: Cortex_M4_0: GEL: File: C:\Users\hello\Work\School\Computers\EEC172\Labs\Lab5\ssl\Release\ssl.out: Load failed.
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 23:05:44.211
+!MESSAGE DS_ERROR: Cortex_M4_0: Error 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 23:05:44.238
+!MESSAGE DS_ERROR: Cortex_M4_0: Unable to determine target status after 20 attempts
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 23:08:28.266
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-12 23:11:59.188
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+!SESSION 2022-05-15 02:01:32.950 -----------------------------------------------
+eclipse.buildId=4.6.0.I20160606-1100
+java.version=1.8.0_112
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product com.ti.ccstudio.branding.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ti.ccstudio.branding.product
+
+!ENTRY com.ti.common.core 4 0 2022-05-15 02:01:40.658
+!MESSAGE path=ccs_base/DebugServer
+
+!ENTRY com.ti.common.core 4 0 2022-05-15 02:01:40.660
+!MESSAGE debugServerDir=C:/ti/ccsv7/ccs_base/DebugServer
+!SESSION 2022-05-15 02:33:28.459 -----------------------------------------------
+eclipse.buildId=4.6.0.I20160606-1100
+java.version=1.8.0_112
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product com.ti.ccstudio.branding.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ti.ccstudio.branding.product
+
+!ENTRY com.ti.common.core 4 0 2022-05-15 02:33:37.559
+!MESSAGE path=ccs_base/DebugServer
+
+!ENTRY com.ti.common.core 4 0 2022-05-15 02:33:37.561
+!MESSAGE debugServerDir=C:/ti/ccsv7/ccs_base/DebugServer
+
+!ENTRY com.ti.ccstudio.errorparser 4 0 2022-05-15 02:36:06.010
+!MESSAGE An internal error was logged by 'com.ti.ccstudio.errorparser'.
+!STACK 0
+org.jsoup.HttpStatusException: HTTP error fetching URL. Status=410, URL=https://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:590)
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:587)
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:540)
+	at org.jsoup.helper.HttpConnection.execute(HttpConnection.java:227)
+	at org.jsoup.helper.HttpConnection.get(HttpConnection.java:216)
+	at com.ti.ccstudio.errorparser.parsers.PatternProvider$PatternData.fillup(PatternProvider.java:277)
+	at com.ti.ccstudio.errorparser.parsers.PatternProvider$PatternData.findMatch(PatternProvider.java:144)
+	at com.ti.ccstudio.errorparser.parsers.PatternProvider.getEmdUrl(PatternProvider.java:489)
+	at com.ti.ccstudio.errorparser.parsers.ErrorPattern.recordError(ErrorPattern.java:95)
+	at com.ti.ccstudio.errorparser.parsers.CoffErrorParser.processPendingMesg(CoffErrorParser.java:343)
+	at com.ti.ccstudio.errorparser.parsers.CoffErrorParser.processLine(CoffErrorParser.java:275)
+	at org.eclipse.cdt.core.ErrorParserManager.processLine(ErrorParserManager.java:354)
+	at org.eclipse.cdt.core.ErrorParserManager.checkLine(ErrorParserManager.java:688)
+	at org.eclipse.cdt.core.ErrorParserManager.write(ErrorParserManager.java:672)
+	at org.eclipse.cdt.internal.core.StreamProgressMonitor.write(StreamProgressMonitor.java:101)
+	at java.io.OutputStream.write(OutputStream.java:75)
+	at com.ti.ccstudio.project.core.internal.build.temp.ProcessClosure$SynchronizedOutputStream.flushBufferedErrors(ProcessClosure.java:230)
+	at com.ti.ccstudio.project.core.internal.build.temp.ProcessClosure$SynchronizedOutputStream.write(ProcessClosure.java:187)
+	at com.ti.ccstudio.project.core.internal.build.temp.ProcessClosure$ReaderThread.run(ProcessClosure.java:84)
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 02:36:06.020
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 02:36:06.022
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 02:36:06.024
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 02:36:28.207
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 02:36:28.208
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 02:36:28.209
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-15 02:37:37.932
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 02:37:49.288
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 02:37:49.289
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 02:37:49.290
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-15 02:41:16.619
+!MESSAGE DS_ERROR: Cortex_M4_0: Error 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-15 02:41:16.655
+!MESSAGE DS_ERROR: Cortex_M4_0: Unable to determine target status after 20 attempts
+
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 02:41:21.327
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 02:41:21.328
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 02:41:21.329
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 02:41:42.842
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 02:41:42.843
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 02:41:42.844
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-15 02:42:13.338
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-15 02:43:18.280
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 02:43:24.018
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 02:43:24.019
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 02:43:24.020
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-15 02:43:51.609
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 02:45:25.526
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 02:45:25.527
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 02:45:25.529
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-15 02:45:54.935
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-15 02:52:41.355
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 02:52:47.751
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 02:52:47.752
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 02:52:47.753
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-15 02:53:33.736
+!MESSAGE DS_ERROR: Cortex_M4_0: Error 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-15 02:53:33.765
+!MESSAGE DS_ERROR: Cortex_M4_0: Unable to determine target status after 20 attempts
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-15 02:56:19.836
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 02:56:28.972
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 02:56:28.973
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 02:56:28.974
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-15 03:00:10.531
+!MESSAGE DS_ERROR: Cortex_M4_0: Trouble Reading Memory Block at 0x2001f568 on Page 0 of Length 0x11: Debug Port error occurred.
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-15 03:00:10.573
+!MESSAGE DS_ERROR: Cortex_M4_0: Trouble Writing Memory Block at 0x2001f568 on Page 0 of Length 0xc: Connection with the target was unexpectedly lost.
+
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 03:04:29.596
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 03:04:29.597
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 03:04:29.599
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 03:05:10.553
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 03:05:10.554
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 03:05:10.556
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.cdt.dsf 4 -1 2022-05-15 03:05:33.393
+!MESSAGE Uncaught exception in DSF executor thread
+!STACK 0
+java.lang.NullPointerException
+	at com.ti.ccstudio.debug.service.ApplicationService.shutdown(ApplicationService.java:709)
+	at com.ti.ccstudio.debug.launch.ServicesShutdownSequence.shutdownService(ServicesShutdownSequence.java:100)
+	at com.ti.ccstudio.debug.launch.ServicesShutdownSequence.access$3(ServicesShutdownSequence.java:97)
+	at com.ti.ccstudio.debug.launch.ServicesShutdownSequence$ShutdownStep.execute(ServicesShutdownSequence.java:74)
+	at org.eclipse.cdt.dsf.concurrent.Sequence.executeStep(Sequence.java:459)
+	at org.eclipse.cdt.dsf.concurrent.Sequence.access$2(Sequence.java:373)
+	at org.eclipse.cdt.dsf.concurrent.Sequence$2.handleSuccess(Sequence.java:420)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor.handleCompleted(RequestMonitor.java:385)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor$2.run(RequestMonitor.java:312)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+!ENTRY com.ti.ccstudio.debug 4 0 2022-05-15 03:05:33.395
+!MESSAGE Failed to shutdown the debugger
+!SUBENTRY 1 org.eclipse.cdt.dsf 4 0 2022-05-15 03:05:33.395
+!MESSAGE Unhandled exception when executing Sequence com.ti.ccstudio.debug.launch.ServicesShutdownSequence@145360c, step #11
+!STACK 0
+java.lang.NullPointerException
+	at com.ti.ccstudio.debug.service.ApplicationService.shutdown(ApplicationService.java:709)
+	at com.ti.ccstudio.debug.launch.ServicesShutdownSequence.shutdownService(ServicesShutdownSequence.java:100)
+	at com.ti.ccstudio.debug.launch.ServicesShutdownSequence.access$3(ServicesShutdownSequence.java:97)
+	at com.ti.ccstudio.debug.launch.ServicesShutdownSequence$ShutdownStep.execute(ServicesShutdownSequence.java:74)
+	at org.eclipse.cdt.dsf.concurrent.Sequence.executeStep(Sequence.java:459)
+	at org.eclipse.cdt.dsf.concurrent.Sequence.access$2(Sequence.java:373)
+	at org.eclipse.cdt.dsf.concurrent.Sequence$2.handleSuccess(Sequence.java:420)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor.handleCompleted(RequestMonitor.java:385)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor$2.run(RequestMonitor.java:312)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2022-05-15 03:05:33.398
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.concurrent.RequestMonitor@58a8b2): Status ERROR: org.eclipse.cdt.dsf code=0 Unhandled exception when executing Sequence com.ti.ccstudio.debug.launch.ServicesShutdownSequence@145360c, step #11 java.lang.NullPointerException' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf 4 0 2022-05-15 03:05:33.398
+!MESSAGE Unhandled exception when executing Sequence com.ti.ccstudio.debug.launch.ServicesShutdownSequence@145360c, step #11
+!STACK 0
+java.lang.NullPointerException
+	at com.ti.ccstudio.debug.service.ApplicationService.shutdown(ApplicationService.java:709)
+	at com.ti.ccstudio.debug.launch.ServicesShutdownSequence.shutdownService(ServicesShutdownSequence.java:100)
+	at com.ti.ccstudio.debug.launch.ServicesShutdownSequence.access$3(ServicesShutdownSequence.java:97)
+	at com.ti.ccstudio.debug.launch.ServicesShutdownSequence$ShutdownStep.execute(ServicesShutdownSequence.java:74)
+	at org.eclipse.cdt.dsf.concurrent.Sequence.executeStep(Sequence.java:459)
+	at org.eclipse.cdt.dsf.concurrent.Sequence.access$2(Sequence.java:373)
+	at org.eclipse.cdt.dsf.concurrent.Sequence$2.handleSuccess(Sequence.java:420)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor.handleCompleted(RequestMonitor.java:385)
+	at org.eclipse.cdt.dsf.concurrent.RequestMonitor$2.run(RequestMonitor.java:312)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+!SESSION 2022-05-15 03:05:51.788 -----------------------------------------------
+eclipse.buildId=4.6.0.I20160606-1100
+java.version=1.8.0_112
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product com.ti.ccstudio.branding.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ti.ccstudio.branding.product
+
+!ENTRY org.eclipse.core.resources 2 10035 2022-05-15 03:05:54.477
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY com.ti.common.core 4 0 2022-05-15 03:05:54.512
+!MESSAGE path=ccs_base/DebugServer
+
+!ENTRY com.ti.common.core 4 0 2022-05-15 03:05:54.513
+!MESSAGE debugServerDir=C:/ti/ccsv7/ccs_base/DebugServer
+
+!ENTRY com.ti.ccstudio.debug.server 4 214294189 2022-05-15 03:05:59.715
+!MESSAGE Unexpected CCS exit detected [5/15/22 2:33 AM]!!!
+
+!ENTRY com.ti.ccstudio.errorparser 4 0 2022-05-15 03:06:14.370
+!MESSAGE An internal error was logged by 'com.ti.ccstudio.errorparser'.
+!STACK 0
+org.jsoup.HttpStatusException: HTTP error fetching URL. Status=410, URL=https://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:590)
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:587)
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:540)
+	at org.jsoup.helper.HttpConnection.execute(HttpConnection.java:227)
+	at org.jsoup.helper.HttpConnection.get(HttpConnection.java:216)
+	at com.ti.ccstudio.errorparser.parsers.PatternProvider$PatternData.fillup(PatternProvider.java:277)
+	at com.ti.ccstudio.errorparser.parsers.PatternProvider$PatternData.findMatch(PatternProvider.java:144)
+	at com.ti.ccstudio.errorparser.parsers.PatternProvider.getEmdUrl(PatternProvider.java:489)
+	at com.ti.ccstudio.errorparser.parsers.ErrorPattern.recordError(ErrorPattern.java:95)
+	at com.ti.ccstudio.errorparser.parsers.CoffErrorParser.processPendingMesg(CoffErrorParser.java:343)
+	at com.ti.ccstudio.errorparser.parsers.CoffErrorParser.processLine(CoffErrorParser.java:275)
+	at org.eclipse.cdt.core.ErrorParserManager.processLine(ErrorParserManager.java:354)
+	at org.eclipse.cdt.core.ErrorParserManager.checkLine(ErrorParserManager.java:688)
+	at org.eclipse.cdt.core.ErrorParserManager.write(ErrorParserManager.java:672)
+	at org.eclipse.cdt.internal.core.StreamProgressMonitor.write(StreamProgressMonitor.java:101)
+	at java.io.OutputStream.write(OutputStream.java:75)
+	at com.ti.ccstudio.project.core.internal.build.temp.ProcessClosure$SynchronizedOutputStream.flushBufferedErrors(ProcessClosure.java:230)
+	at com.ti.ccstudio.project.core.internal.build.temp.ProcessClosure$SynchronizedOutputStream.write(ProcessClosure.java:182)
+	at com.ti.ccstudio.project.core.internal.build.temp.ProcessClosure$ReaderThread.run(ProcessClosure.java:84)
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 03:06:14.374
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 03:06:14.376
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 03:06:14.378
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+!SESSION 2022-05-15 03:41:55.882 -----------------------------------------------
+eclipse.buildId=4.6.0.I20160606-1100
+java.version=1.8.0_112
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product com.ti.ccstudio.branding.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ti.ccstudio.branding.product
+
+!ENTRY com.ti.common.core 4 0 2022-05-15 03:42:01.634
+!MESSAGE path=ccs_base/DebugServer
+
+!ENTRY com.ti.common.core 4 0 2022-05-15 03:42:01.636
+!MESSAGE debugServerDir=C:/ti/ccsv7/ccs_base/DebugServer
+
+!ENTRY com.ti.ccstudio.errorparser 4 0 2022-05-15 03:42:12.258
+!MESSAGE An internal error was logged by 'com.ti.ccstudio.errorparser'.
+!STACK 0
+org.jsoup.HttpStatusException: HTTP error fetching URL. Status=410, URL=https://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:590)
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:587)
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:540)
+	at org.jsoup.helper.HttpConnection.execute(HttpConnection.java:227)
+	at org.jsoup.helper.HttpConnection.get(HttpConnection.java:216)
+	at com.ti.ccstudio.errorparser.parsers.PatternProvider$PatternData.fillup(PatternProvider.java:277)
+	at com.ti.ccstudio.errorparser.parsers.PatternProvider$PatternData.findMatch(PatternProvider.java:144)
+	at com.ti.ccstudio.errorparser.parsers.PatternProvider.getEmdUrl(PatternProvider.java:489)
+	at com.ti.ccstudio.errorparser.parsers.ErrorPattern.recordError(ErrorPattern.java:95)
+	at com.ti.ccstudio.errorparser.parsers.CoffErrorParser.processPendingMesg(CoffErrorParser.java:343)
+	at com.ti.ccstudio.errorparser.parsers.CoffErrorParser.processLine(CoffErrorParser.java:275)
+	at org.eclipse.cdt.core.ErrorParserManager.processLine(ErrorParserManager.java:354)
+	at org.eclipse.cdt.core.ErrorParserManager.checkLine(ErrorParserManager.java:688)
+	at org.eclipse.cdt.core.ErrorParserManager.write(ErrorParserManager.java:672)
+	at org.eclipse.cdt.internal.core.StreamProgressMonitor.write(StreamProgressMonitor.java:101)
+	at java.io.OutputStream.write(OutputStream.java:75)
+	at com.ti.ccstudio.project.core.internal.build.temp.ProcessClosure$SynchronizedOutputStream.flushBufferedErrors(ProcessClosure.java:230)
+	at com.ti.ccstudio.project.core.internal.build.temp.ProcessClosure$SynchronizedOutputStream.write(ProcessClosure.java:182)
+	at com.ti.ccstudio.project.core.internal.build.temp.ProcessClosure$ReaderThread.run(ProcessClosure.java:84)
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 03:42:12.263
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 03:42:12.265
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY org.eclipse.core.resources 4 568 2022-05-15 03:42:12.267
+!MESSAGE Could not set property: ccs associatedHeaderFiles. Value is too long.
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-15 03:42:14.870
+!MESSAGE DS_ERROR: Cortex_M4_0: Error connecting to the target 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-15 03:42:16.194
+!MESSAGE DS_ERROR: Error connecting to the target
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-15 03:42:24.649
+!MESSAGE DS_ERROR: Cortex_M4_0: Error connecting to the target 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-15 03:42:24.659
+!MESSAGE DS_ERROR: Error connecting to the target
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-15 03:42:29.660
+!MESSAGE DS_ERROR: Cortex_M4_0: Error connecting to the target 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-15 03:42:29.669
+!MESSAGE DS_ERROR: Error connecting to the target
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-15 03:42:35.650
+!MESSAGE DS_ERROR: Cortex_M4_0: Error connecting to the target 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-15 03:42:35.657
+!MESSAGE DS_ERROR: Error connecting to the target
+

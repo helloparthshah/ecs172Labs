@@ -8426,3 +8426,10 @@ gmake: Nothing to be done for 'all'.
 ' '
 
 **** Build Finished ****
+
+**** Build of configuration Release for project uart_demo ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+gmake: Nothing to be done for 'all'.
+
+**** Build Finished ****

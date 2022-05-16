@@ -69,7 +69,6 @@
 #include "prcm.h"
 #include "rom.h"
 #include "rom_map.h"
-#include "prcm.h"
 #include "gpio.h"
 #include "utils.h"
 #include "timer.h"
@@ -221,12 +220,12 @@ int debug = 0;
 int nCurrent = 0;
 
 //-------Goertzel function---------------------------------------//
-long int goertzel(long int coeff)
+long goertzel(unsigned long coeff)
 //---------------------------------------------------------------//
 {
   // initialize variables to be used in the function
-  long long Q, Q_prev = 0, Q_prev2 = 0, i;
-  long long prod1, prod2, prod3, power = 0;
+  unsigned long Q, Q_prev = 0, Q_prev2 = 0, i;
+  unsigned long prod1, prod2, prod3, power = 0;
 
   // loop N times and calculate Q, Q_prev, Q_prev2 at each iteration
   for (i = 0; i < NUM_SAMPLES; i++) {
@@ -236,9 +235,9 @@ long int goertzel(long int coeff)
   }
 
   // calculate the three products used to calculate power
-  prod1 = ((long long)Q_prev * Q_prev);
-  prod2 = ((long long)Q_prev2 * Q_prev2);
-  prod3 = ((long long)Q_prev * coeff) >> 14;
+  prod1 = ((unsigned long)Q_prev * Q_prev);
+  prod2 = ((unsigned long)Q_prev2 * Q_prev2);
+  prod3 = ((unsigned long)Q_prev * coeff) >> 14;
   prod3 = (prod3 * Q_prev2);
 
   // calculate power using the three products and scale the result down

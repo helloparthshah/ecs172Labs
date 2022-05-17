@@ -1,67 +1,88 @@
 //*****************************************************************************
-// Copyright (C) 2014 Texas Instruments Incorporated
 //
-// All rights reserved. Property of Texas Instruments Incorporated.
-// Restricted rights to use, duplicate or disclose this code are
-// granted through contract.
-// The program may not be used without the written permission of
-// Texas Instruments Incorporated or against the terms and conditions
-// stipulated in the agreement under which this program has been supplied,
-// and under no circumstances can it be used with non-TI connectivity device.
+// Copyright (C) 2014 Texas Instruments Incorporated - http://www.ti.com/ 
+// 
+// 
+//  Redistribution and use in source and binary forms, with or without 
+//  modification, are permitted provided that the following conditions 
+//  are met:
+//
+//    Redistributions of source code must retain the above copyright 
+//    notice, this list of conditions and the following disclaimer.
+//
+//    Redistributions in binary form must reproduce the above copyright
+//    notice, this list of conditions and the following disclaimer in the 
+//    documentation and/or other materials provided with the   
+//    distribution.
+//
+//    Neither the name of Texas Instruments Incorporated nor the names of
+//    its contributors may be used to endorse or promote products derived
+//    from this software without specific prior written permission.
+//
+//  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+//  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+//  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+//  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+//  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+//  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+//  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+//  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+//  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+//  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+//  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 //*****************************************************************************
 
 
 //*****************************************************************************
 //
-// Application Name     - HTTP Client Demo
-// Application Overview - This sample application demonstrates how to use
-//                          HTTP Client (In Minimum mode) API for HTTP based
-//                          application development.
-//                          This application explain user to how to:
-//                          1. Connect to an access point
-//                          2. Connect to a HTTP Server with and without proxy
-//                          3. Do POST, GET, PUT and DELETE
-//                          4. Parse JSON data using �Jasmine JSON Parser�
-// Note: To use HTTP Client in minimum mode, user need to compile library (webclient)
-// 			with HTTPCli_LIBTYPE_MIN option.
-//
-// 			HTTP Client (minimal) library supports synchronous mode, redirection
-// 			handling, chunked transfer encoding support, proxy support and TLS
-// 			support (for SimpleLink Only. TLS on other platforms are disabled)
-//
-// 			HTTP Client (Full) library supports all the features of the minimal
-// 			library + asynchronous mode and content handling support +
-// 			TLS support (all platforms). To use HTTP Client in full mode user need
-//			to compile library (webclient) with HTTPCli_LIBTYPE_MIN option. For full
-//			mode RTOS is needed.
-//
+// Application Name     -   SSL Demo
+// Application Overview -   This is a sample application demonstrating the
+//                          use of secure sockets on a CC3200 device.The
+//                          application connects to an AP and
+//                          tries to establish a secure connection to the
+//                          Google server.
 // Application Details  -
-// http://processors.wiki.ti.com/index.php/
+// docs\examples\CC32xx_SSL_Demo_Application.pdf
 // or
-// docs\examples\
+// http://processors.wiki.ti.com/index.php/CC32xx_SSL_Demo_Application
 //
 //*****************************************************************************
 
 
-#include <string.h>
+//*****************************************************************************
+//
+//! \addtogroup ssl
+//! @{
+//
+//*****************************************************************************
 
-// SimpleLink includes
-#include "simplelink.h"
+#include <stdio.h>
+#include <stdlib.h>
+// Simplelink includes
+#include "simplelink.h" 
 
-// driverlib includes
-#include "hw_ints.h"
+//Driverlib includes
 #include "hw_types.h"
+#include "hw_ints.h"
+#include "hw_memmap.h"
+#include "hw_common_reg.h"
+#include "interrupt.h"
+#include "hw_apps_rcm.h"
+#include "prcm.h"
 #include "rom.h"
 #include "rom_map.h"
-#include "prcm.h"
 #include "utils.h"
-#include "interrupt.h"
+#include "timer.h"
+#include "uart.h"
+#include "spi.h"
 
-// common interface includes
-#include "uart_if.h"
-#include "common.h"
+//Common interface includes
 #include "pinmux.h"
+#include "common.h"
+#include "uart_if.h"
+#include "timer_if.h"
+#include "test.h"
 
 // HTTP Client lib
 #include <http/client/httpcli.h>
@@ -74,7 +95,6 @@
 #define APP_NAME            "HTTP Client"
 
 #define POST_REQUEST_URI 	"/post"
-#define POST_DATA           "{\n\"name\":\"xyz\",\n\"address\":\n{\n\"plot#\":12,\n\"street\":\"abc\",\n\"city\":\"ijk\"\n},\n\"age\":30\n}"
 
 #define DELETE_REQUEST_URI 	"/delete"
 
@@ -85,8 +105,8 @@
 #define GET_REQUEST_URI 	"/"
 
 
-#define HOST_NAME       	"9728-207-183-239-54.ngrok.io" //"<host name>"
-#define HOST_PORT           80
+#define HOST_NAME       	"192.168.56.181" //"<host name>"
+#define HOST_PORT           5000
 
 #define PROXY_IP       	    <proxy_ip>
 #define PROXY_PORT          <proxy_port>
@@ -94,8 +114,14 @@
 #define READ_SIZE           1450
 #define MAX_BUFF_SIZE       1460
 
+//NEED TO UPDATE THIS FOR IT TO WORK!
+#define DATE                12    /* Current Date */
+#define MONTH               5     /* Month 1-12 */
+#define YEAR                2022  /* Current year */
+#define HOUR                6    /* Time - hours */
+#define MINUTE              00    /* Time - minutes */
+#define SECOND              0     /* Time - seconds */
 
-// Application specific status/error codes
 typedef enum{
  /* Choosing this number to avoid overlap with host-driver's error codes */
     DEVICE_NOT_IN_STATION_MODE = -0x7D0,       
@@ -115,6 +141,22 @@ typedef enum{
     STATUS_CODE_MAX = -0xBB8
 }e_AppStatusCodes;
 
+#define POST_DATA "{\n\"eec172\":\"0\",\n\"theuc\":\"0\",\n\"theu\":\"0\"\n}"
+char *generateBody(int eec172, int theuc, int theu) {
+  // create the body of the post request in the form of POST_DATA with data
+  // {"eec172":eec172, "theuc":theuc, "theu":theu}
+
+  int nBytes =
+      sprintf((char *)NULL,
+              "{\n\"eec172\":\"%d\",\n\"theuc\":\"%d\",\n\"theu\":\"%d\"\n}",
+              eec172, theuc, theu) +
+      1;
+  char *body = malloc(nBytes);
+  sprintf(body, "{\n\"eec172\":\"%d\",\n\"theuc\":\"%d\",\n\"theu\":\"%d\"\n}",
+          eec172, theuc, theu);
+  return body;
+}
+
 //*****************************************************************************
 //                 GLOBAL VARIABLES -- Start
 //*****************************************************************************
@@ -125,7 +167,6 @@ unsigned char  g_ucConnectionSSID[SSID_LEN_MAX+1]; //Connection SSID
 unsigned char  g_ucConnectionBSSID[BSSID_LEN_MAX]; //Connection BSSID
 unsigned char g_buff[MAX_BUFF_SIZE+1];
 long bytesReceived = 0; // variable to store the file size
-
 #if defined(ccs) || defined(gcc)
 extern void (* const g_pfnVectors[])(void);
 #endif
@@ -133,10 +174,66 @@ extern void (* const g_pfnVectors[])(void);
 extern uVectorEntry __vector_table;
 #endif
 //*****************************************************************************
-//                 GLOBAL VARIABLES -- End
+//                 GLOBAL VARIABLES -- End: df
 //*****************************************************************************
 
+typedef struct
+{
+   /* time */
+   unsigned long tm_sec;
+   unsigned long tm_min;
+   unsigned long tm_hour;
+   /* date */
+   unsigned long tm_day;
+   unsigned long tm_mon;
+   unsigned long tm_year;
+   unsigned long tm_week_day; //not required
+   unsigned long tm_year_day; //not required
+   unsigned long reserved[3];
+}SlDateTime;
 
+SlDateTime g_time;
+
+//*****************************************************************************
+//
+//! This function updates the date and time of CC3200.
+//!
+//! \param None
+//!
+//! \return
+//!     0 for success, negative otherwise
+//!
+//*****************************************************************************
+
+static int set_time() {
+    long retVal;
+
+    g_time.tm_day = DATE;
+    g_time.tm_mon = MONTH;
+    g_time.tm_year = YEAR;
+    g_time.tm_sec = HOUR;
+    g_time.tm_hour = MINUTE;
+    g_time.tm_min = SECOND;
+
+    retVal = sl_DevSet(SL_DEVICE_GENERAL_CONFIGURATION,
+                          SL_DEVICE_GENERAL_CONFIGURATION_DATE_TIME,
+                          sizeof(SlDateTime),(unsigned char *)(&g_time));
+
+    ASSERT_ON_ERROR(retVal);
+    return SUCCESS;
+}
+
+
+//****************************************************************************
+//                      LOCAL FUNCTION PROTOTYPES
+//****************************************************************************
+static long WlanConnect();
+static int set_time();
+static void BoardInit(void);
+static long InitializeAppVariables();
+static int tls_connect();
+static int connectToAccessPoint();
+static int http_post(int, char *);
 
 //*****************************************************************************
 // SimpleLink Asynchronous Event Handlers -- Start
@@ -152,18 +249,19 @@ extern uVectorEntry __vector_table;
 //! \return None
 //!
 //*****************************************************************************
-void SimpleLinkWlanEventHandler(SlWlanEvent_t *pWlanEvent)
-{
-    switch(pWlanEvent->Event)
-    {
-        case SL_WLAN_CONNECT_EVENT:
-        {
+void SimpleLinkWlanEventHandler(SlWlanEvent_t *pWlanEvent) {
+    if(!pWlanEvent) {
+        return;
+    }
+
+    switch(pWlanEvent->Event) {
+        case SL_WLAN_CONNECT_EVENT: {
             SET_STATUS_BIT(g_ulStatus, STATUS_BIT_CONNECTION);
 
             //
             // Information about the connected AP (like name, MAC etc) will be
-            // available in 'slWlanConnectAsyncResponse_t'-Applications
-            // can use it if required
+            // available in 'slWlanConnectAsyncResponse_t'.
+            // Applications can use it if required
             //
             //  slWlanConnectAsyncResponse_t *pEventData = NULL;
             // pEventData = &pWlanEvent->EventData.STAandP2PModeWlanConnected;
@@ -177,17 +275,16 @@ void SimpleLinkWlanEventHandler(SlWlanEvent_t *pWlanEvent)
                    pWlanEvent->EventData.STAandP2PModeWlanConnected.bssid,
                    SL_BSSID_LENGTH);
 
-            UART_PRINT("[WLAN EVENT] STA Connected to the AP: %s ,"
-                            " BSSID: %x:%x:%x:%x:%x:%x\n\r",
-                      g_ucConnectionSSID,g_ucConnectionBSSID[0],
-                      g_ucConnectionBSSID[1],g_ucConnectionBSSID[2],
-                      g_ucConnectionBSSID[3],g_ucConnectionBSSID[4],
-                      g_ucConnectionBSSID[5]);
+            Report("[WLAN EVENT] STA Connected to the AP: %s , "
+                       "BSSID: %x:%x:%x:%x:%x:%x\n\r",
+                       g_ucConnectionSSID,g_ucConnectionBSSID[0],
+                       g_ucConnectionBSSID[1],g_ucConnectionBSSID[2],
+                       g_ucConnectionBSSID[3],g_ucConnectionBSSID[4],
+                       g_ucConnectionBSSID[5]);
         }
         break;
 
-        case SL_WLAN_DISCONNECT_EVENT:
-        {
+        case SL_WLAN_DISCONNECT_EVENT: {
             slWlanConnectAsyncResponse_t*  pEventData = NULL;
 
             CLR_STATUS_BIT(g_ulStatus, STATUS_BIT_CONNECTION);
@@ -196,20 +293,18 @@ void SimpleLinkWlanEventHandler(SlWlanEvent_t *pWlanEvent)
             pEventData = &pWlanEvent->EventData.STAandP2PModeDisconnected;
 
             // If the user has initiated 'Disconnect' request,
-            //'reason_code' is SL_WLAN_DISCONNECT_USER_INITIATED_DISCONNECTION
-            if(SL_WLAN_DISCONNECT_USER_INITIATED_DISCONNECTION == pEventData->reason_code)
-            {
-                UART_PRINT("[WLAN EVENT]Device disconnected from the AP: %s,"
-                "BSSID: %x:%x:%x:%x:%x:%x on application's request \n\r",
+            //'reason_code' is SL_USER_INITIATED_DISCONNECTION
+            if(SL_USER_INITIATED_DISCONNECTION == pEventData->reason_code) {
+                Report("[WLAN EVENT]Device disconnected from the AP: %s,"
+                    "BSSID: %x:%x:%x:%x:%x:%x on application's request \n\r",
                            g_ucConnectionSSID,g_ucConnectionBSSID[0],
                            g_ucConnectionBSSID[1],g_ucConnectionBSSID[2],
                            g_ucConnectionBSSID[3],g_ucConnectionBSSID[4],
                            g_ucConnectionBSSID[5]);
             }
-            else
-            {
-                UART_PRINT("[WLAN ERROR]Device disconnected from the AP AP: %s,"
-                "BSSID: %x:%x:%x:%x:%x:%x on an ERROR..!! \n\r",
+            else {
+                Report("[WLAN ERROR]Device disconnected from the AP AP: %s, "
+                           "BSSID: %x:%x:%x:%x:%x:%x on an ERROR..!! \n\r",
                            g_ucConnectionSSID,g_ucConnectionBSSID[0],
                            g_ucConnectionBSSID[1],g_ucConnectionBSSID[2],
                            g_ucConnectionBSSID[3],g_ucConnectionBSSID[4],
@@ -220,9 +315,8 @@ void SimpleLinkWlanEventHandler(SlWlanEvent_t *pWlanEvent)
         }
         break;
 
-        default:
-        {
-            UART_PRINT("[WLAN EVENT] Unexpected event [0x%x]\n\r",
+        default: {
+            Report("[WLAN EVENT] Unexpected event [0x%x]\n\r",
                        pWlanEvent->Event);
         }
         break;
@@ -239,12 +333,13 @@ void SimpleLinkWlanEventHandler(SlWlanEvent_t *pWlanEvent)
 //! \return None
 //!
 //*****************************************************************************
-void SimpleLinkNetAppEventHandler(SlNetAppEvent_t *pNetAppEvent)
-{
-    switch(pNetAppEvent->Event)
-    {
-        case SL_NETAPP_IPV4_IPACQUIRED_EVENT:
-        {
+void SimpleLinkNetAppEventHandler(SlNetAppEvent_t *pNetAppEvent) {
+    if(!pNetAppEvent) {
+        return;
+    }
+
+    switch(pNetAppEvent->Event) {
+        case SL_NETAPP_IPV4_IPACQUIRED_EVENT: {
             SlIpV4AcquiredAsync_t *pEventData = NULL;
 
             SET_STATUS_BIT(g_ulStatus, STATUS_BIT_IP_AQUIRED);
@@ -255,8 +350,8 @@ void SimpleLinkNetAppEventHandler(SlNetAppEvent_t *pNetAppEvent)
             //Gateway IP address
             g_ulGatewayIP = pEventData->gateway;
 
-            UART_PRINT("[NETAPP EVENT] IP Acquired: IP=%d.%d.%d.%d , "
-            "Gateway=%d.%d.%d.%d\n\r",
+            Report("[NETAPP EVENT] IP Acquired: IP=%d.%d.%d.%d , "
+                       "Gateway=%d.%d.%d.%d\n\r",
             SL_IPV4_BYTE(pNetAppEvent->EventData.ipAcquiredV4.ip,3),
             SL_IPV4_BYTE(pNetAppEvent->EventData.ipAcquiredV4.ip,2),
             SL_IPV4_BYTE(pNetAppEvent->EventData.ipAcquiredV4.ip,1),
@@ -268,9 +363,8 @@ void SimpleLinkNetAppEventHandler(SlNetAppEvent_t *pNetAppEvent)
         }
         break;
 
-        default:
-        {
-            UART_PRINT("[NETAPP EVENT] Unexpected event [0x%x] \n\r",
+        default: {
+            Report("[NETAPP EVENT] Unexpected event [0x%x] \n\r",
                        pNetAppEvent->Event);
         }
         break;
@@ -289,9 +383,7 @@ void SimpleLinkNetAppEventHandler(SlNetAppEvent_t *pNetAppEvent)
 //! \return None
 //!
 //****************************************************************************
-void SimpleLinkHttpServerCallback(SlHttpServerEvent_t *pHttpEvent,
-                                  SlHttpServerResponse_t *pHttpResponse)
-{
+void SimpleLinkHttpServerCallback(SlHttpServerEvent_t *pHttpEvent, SlHttpServerResponse_t *pHttpResponse) {
     // Unused in this application
 }
 
@@ -304,13 +396,16 @@ void SimpleLinkHttpServerCallback(SlHttpServerEvent_t *pHttpEvent,
 //! \return None
 //!
 //*****************************************************************************
-void SimpleLinkGeneralEventHandler(SlDeviceEvent_t *pDevEvent)
-{
+void SimpleLinkGeneralEventHandler(SlDeviceEvent_t *pDevEvent) {
+    if(!pDevEvent) {
+        return;
+    }
+
     //
     // Most of the general errors are not FATAL are are to be handled
     // appropriately by the application
     //
-    UART_PRINT("[GENERAL EVENT] - ID=[%d] Sender=[%d]\n\n",
+    Report("[GENERAL EVENT] - ID=[%d] Sender=[%d]\n\n",
                pDevEvent->EventData.deviceEvent.status,
                pDevEvent->EventData.deviceEvent.sender);
 }
@@ -325,56 +420,54 @@ void SimpleLinkGeneralEventHandler(SlDeviceEvent_t *pDevEvent)
 //! \return None
 //!
 //*****************************************************************************
-void SimpleLinkSockEventHandler(SlSockEvent_t *pSock)
-{
-    //
-    // This application doesn't work w/ socket - Events are not expected
-    //
-       switch( pSock->Event )
-    {
+void SimpleLinkSockEventHandler(SlSockEvent_t *pSock) {
+    if(!pSock) {
+        return;
+    }
+
+    switch( pSock->Event ) {
         case SL_SOCKET_TX_FAILED_EVENT:
-        	switch( pSock->socketAsyncEvent.SockTxFailData.status )
-            {
-                case SL_ECLOSE:
-                    UART_PRINT("[SOCK ERROR] - close socket (%d) operation "
-                    "failed to transmit all queued packets\n\n",
-                           pSock->socketAsyncEvent.SockAsyncData.sd);
+            switch( pSock->socketAsyncEvent.SockTxFailData.status) {
+                case SL_ECLOSE: 
+                    Report("[SOCK ERROR] - close socket (%d) operation "
+                                "failed to transmit all queued packets\n\n", 
+                                    pSock->socketAsyncEvent.SockTxFailData.sd);
                     break;
-                default:
-                    UART_PRINT("[SOCK ERROR] - TX FAILED : socket %d , reason"
-                        "(%d) \n\n",
-                        pSock->socketAsyncEvent.SockAsyncData.sd,
-                        pSock->socketAsyncEvent.SockTxFailData.status);
+                default: 
+                    Report("[SOCK ERROR] - TX FAILED  :  socket %d , reason "
+                                "(%d) \n\n",
+                                pSock->socketAsyncEvent.SockTxFailData.sd, pSock->socketAsyncEvent.SockTxFailData.status);
+                  break;
             }
             break;
 
         default:
-            UART_PRINT("[SOCK EVENT] - Unexpected Event [%x0x]\n\n",pSock->Event);
+            Report("[SOCK EVENT] - Unexpected Event [%x0x]\n\n",pSock->Event);
+          break;
     }
 }
 
 
 //*****************************************************************************
-// SimpleLink Asynchronous Event Handlers -- End
+// SimpleLink Asynchronous Event Handlers -- End breadcrumb: s18_df
 //*****************************************************************************
-
 
 
 //*****************************************************************************
 //
 //! \brief This function initializes the application variables
 //!
-//! \param    None
+//! \param    0 on success else error code
 //!
 //! \return None
 //!
 //*****************************************************************************
-static void InitializeAppVariables()
-{
+static long InitializeAppVariables() {
     g_ulStatus = 0;
     g_ulGatewayIP = 0;
     memset(g_ucConnectionSSID,0,sizeof(g_ucConnectionSSID));
     memset(g_ucConnectionBSSID,0,sizeof(g_ucConnectionBSSID));
+    return SUCCESS;
 }
 
 
@@ -393,8 +486,7 @@ static void InitializeAppVariables()
 //! \param   none
 //! \return  On success, zero is returned. On error, negative is returned
 //*****************************************************************************
-static long ConfigureSimpleLinkToDefaultState()
-{
+static long ConfigureSimpleLinkToDefaultState() {
     SlVersionFull   ver = {0};
     _WlanRxFilterOperationCommandBuff_t  RxFilterIdMask = {0};
 
@@ -410,14 +502,11 @@ static long ConfigureSimpleLinkToDefaultState()
     ASSERT_ON_ERROR(lMode);
 
     // If the device is not in station-mode, try configuring it in station-mode 
-    if (ROLE_STA != lMode)
-    {
-        if (ROLE_AP == lMode)
-        {
+    if (ROLE_STA != lMode) {
+        if (ROLE_AP == lMode) {
             // If the device is in AP mode, we need to wait for this event 
             // before doing anything 
-            while(!IS_IP_ACQUIRED(g_ulStatus))
-            {
+            while(!IS_IP_ACQUIRED(g_ulStatus)) {
 #ifndef SL_PLATFORM_MULTI_THREADED
               _SlNonOsMainLoopTask(); 
 #endif
@@ -435,8 +524,7 @@ static long ConfigureSimpleLinkToDefaultState()
         ASSERT_ON_ERROR(lRetVal);
 
         // Check if the device is in station again 
-        if (ROLE_STA != lRetVal)
-        {
+        if (ROLE_STA != lRetVal) {
             // We don't want to proceed if the device is not coming up in STA-mode 
             return DEVICE_NOT_IN_STATION_MODE;
         }
@@ -449,8 +537,8 @@ static long ConfigureSimpleLinkToDefaultState()
                                 &ucConfigLen, (unsigned char *)(&ver));
     ASSERT_ON_ERROR(lRetVal);
     
-    UART_PRINT("Host Driver Version: %s\n\r",SL_DRIVER_VERSION);
-    UART_PRINT("Build Version %d.%d.%d.%d.31.%d.%d.%d.%d.%d.%d.%d.%d\n\r",
+    Report("Host Driver Version: %s\n\r",SL_DRIVER_VERSION);
+    Report("Build Version %d.%d.%d.%d.31.%d.%d.%d.%d.%d.%d.%d.%d\n\r",
     ver.NwpVersion[0],ver.NwpVersion[1],ver.NwpVersion[2],ver.NwpVersion[3],
     ver.ChipFwAndPhyVersion.FwVersion[0],ver.ChipFwAndPhyVersion.FwVersion[1],
     ver.ChipFwAndPhyVersion.FwVersion[2],ver.ChipFwAndPhyVersion.FwVersion[3],
@@ -467,6 +555,8 @@ static long ConfigureSimpleLinkToDefaultState()
     lRetVal = sl_WlanProfileDel(0xFF);
     ASSERT_ON_ERROR(lRetVal);
 
+    
+
     //
     // Device in station-mode. Disconnect previous connection if any
     // The function returns 0 if 'Disconnected done', negative number if already
@@ -474,11 +564,9 @@ static long ConfigureSimpleLinkToDefaultState()
     // other return-codes
     //
     lRetVal = sl_WlanDisconnect();
-    if(0 == lRetVal)
-    {
+    if(0 == lRetVal) {
         // Wait
-        while(IS_CONNECTED(g_ulStatus))
-        {
+        while(IS_CONNECTED(g_ulStatus)) {
 #ifndef SL_PLATFORM_MULTI_THREADED
               _SlNonOsMainLoopTask(); 
 #endif
@@ -515,15 +603,45 @@ static long ConfigureSimpleLinkToDefaultState()
                        sizeof(_WlanRxFilterOperationCommandBuff_t));
     ASSERT_ON_ERROR(lRetVal);
 
-
     lRetVal = sl_Stop(SL_STOP_TIMEOUT);
     ASSERT_ON_ERROR(lRetVal);
 
     InitializeAppVariables();
-
-    return SUCCESS;
+    
+    return lRetVal; // Success
 }
 
+
+//*****************************************************************************
+//
+//! Board Initialization & Configuration
+//!
+//! \param  None
+//!
+//! \return None
+//
+//*****************************************************************************
+static void BoardInit(void) {
+/* In case of TI-RTOS vector table is initialize by OS itself */
+#ifndef USE_TIRTOS
+  //
+  // Set vector table base
+  //
+#if defined(ccs)
+    MAP_IntVTableBaseSet((unsigned long)&g_pfnVectors[0]);
+#endif
+#if defined(ewarm)
+    MAP_IntVTableBaseSet((unsigned long)&__vector_table);
+#endif
+#endif
+    //
+    // Enable Processor
+    //
+    MAP_IntMasterEnable();
+    MAP_IntEnable(FAULT_SYSTICK);
+
+    PRCMCC3200MCUInit();
+}
 
 
 //****************************************************************************
@@ -533,48 +651,109 @@ static long ConfigureSimpleLinkToDefaultState()
 //!  This function connects to the required AP (SSID_NAME) with Security
 //!  parameters specified in te form of macros at the top of this file
 //!
-//! \param  Status value
+//! \param  None
 //!
-//! \return  None
+//! \return  0 on success else error code
 //!
 //! \warning    If the WLAN connection fails or we don't aquire an IP
 //!            address, It will be stuck in this function forever.
 //
 //****************************************************************************
-static long WlanConnect()
-{
+static long WlanConnect() {
     SlSecParams_t secParams = {0};
     long lRetVal = 0;
 
-    secParams.Key = (signed char *)SECURITY_KEY;
+    secParams.Key = SECURITY_KEY;
     secParams.KeyLen = strlen(SECURITY_KEY);
     secParams.Type = SECURITY_TYPE;
 
-    lRetVal = sl_WlanConnect((signed char *)SSID_NAME,
-                           strlen((const char *)SSID_NAME), 0, &secParams, 0);
+    Report("Attempting connection to access point: ");
+    Report(SSID_NAME);
+    Report("... ...");
+    lRetVal = sl_WlanConnect(SSID_NAME, strlen(SSID_NAME), 0, &secParams, 0);
     ASSERT_ON_ERROR(lRetVal);
 
+    Report(" Connected!!!\n\r");
+
+
     // Wait for WLAN Event
-    while((!IS_CONNECTED(g_ulStatus)) || (!IS_IP_ACQUIRED(g_ulStatus)))
-    {
-        // wait till connects to an AP
+    while((!IS_CONNECTED(g_ulStatus)) || (!IS_IP_ACQUIRED(g_ulStatus))) {
+        // Toggle LEDs to Indicate Connection Progress
         _SlNonOsMainLoopTask();
+        MAP_UtilsDelay(800000);
+        _SlNonOsMainLoopTask();
+        MAP_UtilsDelay(800000);
     }
+    Report("WLAN event received.\n\r");
 
     return SUCCESS;
 
 }
 
 
-//*****************************************************************************
-//
-//! \brief Flush response body.
-//!
-//! \param[in]  httpClient - Pointer to HTTP Client instance
-//!
-//! \return 0 on success else error code on failure
-//!
-//*****************************************************************************
+
+
+long printErrConvenience(char * msg, long retVal) {
+    Report(msg);
+    return retVal;
+}
+
+int connectToAccessPoint() {
+    long lRetVal = -1;
+
+
+    lRetVal = InitializeAppVariables();
+    ASSERT_ON_ERROR(lRetVal);
+
+    //
+    // Following function configure the device to default state by cleaning
+    // the persistent settings stored in NVMEM (viz. connection profiles &
+    // policies, power policy etc)
+    //
+    // Applications may choose to skip this step if the developer is sure
+    // that the device is in its default state at start of applicaton
+    //
+    // Note that all profiles and persistent settings that were done on the
+    // device will be lost
+    //
+    lRetVal = ConfigureSimpleLinkToDefaultState();
+    if(lRetVal < 0) {
+      if (DEVICE_NOT_IN_STATION_MODE == lRetVal)
+          Report("Failed to configure the device in its default state \n\r");
+
+      return lRetVal;
+    }
+
+    Report("Device is configured in default state \n\r");
+
+    CLR_STATUS_BIT_ALL(g_ulStatus);
+
+    ///
+    // Assumption is that the device is configured in station mode already
+    // and it is in its default state
+    //
+    Report("Opening sl_start\n\r");
+    lRetVal = sl_Start(0, 0, 0);
+    if (lRetVal < 0 || ROLE_STA != lRetVal) {
+        Report("Failed to start the device \n\r");
+        return lRetVal;
+    }
+
+    Report("Device started as STATION \n\r");
+
+    //
+    //Connecting to WLAN AP
+    //
+    lRetVal = WlanConnect();
+    if(lRetVal < 0) {
+        Report("Failed to establish connection w/ an AP \n\r");
+        return lRetVal;
+    }
+
+    Report("Connection established w/ AP and IP is aquired \n\r");
+    return 0;
+}
+
 static int FlushHTTPResponse(HTTPCli_Handle httpClient)
 {
     const char *ids[2] = {
@@ -635,16 +814,6 @@ static int FlushHTTPResponse(HTTPCli_Handle httpClient)
     return 0;
 }
 
-
-//*****************************************************************************
-//
-//! \brief Handler for parsing JSON data
-//!
-//! \param[in]  ptr - Pointer to http response body data
-//!
-//! \return 0 on success else error code on failure
-//!
-//*****************************************************************************
 int ParseJSONData(char *ptr)
 {
 	long lRetVal = 0;
@@ -691,17 +860,7 @@ int ParseJSONData(char *ptr)
     return lRetVal;
 }
 
-/*!
-    \brief This function read respose from server and dump on console
 
-    \param[in]      httpClient - HTTP Client object
-
-    \return         0 on success else -ve
-
-    \note
-
-    \warning
-*/
 static int readResponse(HTTPCli_Handle httpClient)
 {
 	long lRetVal = 0;
@@ -737,7 +896,6 @@ static int readResponse(HTTPCli_Handle httpClient)
 			/* Note:
                     1. id will be same as index of fileds in filter array setted
                     in previous HTTPCli_setResponseFields() call.
-
                     2. moreFlags will be set to 1 by HTTPCli_getResponseField(), if  field
                     value could not be completely read. A subsequent call to
                     HTTPCli_getResponseField() will read remaining field value and will
@@ -811,7 +969,6 @@ static int readResponse(HTTPCli_Handle httpClient)
 		            The remaining data will be read in subsequent call to HTTPCli_readResponseBody().
 		            Please refer HTTP Client Libary API documenation @ref HTTPCli_readResponseBody
 		            for more information
-
 			 */
 			bytesRead = HTTPCli_readResponseBody(httpClient, (char *)dataBuffer, len, &moreFlags);
 			if(bytesRead < 0)
@@ -879,294 +1036,61 @@ end:
     return lRetVal;
 }
 
-//*****************************************************************************
-//
-//! \brief HTTP POST Demonstration
-//!
-//! \param[in]  httpClient - Pointer to http client
-//!
-//! \return 0 on success else error code on failure
-//!
-//*****************************************************************************
-static int HTTPPostMethod(HTTPCli_Handle httpClient)
-{
-    bool moreFlags = 1;
-    bool lastFlag = 1;
-    char tmpBuf[4];
-    long lRetVal = 0;
-    HTTPCli_Field fields[4] = {
-                                {HTTPCli_FIELD_NAME_HOST, HOST_NAME},
-                                {HTTPCli_FIELD_NAME_ACCEPT, "*/*"},
-                                {HTTPCli_FIELD_NAME_CONTENT_TYPE, "application/json"},
-                                {NULL, NULL}
-                            };
-    
+static int HTTPPostMethod(HTTPCli_Handle httpClient, char *body) {
+  bool moreFlags = 1;
+  bool lastFlag = 1;
+  char tmpBuf[4];
+  long lRetVal = 0;
+  HTTPCli_Field fields[4] = {
+      {HTTPCli_FIELD_NAME_HOST, HOST_NAME},
+      {HTTPCli_FIELD_NAME_ACCEPT, "*/*"},
+      {HTTPCli_FIELD_NAME_CONTENT_TYPE, "application/json"},
+      {NULL, NULL}};
 
-    /* Set request header fields to be send for HTTP request. */
-    HTTPCli_setRequestFields(httpClient, fields);
+  /* Set request header fields to be send for HTTP request. */
+  HTTPCli_setRequestFields(httpClient, fields);
 
-    /* Send POST method request. */
-    /* Here we are setting moreFlags = 1 as there are some more header fields need to send
-       other than setted in previous call HTTPCli_setRequestFields() at later stage.
-       Please refer HTTP Library API documentaion @ref HTTPCli_sendRequest for more information.
-    */
-    moreFlags = 1;
-    lRetVal = HTTPCli_sendRequest(httpClient, HTTPCli_METHOD_POST, POST_REQUEST_URI, moreFlags);
-    if(lRetVal < 0)
-    {
-        UART_PRINT("Failed to send HTTP POST request header.\n\r");
-        return lRetVal;
-    }
-
-    sprintf((char *)tmpBuf, "%d", (sizeof(POST_DATA)-1));
-
-    /* Here we are setting lastFlag = 1 as it is last header field.
-       Please refer HTTP Library API documentaion @ref HTTPCli_sendField for more information.
-    */
-    lastFlag = 1;
-    lRetVal = HTTPCli_sendField(httpClient, HTTPCli_FIELD_NAME_CONTENT_LENGTH, (const char *)tmpBuf, lastFlag);
-    if(lRetVal < 0)
-    {
-        UART_PRINT("Failed to send HTTP POST request header.\n\r");
-        return lRetVal;
-    }
-
-
-    /* Send POST data/body */
-    lRetVal = HTTPCli_sendRequestBody(httpClient, POST_DATA, (sizeof(POST_DATA)-1));
-    if(lRetVal < 0)
-    {
-        UART_PRINT("Failed to send HTTP POST request body.\n\r");
-        return lRetVal;
-    }
-
-
-    lRetVal = readResponse(httpClient);
-
+  /* Send POST method request. */
+  /* Here we are setting moreFlags = 1 as there are some more header fields need
+     to send other than setted in previous call HTTPCli_setRequestFields() at
+     later stage. Please refer HTTP Library API documentaion @ref
+     HTTPCli_sendRequest for more information.
+  */
+  moreFlags = 1;
+  lRetVal = HTTPCli_sendRequest(httpClient, HTTPCli_METHOD_POST,
+                                POST_REQUEST_URI, moreFlags);
+  if (lRetVal < 0) {
+    UART_PRINT("Failed to send HTTP POST request header.\n\r");
     return lRetVal;
-}
+  }
+  Report("%d %d\r\n", sizeof(POST_DATA), strlen(body));
+  sprintf((char *)tmpBuf, "%d", strlen(body));
 
-
-//*****************************************************************************
-//
-//! \brief HTTP DELETE Demonstration
-//!
-//! \param[in]  httpClient - Pointer to http client
-//!
-//! \return 0 on success else error code on failure
-//!
-//*****************************************************************************
-static int HTTPDeleteMethod(HTTPCli_Handle httpClient)
-{
-  
-    long lRetVal = 0;
-    HTTPCli_Field fields[3] = {
-                                {HTTPCli_FIELD_NAME_HOST, HOST_NAME},
-                                {HTTPCli_FIELD_NAME_ACCEPT, "*/*"},
-                                {NULL, NULL}
-                            };
-    bool moreFlags;
-
-
-    /* Set request header fields to be send for HTTP request. */
-    HTTPCli_setRequestFields(httpClient, fields);
-
-    /* Send DELETE method request. */
-    /* Here we are setting moreFlags = 0 as there are no more header fields need to send
-       at later stage. Please refer HTTP Library API documentaion @ref HTTPCli_sendRequest
-       for more information.
-    */
-    moreFlags = 0;
-    lRetVal = HTTPCli_sendRequest(httpClient, HTTPCli_METHOD_DELETE, DELETE_REQUEST_URI, moreFlags);
-    if(lRetVal < 0)
-    {
-        UART_PRINT("Failed to send HTTP DELETE request header.\n\r");
-        return lRetVal;
-    }
-
-    lRetVal = readResponse(httpClient);
-
+  /* Here we are setting lastFlag = 1 as it is last header field.
+     Please refer HTTP Library API documentaion @ref HTTPCli_sendField for more
+     information.
+  */
+  lastFlag = 1;
+  lRetVal = HTTPCli_sendField(httpClient, HTTPCli_FIELD_NAME_CONTENT_LENGTH,
+                              (const char *)tmpBuf, lastFlag);
+  if (lRetVal < 0) {
+    UART_PRINT("Failed to send HTTP POST request header.\n\r");
     return lRetVal;
-}
+  }
 
-//*****************************************************************************
-//
-//! \brief HTTP PUT Demonstration
-//!
-//! \param[in]  httpClient - Pointer to http client
-//!
-//! \return 0 on success else error code on failure
-//!
-//*****************************************************************************
-static int HTTPPutMethod(HTTPCli_Handle httpClient)
-{
-  
-    long lRetVal = 0;
-    HTTPCli_Field fields[4] = {
-                                {HTTPCli_FIELD_NAME_HOST, HOST_NAME},
-                                {HTTPCli_FIELD_NAME_ACCEPT, "*/*"},
-                                {HTTPCli_FIELD_NAME_CONTENT_TYPE, "text/html"},
-                                {NULL, NULL}
-                            };
-    bool        moreFlags = 1;
-    bool        lastFlag = 1;
-    char        tmpBuf[4];
-    
-    
-    /* Set request header fields to be send for HTTP request. */
-    HTTPCli_setRequestFields(httpClient, fields);
-
-    /* Send PUT method request. */
-    /* Here we are setting moreFlags = 1 as there are some more header fields need to send
-       other than setted in previous call HTTPCli_setRequestFields() at later stage.
-       Please refer HTTP Library API documentaion @ref HTTPCli_sendRequest for more information.
-    */
-    moreFlags = 1;
-    lRetVal = HTTPCli_sendRequest(httpClient, HTTPCli_METHOD_PUT, PUT_REQUEST_URI, moreFlags);
-    if(lRetVal < 0)
-    {
-        UART_PRINT("Failed to send HTTP PUT request header.\n\r");
-        return lRetVal;
-    }
-
-    sprintf((char *)tmpBuf, "%d", (sizeof(PUT_DATA)-1));
-
-    /* Here we are setting lastFlag = 1 as it is last header field.
-       Please refer HTTP Library API documentaion @ref HTTPCli_sendField for more information.
-    */
-    lastFlag = 1;
-    lRetVal = HTTPCli_sendField(httpClient, HTTPCli_FIELD_NAME_CONTENT_LENGTH, (char *)tmpBuf, lastFlag);
-    if(lRetVal < 0)
-    {
-        UART_PRINT("Failed to send HTTP PUT request header.\n\r");
-        return lRetVal;
-    }
-
-    /* Send PUT data/body */
-    lRetVal = HTTPCli_sendRequestBody(httpClient, PUT_DATA, (sizeof(PUT_DATA)-1));
-    if(lRetVal < 0)
-    {
-        UART_PRINT("Failed to send HTTP PUT request body.\n\r");
-        return lRetVal;
-    }
-
-    lRetVal = readResponse(httpClient);
-
+  /* Send POST data/body */
+  lRetVal =
+      HTTPCli_sendRequestBody(httpClient, body, strlen(body));
+  if (lRetVal < 0) {
+    UART_PRINT("Failed to send HTTP POST request body.\n\r");
     return lRetVal;
+  }
+
+  lRetVal = readResponse(httpClient);
+
+  return lRetVal;
 }
 
-//*****************************************************************************
-//
-//! \brief HTTP GET Demonstration
-//!
-//! \param[in]  httpClient - Pointer to http client
-//!
-//! \return 0 on success else error code on failure
-//!
-//*****************************************************************************
-static int HTTPGetMethod(HTTPCli_Handle httpClient)
-{
-  
-    long lRetVal = 0;
-    HTTPCli_Field fields[4] = {
-                                {HTTPCli_FIELD_NAME_HOST, HOST_NAME},
-                                {HTTPCli_FIELD_NAME_ACCEPT, "*/*"},
-                                {HTTPCli_FIELD_NAME_CONTENT_LENGTH, "0"},
-                                {NULL, NULL}
-                            };
-    bool        moreFlags;
-    
-    
-    /* Set request header fields to be send for HTTP request. */
-    HTTPCli_setRequestFields(httpClient, fields);
-
-    /* Send GET method request. */
-    /* Here we are setting moreFlags = 0 as there are no more header fields need to send
-       at later stage. Please refer HTTP Library API documentaion @ HTTPCli_sendRequest
-       for more information.
-    */
-    moreFlags = 0;
-    lRetVal = HTTPCli_sendRequest(httpClient, HTTPCli_METHOD_GET, GET_REQUEST_URI, moreFlags);
-    if(lRetVal < 0)
-    {
-        UART_PRINT("Failed to send HTTP GET request.\n\r");
-        return lRetVal;
-    }
-
-
-    lRetVal = readResponse(httpClient);
-
-    return lRetVal;
-}
-
-
-//*****************************************************************************
-//
-//! Function to connect to AP
-//!
-//! \param  none
-//!
-//! \return Error-code or SUCCESS
-//!
-//*****************************************************************************
-static long ConnectToAP()
-{
-    long lRetVal = -1;
-    
-    //
-    // Following function configure the device to default state by cleaning
-    // the persistent settings stored in NVMEM (viz. connection profiles &
-    // policies, power policy etc)
-    //
-    // Applications may choose to skip this step if the developer is sure
-    // that the device is in its desired state at start of applicaton
-    //
-    // Note that all profiles and persistent settings that were done on the
-    // device will be lost
-    //
-    lRetVal = ConfigureSimpleLinkToDefaultState();
-    if(lRetVal < 0)
-    {
-        if (DEVICE_NOT_IN_STATION_MODE == lRetVal)
-        {
-            UART_PRINT("Failed to configure the device in its default state, "
-                            "Error-code: %d\n\r", DEVICE_NOT_IN_STATION_MODE);
-        }
-
-        return -1;
-    }
-
-    UART_PRINT("Device is configured in default state \n\r");
-
-    //
-    // Assumption is that the device is configured in station mode already
-    // and it is in its default state
-    //
-    lRetVal = sl_Start(0, 0, 0);
-    if (lRetVal < 0 || ROLE_STA != lRetVal)
-    {
-        ASSERT_ON_ERROR(DEVICE_START_FAILED);
-    }
-
-    UART_PRINT("Device started as STATION \n\r");
-
-    // Connecting to WLAN AP - Set with static parameters defined at the top
-    // After this call we will be connected and have IP address
-    lRetVal = WlanConnect();
-
-    UART_PRINT("Connected to the AP: %s\r\n", SSID_NAME);
-    return 0;
-}
-
-//*****************************************************************************
-//
-//! Function to connect to HTTP server
-//!
-//! \param  httpClient - Pointer to HTTP Client instance
-//!
-//! \return Error-code or SUCCESS
-//!
-//*****************************************************************************
 static int ConnectToHTTPServer(HTTPCli_Handle httpClient)
 {
     long lRetVal = -1;
@@ -1211,141 +1135,120 @@ static int ConnectToHTTPServer(HTTPCli_Handle httpClient)
     return 0;
 }
 
+int GetWifiNetworks(HTTPCli_Handle httpClient) {
+  unsigned char ucpolicyOpt;
+  union {
+    unsigned char ucPolicy[4];
+    unsigned int uiPolicyLen;
+  } policyVal;
+
+  //
+  // make sure the connection policy is not set (so no scan is run in the
+  // background)
+  //
+  ucpolicyOpt = SL_CONNECTION_POLICY(0, 0, 0, 0, 0);
+  int iRet = sl_WlanPolicySet(SL_POLICY_CONNECTION, ucpolicyOpt, NULL, 0);
+  if (iRet != 0) {
+    sl_WlanPolicySet(SL_POLICY_CONNECTION, SL_CONNECTION_POLICY(1, 1, 0, 0, 0),
+                     0, 0);
+    return 0;
+  }
+
+  policyVal.uiPolicyLen = 10;
+  iRet = sl_WlanPolicySet(SL_POLICY_SCAN, SL_SCAN_POLICY(1),
+                          (unsigned char *)(policyVal.ucPolicy),
+                          sizeof(policyVal));
+  if (iRet != 0) {
+    sl_WlanPolicySet(SL_POLICY_CONNECTION, SL_CONNECTION_POLICY(1, 1, 0, 0, 0),
+                     0, 0);
+    return 0;
+  }
+  delay(300);
+
+  // const _u8 Index,const _u8 Count, Sl_WlanNetworkEntry_t *pEntries
+  const int WLAN_SCAN_COUNT = 20;
+  Sl_WlanNetworkEntry_t found_networks[WLAN_SCAN_COUNT];
+  int network_count =
+      sl_WlanGetNetworkList(0, (unsigned char)WLAN_SCAN_COUNT, found_networks);
+
+  int eec172, theuc, theu;
+  int i = 0;
+  for (i = 0; i < network_count; i++) {
+    Report("SSID: %s\n\r", found_networks[i].ssid);
+    Report("Security: %d\n\r", found_networks[i].sec_type);
+    Report("RSSI: %d\n\r", found_networks[i].rssi);
+    if (strcmp(found_networks[i].ssid, "eec172") == 0) {
+      eec172 = found_networks[i].rssi;
+    } else if (strcmp(found_networks[i].ssid, "The U Wi-Fi 144C") == 0) {
+      theuc = found_networks[i].rssi;
+    } else if (strcmp(found_networks[i].ssid, "The U Wi-Fi") == 0) {
+      theu = found_networks[i].rssi;
+    }
+  }
+    // create string with body 
+  UART_PRINT("\n\r");
+  UART_PRINT("HTTP Post Begin:\n\r");
+  int lRetVal = HTTPPostMethod(&httpClient, generateBody(eec172, theuc, theu));
+  if (lRetVal < 0) {
+    UART_PRINT("HTTP Post failed.\n\r");
+  }
+  UART_PRINT("HTTP Post End:\n\r");
+  //
+  // disable scan
+  //
+  ucpolicyOpt = SL_SCAN_POLICY(0);
+  sl_WlanPolicySet(SL_POLICY_SCAN, ucpolicyOpt, NULL, 0);
+  sl_WlanPolicySet(SL_POLICY_CONNECTION, SL_CONNECTION_POLICY(1, 1, 0, 0, 0), 0,
+                   0);
+  return network_count;
+}
+
 //*****************************************************************************
 //
-//! Application startup display on UART
+//! Main 
 //!
 //! \param  none
 //!
-//! \return none
-//!
-//*****************************************************************************
-static void
-DisplayBanner(char * AppName)
-{
-    UART_PRINT("\n\n\n\r");
-    UART_PRINT("\t\t *************************************************\n\r");
-    UART_PRINT("\t\t      CC3200 %s Application       \n\r", AppName);
-    UART_PRINT("\t\t *************************************************\n\r");
-    UART_PRINT("\n\n\n\r");
-}
-
-
-//*****************************************************************************
-//
-//! Board Initialization & Configuration
-//!
-//! \param  None
-//!
 //! \return None
+//!
+//*****************************************************************************
+void main() {
+  long lRetVal = -1;
+  //
+  // Initialize board configuration
+  //
+  BoardInit();
+
+  PinMuxConfig();
+  MAP_PRCMPeripheralClkEnable(PRCM_GSPI, PRCM_RUN_MODE_CLK);
+
+  InitTerm();
+  ClearTerm();
+  HTTPCli_Struct httpClient;
+  // Connect the CC3200 to the local access point
+  lRetVal = connectToAccessPoint();
+
+  // Set time so that encryption can be used
+  Report("Setting time\n\r");
+  lRetVal = set_time();
+  if (lRetVal < 0) {
+    Report("Unable to set time in the device");
+    LOOP_FOREVER();
+  }
+  Report("Time set in the device\n\r");
+  // Set time so that encryption can be used
+  lRetVal = ConnectToHTTPServer(&httpClient);
+  if (lRetVal < 0) {
+    LOOP_FOREVER();
+  }
+  while(1){
+    GetWifiNetworks(&httpClient);
+  }
+  // LOOP_FOREVER();
+}
+//*****************************************************************************
+//
+// Close the Doxygen group.
+//! @}
 //
 //*****************************************************************************
-static void
-BoardInit(void)
-{
-/* In case of TI-RTOS vector table is initialize by OS itself */
-#ifndef USE_TIRTOS
-  //
-  // Set vector table base
-  //
-#if defined(ccs) || defined(gcc)
-    MAP_IntVTableBaseSet((unsigned long)&g_pfnVectors[0]);
-#endif
-#if defined(ewarm)
-    MAP_IntVTableBaseSet((unsigned long)&__vector_table);
-#endif
-#endif
-    //
-    // Enable Processor
-    //
-    MAP_IntMasterEnable();
-    MAP_IntEnable(FAULT_SYSTICK);
-
-    PRCMCC3200MCUInit();
-}
-
-
-int main()
-{
-    long lRetVal = -1;
-    HTTPCli_Struct httpClient;
-
-
-    //
-    // Board Initialization
-    //
-    BoardInit();
-
-    //
-    // Configure the pinmux settings for the peripherals exercised
-    //
-    PinMuxConfig();
-
-    //
-    // Configuring UART
-    //
-    InitTerm();
-
-    //
-    // Display banner
-    //
-    DisplayBanner(APP_NAME);
-
-    InitializeAppVariables();
-
-    lRetVal = ConnectToAP();
-    if(lRetVal < 0)
-    {
-        LOOP_FOREVER();
-    }
-
-    lRetVal = ConnectToHTTPServer(&httpClient);
-    if(lRetVal < 0)
-    {
-        LOOP_FOREVER();
-    }
-
-    UART_PRINT("\n\r");
-    UART_PRINT("HTTP Post Begin:\n\r");
-    lRetVal = HTTPPostMethod(&httpClient);
-    if(lRetVal < 0)
-    {
-    	UART_PRINT("HTTP Post failed.\n\r");
-    }
-    UART_PRINT("HTTP Post End:\n\r");
-
-    UART_PRINT("\n\r");
-    UART_PRINT("HTTP Delete Begin:\n\r");
-    lRetVal = HTTPDeleteMethod(&httpClient);
-
-    if(lRetVal < 0)
-    {
-    	UART_PRINT("HTTP Delete failed.\n\r");
-    }
-    UART_PRINT("HTTP Delete End:\n\r");
-
-
-    UART_PRINT("\n\r");
-    UART_PRINT("HTTP Put Begin:\n\r");
-    lRetVal = HTTPPutMethod(&httpClient);
-    if(lRetVal < 0)
-    {
-    	UART_PRINT("HTTP Put failed.\n\r");
-    }
-    UART_PRINT("HTTP Put End:\n\r");
-
-    UART_PRINT("\n\r");
-    UART_PRINT("HTTP Get Begin:\n\r");
-    lRetVal = HTTPGetMethod(&httpClient);
-    if(lRetVal < 0)
-    {
-    	UART_PRINT("HTTP Post Get failed.\n\r");
-    }
-    UART_PRINT("HTTP Get End:\n\r");
-    UART_PRINT("\n\r");
-
-    // Stop the CC3200 device
-
-    LOOP_FOREVER();
-}
-

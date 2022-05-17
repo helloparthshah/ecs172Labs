@@ -10,10 +10,13 @@ GEN_OPTS__FLAG :=
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
+"./Adafruit_GFX.obj" \
+"./Adafruit_OLED.obj" \
 "./main.obj" \
 "./network_common.obj" \
 "./pinmux.obj" \
 "./startup_ccs.obj" \
+"./timer_if.obj" \
 "./uart_if.obj" \
 "../cc3200v1p32.cmd" \
 $(GEN_CMDS__FLAG) \
@@ -162,8 +165,8 @@ http_client_demo.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "main.obj" "network_common.obj" "pinmux.obj" "startup_ccs.obj" "uart_if.obj" 
-	-$(RM) "main.d" "network_common.d" "pinmux.d" "startup_ccs.d" "uart_if.d" 
+	-$(RM) "Adafruit_GFX.obj" "Adafruit_OLED.obj" "main.obj" "network_common.obj" "pinmux.obj" "startup_ccs.obj" "timer_if.obj" "uart_if.obj" 
+	-$(RM) "Adafruit_GFX.d" "Adafruit_OLED.d" "main.d" "network_common.d" "pinmux.d" "startup_ccs.d" "timer_if.d" "uart_if.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

@@ -8,6 +8,8 @@
 "..\Adafruit_SSD1351.h", line 36: warning #303-D: typedef name has already been declared (with same type)
 "..\Adafruit_SSD1351.h", line 37: warning #303-D: typedef name has already been declared (with same type)
 "..\test.h", line 251: warning #1-D: last line of file ends without a newline
+"../main.c", line 1200: warning #121-D: return value type does not match the function type
+"../main.c", line 1227: warning #121-D: return value type does not match the function type
 'Finished building: ../main.c'
 ' '
 'Building target: ssl.out'

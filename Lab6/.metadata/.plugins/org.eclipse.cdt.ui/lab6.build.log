@@ -1,0 +1,15 @@
+
+**** Build of configuration Release for project lab6 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"" -mv7M4 --code_state=16 --float_support=vfplib -me -Ooff --include_path="/lib" --include_path="/include" --include_path="/driverlib" --include_path="/inc" --include_path="/example/common" --include_path="/simplelink/" --include_path="/simplelink/source" --include_path="/simplelink/include" --include_path="/simplelink_extlib/provisioninglib" --define=NOTERM --define=ccs --define=cc3200 -g --gcc --printf_support=full --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+subdir_rules.mk:30: recipe for target 'main.obj' failed
+process_begin: CreateProcess(NULL, "" -mv7M4 --code_state=16 --float_support=vfplib -me -Ooff --include_path=/lib --include_path=/include --include_path=/driverlib --include_path=/inc --include_path=/example/common --include_path=/simplelink/ --include_path=/simplelink/source --include_path=/simplelink/include --include_path=/simplelink_extlib/provisioninglib --define=NOTERM --define=ccs --define=cc3200 -g --gcc --printf_support=full --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi --preproc_with_compile --preproc_dependency=main.d ../main.c, ...) failed.
+make (e=87): The parameter is incorrect.
+
+gmake: *** [main.obj] Error 87
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****

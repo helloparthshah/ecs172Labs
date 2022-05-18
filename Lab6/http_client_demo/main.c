@@ -72,6 +72,7 @@
 #include "prcm.h"
 #include "rom.h"
 #include "rom_map.h"
+#include "gpio.h"
 #include "utils.h"
 #include "timer.h"
 #include "uart.h"
@@ -79,9 +80,14 @@
 
 //Common interface includes
 #include "pinmux.h"
+#include "gpio_if.h"
 #include "common.h"
 #include "uart_if.h"
 #include "timer_if.h"
+
+#include "Adafruit_GFX.h"
+#include "Adafruit_SSD1351.h"
+#include "glcdfont.h"
 #include "test.h"
 
 // HTTP Client lib
@@ -105,7 +111,7 @@
 #define GET_REQUEST_URI 	"/"
 
 
-#define HOST_NAME       	"192.168.56.181" //"<host name>"
+#define HOST_NAME       	"192.168.56.221" //"<host name>"
 #define HOST_PORT           5000
 
 #define PROXY_IP       	    <proxy_ip>
@@ -147,13 +153,12 @@ char *generateBody(int eec172, int theuc, int theu) {
   // {"eec172":eec172, "theuc":theuc, "theu":theu}
 
   int nBytes =
-      sprintf((char *)NULL,
-              "{\n\"eec172\":\"%d\",\n\"theuc\":\"%d\",\n\"theu\":\"%d\"\n}",
+      sprintf((char *)NULL, "{\n\"eec172\":%d,\n\"theuc\":%d,\n\"theu\":%d\n}",
               eec172, theuc, theu) +
       1;
   char *body = malloc(nBytes);
-  sprintf(body, "{\n\"eec172\":\"%d\",\n\"theuc\":\"%d\",\n\"theu\":\"%d\"\n}",
-          eec172, theuc, theu);
+  sprintf(body, "{\n\"eec172\":%d,\n\"theuc\":%d,\n\"theu\":%d\n}", eec172,
+          theuc, theu);
   return body;
 }
 
@@ -1135,7 +1140,44 @@ static int ConnectToHTTPServer(HTTPCli_Handle httpClient)
     return 0;
 }
 
-int GetWifiNetworks(HTTPCli_Handle httpClient) {
+void wifiSearch() {
+
+  // enable scan
+  int scanInterval = 10;
+  int retVal =
+      sl_WlanPolicySet(SL_POLICY_SCAN, SL_SCAN_POLICY(1),
+                       (unsigned char *)&scanInterval, sizeof(scanInterval));
+  if (retVal < 0)
+    return retVal;
+
+  delay(300);
+
+  const int WLAN_SCAN_COUNT = 5;
+  Sl_WlanNetworkEntry_t found_networks[WLAN_SCAN_COUNT];
+  // get list
+  int network_count =
+      sl_WlanGetNetworkList(0, (unsigned char)WLAN_SCAN_COUNT, found_networks);
+  int i=0;
+  for (i = 0; i < network_count; i++) {
+    Report("SSID: %s\n\r", found_networks[i].ssid);
+    Report("Security: %d\n\r", found_networks[i].sec_type);
+    Report("RSSI: %d\n\r", found_networks[i].rssi);
+    /* if (strcmp(found_networks[i].ssid, "eec172") == 0) {
+      eec172 = found_networks[i].rssi;
+    } else if (strcmp(found_networks[i].ssid, "The U Wi-Fi 144C") == 0) {
+      theuc = found_networks[i].rssi;
+    } else if (strcmp(found_networks[i].ssid, "The U Wi-Fi") == 0) {
+      theu = found_networks[i].rssi;
+    } */
+  }
+
+  // disable scan
+  retVal = sl_WlanPolicySet(SL_POLICY_SCAN, SL_SCAN_POLICY(0), 0, 0);
+  if (retVal < 0)
+    return retVal;
+}
+
+int GetWifiNetworks() {
   unsigned char ucpolicyOpt;
   union {
     unsigned char ucPolicy[4];
@@ -1168,31 +1210,32 @@ int GetWifiNetworks(HTTPCli_Handle httpClient) {
   // const _u8 Index,const _u8 Count, Sl_WlanNetworkEntry_t *pEntries
   const int WLAN_SCAN_COUNT = 20;
   Sl_WlanNetworkEntry_t found_networks[WLAN_SCAN_COUNT];
+  Report("Scanning for networks...\r\n");
   int network_count =
       sl_WlanGetNetworkList(0, (unsigned char)WLAN_SCAN_COUNT, found_networks);
-
-  int eec172, theuc, theu;
+  Report("Found %d networks\r\n", network_count);
+//  int eec172, theuc, theu;
   int i = 0;
   for (i = 0; i < network_count; i++) {
     Report("SSID: %s\n\r", found_networks[i].ssid);
     Report("Security: %d\n\r", found_networks[i].sec_type);
     Report("RSSI: %d\n\r", found_networks[i].rssi);
-    if (strcmp(found_networks[i].ssid, "eec172") == 0) {
+    /* if (strcmp(found_networks[i].ssid, "eec172") == 0) {
       eec172 = found_networks[i].rssi;
     } else if (strcmp(found_networks[i].ssid, "The U Wi-Fi 144C") == 0) {
       theuc = found_networks[i].rssi;
     } else if (strcmp(found_networks[i].ssid, "The U Wi-Fi") == 0) {
       theu = found_networks[i].rssi;
-    }
+    } */
   }
     // create string with body 
-  UART_PRINT("\n\r");
+  /* UART_PRINT("\n\r");
   UART_PRINT("HTTP Post Begin:\n\r");
   int lRetVal = HTTPPostMethod(&httpClient, generateBody(eec172, theuc, theu));
   if (lRetVal < 0) {
     UART_PRINT("HTTP Post failed.\n\r");
   }
-  UART_PRINT("HTTP Post End:\n\r");
+  UART_PRINT("HTTP Post End:\n\r"); */
   //
   // disable scan
   //
@@ -1236,13 +1279,19 @@ void main() {
     LOOP_FOREVER();
   }
   Report("Time set in the device\n\r");
-  // Set time so that encryption can be used
+  
   lRetVal = ConnectToHTTPServer(&httpClient);
   if (lRetVal < 0) {
     LOOP_FOREVER();
   }
-  while(1){
-    GetWifiNetworks(&httpClient);
+  while (1) {
+    // GetWifiNetworks();
+    wifiSearch();
+    // int lRetVal = HTTPPostMethod(&httpClient, generateBody(-40, -30, -80));
+    // if (lRetVal < 0) {
+    //   UART_PRINT("HTTP Post failed.\n\r");
+    // }
+    // delay(100);
   }
   // LOOP_FOREVER();
 }

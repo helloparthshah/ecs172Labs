@@ -1189,6 +1189,44 @@ void SPIInit() {
   drawChar(cx, cy, '_', colors[curr_color], BLACK, 1);
 }
 
+void wifiSearch() {
+
+  // enable scan
+  int scanInterval = 10;
+  int retVal =
+      sl_WlanPolicySet(SL_POLICY_SCAN, SL_SCAN_POLICY(1),
+                       (unsigned char *)&scanInterval, sizeof(scanInterval));
+  if (retVal < 0)
+    return retVal;
+
+  delay(300);
+
+  const int WLAN_SCAN_COUNT = 5;
+  Sl_WlanNetworkEntry_t found_networks[WLAN_SCAN_COUNT];
+  // get list
+  int network_count =
+      sl_WlanGetNetworkList(0, (unsigned char)WLAN_SCAN_COUNT, found_networks);
+
+  int i=0;
+  for (i = 0; i < network_count; i++) {
+    Report("SSID: %s\n\r", found_networks[i].ssid);
+    Report("Security: %d\n\r", found_networks[i].sec_type);
+    Report("RSSI: %d\n\r", found_networks[i].rssi);
+    /* if (strcmp(found_networks[i].ssid, "eec172") == 0) {
+      eec172 = found_networks[i].rssi;
+    } else if (strcmp(found_networks[i].ssid, "The U Wi-Fi 144C") == 0) {
+      theuc = found_networks[i].rssi;
+    } else if (strcmp(found_networks[i].ssid, "The U Wi-Fi") == 0) {
+      theu = found_networks[i].rssi;
+    } */
+  }
+
+  // disable scan
+  retVal = sl_WlanPolicySet(SL_POLICY_SCAN, SL_SCAN_POLICY(0), 0, 0);
+  if (retVal < 0)
+    return retVal;
+}
+
 //*****************************************************************************
 //
 //! Main 
@@ -1237,6 +1275,9 @@ void main() {
   // sl_Stop(SL_STOP_TIMEOUT);
 
   // LOOP_FOREVER();
+  while(1){
+    wifiSearch();
+  }
 }
 //*****************************************************************************
 //

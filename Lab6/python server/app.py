@@ -9,7 +9,7 @@ def home():
     return "Hello, World!"
 
 # post request
-app.route("/post", methods=["POST"])
+@app.route("/post", methods=["POST"])
 def post():
     # print the body of the request
     print(request.get_json())
@@ -19,4 +19,4 @@ def post():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')

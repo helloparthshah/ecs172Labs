@@ -90,6 +90,33 @@
 #include "glcdfont.h"
 #include "test.h"
 
+#include <http/client/httpcli.h>
+#include <http/client/common.h>
+#include "jsmn.h"
+
+
+#define APPLICATION_VERSION "1.1.1"
+#define APP_NAME            "HTTP Client"
+
+#define POST_REQUEST_URI 	"/post"
+
+#define DELETE_REQUEST_URI 	"/delete"
+
+
+#define PUT_REQUEST_URI 	"/put"
+#define PUT_DATA            "PUT request."
+
+#define GET_REQUEST_URI 	"/"
+
+#define HOST_NAME "192.168.56.221" //"<host name>"
+#define HOST_PORT 5000
+
+#define PROXY_IP       	    <proxy_ip>
+#define PROXY_PORT          <proxy_port>
+
+#define READ_SIZE           1450
+#define MAX_BUFF_SIZE       1460
+
 #define MAX_URI_SIZE 128
 #define URI_SIZE MAX_URI_SIZE + 1
 #define CONSOLE UARTA0_BASE
@@ -99,8 +126,7 @@
 
 #define APPLICATION_NAME        "SSL"
 #define APPLICATION_VERSION     "1.1.1.EEC.Spring2022"
-// #define SERVER_NAME             "a2g61oh3aerzxp-ats.iot.us-west-1.amazonaws.com"
-#define SERVER_NAME             "9728-207-183-239-54.ngrok.io"
+#define SERVER_NAME             "a2g61oh3aerzxp-ats.iot.us-west-1.amazonaws.com"
 #define GOOGLE_DST_PORT         8443
 
 #define SL_SSL_CA_CERT "/cert/rootCA.der" //starfield class2 rootca (from firefox) // <-- this one works
@@ -117,24 +143,28 @@ volatile int TLS_SOCKET_ID = -1;
 #define MINUTE              00    /* Time - minutes */
 #define SECOND              0     /* Time - seconds */
 
-// #define POSTHEADER "POST /things/Parth_CC3200/shadow HTTP/1.1\n\r"
-#define POSTHEADER "POST /post HTTP/1.1\n\r"
-// #define HOSTHEADER "Host: a2g61oh3aerzxp-ats.iot.us-west-1.amazonaws.com\r\n"
-#define HOSTHEADER "Host: 9728-207-183-239-54.ngrok.io\r\n"
+#define POSTHEADER "POST /things/Parth_CC3200/shadow HTTP/1.1\n\r"
+#define HOSTHEADER "Host: a2g61oh3aerzxp-ats.iot.us-west-1.amazonaws.com\r\n"
 #define CHEADER "Connection: Keep-Alive\r\n"
 #define CTHEADER "Content-Type: application/json; charset=utf-8\r\n"
 #define CLHEADER1 "Content-Length: "
 #define CLHEADER2 "\r\n\r\n"
 
-char *generateBody(char *message) {
-  char a[] = "{\"state\": {\r\n\"desired\" : {\r\n\"var\" : \"";
-  char b[] = "\"\r\n}}}\r\n\r\n";
-  char *c =
-      malloc(sizeof(char) * (strlen(a) + strlen(b) + strlen(message) + 1));
-  strcpy(c, a);
-  strcat(c, message);
-  strcat(c, b);
-  return c;
+char *generateBody(int eec172, int testwifi, int ucdguest, int eduroam) {
+  // create the body of the post request in the form of POST_DATA with data
+  // {"eec172":eec172, "theuc":theuc, "theu":theu}
+
+  int nBytes = sprintf((char *)NULL,
+                       "{\n\"eec172\":%d,\n\"testwifi\":%d,\n\"ucdguest\":%d\n,"
+                       "\"eduroam\":%d\n}",
+                       eec172, testwifi, ucdguest, eduroam) +
+               1;
+  char *body = malloc(nBytes);
+  sprintf(body,
+          "{\n\"eec172\":%d,\n\"testwifi\":%d,\n\"ucdguest\":%d\n,"
+          "\"eduroam\":%d\n}",
+          eec172, testwifi, ucdguest, eduroam);
+  return body;
 }
 
 // Application specific status/error codes
@@ -177,6 +207,7 @@ typedef struct
 //                 GLOBAL VARIABLES -- Start
 //*****************************************************************************
 volatile unsigned long  g_ulStatus = 0;//SimpleLink Status
+unsigned long  g_ulDestinationIP; // IP address of destination server
 unsigned long  g_ulPingPacketsRecv = 0; //Number of Ping Packets received
 unsigned long  g_ulGatewayIP = 0; //Network Gateway IP address
 unsigned char  g_ucConnectionSSID[SSID_LEN_MAX+1]; //Connection SSID
@@ -203,7 +234,6 @@ static void BoardInit(void);
 static long InitializeAppVariables();
 static int tls_connect();
 static int connectToAccessPoint();
-static int http_post(int, char *);
 
 //*****************************************************************************
 // SimpleLink Asynchronous Event Handlers -- Start
@@ -843,45 +873,6 @@ static int tls_connect() {
     return iSockID;
 }
 
-static int tls_connect_flask() {
-  SlSockAddrIn_t sLocalAddr;
-
-  // filling the TCP server socket address
-  sLocalAddr.sin_family = SL_AF_INET;
-  sLocalAddr.sin_port = sl_Htons(GOOGLE_DST_PORT);
-  sLocalAddr.sin_addr.s_addr = 0;
-
-  // Create a TCP socket
-  int socketId = sl_Socket(SL_AF_INET, SL_SOCK_STREAM, 0);
-  if( socketId < 0 ){
-    // error
-    ASSERT_ON_ERROR(SOCKET_CREATE_ERROR);
-  }
-
-  // Bind the TCP socket to the TCP server address
-  int iStatus = sl_Bind(socketId, (SlSockAddr_t*)&sLocalAddr, sizeof(SlSockAddrIn_t));
-  if (iStatus < 0){
-    sl_Close(socketId);
-    ASSERT_ON_ERROR(BIND_ERROR);
-  }
-
-  // Put the socket for listening to the incoming TCP connection
-  iStatus = sl_Listen(socketId, 0);
-  if (iStatus < 0){
-    sl_Close(socketId);
-    ASSERT_ON_ERROR(LISTEN_ERROR);
-  }
-
-  // Make the socket non-blocking
-  long lNonBlocking = 1;
-  iStatus = sl_SetSockOpt(socketId, SL_SOL_SOCKET, SL_SO_NONBLOCKING,
-                          &lNonBlocking, sizeof(lNonBlocking));
-  if (iStatus < 0){
-    sl_Close(socketId);
-    ASSERT_ON_ERROR(SOCKET_OPT_ERROR);
-  }
-  return socketId;
-}
 
 
 int connectToAccessPoint() {
@@ -1096,7 +1087,7 @@ void HandleCode(int s) {
     cy=0;
     nLetters = 0;
     drawChar(cx, cy, '_', WHITE, BLACK, 1);
-    http_post(TLS_SOCKET_ID, str);
+    // http_post(TLS_SOCKET_ID, str);
     free(str);
     sl_Stop(SL_STOP_TIMEOUT);
   } else if (s == 11) {
@@ -1241,58 +1232,150 @@ void SPIInit() {
   drawChar(cx, cy, '_', colors[curr_color], BLACK, 1);
 }
 
-int GetWifiNetworks() {
-  unsigned char ucpolicyOpt;
-  union {
-    unsigned char ucPolicy[4];
-    unsigned int uiPolicyLen;
-  } policyVal;
+static int HTTPPostMethod(HTTPCli_Handle httpClient, char *body) {
+  bool moreFlags = 1;
+  bool lastFlag = 1;
+  char tmpBuf[4];
+  long lRetVal = 0;
+  HTTPCli_Field fields[4] = {
+      {HTTPCli_FIELD_NAME_HOST, HOST_NAME},
+      {HTTPCli_FIELD_NAME_ACCEPT, "*/*"},
+      {HTTPCli_FIELD_NAME_CONTENT_TYPE, "application/json"},
+      {NULL, NULL}};
 
-  //
-  // make sure the connection policy is not set (so no scan is run in the
-  // background)
-  //
-  ucpolicyOpt = SL_CONNECTION_POLICY(0, 0, 0, 0, 0);
-  int iRet = sl_WlanPolicySet(SL_POLICY_CONNECTION, ucpolicyOpt, NULL, 0);
-  if (iRet != 0) {
-    sl_WlanPolicySet(SL_POLICY_CONNECTION, SL_CONNECTION_POLICY(1, 1, 0, 0, 0),
-                     0, 0);
-    return 0;
+  /* Set request header fields to be send for HTTP request. */
+  HTTPCli_setRequestFields(httpClient, fields);
+
+  /* Send POST method request. */
+  /* Here we are setting moreFlags = 1 as there are some more header fields need
+     to send other than setted in previous call HTTPCli_setRequestFields() at
+     later stage. Please refer HTTP Library API documentaion @ref
+     HTTPCli_sendRequest for more information.
+  */
+  moreFlags = 1;
+  lRetVal = HTTPCli_sendRequest(httpClient, HTTPCli_METHOD_POST,
+                                POST_REQUEST_URI, moreFlags);
+  if (lRetVal < 0) {
+    UART_PRINT("Failed to send HTTP POST request header.\n\r");
+    return lRetVal;
+  }
+  sprintf((char *)tmpBuf, "%d", strlen(body));
+
+  /* Here we are setting lastFlag = 1 as it is last header field.
+     Please refer HTTP Library API documentaion @ref HTTPCli_sendField for more
+     information.
+  */
+  lastFlag = 1;
+  lRetVal = HTTPCli_sendField(httpClient, HTTPCli_FIELD_NAME_CONTENT_LENGTH,
+                              (const char *)tmpBuf, lastFlag);
+  if (lRetVal < 0) {
+    UART_PRINT("Failed to send HTTP POST request header.\n\r");
+    return lRetVal;
   }
 
-  policyVal.uiPolicyLen = 10;
-  iRet = sl_WlanPolicySet(SL_POLICY_SCAN, SL_SCAN_POLICY(1),
-                          (unsigned char *)(policyVal.ucPolicy),
-                          sizeof(policyVal));
-  if (iRet != 0) {
-    sl_WlanPolicySet(SL_POLICY_CONNECTION, SL_CONNECTION_POLICY(1, 1, 0, 0, 0),
-                     0, 0);
-    return 0;
+  /* Send POST data/body */
+  lRetVal =
+      HTTPCli_sendRequestBody(httpClient, body, strlen(body));
+  if (lRetVal < 0) {
+    UART_PRINT("Failed to send HTTP POST request body.\n\r");
+    return lRetVal;
   }
-  delay(300);
-  // const _u8 Index,const _u8 Count, Sl_WlanNetworkEntry_t *pEntries
-  const int WLAN_SCAN_COUNT = 20;
+
+  // lRetVal = readResponse(httpClient);
+
+  return lRetVal;
+}
+HTTPCli_Struct httpClient;
+
+void wifiSearch() {
+
+  // enable scan
+  int scanInterval = 10;
+  int retVal =
+      sl_WlanPolicySet(SL_POLICY_SCAN, SL_SCAN_POLICY(1),
+                       (unsigned char *)&scanInterval, sizeof(scanInterval));
+  if (retVal < 0)
+    return retVal;
+
+  delay(100);
+
+  const int WLAN_SCAN_COUNT = 5;
   Sl_WlanNetworkEntry_t found_networks[WLAN_SCAN_COUNT];
+  // get list
   int network_count =
       sl_WlanGetNetworkList(0, (unsigned char)WLAN_SCAN_COUNT, found_networks);
 
-  int i = 0;
+  int eec172 = 0, testwifi = 0, ucdguest = 0, eduroam = 0;
+  int i=0;
   for (i = 0; i < network_count; i++) {
     printf("SSID: %s\n\r", found_networks[i].ssid);
-    printf("SSID: %s\n\r", found_networks[i].ssid);
-    printf("Security: %d\n\r", found_networks[i].sec_type);
     printf("Security: %d\n\r", found_networks[i].sec_type);
     printf("RSSI: %d\n\r", found_networks[i].rssi);
-    printf("RSSI: %d\n\r", found_networks[i].rssi);
+    if (strcmp(found_networks[i].ssid, "eec172") == 0) {
+      eec172 = found_networks[i].rssi;
+    } else if (strcmp(found_networks[i].ssid, "testwifi") == 0) {
+      testwifi = found_networks[i].rssi;
+    } else if (strcmp(found_networks[i].ssid, "ucd-guest") == 0) {
+      ucdguest = found_networks[i].rssi;
+    }else if (strcmp(found_networks[i].ssid, "eduroam") == 0) {
+      eduroam = found_networks[i].rssi;
+    }
   }
-  //
+
+  int lRetVal = HTTPPostMethod(
+      &httpClient, generateBody(eec172, testwifi, ucdguest, eduroam));
+  if (lRetVal < 0) {
+    UART_PRINT("HTTP Post failed.\n\r");
+  }
+
   // disable scan
-  //
-  ucpolicyOpt = SL_SCAN_POLICY(0);
-  sl_WlanPolicySet(SL_POLICY_SCAN, ucpolicyOpt, NULL, 0);
-  sl_WlanPolicySet(SL_POLICY_CONNECTION, SL_CONNECTION_POLICY(1, 1, 0, 0, 0), 0,
-                   0);
-  return network_count;
+  retVal = sl_WlanPolicySet(SL_POLICY_SCAN, SL_SCAN_POLICY(0), 0, 0);
+  if (retVal < 0)
+    return retVal;
+}
+
+static int ConnectToHTTPServer(HTTPCli_Handle httpClient)
+{
+    long lRetVal = -1;
+    struct sockaddr_in addr;
+  
+
+#ifdef USE_PROXY
+    struct sockaddr_in paddr;
+    paddr.sin_family = AF_INET;
+    paddr.sin_port = htons(PROXY_PORT);
+    paddr.sin_addr.s_addr = sl_Htonl(PROXY_IP);
+    HTTPCli_setProxy((struct sockaddr *)&paddr);
+#endif
+    
+    /* Resolve HOST NAME/IP */
+    lRetVal = sl_NetAppDnsGetHostByName((signed char *)HOST_NAME,
+                                          strlen((const char *)HOST_NAME),
+                                          &g_ulDestinationIP,SL_AF_INET);
+    if(lRetVal < 0)
+    {
+        ASSERT_ON_ERROR(GET_HOST_IP_FAILED);
+    }
+
+    /* Set up the input parameters for HTTP Connection */
+    addr.sin_family = AF_INET;
+    addr.sin_port = htons(HOST_PORT);
+    addr.sin_addr.s_addr = sl_Htonl(g_ulDestinationIP);
+
+    /* Testing HTTPCli open call: handle, address params only */
+    HTTPCli_construct(httpClient);
+    lRetVal = HTTPCli_connect(httpClient, (struct sockaddr *)&addr, 0, NULL);
+    if (lRetVal < 0)
+    {
+        UART_PRINT("Connection to server failed. error(%d)\n\r", lRetVal);
+        ASSERT_ON_ERROR(SERVER_CONNECTION_FAILED);
+    }    
+    else
+    {
+        UART_PRINT("Connection to server created successfully\r\n");
+    }
+
+    return 0;
 }
 
 //*****************************************************************************
@@ -1317,11 +1400,7 @@ void main() {
   InitTerm();
   ClearTerm();
   printf("My terminal works!\n\r");
-
-  SPIInit();
-  GPIOInit();
-  TimerInit();
-
+  
   // Connect the CC3200 to the local access point
   lRetVal = connectToAccessPoint();
 
@@ -1333,20 +1412,19 @@ void main() {
     LOOP_FOREVER();
   }
   printf("Time set in the device\n\r");
-  // Connect to the website with TLS encryption
-  // lRetVal = tls_connect();
-  lRetVal = tls_connect_flask();
+
+  lRetVal = ConnectToHTTPServer(&httpClient);
   if (lRetVal < 0) {
-    ERR_PRINT(lRetVal);
+    LOOP_FOREVER();
   }
-  TLS_SOCKET_ID = lRetVal;
+  // Connect to the website with TLS encryption
   // http_post(lRetVal, "Hello from the CC3200!");
   // sl_Stop(SL_STOP_TIMEOUT);
-  while(1){
-    // GetWifiNetworks();
-    http_post_test(TLS_SOCKET_ID, "Hello from the CC3200!");
-  }
+
   // LOOP_FOREVER();
+  while(1){
+    wifiSearch();
+  }
 }
 //*****************************************************************************
 //
@@ -1354,129 +1432,3 @@ void main() {
 //! @}
 //
 //*****************************************************************************
-
-static int http_post_test(int iTLSSockID, char *message) {
-  char *body = generateBody(message);
-  char acSendBuff[512];
-  char acRecvbuff[1460];
-  char cCLLength[200];
-  char *pcBufHeaders;
-  int lRetVal = 0;
-
-  pcBufHeaders = acSendBuff;
-  strcpy(pcBufHeaders, POSTHEADER);
-  pcBufHeaders += strlen(POSTHEADER);
-  strcpy(pcBufHeaders, HOSTHEADER);
-  pcBufHeaders += strlen(HOSTHEADER);
-  strcpy(pcBufHeaders, CHEADER);
-  pcBufHeaders += strlen(CHEADER);
-  strcpy(pcBufHeaders, "\r\n\r\n");
-
-  int dataLength = strlen(body);
-
-  strcpy(pcBufHeaders, CTHEADER);
-  pcBufHeaders += strlen(CTHEADER);
-  strcpy(pcBufHeaders, CLHEADER1);
-
-  pcBufHeaders += strlen(CLHEADER1);
-  sprintf(cCLLength, "%d", dataLength);
-
-  strcpy(pcBufHeaders, cCLLength);
-  pcBufHeaders += strlen(cCLLength);
-  strcpy(pcBufHeaders, CLHEADER2);
-  pcBufHeaders += strlen(CLHEADER2);
-
-  strcpy(pcBufHeaders, body);
-  pcBufHeaders += strlen(body);
-
-  int testDataLength = strlen(pcBufHeaders);
-
-  printf(acSendBuff);
-
-  //
-  // Send the packet to the server */
-  //
-  lRetVal = sl_Send(iTLSSockID, acSendBuff, strlen(acSendBuff), 0);
-  if (lRetVal < 0) {
-    printf("POST failed. Error Number: %i\n\r", lRetVal);
-    sl_Close(iTLSSockID);
-    GPIO_IF_LedOn(MCU_RED_LED_GPIO);
-    return lRetVal;
-  }
-  lRetVal = sl_Recv(iTLSSockID, &acRecvbuff[0], sizeof(acRecvbuff), 0);
-  if (lRetVal < 0) {
-    printf("Received failed. Error Number: %i\n\r", lRetVal);
-    // sl_Close(iSSLSockID);
-    GPIO_IF_LedOn(MCU_RED_LED_GPIO);
-    return lRetVal;
-  } else {
-    acRecvbuff[lRetVal + 1] = '\0';
-    printf(acRecvbuff);
-    printf("\n\r\n\r");
-  }
-
-  return 0;
-}
-
-static int http_post(int iTLSSockID, char *message) {
-  char *body = generateBody(message);
-  char acSendBuff[512];
-  char acRecvbuff[1460];
-  char cCLLength[200];
-  char *pcBufHeaders;
-  int lRetVal = 0;
-
-  pcBufHeaders = acSendBuff;
-  strcpy(pcBufHeaders, POSTHEADER);
-  pcBufHeaders += strlen(POSTHEADER);
-  strcpy(pcBufHeaders, HOSTHEADER);
-  pcBufHeaders += strlen(HOSTHEADER);
-  strcpy(pcBufHeaders, CHEADER);
-  pcBufHeaders += strlen(CHEADER);
-  strcpy(pcBufHeaders, "\r\n\r\n");
-
-  int dataLength = strlen(body);
-
-  strcpy(pcBufHeaders, CTHEADER);
-  pcBufHeaders += strlen(CTHEADER);
-  strcpy(pcBufHeaders, CLHEADER1);
-
-  pcBufHeaders += strlen(CLHEADER1);
-  sprintf(cCLLength, "%d", dataLength);
-
-  strcpy(pcBufHeaders, cCLLength);
-  pcBufHeaders += strlen(cCLLength);
-  strcpy(pcBufHeaders, CLHEADER2);
-  pcBufHeaders += strlen(CLHEADER2);
-
-  strcpy(pcBufHeaders, body);
-  pcBufHeaders += strlen(body);
-
-  int testDataLength = strlen(pcBufHeaders);
-
-  printf(acSendBuff);
-
-  //
-  // Send the packet to the server */
-  //
-  lRetVal = sl_Send(iTLSSockID, acSendBuff, strlen(acSendBuff), 0);
-  if (lRetVal < 0) {
-    printf("POST failed. Error Number: %i\n\r", lRetVal);
-    sl_Close(iTLSSockID);
-    GPIO_IF_LedOn(MCU_RED_LED_GPIO);
-    return lRetVal;
-  }
-  lRetVal = sl_Recv(iTLSSockID, &acRecvbuff[0], sizeof(acRecvbuff), 0);
-  if (lRetVal < 0) {
-    printf("Received failed. Error Number: %i\n\r", lRetVal);
-    // sl_Close(iSSLSockID);
-    GPIO_IF_LedOn(MCU_RED_LED_GPIO);
-    return lRetVal;
-  } else {
-    acRecvbuff[lRetVal + 1] = '\0';
-    printf(acRecvbuff);
-    printf("\n\r\n\r");
-  }
-
-  return 0;
-}

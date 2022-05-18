@@ -1143,33 +1143,18 @@ static int ConnectToHTTPServer(HTTPCli_Handle httpClient)
 void wifiSearch() {
 
   // enable scan
-  int scanInterval = 10;
-  int retVal =
+  scanInterval = 10;
+  retVal =
       sl_WlanPolicySet(SL_POLICY_SCAN, SL_SCAN_POLICY(1),
                        (unsigned char *)&scanInterval, sizeof(scanInterval));
   if (retVal < 0)
     return retVal;
 
   delay(300);
-
-  const int WLAN_SCAN_COUNT = 5;
-  Sl_WlanNetworkEntry_t found_networks[WLAN_SCAN_COUNT];
+    
   // get list
-  int network_count =
-      sl_WlanGetNetworkList(0, (unsigned char)WLAN_SCAN_COUNT, found_networks);
-  int i=0;
-  for (i = 0; i < network_count; i++) {
-    Report("SSID: %s\n\r", found_networks[i].ssid);
-    Report("Security: %d\n\r", found_networks[i].sec_type);
-    Report("RSSI: %d\n\r", found_networks[i].rssi);
-    /* if (strcmp(found_networks[i].ssid, "eec172") == 0) {
-      eec172 = found_networks[i].rssi;
-    } else if (strcmp(found_networks[i].ssid, "The U Wi-Fi 144C") == 0) {
-      theuc = found_networks[i].rssi;
-    } else if (strcmp(found_networks[i].ssid, "The U Wi-Fi") == 0) {
-      theu = found_networks[i].rssi;
-    } */
-  }
+  wlanInfo.netFound =
+      sl_WlanGetNetworkList(0, (unsigned char)NET_MAX_SCAN, wlanInfo.netList);
 
   // disable scan
   retVal = sl_WlanPolicySet(SL_POLICY_SCAN, SL_SCAN_POLICY(0), 0, 0);
@@ -1214,7 +1199,7 @@ int GetWifiNetworks() {
   int network_count =
       sl_WlanGetNetworkList(0, (unsigned char)WLAN_SCAN_COUNT, found_networks);
   Report("Found %d networks\r\n", network_count);
-//  int eec172, theuc, theu;
+  int eec172, theuc, theu;
   int i = 0;
   for (i = 0; i < network_count; i++) {
     Report("SSID: %s\n\r", found_networks[i].ssid);
@@ -1285,8 +1270,7 @@ void main() {
     LOOP_FOREVER();
   }
   while (1) {
-    // GetWifiNetworks();
-    wifiSearch();
+    GetWifiNetworks();
     // int lRetVal = HTTPPostMethod(&httpClient, generateBody(-40, -30, -80));
     // if (lRetVal < 0) {
     //   UART_PRINT("HTTP Post failed.\n\r");

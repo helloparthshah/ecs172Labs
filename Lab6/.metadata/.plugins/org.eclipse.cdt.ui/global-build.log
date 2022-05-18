@@ -899,3 +899,797 @@ gmake: Target 'all' not remade because of errors.
 gmake: Nothing to be done for 'all'.
 
 **** Build Finished ****
+
+**** Clean-only build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k clean 
+DEL /F  "ssl.bin"  "ssl.out" 
+DEL /F "Adafruit_GFX.obj" "Adafruit_OLED.obj" "gpio_if.obj" "main.obj" "network_common.obj" "pinmux.obj" "startup_ccs.obj" "timer_if.obj" "uart_if.obj" 
+DEL /F "Adafruit_GFX.d" "Adafruit_OLED.d" "gpio_if.d" "main.d" "network_common.d" "pinmux.d" "startup_ccs.d" "timer_if.d" "uart_if.d" 
+Could Not Find C:\Users\hello\Work\School\Computers\EEC172\Labs\Lab6\ssl\Release\Adafruit_GFX.obj
+'Finished clean'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../Adafruit_GFX.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="Adafruit_GFX.d"  "../Adafruit_GFX.c"
+'Finished building: ../Adafruit_GFX.c'
+' '
+'Building file: ../Adafruit_OLED.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="Adafruit_OLED.d"  "../Adafruit_OLED.c"
+'Finished building: ../Adafruit_OLED.c'
+' '
+'Building file: C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common/gpio_if.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="gpio_if.d"  "C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common/gpio_if.c"
+'Finished building: C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common/gpio_if.c'
+' '
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"..\Adafruit_SSD1351.h", line 36: warning #303-D: typedef name has already been declared (with same type)
+"..\Adafruit_SSD1351.h", line 37: warning #303-D: typedef name has already been declared (with same type)
+"..\test.h", line 251: warning #1-D: last line of file ends without a newline
+"../main.c", line 1200: warning #121-D: return value type does not match the function type
+"../main.c", line 1227: warning #121-D: return value type does not match the function type
+'Finished building: ../main.c'
+' '
+'Building file: C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common/network_common.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="network_common.d"  "C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common/network_common.c"
+'Finished building: C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common/network_common.c'
+' '
+'Building file: ../pinmux.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="pinmux.d"  "../pinmux.c"
+'Finished building: ../pinmux.c'
+' '
+'Building file: C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common/startup_ccs.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="startup_ccs.d"  "C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common/startup_ccs.c"
+'Finished building: C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common/startup_ccs.c'
+' '
+'Building file: ../timer_if.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="timer_if.d"  "../timer_if.c"
+'Finished building: ../timer_if.c'
+' '
+'Building file: ../uart_if.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="uart_if.d"  "../uart_if.c"
+'Finished building: ../uart_if.c'
+' '
+'Building target: ssl.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff -g --gcc --define=NOTERM --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"ssl.map" --heap_size=0x00008000 --stack_size=0x00001000 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="ssl_linkInfo.xml" --rom_model -o "ssl.out" "./Adafruit_GFX.obj" "./Adafruit_OLED.obj" "./gpio_if.obj" "./main.obj" "./network_common.obj" "./pinmux.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/ccs/NON_OS/simplelink.a" 
+<Linking>
+'Finished building target: ssl.out'
+' '
+'Bin Generation'
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "ssl.out" "ssl.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+gmake: Nothing to be done for 'all'.
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+gmake: Nothing to be done for 'all'.
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"..\Adafruit_SSD1351.h", line 36: warning #303-D: typedef name has already been declared (with same type)
+"..\Adafruit_SSD1351.h", line 37: warning #303-D: typedef name has already been declared (with same type)
+"..\test.h", line 251: warning #1-D: last line of file ends without a newline
+"../main.c", line 1200: warning #121-D: return value type does not match the function type
+"../main.c", line 1227: warning #121-D: return value type does not match the function type
+'Finished building: ../main.c'
+' '
+'Building target: ssl.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff -g --gcc --define=NOTERM --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"ssl.map" --heap_size=0x00008000 --stack_size=0x00001000 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="ssl_linkInfo.xml" --rom_model -o "ssl.out" "./Adafruit_GFX.obj" "./Adafruit_OLED.obj" "./gpio_if.obj" "./main.obj" "./network_common.obj" "./pinmux.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/ccs/NON_OS/simplelink.a" 
+<Linking>
+'Finished building target: ssl.out'
+' '
+'Bin Generation'
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "ssl.out" "ssl.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+gmake: Nothing to be done for 'all'.
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"..\Adafruit_SSD1351.h", line 36: warning #303-D: typedef name has already been declared (with same type)
+"..\Adafruit_SSD1351.h", line 37: warning #303-D: typedef name has already been declared (with same type)
+"..\test.h", line 251: warning #1-D: last line of file ends without a newline
+"../main.c", line 1200: warning #121-D: return value type does not match the function type
+"../main.c", line 1227: warning #121-D: return value type does not match the function type
+'Finished building: ../main.c'
+' '
+'Building target: ssl.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff -g --gcc --define=NOTERM --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"ssl.map" --heap_size=0x00008000 --stack_size=0x00001000 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="ssl_linkInfo.xml" --rom_model -o "ssl.out" "./Adafruit_GFX.obj" "./Adafruit_OLED.obj" "./gpio_if.obj" "./main.obj" "./network_common.obj" "./pinmux.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/ccs/NON_OS/simplelink.a" 
+<Linking>
+'Finished building target: ssl.out'
+' '
+'Bin Generation'
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "ssl.out" "ssl.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+
+>> Compilation failure
+subdir_rules.mk:30: recipe for target 'main.obj' failed
+"..\Adafruit_SSD1351.h", line 36: warning #303-D: typedef name has already been declared (with same type)
+"..\Adafruit_SSD1351.h", line 37: warning #303-D: typedef name has already been declared (with same type)
+"..\test.h", line 251: warning #1-D: last line of file ends without a newline
+"../main.c", line 93: fatal error #1965: cannot open source file "http/client/httpcli.h"
+1 catastrophic error detected in the compilation of "../main.c".
+Compilation terminated.
+gmake: *** [main.obj] Error 1
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+
+>> Compilation failure
+subdir_rules.mk:30: recipe for target 'main.obj' failed
+"..\Adafruit_SSD1351.h", line 36: warning #303-D: typedef name has already been declared (with same type)
+"..\Adafruit_SSD1351.h", line 37: warning #303-D: typedef name has already been declared (with same type)
+"..\test.h", line 251: warning #1-D: last line of file ends without a newline
+"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/http/client/network.h", line 74: fatal error #35: #error directive: No or unrecognized network configuration specified
+1 catastrophic error detected in the compilation of "../main.c".
+Compilation terminated.
+gmake: *** [main.obj] Error 1
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+
+>> Compilation failure
+subdir_rules.mk:30: recipe for target 'main.obj' failed
+"..\Adafruit_SSD1351.h", line 36: warning #303-D: typedef name has already been declared (with same type)
+"..\Adafruit_SSD1351.h", line 37: warning #303-D: typedef name has already been declared (with same type)
+"..\test.h", line 251: warning #1-D: last line of file ends without a newline
+"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/http/client/network.h", line 74: fatal error #35: #error directive: No or unrecognized network configuration specified
+1 catastrophic error detected in the compilation of "../main.c".
+Compilation terminated.
+gmake: *** [main.obj] Error 1
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../Adafruit_GFX.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --undefine=__SL__ --define=NOTERM --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="Adafruit_GFX.d"  "../Adafruit_GFX.c"
+'Finished building: ../Adafruit_GFX.c'
+' '
+'Building file: ../Adafruit_OLED.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --undefine=__SL__ --define=NOTERM --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="Adafruit_OLED.d"  "../Adafruit_OLED.c"
+'Finished building: ../Adafruit_OLED.c'
+' '
+'Building file: C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common/gpio_if.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --undefine=__SL__ --define=NOTERM --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="gpio_if.d"  "C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common/gpio_if.c"
+'Finished building: C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common/gpio_if.c'
+' '
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --undefine=__SL__ --define=NOTERM --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+
+>> Compilation failure
+subdir_rules.mk:30: recipe for target 'main.obj' failed
+"..\Adafruit_SSD1351.h", line 36: warning #303-D: typedef name has already been declared (with same type)
+"..\Adafruit_SSD1351.h", line 37: warning #303-D: typedef name has already been declared (with same type)
+"..\test.h", line 251: warning #1-D: last line of file ends without a newline
+"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/http/client/network.h", line 74: fatal error #35: #error directive: No or unrecognized network configuration specified
+1 catastrophic error detected in the compilation of "../main.c".
+Compilation terminated.
+gmake: *** [main.obj] Error 1
+'Building file: C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common/network_common.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --undefine=__SL__ --define=NOTERM --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="network_common.d"  "C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common/network_common.c"
+'Finished building: C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common/network_common.c'
+' '
+'Building file: ../pinmux.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --undefine=__SL__ --define=NOTERM --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="pinmux.d"  "../pinmux.c"
+'Finished building: ../pinmux.c'
+' '
+'Building file: C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common/startup_ccs.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --undefine=__SL__ --define=NOTERM --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="startup_ccs.d"  "C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common/startup_ccs.c"
+'Finished building: C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common/startup_ccs.c'
+' '
+'Building file: ../timer_if.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --undefine=__SL__ --define=NOTERM --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="timer_if.d"  "../timer_if.c"
+'Finished building: ../timer_if.c'
+' '
+'Building file: ../uart_if.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --undefine=__SL__ --define=NOTERM --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="uart_if.d"  "../uart_if.c"
+'Finished building: ../uart_if.c'
+' '
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --undefine=__SL__ --define=NOTERM --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+
+>> Compilation failure
+subdir_rules.mk:30: recipe for target 'main.obj' failed
+"..\Adafruit_SSD1351.h", line 36: warning #303-D: typedef name has already been declared (with same type)
+"..\Adafruit_SSD1351.h", line 37: warning #303-D: typedef name has already been declared (with same type)
+"..\test.h", line 251: warning #1-D: last line of file ends without a newline
+"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/http/client/network.h", line 74: fatal error #35: #error directive: No or unrecognized network configuration specified
+1 catastrophic error detected in the compilation of "../main.c".
+Compilation terminated.
+gmake: *** [main.obj] Error 1
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --undefine=__SL__ --define=NOTERM --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+
+>> Compilation failure
+subdir_rules.mk:30: recipe for target 'main.obj' failed
+"..\Adafruit_SSD1351.h", line 36: warning #303-D: typedef name has already been declared (with same type)
+"..\Adafruit_SSD1351.h", line 37: warning #303-D: typedef name has already been declared (with same type)
+"..\test.h", line 251: warning #1-D: last line of file ends without a newline
+"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/http/client/network.h", line 74: fatal error #35: #error directive: No or unrecognized network configuration specified
+1 catastrophic error detected in the compilation of "../main.c".
+Compilation terminated.
+gmake: *** [main.obj] Error 1
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../Adafruit_GFX.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=__SL__ --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="Adafruit_GFX.d"  "../Adafruit_GFX.c"
+'Finished building: ../Adafruit_GFX.c'
+' '
+'Building file: ../Adafruit_OLED.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=__SL__ --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="Adafruit_OLED.d"  "../Adafruit_OLED.c"
+'Finished building: ../Adafruit_OLED.c'
+' '
+'Building file: C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common/gpio_if.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=__SL__ --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="gpio_if.d"  "C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common/gpio_if.c"
+'Finished building: C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common/gpio_if.c'
+' '
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=__SL__ --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+
+>> Compilation failure
+subdir_rules.mk:30: recipe for target 'main.obj' failed
+"..\Adafruit_SSD1351.h", line 36: warning #303-D: typedef name has already been declared (with same type)
+"..\Adafruit_SSD1351.h", line 37: warning #303-D: typedef name has already been declared (with same type)
+"..\test.h", line 251: warning #1-D: last line of file ends without a newline
+"../main.c", line 129: warning #48-D: incompatible redefinition of macro "APPLICATION_VERSION" (declared at line 98)
+"../main.c", line 1228: warning #121-D: return value type does not match the function type
+"../main.c", line 1255: warning #121-D: return value type does not match the function type
+"../main.c", line 1275: error #20: identifier "g_ulDestinationIP" is undefined
+"../main.c", line 1278: error #20: identifier "GET_HOST_IP_FAILED" is undefined
+"../main.c", line 1292: error #20: identifier "SERVER_CONNECTION_FAILED" is undefined
+"../main.c", line 736: warning #179-D: function "tls_connect" was declared but never referenced
+3 errors detected in the compilation of "../main.c".
+gmake: *** [main.obj] Error 1
+'Building file: C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common/network_common.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=__SL__ --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="network_common.d"  "C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common/network_common.c"
+'Finished building: C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common/network_common.c'
+' '
+'Building file: ../pinmux.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=__SL__ --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="pinmux.d"  "../pinmux.c"
+'Finished building: ../pinmux.c'
+' '
+'Building file: C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common/startup_ccs.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=__SL__ --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="startup_ccs.d"  "C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common/startup_ccs.c"
+'Finished building: C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common/startup_ccs.c'
+' '
+'Building file: ../timer_if.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=__SL__ --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="timer_if.d"  "../timer_if.c"
+'Finished building: ../timer_if.c'
+' '
+'Building file: ../uart_if.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=__SL__ --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="uart_if.d"  "../uart_if.c"
+'Finished building: ../uart_if.c'
+' '
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=__SL__ --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"..\Adafruit_SSD1351.h", line 36: warning #303-D: typedef name has already been declared (with same type)
+"..\Adafruit_SSD1351.h", line 37: warning #303-D: typedef name has already been declared (with same type)
+"..\test.h", line 251: warning #1-D: last line of file ends without a newline
+"../main.c", line 129: warning #48-D: incompatible redefinition of macro "APPLICATION_VERSION" (declared at line 98)
+"../main.c", line 1239: warning #121-D: return value type does not match the function type
+"../main.c", line 1266: warning #121-D: return value type does not match the function type
+"../main.c", line 747: warning #179-D: function "tls_connect" was declared but never referenced
+'Finished building: ../main.c'
+' '
+'Building target: ssl.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff -g --gcc --define=NOTERM --define=__SL__ --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"ssl.map" --heap_size=0x00008000 --stack_size=0x00001000 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="ssl_linkInfo.xml" --rom_model -o "ssl.out" "./Adafruit_GFX.obj" "./Adafruit_OLED.obj" "./gpio_if.obj" "./main.obj" "./network_common.obj" "./pinmux.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/ccs/NON_OS/simplelink.a" 
+<Linking>
+
+ undefined         first referenced
+  symbol               in file     
+ ---------         ----------------
+ HTTPCli_connect   ./main.obj      
+ HTTPCli_construct ./main.obj      
+
+error #10234-D: unresolved symbols remain
+
+error #10010: errors encountered during linking; "ssl.out" not built
+>> Compilation failure
+makefile:150: recipe for target 'ssl.out' failed
+gmake: *** [ssl.out] Error 1
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building target: ssl.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff -g --gcc --define=NOTERM --define=__SL__ --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"ssl.map" --heap_size=0x00008000 --stack_size=0x00001000 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" -i"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/http/client/ccs/HTTPClientMinLib" -i"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/ccs/Release/" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="ssl_linkInfo.xml" --rom_model -o "ssl.out" "./Adafruit_GFX.obj" "./Adafruit_OLED.obj" "./gpio_if.obj" "./main.obj" "./network_common.obj" "./pinmux.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/ccs/NON_OS/simplelink.a" 
+<Linking>
+
+ undefined         first referenced
+  symbol               in file     
+ ---------         ----------------
+ HTTPCli_connect   ./main.obj      
+ HTTPCli_construct ./main.obj      
+
+error #10234-D: unresolved symbols remain
+
+error #10010: errors encountered during linking; "ssl.out" not built
+>> Compilation failure
+makefile:150: recipe for target 'ssl.out' failed
+gmake: *** [ssl.out] Error 1
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building target: ssl.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff -g --gcc --define=NOTERM --define=__SL__ --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"ssl.map" --heap_size=0x00008000 --stack_size=0x00001000 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" -i"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/http/client/ccs/HTTPClientMinLib" -i"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/ccs/Release/" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="ssl_linkInfo.xml" --rom_model -o "ssl.out" "./Adafruit_GFX.obj" "./Adafruit_OLED.obj" "./gpio_if.obj" "./main.obj" "./network_common.obj" "./pinmux.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/ccs/NON_OS/simplelink.a" -lwebclient.a -ljson.a 
+<Linking>
+'Finished building target: ssl.out'
+' '
+'Bin Generation'
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "ssl.out" "ssl.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+gmake: Nothing to be done for 'all'.
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+gmake: Nothing to be done for 'all'.
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+gmake: Nothing to be done for 'all'.
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=__SL__ --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+
+>> Compilation failure
+subdir_rules.mk:30: recipe for target 'main.obj' failed
+"..\Adafruit_SSD1351.h", line 36: warning #303-D: typedef name has already been declared (with same type)
+"..\Adafruit_SSD1351.h", line 37: warning #303-D: typedef name has already been declared (with same type)
+"..\test.h", line 251: warning #1-D: last line of file ends without a newline
+"../main.c", line 129: warning #48-D: incompatible redefinition of macro "APPLICATION_VERSION" (declared at line 98)
+"../main.c", line 1261: error #20: identifier "POST_DATA" is undefined
+"../main.c", line 1297: warning #121-D: return value type does not match the function type
+"../main.c", line 1313: warning #169-D: argument of type "unsigned char *" is incompatible with parameter of type "const char *"
+"../main.c", line 1315: warning #169-D: argument of type "unsigned char *" is incompatible with parameter of type "const char *"
+"../main.c", line 1317: warning #169-D: argument of type "unsigned char *" is incompatible with parameter of type "const char *"
+"../main.c", line 1330: warning #121-D: return value type does not match the function type
+"../main.c", line 1424: error #169: argument of type "HTTPCli_Struct *" is incompatible with parameter of type "HTTPCli_Struct"
+"../main.c", line 1435: warning #169-D: argument of type "char *" is incompatible with parameter of type "int"
+"../main.c", line 1435: error #167: too few arguments in function call
+"../main.c", line 750: warning #179-D: function "tls_connect" was declared but never referenced
+3 errors detected in the compilation of "../main.c".
+gmake: *** [main.obj] Error 1
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=__SL__ --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"..\Adafruit_SSD1351.h", line 36: warning #303-D: typedef name has already been declared (with same type)
+"..\Adafruit_SSD1351.h", line 37: warning #303-D: typedef name has already been declared (with same type)
+"..\test.h", line 251: warning #1-D: last line of file ends without a newline
+"../main.c", line 129: warning #48-D: incompatible redefinition of macro "APPLICATION_VERSION" (declared at line 98)
+"../main.c", line 1296: warning #121-D: return value type does not match the function type
+"../main.c", line 1312: warning #169-D: argument of type "unsigned char *" is incompatible with parameter of type "const char *"
+"../main.c", line 1314: warning #169-D: argument of type "unsigned char *" is incompatible with parameter of type "const char *"
+"../main.c", line 1316: warning #169-D: argument of type "unsigned char *" is incompatible with parameter of type "const char *"
+"../main.c", line 1321: warning #169-D: argument of type "HTTPCli_Handle *" is incompatible with parameter of type "HTTPCli_Handle"
+"../main.c", line 1329: warning #121-D: return value type does not match the function type
+"../main.c", line 1431: warning #1-D: last line of file ends without a newline
+"../main.c", line 750: warning #179-D: function "tls_connect" was declared but never referenced
+"../main.c", line 235: warning #2120-D: static function "http_post" treated as extern because it was referenced but not defined
+'Finished building: ../main.c'
+' '
+'Building target: ssl.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff -g --gcc --define=NOTERM --define=__SL__ --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"ssl.map" --heap_size=0x00008000 --stack_size=0x00001000 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" -i"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/http/client/ccs/HTTPClientMinLib" -i"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/ccs/Release/" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="ssl_linkInfo.xml" --rom_model -o "ssl.out" "./Adafruit_GFX.obj" "./Adafruit_OLED.obj" "./gpio_if.obj" "./main.obj" "./network_common.obj" "./pinmux.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/ccs/NON_OS/simplelink.a" -lwebclient.a -ljson.a 
+<Linking>
+
+ undefined first referenced
+  symbol       in file     
+ --------- ----------------
+ http_post ./main.obj      
+
+error #10234-D: unresolved symbols remain
+error #10010: errors encountered during linking; "ssl.out" not built
+
+>> Compilation failure
+makefile:152: recipe for target 'ssl.out' failed
+gmake: *** [ssl.out] Error 1
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=__SL__ --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"..\Adafruit_SSD1351.h", line 36: warning #303-D: typedef name has already been declared (with same type)
+"..\Adafruit_SSD1351.h", line 37: warning #303-D: typedef name has already been declared (with same type)
+"..\test.h", line 251: warning #1-D: last line of file ends without a newline
+"../main.c", line 129: warning #48-D: incompatible redefinition of macro "APPLICATION_VERSION" (declared at line 98)
+"../main.c", line 1088: warning #225-D: function "http_post" declared implicitly
+"../main.c", line 1295: warning #121-D: return value type does not match the function type
+"../main.c", line 1311: warning #169-D: argument of type "unsigned char *" is incompatible with parameter of type "const char *"
+"../main.c", line 1313: warning #169-D: argument of type "unsigned char *" is incompatible with parameter of type "const char *"
+"../main.c", line 1315: warning #169-D: argument of type "unsigned char *" is incompatible with parameter of type "const char *"
+"../main.c", line 1320: warning #169-D: argument of type "HTTPCli_Handle *" is incompatible with parameter of type "HTTPCli_Handle"
+"../main.c", line 1328: warning #121-D: return value type does not match the function type
+"../main.c", line 1430: warning #1-D: last line of file ends without a newline
+"../main.c", line 749: warning #179-D: function "tls_connect" was declared but never referenced
+'Finished building: ../main.c'
+' '
+'Building target: ssl.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff -g --gcc --define=NOTERM --define=__SL__ --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"ssl.map" --heap_size=0x00008000 --stack_size=0x00001000 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" -i"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/http/client/ccs/HTTPClientMinLib" -i"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/ccs/Release/" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="ssl_linkInfo.xml" --rom_model -o "ssl.out" "./Adafruit_GFX.obj" "./Adafruit_OLED.obj" "./gpio_if.obj" "./main.obj" "./network_common.obj" "./pinmux.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/ccs/NON_OS/simplelink.a" -lwebclient.a -ljson.a 
+<Linking>
+
+ undefined first referenced
+  symbol       in file     
+ --------- ----------------
+ http_post ./main.obj      
+
+error #10234-D: unresolved symbols remain
+error #10010: errors encountered during linking; "ssl.out" not built
+
+>> Compilation failure
+makefile:152: recipe for target 'ssl.out' failed
+gmake: *** [ssl.out] Error 1
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=__SL__ --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"..\Adafruit_SSD1351.h", line 36: warning #303-D: typedef name has already been declared (with same type)
+"..\Adafruit_SSD1351.h", line 37: warning #303-D: typedef name has already been declared (with same type)
+"..\test.h", line 251: warning #1-D: last line of file ends without a newline
+"../main.c", line 129: warning #48-D: incompatible redefinition of macro "APPLICATION_VERSION" (declared at line 98)
+"../main.c", line 1295: warning #121-D: return value type does not match the function type
+"../main.c", line 1311: warning #169-D: argument of type "unsigned char *" is incompatible with parameter of type "const char *"
+"../main.c", line 1313: warning #169-D: argument of type "unsigned char *" is incompatible with parameter of type "const char *"
+"../main.c", line 1315: warning #169-D: argument of type "unsigned char *" is incompatible with parameter of type "const char *"
+"../main.c", line 1320: warning #169-D: argument of type "HTTPCli_Handle *" is incompatible with parameter of type "HTTPCli_Handle"
+"../main.c", line 1328: warning #121-D: return value type does not match the function type
+"../main.c", line 1430: warning #1-D: last line of file ends without a newline
+"../main.c", line 749: warning #179-D: function "tls_connect" was declared but never referenced
+'Finished building: ../main.c'
+' '
+'Building target: ssl.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff -g --gcc --define=NOTERM --define=__SL__ --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"ssl.map" --heap_size=0x00008000 --stack_size=0x00001000 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" -i"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/http/client/ccs/HTTPClientMinLib" -i"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/ccs/Release/" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="ssl_linkInfo.xml" --rom_model -o "ssl.out" "./Adafruit_GFX.obj" "./Adafruit_OLED.obj" "./gpio_if.obj" "./main.obj" "./network_common.obj" "./pinmux.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/ccs/NON_OS/simplelink.a" -lwebclient.a -ljson.a 
+<Linking>
+'Finished building target: ssl.out'
+' '
+'Bin Generation'
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "ssl.out" "ssl.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+gmake: Nothing to be done for 'all'.
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=__SL__ --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+
+>> Compilation failure
+subdir_rules.mk:30: recipe for target 'main.obj' failed
+"..\Adafruit_SSD1351.h", line 36: warning #303-D: typedef name has already been declared (with same type)
+"..\Adafruit_SSD1351.h", line 37: warning #303-D: typedef name has already been declared (with same type)
+"..\test.h", line 251: warning #1-D: last line of file ends without a newline
+"../main.c", line 128: warning #48-D: incompatible redefinition of macro "APPLICATION_VERSION" (declared at line 98)
+"../main.c", line 1294: warning #121-D: return value type does not match the function type
+"../main.c", line 1310: warning #169-D: argument of type "unsigned char *" is incompatible with parameter of type "const char *"
+"../main.c", line 1312: warning #169-D: argument of type "unsigned char *" is incompatible with parameter of type "const char *"
+"../main.c", line 1314: warning #169-D: argument of type "unsigned char *" is incompatible with parameter of type "const char *"
+"../main.c", line 1319: warning #169-D: argument of type "HTTPCli_Handle *" is incompatible with parameter of type "HTTPCli_Handle"
+"../main.c", line 1327: warning #121-D: return value type does not match the function type
+"../main.c", line 1420: error #102: "lRetVal" has already been declared in the current scope
+"../main.c", line 1420: error #20: identifier "eec172" is undefined
+"../main.c", line 1420: error #20: identifier "theuc" is undefined
+"../main.c", line 1420: error #20: identifier "theu" is undefined
+"../main.c", line 1433: warning #1-D: last line of file ends without a newline
+"../main.c", line 748: warning #179-D: function "tls_connect" was declared but never referenced
+4 errors detected in the compilation of "../main.c".
+gmake: *** [main.obj] Error 1
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=__SL__ --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+
+>> Compilation failure
+subdir_rules.mk:30: recipe for target 'main.obj' failed
+"..\Adafruit_SSD1351.h", line 36: warning #303-D: typedef name has already been declared (with same type)
+"..\Adafruit_SSD1351.h", line 37: warning #303-D: typedef name has already been declared (with same type)
+"..\test.h", line 251: warning #1-D: last line of file ends without a newline
+"../main.c", line 128: warning #48-D: incompatible redefinition of macro "APPLICATION_VERSION" (declared at line 98)
+"../main.c", line 1294: warning #121-D: return value type does not match the function type
+"../main.c", line 1310: warning #169-D: argument of type "unsigned char *" is incompatible with parameter of type "const char *"
+"../main.c", line 1312: warning #169-D: argument of type "unsigned char *" is incompatible with parameter of type "const char *"
+"../main.c", line 1314: warning #169-D: argument of type "unsigned char *" is incompatible with parameter of type "const char *"
+"../main.c", line 1319: warning #169-D: argument of type "HTTPCli_Handle *" is incompatible with parameter of type "HTTPCli_Handle"
+"../main.c", line 1327: warning #121-D: return value type does not match the function type
+"../main.c", line 1420: error #102: "lRetVal" has already been declared in the current scope
+"../main.c", line 1433: warning #1-D: last line of file ends without a newline
+"../main.c", line 748: warning #179-D: function "tls_connect" was declared but never referenced
+1 error detected in the compilation of "../main.c".
+gmake: *** [main.obj] Error 1
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=__SL__ --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"..\Adafruit_SSD1351.h", line 36: warning #303-D: typedef name has already been declared (with same type)
+"..\Adafruit_SSD1351.h", line 37: warning #303-D: typedef name has already been declared (with same type)
+"..\test.h", line 251: warning #1-D: last line of file ends without a newline
+"../main.c", line 128: warning #48-D: incompatible redefinition of macro "APPLICATION_VERSION" (declared at line 98)
+"../main.c", line 1294: warning #121-D: return value type does not match the function type
+"../main.c", line 1310: warning #169-D: argument of type "unsigned char *" is incompatible with parameter of type "const char *"
+"../main.c", line 1312: warning #169-D: argument of type "unsigned char *" is incompatible with parameter of type "const char *"
+"../main.c", line 1314: warning #169-D: argument of type "unsigned char *" is incompatible with parameter of type "const char *"
+"../main.c", line 1319: warning #169-D: argument of type "HTTPCli_Handle *" is incompatible with parameter of type "HTTPCli_Handle"
+"../main.c", line 1327: warning #121-D: return value type does not match the function type
+"../main.c", line 1433: warning #1-D: last line of file ends without a newline
+"../main.c", line 748: warning #179-D: function "tls_connect" was declared but never referenced
+'Finished building: ../main.c'
+' '
+'Building target: ssl.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff -g --gcc --define=NOTERM --define=__SL__ --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"ssl.map" --heap_size=0x00008000 --stack_size=0x00001000 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" -i"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/http/client/ccs/HTTPClientMinLib" -i"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/ccs/Release/" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="ssl_linkInfo.xml" --rom_model -o "ssl.out" "./Adafruit_GFX.obj" "./Adafruit_OLED.obj" "./gpio_if.obj" "./main.obj" "./network_common.obj" "./pinmux.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/ccs/NON_OS/simplelink.a" -lwebclient.a -ljson.a 
+<Linking>
+'Finished building target: ssl.out'
+' '
+'Bin Generation'
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "ssl.out" "ssl.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=__SL__ --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"..\Adafruit_SSD1351.h", line 36: warning #303-D: typedef name has already been declared (with same type)
+"..\Adafruit_SSD1351.h", line 37: warning #303-D: typedef name has already been declared (with same type)
+"..\test.h", line 251: warning #1-D: last line of file ends without a newline
+"../main.c", line 128: warning #48-D: incompatible redefinition of macro "APPLICATION_VERSION" (declared at line 98)
+"../main.c", line 1295: warning #121-D: return value type does not match the function type
+"../main.c", line 1311: warning #169-D: argument of type "unsigned char *" is incompatible with parameter of type "const char *"
+"../main.c", line 1313: warning #169-D: argument of type "unsigned char *" is incompatible with parameter of type "const char *"
+"../main.c", line 1315: warning #169-D: argument of type "unsigned char *" is incompatible with parameter of type "const char *"
+"../main.c", line 1328: warning #121-D: return value type does not match the function type
+"../main.c", line 1428: warning #1-D: last line of file ends without a newline
+"../main.c", line 748: warning #179-D: function "tls_connect" was declared but never referenced
+'Finished building: ../main.c'
+' '
+'Building target: ssl.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff -g --gcc --define=NOTERM --define=__SL__ --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"ssl.map" --heap_size=0x00008000 --stack_size=0x00001000 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" -i"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/http/client/ccs/HTTPClientMinLib" -i"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/ccs/Release/" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="ssl_linkInfo.xml" --rom_model -o "ssl.out" "./Adafruit_GFX.obj" "./Adafruit_OLED.obj" "./gpio_if.obj" "./main.obj" "./network_common.obj" "./pinmux.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/ccs/NON_OS/simplelink.a" -lwebclient.a -ljson.a 
+<Linking>
+'Finished building target: ssl.out'
+' '
+'Bin Generation'
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "ssl.out" "ssl.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" -g --gcc --define=NOTERM --define=__SL__ --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"..\Adafruit_SSD1351.h", line 36: warning #303-D: typedef name has already been declared (with same type)
+"..\Adafruit_SSD1351.h", line 37: warning #303-D: typedef name has already been declared (with same type)
+"..\test.h", line 251: warning #1-D: last line of file ends without a newline
+"../main.c", line 128: warning #48-D: incompatible redefinition of macro "APPLICATION_VERSION" (declared at line 98)
+"../main.c", line 1298: warning #121-D: return value type does not match the function type
+"../main.c", line 1314: warning #169-D: argument of type "unsigned char *" is incompatible with parameter of type "const char *"
+"../main.c", line 1316: warning #169-D: argument of type "unsigned char *" is incompatible with parameter of type "const char *"
+"../main.c", line 1318: warning #169-D: argument of type "unsigned char *" is incompatible with parameter of type "const char *"
+"../main.c", line 1320: warning #169-D: argument of type "unsigned char *" is incompatible with parameter of type "const char *"
+"../main.c", line 1334: warning #121-D: return value type does not match the function type
+"../main.c", line 1434: warning #1-D: last line of file ends without a newline
+"../main.c", line 751: warning #179-D: function "tls_connect" was declared but never referenced
+'Finished building: ../main.c'
+' '
+'Building target: ssl.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib --abi=eabi -me -Ooff -g --gcc --define=NOTERM --define=__SL__ --define=ccs --define=cc3200 --diag_wrap=off --diag_warning=225 --display_error_number --printf_support=full -z -m"ssl.map" --heap_size=0x00008000 --stack_size=0x00001000 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" -i"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/http/client/ccs/HTTPClientMinLib" -i"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/ccs/Release/" --reread_libs --display_error_number --diag_wrap=off --warn_sections --xml_link_info="ssl_linkInfo.xml" --rom_model -o "ssl.out" "./Adafruit_GFX.obj" "./Adafruit_OLED.obj" "./gpio_if.obj" "./main.obj" "./network_common.obj" "./pinmux.obj" "./startup_ccs.obj" "./timer_if.obj" "./uart_if.obj" "../cc3200v1p32.cmd"  -llibc.a -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib/ccs/Release/driverlib.a" -l"C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/ccs/NON_OS/simplelink.a" -lwebclient.a -ljson.a 
+<Linking>
+'Finished building target: ssl.out'
+' '
+'Bin Generation'
+"C:/ti/ccsv7/utils/tiobj2bin/tiobj2bin" "ssl.out" "ssl.bin" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armofd" "C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armhex" "C:/ti/ccsv7/utils/tiobj2bin/mkhex4bin"
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+gmake: Nothing to be done for 'all'.
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+gmake: Nothing to be done for 'all'.
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ssl ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
+gmake: Nothing to be done for 'all'.
+
+**** Build Finished ****

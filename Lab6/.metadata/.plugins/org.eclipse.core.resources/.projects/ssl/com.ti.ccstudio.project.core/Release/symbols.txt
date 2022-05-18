@@ -1,6 +1,6 @@
 #define __unsigned_chars__ 1	/* Predefined */
 #define __DATE__ "May 17 2022"	/* Predefined */
-#define __TIME__ "16:44:21"	/* Predefined */
+#define __TIME__ "18:48:39"	/* Predefined */
 #define __STDC__ 1	/* Predefined */
 #define __STDC_VERSION__ 199409L	/* Predefined */
 #define __TI_C99_COMPLEX_ENABLED__ 1	/* Predefined */
@@ -35,5 +35,6 @@
 #define __TI_STRICT_FP_MODE__ 1	/* Predefined */
 #define _OPTIMIZE_FOR_SPACE 1
 #define NOTERM 1
+#define __SL__ 1
 #define ccs 1
 #define cc3200 1

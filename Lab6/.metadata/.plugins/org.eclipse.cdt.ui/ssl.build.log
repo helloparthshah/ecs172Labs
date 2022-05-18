@@ -2,24 +2,6 @@
 **** Build of configuration Release for project ssl ****
 
 "C:\\ti\\ccsv7\\utils\\bin\\gmake" -k all 
-'Building file: ../main.c'
-'Invoking: ARM Compiler'
-"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib -me -Ooff --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/lib" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/driverlib" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/inc" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/source" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink/include" --include_path="C:/ti/CC3200SDK_1.2.0/cc3200-sdk/simplelink_extlib/provisioninglib" --define=NOTERM --define=ccs --define=cc3200 -g --gcc --printf_support=full --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
-
->> Compilation failure
-subdir_rules.mk:30: recipe for target 'main.obj' failed
-"..\Adafruit_SSD1351.h", line 36: warning #303-D: typedef name has already been declared (with same type)
-"..\Adafruit_SSD1351.h", line 37: warning #303-D: typedef name has already been declared (with same type)
-"..\test.h", line 251: warning #1-D: last line of file ends without a newline
-"../main.c", line 858: error #20: identifier "SOCKET_CREATE_ERROR" is undefined
-"../main.c", line 865: error #20: identifier "BIND_ERROR" is undefined
-"../main.c", line 872: error #20: identifier "LISTEN_ERROR" is undefined
-"../main.c", line 881: error #20: identifier "SOCKET_OPT_ERROR" is undefined
-"../main.c", line 1347: warning #225-D: function "http_post_test" declared implicitly
-"../main.c", line 1358: warning #174-D: external/internal linkage conflict with previous declaration
-"../main.c", line 721: warning #179-D: function "tls_connect" was declared but never referenced
-4 errors detected in the compilation of "../main.c".
-gmake: *** [main.obj] Error 1
-gmake: Target 'all' not remade because of errors.
+gmake: Nothing to be done for 'all'.
 
 **** Build Finished ****

@@ -46,6 +46,20 @@ main.obj: ../Adafruit_SSD1351.h
 main.obj: ../glcdfont.h
 main.obj: ../test.h
 main.obj: ../Adafruit_SSD1351.h
+main.obj: C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/http/client/httpcli.h
+main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include/stdbool.h
+main.obj: C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/http/client/httpstd.h
+main.obj: C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/http/client/network.h
+main.obj: C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/http/client/ssock.h
+main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include/stdint.h
+main.obj: C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/http/client/common.h
+main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include/stdio.h
+main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include/string.h
+main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include/stdlib.h
+main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include/assert.h
+main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include/stdarg.h
+main.obj: C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/jsmn.h
+main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include/stddef.h
 
 ../main.c: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include/stdio.h: 
@@ -93,3 +107,17 @@ C:/ti/CC3200SDK_1.2.0/cc3200-sdk/example/common/timer_if.h:
 ../glcdfont.h: 
 ../test.h: 
 ../Adafruit_SSD1351.h: 
+C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/http/client/httpcli.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include/stdbool.h: 
+C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/http/client/httpstd.h: 
+C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/http/client/network.h: 
+C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/http/client/ssock.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include/stdint.h: 
+C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/http/client/common.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include/stdio.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include/string.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include/stdlib.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include/assert.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include/stdarg.h: 
+C:/ti/CC3200SDK_1.2.0/cc3200-sdk/netapps/json/jsmn.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include/stddef.h: 

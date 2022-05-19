@@ -16,7 +16,7 @@ dataset = df.values
 X = dataset[:, df.columns != 'location'].astype(float)
 # multiple all values by -1
 X[:, :] = X[:, :] * -1/100
-Y = dataset[:, 4]
+Y = dataset[:, df.columns == 'location']
 
 encoder = LabelEncoder()
 encoder.fit(Y)
@@ -33,7 +33,7 @@ def baseline_model():
     # create model
     model = Sequential()
     model.add(Dense(10, activation='relu'))
-    model.add(Dense(10, activation='relu'))
+    model.add(Dense(15, activation='relu'))
     model.add(Dense(2, activation='softmax'))
     # Compile model
     model.compile(loss='categorical_crossentropy',

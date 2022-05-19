@@ -2564,3 +2564,82 @@ org.jsoup.HttpStatusException: HTTP error fetching URL. Status=410, URL=https://
 !ENTRY com.ti.ccstudio.debug 1 0 2022-05-17 19:51:39.033
 !MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
 
+!SESSION 2022-05-18 22:05:48.369 -----------------------------------------------
+eclipse.buildId=4.6.0.I20160606-1100
+java.version=1.8.0_112
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product com.ti.ccstudio.branding.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ti.ccstudio.branding.product
+
+!ENTRY com.ti.common.core 4 0 2022-05-18 22:05:53.639
+!MESSAGE path=ccs_base/DebugServer
+
+!ENTRY com.ti.common.core 4 0 2022-05-18 22:05:53.641
+!MESSAGE debugServerDir=C:/ti/ccsv7/ccs_base/DebugServer
+
+!ENTRY com.ti.ccstudio.errorparser 4 0 2022-05-18 22:06:29.625
+!MESSAGE An internal error was logged by 'com.ti.ccstudio.errorparser'.
+!STACK 0
+org.jsoup.HttpStatusException: HTTP error fetching URL. Status=410, URL=https://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:590)
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:587)
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:540)
+	at org.jsoup.helper.HttpConnection.execute(HttpConnection.java:227)
+	at org.jsoup.helper.HttpConnection.get(HttpConnection.java:216)
+	at com.ti.ccstudio.errorparser.parsers.PatternProvider$PatternData.fillup(PatternProvider.java:277)
+	at com.ti.ccstudio.errorparser.parsers.PatternProvider$PatternData.findMatch(PatternProvider.java:144)
+	at com.ti.ccstudio.errorparser.parsers.PatternProvider.getEmdUrl(PatternProvider.java:489)
+	at com.ti.ccstudio.errorparser.parsers.ErrorPattern.recordError(ErrorPattern.java:95)
+	at com.ti.ccstudio.errorparser.parsers.CoffErrorParser.processPendingMesg(CoffErrorParser.java:343)
+	at com.ti.ccstudio.errorparser.parsers.CoffErrorParser.processLine(CoffErrorParser.java:275)
+	at org.eclipse.cdt.core.ErrorParserManager.processLine(ErrorParserManager.java:354)
+	at org.eclipse.cdt.core.ErrorParserManager.checkLine(ErrorParserManager.java:688)
+	at org.eclipse.cdt.core.ErrorParserManager.write(ErrorParserManager.java:672)
+	at org.eclipse.cdt.internal.core.StreamProgressMonitor.write(StreamProgressMonitor.java:101)
+	at java.io.OutputStream.write(OutputStream.java:75)
+	at com.ti.ccstudio.project.core.internal.build.temp.ProcessClosure$SynchronizedOutputStream.flushBufferedErrors(ProcessClosure.java:230)
+	at com.ti.ccstudio.project.core.internal.build.temp.ProcessClosure$SynchronizedOutputStream.write(ProcessClosure.java:182)
+	at com.ti.ccstudio.project.core.internal.build.temp.ProcessClosure$ReaderThread.run(ProcessClosure.java:84)
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-18 22:07:43.166
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+
+!ENTRY com.ti.ccstudio.system.setup.ui 1 0 2022-05-18 22:08:59.690
+!MESSAGE targetCfgPath1=C:/Users/hello/user/CCSTargetConfigurations
+
+!ENTRY com.ti.ccstudio.system.setup.ui 1 0 2022-05-18 22:08:59.691
+!MESSAGE targetCfgPath2=C:/Users/hello/ti/CCSTargetConfigurations
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-18 22:20:58.435
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-18 22:22:38.044
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-18 22:22:57.448
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-18 22:24:57.159
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-18 22:26:05.351
+!MESSAGE DS_ERROR: Cortex_M4_0: Error: Connection with the target was unexpectedly lost.
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-18 22:26:51.658
+!MESSAGE DS_ERROR: Cortex_M4_0: Error connecting to the target 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-18 22:26:51.838
+!MESSAGE DS_ERROR: Error connecting to the target
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2022-05-18 22:28:39.569
+!MESSAGE DS_ERROR: Cortex_M4_0: Can't Run Target CPU: Connection with the target was unexpectedly lost.
+

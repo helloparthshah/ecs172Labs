@@ -59,6 +59,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 // Simplelink includes
 #include "simplelink.h" 
 
@@ -150,11 +151,30 @@ volatile int TLS_SOCKET_ID = -1;
 #define CLHEADER1 "Content-Length: "
 #define CLHEADER2 "\r\n\r\n"
 
-char *generateBody(int eec172, int testwifi, int ucdguest, int eduroam) {
+char *generateBody(Sl_WlanNetworkEntry_t found_networks[5], int network_count) {
   // create the body of the post request in the form of POST_DATA with data
   // {"eec172":eec172, "theuc":theuc, "theu":theu}
-
-  int nBytes = sprintf((char *)NULL,
+  // create a string with found networks.ssid as key and found networks.rssi as value
+  char *body = (char *)malloc(sizeof(char) * MAX_BUFF_SIZE);
+  strcat(body, "{\n");
+  int i=0;
+  for (i = 0; i < network_count; i++) {
+    printf("%s\n", found_networks[i].ssid);
+    strcat(body, "\"");
+    strcat(body, found_networks[i].ssid);
+    strcat(body, "\":");
+    // convert rssi to string
+    char rssi_str[4];
+    sprintf(rssi_str, "%d", found_networks[i].rssi);
+    strcat(body, rssi_str);
+    if (i != network_count - 1) {
+      strcat(body, ",\n");
+    }
+  }
+  strcat(body, "\n}");
+  printf("%s\n", body);
+  return body;
+  /* int nBytes = sprintf((char *)NULL,
                        "{\n\"eec172\":%d,\n\"testwifi\":%d,\n\"ucdguest\":%d\n,"
                        "\"eduroam\":%d\n}",
                        eec172, testwifi, ucdguest, eduroam) +
@@ -163,7 +183,7 @@ char *generateBody(int eec172, int testwifi, int ucdguest, int eduroam) {
   sprintf(body,
           "{\n\"eec172\":%d,\n\"testwifi\":%d,\n\"ucdguest\":%d\n,"
           "\"eduroam\":%d\n}",
-          eec172, testwifi, ucdguest, eduroam);
+          eec172, testwifi, ucdguest, eduroam); */
   return body;
 }
 
@@ -1305,9 +1325,9 @@ void wifiSearch() {
   int network_count =
       sl_WlanGetNetworkList(0, (unsigned char)WLAN_SCAN_COUNT, found_networks);
 
-  int eec172 = 0, testwifi = 0, ucdguest = 0, eduroam = 0;
-  int i=0;
-  for (i = 0; i < network_count; i++) {
+  // int eec172 = 0, testwifi = 0, ucdguest = 0, eduroam = 0;
+  // int i=0;
+/*   for (i = 0; i < network_count; i++) {
     printf("SSID: %s\n\r", found_networks[i].ssid);
     printf("Security: %d\n\r", found_networks[i].sec_type);
     printf("RSSI: %d\n\r", found_networks[i].rssi);
@@ -1320,10 +1340,10 @@ void wifiSearch() {
     }else if (strcmp(found_networks[i].ssid, "eduroam") == 0) {
       eduroam = found_networks[i].rssi;
     }
-  }
+  } */
 
-  int lRetVal = HTTPPostMethod(
-      &httpClient, generateBody(eec172, testwifi, ucdguest, eduroam));
+  int lRetVal =
+      HTTPPostMethod(&httpClient, generateBody(found_networks, network_count));
   if (lRetVal < 0) {
     UART_PRINT("HTTP Post failed.\n\r");
   }
@@ -1417,6 +1437,7 @@ void main() {
   if (lRetVal < 0) {
     LOOP_FOREVER();
   }
+  printf("Connected to server\n\r");
   // Connect to the website with TLS encryption
   // http_post(lRetVal, "Hello from the CC3200!");
   // sl_Stop(SL_STOP_TIMEOUT);

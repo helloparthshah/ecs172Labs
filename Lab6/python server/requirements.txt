@@ -1,0 +1,7 @@
+Flask==2.1.1
+numpy==1.22.2
+pandas==1.4.2
+pandas_stubs==1.2.0.58
+requests==2.25.1
+scikit_learn==1.1.1
+tensorflow==2.9.0

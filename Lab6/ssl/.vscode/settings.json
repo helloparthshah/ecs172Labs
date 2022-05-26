@@ -90,6 +90,7 @@
     "hw_ints.h": "c",
     "httpcli.h": "c",
     "common.h": "c",
-    "test.h": "c"
+    "test.h": "c",
+    "hw_common_reg.h": "c"
   }
 }

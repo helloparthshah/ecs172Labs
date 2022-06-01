@@ -99,6 +99,8 @@
 
 #define POST_REQUEST_URI "/predict"
 
+#define LOGIN_URI "/login"
+
 #define DELETE_REQUEST_URI "/delete"
 
 #define PUT_REQUEST_URI "/put"
@@ -150,6 +152,8 @@ volatile int TLS_SOCKET_ID = -1;
 #define CLHEADER1 "Content-Length: "
 #define CLHEADER2 "\r\n\r\n"
 
+char *auth_token = NULL;
+
 char *generateBody(Sl_WlanNetworkEntry_t found_networks[5], int network_count) {
   // create the body of the post request in the form of POST_DATA with data
   // {"eec172":eec172, "theuc":theuc, "theu":theu}
@@ -170,8 +174,11 @@ char *generateBody(Sl_WlanNetworkEntry_t found_networks[5], int network_count) {
       strcat(body, ",\n");
     }
   }
-  strcat(body, "\n}");
-  printf("%s\n", body);
+  // add authorization token
+  strcat(body, ",\n\"Authorization\":\"");
+  strcat(body, "Bearer ");
+  strcat(body, auth_token);
+  strcat(body, "\"\n}");
   return body;
 }
 
@@ -1213,7 +1220,6 @@ void SPIInit() {
 
   Adafruit_Init();
   fillScreen(BLACK);
-  drawChar(cx, cy, '_', colors[curr_color], BLACK, 1);
 }
 
 static int FlushHTTPResponse(HTTPCli_Handle httpClient) {
@@ -1318,6 +1324,8 @@ int ParseJSONData(char *ptr) {
   return lRetVal;
 }
 
+int location = 0;
+
 static int readResponse(HTTPCli_Handle httpClient) {
   long lRetVal = 0;
   int bytesRead = 0;
@@ -1332,6 +1340,7 @@ static int readResponse(HTTPCli_Handle httpClient) {
 
   /* Read HTTP POST request status code */
   lRetVal = HTTPCli_getResponseStatus(httpClient);
+  printf("HTTP Response Status: %ld\n\r", lRetVal);
   if (lRetVal > 0) {
     switch (lRetVal) {
     case 200: {
@@ -1421,17 +1430,66 @@ type other than json are treated as plain text.
         goto end;
       }
       dataBuffer[bytesRead] = '\0';
-      printf("buffer: %s\n\r", dataBuffer);
+      // printf("buffer: %s\n\r", dataBuffer);
       if (dataBuffer[0] == '{') {
         // {"prediction":1}
         // get prediction
         char *ptr = strstr(dataBuffer, "prediction");
+        char *token=strstr(dataBuffer, "token");
+        char *outside=strstr(dataBuffer, "go_outside");
         if (ptr) {
           ptr = strstr(ptr, ":");
           if (ptr) {
             ptr++;
             int prediction = atoi(ptr);
             printf("prediction: %d\n\r", prediction);
+            // set cursor to 0,0
+            if (prediction == 1 && location == 0) {
+              location = 1;
+              fillRect(0, 0, 128, 8, BLACK);
+              drawRect(0, 0, 128, 8, BLACK);
+              setCursor(0, 0);
+              Outstr("Currently inside lab");
+            } else if (prediction == 0 && location == 1) {
+              location = 0;
+              fillRect(0, 0, 128, 8, BLACK);
+              drawRect(0, 0, 128, 8, BLACK);
+              setCursor(0, 0);
+              Outstr("Currently outside lab");
+            }
+          }
+        }
+        if(outside){
+          outside=strstr(outside, ":");
+          if(outside){
+            outside++;
+            int outside_val = atoi(outside);
+            printf("outside: %d\n\r", outside_val);
+            if (outside_val == 1) {
+              fillRect(0, 60, 128, 8, BLACK);
+              drawRect(0, 60, 128, 8, BLACK);
+              setCursor(0, 60);
+              Outstr("Go outside!");
+            } else {
+              fillRect(0, 60, 128, 8, BLACK);
+              drawRect(0, 60, 128, 8, BLACK);
+            }
+          }
+        }
+        if (token) {
+          token = strstr(token, ":");
+          if (token) {
+            token++;
+            // remove quotes
+            token++;
+            token[strlen(token)-1] = '\0';
+            auth_token=malloc(strlen(token)-2);
+            int i=0;
+            for (i=0; i<strlen(token)-2; i++) {
+              auth_token[i]=token[i];
+            }
+            auth_token[i]='\0';
+            printf("token: %s\n\r", auth_token);
           }
         }
       }
@@ -1484,6 +1542,7 @@ static int HTTPPostMethod(HTTPCli_Handle httpClient, char *body) {
   bool lastFlag = 1;
   char tmpBuf[4];
   long lRetVal = 0;
+
   HTTPCli_Field fields[4] = {
       {HTTPCli_FIELD_NAME_HOST, HOST_NAME},
       {HTTPCli_FIELD_NAME_ACCEPT, "*/*"},
@@ -1620,6 +1679,60 @@ static int ConnectToHTTPServer(HTTPCli_Handle httpClient) {
   return 0;
 }
 
+static int login(HTTPCli_Handle httpClient) {
+  bool moreFlags = 1;
+  bool lastFlag = 1;
+  char tmpBuf[4];
+  long lRetVal = 0;
+  char body[] = "{\n}";
+  HTTPCli_Field fields[5] = {
+      {HTTPCli_FIELD_NAME_HOST, HOST_NAME},
+      {HTTPCli_FIELD_NAME_ACCEPT, "*/*"},
+      {HTTPCli_FIELD_NAME_CONTENT_TYPE, "application/json"},
+      {HTTPCli_FIELD_NAME_AUTHORIZATION, "Basic cGFydGg6cGFzc3dvcmQ="},
+      {NULL, NULL}};
+
+  /* Set request header fields to be send for HTTP request. */
+  HTTPCli_setRequestFields(httpClient, fields);
+
+  /* Send POST method request. */
+  /* Here we are setting moreFlags = 1 as there are some more header fields need
+     to send other than setted in previous call HTTPCli_setRequestFields() at
+     later stage. Please refer HTTP Library API documentaion @ref
+     HTTPCli_sendRequest for more information.
+  */
+  moreFlags = 1;
+  lRetVal = HTTPCli_sendRequest(httpClient, HTTPCli_METHOD_POST,
+                                LOGIN_URI, moreFlags);
+  if (lRetVal < 0) {
+    printf("Failed to send HTTP POST request header.\n\r");
+    return lRetVal;
+  }
+  sprintf((char *)tmpBuf, "%d", strlen(body));
+
+  /* Here we are setting lastFlag = 1 as it is last header field.
+     Please refer HTTP Library API documentaion @ref HTTPCli_sendField for more
+     information.
+  */
+  lastFlag = 1;
+  lRetVal = HTTPCli_sendField(httpClient, HTTPCli_FIELD_NAME_CONTENT_LENGTH,
+                              (const char *)tmpBuf, lastFlag);
+  if (lRetVal < 0) {
+    printf("Failed to send HTTP POST request header.\n\r");
+    return lRetVal;
+  }
+
+  /* Send POST data/body */
+  lRetVal = HTTPCli_sendRequestBody(httpClient, body, strlen(body));
+  if (lRetVal < 0) {
+    printf("Failed to send HTTP POST request body.\n\r");
+    return lRetVal;
+  }
+  lRetVal = readResponse(httpClient);
+
+  return lRetVal;
+}
+
 //*****************************************************************************
 //
 //! Main
@@ -1638,7 +1751,7 @@ void main() {
 
   PinMuxConfig();
   MAP_PRCMPeripheralClkEnable(PRCM_GSPI, PRCM_RUN_MODE_CLK);
-
+  SPIInit();
   InitTerm();
   ClearTerm();
   printf("My terminal works!\n\r");
@@ -1663,7 +1776,7 @@ void main() {
   // Connect to the website with TLS encryption
   // http_post(lRetVal, "Hello from the CC3200!");
   // sl_Stop(SL_STOP_TIMEOUT);
-
+  login(&httpClient);
   // LOOP_FOREVER();
   while (1) {
     wifiSearch();
